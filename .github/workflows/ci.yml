@@ -101,7 +101,7 @@ jobs:
         run: |
           dotnet tool install --global dotnet-ef
           echo "$HOME/.dotnet/tools" >> "$GITHUB_PATH"
-          dotnet ef database update --project src/SistemaHospitalar.Infrastructure --startup-project src/SistemaHospitalar.Api/SistemaHospitalar.Api.csproj -c Release --no-build
+          dotnet ef database update --project src/SistemaHospitalar.Infrastructure --startup-project src/SistemaHospitalar.Api/SistemaHospitalar.Api.csproj --configuration Release --no-build
 
       - name: Start API
         run: |
