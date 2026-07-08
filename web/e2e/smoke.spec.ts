@@ -8,13 +8,17 @@ test.describe('Smoke — fluxos críticos', () => {
     expect(response.ok()).toBeTruthy();
   });
 
-  test('login redireciona para o painel', async ({ page }) => {
-    await page.goto('/login');
-    await expect(page.getByLabel('E-mail')).toBeVisible();
-    await page.getByLabel('E-mail').fill('admin@hospital.local');
-    await page.getByLabel('Senha').fill('Admin123!');
-    await page.getByRole('button', { name: 'Entrar' }).click();
-    await expect(page).not.toHaveURL(/\/login(?:\?|$)/, { timeout: 30_000 });
+  test.describe('login sem sessão', () => {
+    test.use({ storageState: { cookies: [], origins: [] } });
+
+    test('login redireciona para o painel', async ({ page }) => {
+      await page.goto('/login');
+      await expect(page.locator('#email')).toBeVisible();
+      await page.locator('#email').fill('admin@hospital.local');
+      await page.locator('#password').fill('Admin123!');
+      await page.getByRole('button', { name: 'Entrar' }).click();
+      await expect(page).not.toHaveURL(/\/login(?:\?|$)/, { timeout: 30_000 });
+    });
   });
 
   test('sala de espera carrega KPIs', async ({ page }) => {
@@ -28,10 +32,10 @@ test.describe('Smoke — fluxos críticos', () => {
 
   test('hub financeiro carrega', async ({ page }) => {
     await page.goto('/financeiro');
-    await expect(page.getByRole('heading', { name: /Gestão Financeira/i })).toBeVisible({
+    await expect(page.locator('.feegow-finance-page-head')).toBeVisible({
       timeout: 30_000,
     });
-    await expect(page.locator('.guides-kpi-row, .kpi-grid').first()).toBeVisible();
+    await expect(page.getByText(/painel principal/i)).toBeVisible();
   });
 
   test('página BI carrega', async ({ page }) => {
