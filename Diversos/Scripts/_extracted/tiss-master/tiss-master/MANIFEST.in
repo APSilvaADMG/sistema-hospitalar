@@ -1,0 +1,3 @@
+include README.md
+include tiss/xsd/*
+recursive-include tiss/extensoes *.py *.tiss-plugin *.tiss-provider

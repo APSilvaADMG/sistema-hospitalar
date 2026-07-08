@@ -1,0 +1,106 @@
+{% extends "base/index.html" %}
+{% load static bootstrap %}
+{% block conteudo %} 
+
+    <div class="container py-5">
+        {% if not objuser.if_funcionario %}   
+            <div class="text-center mb-4">
+                <h2 class="fw-bold"><i class="bi bi-person-circle text-primary"></i> Bem-vindo(a), {{ objuser.nome }}!</h2>
+                <p class="lead">Painel de controle da loja <b>{{ objuser.empresa }}</b></p>
+                <p class="lead">{% if meta_atual %}{{meta_atual.nome}}{% else %}SEM META CADASTRADA {% endif %}</p>
+            </div>
+            <div class="row justify-content-center mb-4 g-3">
+                <div class="col-md-3">
+                    <div class="card shadow border-0 text-center">
+                        <div class="card-body">
+                            <div class="mb-2"><i class="bi bi-bullseye text-primary" style="font-size:2rem;"></i></div>
+                            <h6 class="text-muted">Meta Atual</h6>
+                            <h4 class="fw-bold">R$ {{ valor_meta|default:"SEM META" }}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card shadow border-0 text-center">
+                        <div class="card-body">
+                            <div class="mb-2"><i class="bi bi-trophy text-success" style="font-size:2rem;"></i></div>
+                            <h6 class="text-muted">Valor Alcançado</h6>
+                            <h4 class="fw-bold text-success">R$ {{ valor_alcancado|default:"0,00" }}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card shadow border-0 text-center">
+                        <div class="card-body">
+                            <div class="mb-2"><i class="bi bi-exclamation-triangle text-danger" style="font-size:2rem;"></i></div>
+                            <h6 class="text-muted">Falta</h6>
+                            <h4 class="fw-bold text-danger">R$ {{ falta_para_meta|default:"0,00" }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="mb-0"><i class="bi bi-calendar-event"></i> Vendas do dia: <span class="text-primary">{{data_atual}}</span></h4>
+                <a href="{% url 'cadastrar_venda' %}" class="btn btn-gradient-primary d-flex align-items-center"><i class="bi bi-cart-plus me-2"></i> Nova Venda</a>
+            </div>
+            {% if not ultimas_vendas %}
+                <div class="alert alert-primary" role="alert">
+                    Até o momento, não há vendas realizadas hoje.
+                </div>              
+            {% else %}
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Data da Venda</th>
+                            <th>Vendedor</th>
+                            <th>Cliente</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for venda in ultimas_vendas %}
+                            <tr>
+                                <td>{{ venda.id }}</td>
+                                <td>{{ venda.data_venda }}</td>
+                                <td>{{ venda.vendedor.nome }}</td>
+                                <td>{{ venda.cliente.nome }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        {% else %}
+            <div class="text-center mb-4">
+                <h2 class="fw-bold"><i class="bi bi-person-circle text-primary"></i> Bem-vindo(a), {{ objuser.nome }}!</h2>
+                <p class="lead">Painel de controle da loja <b>{{ objuser.empresa }}</b></p>
+            </div>
+            <h4 class="mb-0"><i class="bi bi-calendar-event"></i> Suas últimas 5 Vendas: <span class="text-primary">{{data_atual}}</span></h4>
+            {% if ultimas_vendas %}
+                <table class="table table-striped mt-4">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Data da Venda</th>
+                            <th>Vendedor</th>
+                            <th>Cliente</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for venda in ultimas_vendas %}
+                            <tr>
+                                <td>{{ venda.id }}</td>
+                                <td>{{ venda.data_venda }}</td>
+                                <td>{{ venda.vendedor.nome }}</td>
+                                <td>{{ venda.cliente.nome }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="alert alert-info" role="alert">
+                    Você não efetuou nenhuma venda para atual meta.
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+
+{% endblock conteudo %}

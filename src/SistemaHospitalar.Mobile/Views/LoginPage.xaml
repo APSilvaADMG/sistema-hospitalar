@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SistemaHospitalar.Mobile.Views.LoginPage"
+             Title="APSMedCore Maqueiro">
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="16">
+            <Label Text="Central de Transportes" FontSize="24" FontAttributes="Bold" />
+            <Label Text="Modo offline-ready — opera sem internet e sincroniza ao reconectar." FontSize="13" TextColor="Gray" />
+
+            <Entry x:Name="ApiUrlEntry" Placeholder="URL da API (ex: http://10.0.2.2:8080)" />
+            <Entry x:Name="EmailEntry" Placeholder="E-mail" Keyboard="Email" />
+            <Entry x:Name="PasswordEntry" Placeholder="Senha" IsPassword="True" />
+
+            <Label x:Name="StatusLabel" TextColor="IndianRed" />
+
+            <Button Text="Entrar" Clicked="OnLoginClicked" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

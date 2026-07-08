@@ -1,0 +1,55 @@
+# Build
+bin/
+obj/
+out/
+publish/
+
+# .NET
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Node
+node_modules/
+dist/
+*.local
+
+# IDE
+.vs/
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.*
+
+# Local test credentials
+scripts/.login-body.json
+Diversos/feegow-extract/.feegow-session.json
+Diversos/feegow-extract/.feegow-api-token
+Diversos/feegow-extract/.browser-profile/
+
+# Docker
+postgres_data/
+
+# Playwright (web/)
+web/e2e/.auth/
+web/playwright-report/
+web/test-results/
+web/blob-report/
+
+# Dados locais grandes (import manual / demo)
+data/consulta-remedios-bulas.jsonl
+scripts/load-test/*.log
+seed-run.log
+tmp-login.json
+
+# Referências externas — ZIPs e extrações (montar localmente em Diversos/)
+Diversos/Scripts/*.zip
+Diversos/almox/*.zip
+Diversos/TISS/_tmp*/

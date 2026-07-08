@@ -1,0 +1,14 @@
+#!/bin/sh
+# Bloqueia commit se TypeScript ou .NET não compilarem.
+set -e
+root="$(git rev-parse --show-toplevel)"
+
+if git diff --cached --name-only | grep -qE '^web/src/.*\.(ts|tsx)$'; then
+  echo "pre-commit: npm run typecheck (web)..."
+  (cd "$root/web" && npm run typecheck)
+fi
+
+if git diff --cached --name-only | grep -qE '^src/.*\.cs$'; then
+  echo "pre-commit: dotnet build..."
+  (cd "$root" && dotnet build -c Release --nologo -v q)
+fi

@@ -1,0 +1,13 @@
+/.env
+/frontend/.env
+node_modules/
+/backend/node_modules
+/frontend/node_modules
+/backend/dist
+prontuario.controller.spec.ts
+jest.config.js
+.idea
+combined.log
+error.log
+dist
+reqs

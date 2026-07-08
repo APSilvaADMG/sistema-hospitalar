@@ -1,0 +1,452 @@
+---
+title: "Working with Custom Attributes and Summary Statistics in EpiModel"
+author: "EpiModel v`r packageVersion('EpiModel')`"
+date: "`r Sys.Date()`"
+vignette: >
+  %\VignetteIndexEntry{Working with Custom Attributes and Summary Statistics}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options:
+  chunk_output_type: console
+---
+
+```{r, echo = FALSE, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, echo = FALSE, include = FALSE}
+library(EpiModel)
+```
+
+## Introduction
+
+This vignette covers how to work with nodal attributes, attribute histories, and epidemic summary statistics in EpiModel network models with custom extension modules. It assumes familiarity with setting up and running network models with `netsim()` and with the extension API. See the [Network Modeling for Epidemics](https://epimodel.github.io/sismid/) (NME) course materials and the [EpiModel Gallery](https://epimodel.github.io/EpiModel-Gallery/) for background.
+
+For working with network objects and edgelists, see the companion vignette *Working with Network Objects in EpiModel*. For parameter management, see *Working with Model Parameters in EpiModel*.
+
+In network simulations with `netsim`, all simulation state is stored in the *main list object* (referred to as `dat`). This vignette covers three types of data on `dat`:
+
+- **Current Nodal Attributes:** Per-node characteristics at the current time step.
+- **Historical Nodal Attributes:** Selective recordings of attribute values over time.
+- **Epidemic Trackers:** Population-level summary statistics computed at each time step.
+
+
+## Current Nodal Attributes
+
+*Attributes* are characteristics of the nodes (e.g., persons) in the model at the current time step. They are stored as vectors in `dat$attr`, all of the same length as the number of nodes.
+
+### Core Attributes
+
+Every node has four core attributes, managed automatically by EpiModel:
+
+- `active`: 1 if the node is currently in the population, 0 if departed.
+- `entrTime`: the time step when the node entered the population.
+- `exitTime`: the time step when the node departed (`NA` if still active).
+- `unique_id`: a globally unique integer identifier (never reused).
+
+You can retrieve the list of core attributes and their default types with `get_core_attributes()`:
+
+```{r}
+get_core_attributes()
+```
+
+In addition, the built-in epidemic modules in core EpiModel use the `status` attribute (disease status, with values like `"s"`, `"i"`, `"r"`) and `infTime` (time of infection). More complex disease-specific EpiModel implementations (e.g., for HIV or COVID) may handle disease status differently. Custom attributes of any name and scalar value can be added, such as `age`, `race`, or `viral_load`.
+
+### Positional Indexing vs Unique IDs
+
+Each node can be referenced in two ways:
+
+- **By position:** Think of it like a row number in a spreadsheet. `dat$attr$active[3]` accesses the third node's value directly. This is the standard way to look up node information and is very fast.
+
+- **By `unique_id`:** A globally unique integer attribute assigned at creation and never reused. Slower to look up, but allows referencing nodes that have already departed.
+
+Consider a simple example. A model starts with 5 nodes:
+
+| Position (*row number*) | `unique_id` | `active` |
+|:-----------------------:|:-----------:|:--------:|
+| 1 | 1 | 1 |
+| 2 | 2 | 1 |
+| 3 | 3 | 1 |
+| 4 | 4 | 1 |
+| 5 | 5 | 1 |
+
+Node 3 departs at step 10. The vectors still have 5 elements, but `active[3] = 0`:
+
+| Position (*row number*) | `unique_id` | `active` |
+|:-----------------------:|:-----------:|:--------:|
+| 1 | 1 | 1 |
+| 2 | 2 | 1 |
+| 3 | 3 | **0** |
+| 4 | 4 | 1 |
+| 5 | 5 | 1 |
+
+A new node arrives at step 15. In many simulations, departed nodes are dropped from the attribute vectors, so the new node takes position 3 (the freed slot) but receives a new `unique_id = 6`:
+
+| Position (*row number*) | `unique_id` | `active` |
+|:-----------------------:|:-----------:|:--------:|
+| 1 | 1 | 1 |
+| 2 | 2 | 1 |
+| 3 | **6** | 1 |
+| 4 | 4 | 1 |
+| 5 | 5 | 1 |
+
+Positional indices are used by current edgelists and attribute accessors. Unique IDs are used by cumulative edgelists and attribute histories because they can refer to nodes no longer in the model. See `help("unique_id-tools", package = "EpiModel")` for conversion functions.
+
+### Working With Attributes
+
+#### Accessing Attributes
+
+Use `get_attr()` to extract an attribute vector:
+
+```{r accessing-attr, eval = FALSE}
+active <- get_attr(dat, "active")
+```
+
+This returns a vector of length equal to the current number of nodes. Requesting a nonexistent attribute throws an error.
+
+#### Modifying Attributes
+
+Below is a minimal module that increments the age of all nodes by 1:
+
+```{r modyfing-attr, eval = FALSE}
+aging_module <- function(dat, at) {
+
+  # Extract current attribute
+  age <- get_attr(dat, "age")
+
+  # Aging process
+  new_age <- age + 1
+
+  # Output updated attributes
+  dat <- set_attr(dat, "age", new_age)
+
+  return(dat)
+}
+```
+
+Key points about `set_attr()`:
+
+- It returns a modified copy of `dat`, which must be assigned back. (This does not cause performance issues due to R's shallow copy semantics since R 3.1.)
+- The replacement vector must have the same length as the number of nodes, or the function throws an error.
+
+#### Summary
+
+The recommended workflow for attribute manipulation in modules:
+
+1. Extract attributes into local vectors with `get_attr()`.
+2. Modify the local vectors with your dynamic process.
+3. Update `dat` with the revised vectors using `set_attr()`.
+4. Return `dat` at the end of the function.
+
+These functions have additional arguments described in `help("net-accessor", package = "EpiModel")`.
+
+
+## Historical Nodal Attributes
+
+Current attributes reflect the state of each node at the present time step. Sometimes you need to track what happened to specific nodes over time. Because saving the full history of all attributes would consume too much memory, EpiModel provides a selective recording mechanism: you choose which attributes, for which nodes, at which time steps to record.
+
+This is useful for diagnostics (verifying that a dynamic process is coded correctly) or for tracking a limited set of individual-level outcomes for further analysis.
+
+### Recording Attribute Histories
+
+The following module records the viral load of infected nodes every 10 time steps. It assumes the model defines a `status` attribute (with values `"s"` for susceptible, `"i"` for infected) and a `viral_load` attribute (continuous for infected nodes, `NA` otherwise).
+
+```{r recording_attr_hist, eval = FALSE}
+viral_load_logger_module <- function(dat, at) {
+
+  # Run every 10 time steps
+  if (at %% 10 == 0) {
+
+    # Attributes
+    status <- get_attr(dat, "status")
+    viral_load <- get_attr(dat, "viral_load")
+
+    infected <- which(status == "i")
+
+    dat <- record_attr_history(
+      dat, at,
+      "viral_load",
+      infected,
+      viral_load[infected]
+    )
+  }
+
+  return(dat)
+}
+```
+
+`record_attr_history()` takes five arguments:
+
+1. `dat`: the main list object.
+2. `at`: the time step to associate with the recording (usually the current step).
+3. A label for the attribute (here `"viral_load"`).
+4. A vector of `posit_id`s for the nodes of interest. Internally, these are converted to `unique_id`s so the history remains valid even after nodes depart.
+5. The values to record for those IDs. The number of values must match the number of IDs, unless a single value is provided (which is recycled for all IDs, using less memory).
+
+Use attribute histories sparingly---storage can grow large in open-population models with many nodes over many time steps.
+
+### Accessing Attribute Histories
+
+Attribute histories are accessed after the simulation is complete:
+
+```{r access_attr_hist, eval = FALSE}
+sim <- netsim(est, param, init, control)
+attr_history <- get_attr_history(sim)
+```
+
+The result is a named list of `data.frame`s, one for each recorded attribute label. Suppose we recorded `"viral_load"` (as above) and also `"status"` transitions in another module. The output would look like:
+
+```{r get_attr_ex, eval = FALSE}
+get_attr_history(sim)
+
+# $viral_load
+#    sim step attribute    uids values
+# 1    1   10 viral_load   1001   2000
+# 2    1   10 viral_load   1002   1878
+# 3    1   20 viral_load   1001   1500
+# 4    1   20 viral_load   1002    300
+# ...
+#
+# $status
+#    sim step attribute  uids  values
+# 1    1   22 status     1001       i
+# 2    1   64 status     1002       i
+# 3    1  110 status     1001       r
+# 4    1  220 status     1002       r
+# ...
+```
+
+Each `data.frame` has columns `sim` (simulation number), `step` (time step), `attribute` (the label), `uids` (unique IDs), and `values` (the recorded values). The list structure allows each history to have different dimensions.
+
+
+## Epidemic Trackers
+
+*Epidemic trackers* are population-level summary statistics computed and stored at each time step---historical summary statistics about the population, not individual nodes.
+
+For example, the built-in tracker `num` records the total population size at each step, while `s.num`, `i.num`, and `r.num` record compartment sizes.
+
+### Working With Epidemic Trackers in Modules
+
+Inside a module, access and modify epidemic trackers with `get_epi()` and `set_epi()`. Here is an extended aging module that also tracks mean age and its change over time:
+
+```{r epi-in-modules, eval = FALSE}
+aging_track_module <- function(dat, at) {
+
+  # Attributes
+  age <- get_attr(dat, "age")
+
+  # Aging process
+  new_age <- age + 1
+
+  # Calculate summary statistics
+  mean_age <- mean(new_age)
+  prev_mean_age <- get_epi(dat, at - 1, "mean_age")
+  age_change <- mean_age - prev_mean_age
+
+  # Update nodal attributes
+  dat <- set_attr(dat, "age", new_age)
+
+  # Update epidemic trackers
+  dat <- set_epi(dat, "mean_age", at, mean_age)
+  dat <- set_epi(dat, "age_change", at, age_change)
+
+  return(dat)
+}
+```
+
+Key points:
+
+- `set_epi()` returns a modified `dat` that must be assigned back. The value must be a scalar.
+- `get_epi()` retrieves the tracker value at a specific time step. Requesting a nonexistent tracker throws an error.
+
+### Accessing Epidemic Trackers After a Simulation
+
+Epidemic trackers are the main quantities of interest after a simulation. Access them by calling `as.data.frame()` on a `netsim` object, or use `plot()` and `summary()`:
+
+```{r, eval = FALSE}
+sim <- netsim(est, param, init, control)
+
+# Raw per-simulation data
+as.data.frame(sim)
+
+# Means across simulations
+as.data.frame(sim, out = "mean")
+
+# Plot and summary
+plot(sim)
+summary(sim, at = 50)
+```
+
+### Derived Statistics with `mutate_epi()`
+
+After a simulation, you can compute derived epidemic statistics without re-running the model. `mutate_epi()` works like `dplyr::mutate()` but operates on the `epi` list:
+
+```{r, eval = FALSE}
+# Add incidence rate and prevalence
+sim <- mutate_epi(sim, prev = i.num / num)
+sim <- mutate_epi(sim, ir = (si.flow / s.num) * 100)
+
+# These new variables appear in the data.frame output
+as.data.frame(sim)
+```
+
+### Stratified Prevalence with `epi.by`
+
+The `epi.by` parameter in `control.net()` automatically generates stratified compartment counts by a nodal attribute. For example, to track infection by a `"risk"` attribute:
+
+```{r tracker-epiby, results = "hide", message = FALSE}
+set.seed(0)
+
+nw <- network_initialize(n = 100)
+nw <- set_vertex_attribute(nw, "risk", rep(0:1, each = 50))
+
+est <- netest(
+  nw, formation = ~edges + nodefactor("risk"),
+  target.stats = c(40, 20),
+  coef.diss = dissolution_coefs(~offset(edges), 20),  # duration = 20
+  verbose = FALSE
+)
+
+param <- param.net(inf.prob = 0.3, act.rate = 1)
+init <- init.net(i.num = 5)
+control <- control.net(
+  type = "SI", nsims = 1, nsteps = 50,
+  epi.by = "risk",
+  verbose = FALSE
+)
+
+sim <- netsim(est, param, init, control)
+```
+
+With `epi.by = "risk"`, the output includes stratified columns automatically:
+
+```{r}
+d <- as.data.frame(sim)
+names(d)
+```
+
+The naming pattern is `{tracker}.{attribute}{value}` (e.g., `i.num.risk0`, `i.num.risk1`, `num.risk0`, `num.risk1`).
+
+
+### Custom Epidemic Trackers
+
+For summary statistics beyond built-in compartment counts, you can define custom tracker functions and pass them to `control.net()`. This avoids writing a full module for simple calculations.
+
+#### Writing Tracker Functions
+
+A tracker function must take **exactly one argument** (`dat`) and return a **scalar** value (numeric, logical, or character). It is called automatically at the end of each time step, after all modules have run.
+
+```{r tracker-example}
+epi_s_num <- function(dat) {
+  needed_attributes <- c("status")
+  output <- with(get_attr_list(dat, needed_attributes), {
+    sum(status == "s", na.rm = TRUE)
+  })
+  return(output)
+}
+```
+
+Here is a tracker that computes the proportion of the population infected:
+
+```{r tracker-commented}
+epi_prop_infected <- function(dat) {
+  needed_attributes <- c("status", "active")
+  output <- with(get_attr_list(dat, needed_attributes), {
+    pop <- active == 1
+    infected <- status == "i"
+    sum(infected & pop, na.rm = TRUE) / sum(pop, na.rm = TRUE)
+  })
+  return(output)
+}
+```
+
+We recommend this pattern for tracker functions:
+
+1. Define `needed_attributes` as a vector of attribute names.
+2. Use `with(get_attr_list(dat, needed_attributes), { ... })` to work in a clean environment.
+3. The last expression inside `with` becomes the output. It **must** be a scalar.
+4. Return the output.
+
+#### Using Custom Tracker Functions
+
+Pass tracker functions as a named list via `.tracker.list` in `control.net()`. The names become column names in the output `data.frame`:
+
+```{r tracker-list}
+some.trackers <- list(
+  prop_infected = epi_prop_infected,
+  s_num         = epi_s_num
+)
+
+control <- control.net(
+  type = "SI",
+  nsims = 1,
+  nsteps = 50,
+  verbose = FALSE,
+  .tracker.list = some.trackers
+)
+
+param <- param.net(
+  inf.prob = 0.3,
+  act.rate = 0.1
+)
+
+nw <- network_initialize(n = 50)
+nw <- set_vertex_attribute(nw, "race", rbinom(50, 1, 0.5))
+est <- netest(
+  nw,
+  formation = ~edges,
+  target.stats = 25,
+  coef.diss = dissolution_coefs(~offset(edges), 10, 0),  # duration = 10, closed population
+  verbose = FALSE
+)
+
+init <- init.net(i.num = 10)
+sim <- netsim(est, param, init, control)
+
+d <- as.data.frame(sim)
+
+knitr::kable(tail(d, n = 15))
+```
+
+Note that in the `.tracker.list` we pass the function objects (`epi_prop_infected`, `epi_s_num`) without parentheses---we are storing the functions, not calling them.
+
+Trackers are **always** run at the end of a simulation step. The values they output reflect the state of the simulation *after* all modules have completed their work for that step.
+
+
+## Recording Arbitrary Objects (Advanced Debugging)
+
+When debugging complex research models, you may want to inspect the state of an object during simulation without stopping it. `record_raw_object()` saves any R object at a given time step for later inspection.
+
+```{r record-raw, eval = FALSE}
+introspect_module <- function(dat, at) {
+  age <- get_attr(dat, "age")
+
+  if (mean(age, na.rm = TRUE) > 50) {
+    obj <- data.frame(
+        age = age,
+        status = get_attr(dat, "status")
+    )
+    dat <- record_raw_object(dat, at, "old pop", obj)
+  }
+
+  return(dat)
+}
+```
+
+After simulation, access recorded objects from the `netsim` output:
+
+```{r record-raw-access, eval = FALSE}
+sim <- netsim(est, param, init, control)
+
+# Access raw records for simulation 1
+# Returns a nested list keyed by label, then time step
+raw <- sim[["raw.records"]][[1]]
+
+# Access the "old pop" data.frame recorded at step 75
+raw[["old pop"]][[75]]
+```
+
+**Use sparingly:** Raw records are not truncated and can consume substantial memory, especially for large attribute vectors recorded at many time steps. This feature is intended for debugging, not routine output collection.

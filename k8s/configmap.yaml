@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hospital-config
+  namespace: sistema-hospitalar
+data:
+  ASPNETCORE_ENVIRONMENT: "Production"
+  # Homologação / produção: sem pacientes e lançamentos fictícios.
+  Hospital__EnableDemoSeeds: "false"
+  Jwt__Issuer: "SistemaHospitalar"
+  Jwt__Audience: "SistemaHospitalar"
+  Jwt__ExpiresHours: "8"
+  # Connection string e segredos (JWT Key, FieldEncryption, Postgres) vêm do Secret hospital-secrets.

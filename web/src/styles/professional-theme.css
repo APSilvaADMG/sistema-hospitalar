@@ -1,0 +1,551 @@
+/**
+ * Tema profissional — componentes (tokens em theme-variants.css).
+ */
+
+/* ─── Shell ─── */
+
+.layout {
+  background: var(--bg);
+}
+
+.sidebar {
+  padding: 20px 14px;
+  border-right: 1px solid var(--border);
+  box-shadow: none;
+  background: var(--sidebar-bg);
+}
+
+.sidebar-header {
+  padding: 12px 10px 16px;
+}
+
+.topbar {
+  padding: 14px 28px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 0 rgba(15, 23, 42, 0.03);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+.content {
+  padding: 28px 32px 40px;
+  background: var(--bg);
+}
+
+/* ─── Navegação lateral ─── */
+
+.nav-mega-header {
+  border-radius: var(--radius-sm);
+  background: transparent;
+}
+
+.nav-mega-block.is-expanded {
+  background: #fafcfd;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--primary) 10%, var(--border));
+}
+
+.nav-sublink {
+  border-left-color: transparent;
+  border-radius: var(--radius-sm);
+  margin-left: 10px;
+  padding-left: 16px;
+}
+
+.nav-sublink:hover {
+  border-left-color: var(--primary-soft);
+  background: var(--sidebar-hover);
+}
+
+.nav-sublink.active {
+  background: var(--sidebar-active);
+  border-left-color: var(--primary);
+  color: var(--primary-dark);
+}
+
+.nav-sublink.active::before {
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary) 25%, transparent);
+}
+
+.nav-shortcut-chip.active {
+  background: var(--primary-light);
+  border-color: color-mix(in srgb, var(--primary) 30%, var(--border));
+  color: var(--primary-dark);
+}
+
+.user-avatar,
+.topbar-avatar {
+  background: linear-gradient(135deg, #5ed4c3, var(--primary-dark));
+  border-radius: 10px;
+}
+
+.module-search-trigger {
+  border-radius: 10px;
+  background: #f8fafc;
+  border-color: var(--border);
+  max-width: 460px;
+}
+
+.module-search-trigger:hover {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 12%, transparent);
+}
+
+/* ─── Cabeçalhos de página ─── */
+
+.page-header {
+  margin-bottom: 24px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+.page-eyebrow {
+  color: var(--primary-dark);
+  letter-spacing: 0.1em;
+}
+
+.page-header h1 {
+  font-size: 1.625rem;
+  font-weight: 700;
+}
+
+/* ─── Cards e painéis ─── */
+
+.card,
+.card-panel {
+  border-radius: var(--radius-md);
+  border-color: var(--border);
+  box-shadow: var(--shadow);
+}
+
+.card-panel-header {
+  background: #fafcfd;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #334155;
+  padding: 16px 20px;
+}
+
+/* ─── Botões ─── */
+
+.btn {
+  border-radius: 10px;
+  padding: 10px 18px;
+  background: var(--primary);
+  box-shadow: none;
+  font-weight: 600;
+  transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+}
+
+.btn:hover {
+  background: var(--primary-dark);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--primary) 28%, transparent);
+}
+
+.btn-secondary {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.btn-secondary:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  box-shadow: none;
+}
+
+/* ─── Tabelas (cabeçalho claro, estilo SaaS) ─── */
+
+.data-table thead th,
+.table thead th {
+  background: var(--table-head);
+  color: var(--table-head-text);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid var(--border);
+}
+
+.data-table tbody tr:nth-child(even),
+.table tbody tr:nth-child(even) {
+  background: #fcfdfe;
+}
+
+/* ─── KPIs (cartões brancos com acento) ─── */
+
+.kpi-card {
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--border);
+  border-radius: 4px 0 0 4px;
+}
+
+.kpi-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.kpi-value {
+  font-size: 1.35rem;
+  color: var(--text);
+}
+
+.kpi-default::before { background: #94a3b8; }
+.kpi-primary::before { background: var(--primary); }
+.kpi-info::before { background: #0ea5e9; }
+.kpi-success::before { background: var(--success); }
+.kpi-warning::before { background: var(--warning); }
+.kpi-danger::before { background: var(--danger); }
+.kpi-neutral::before { background: #64748b; }
+
+.kpi-default,
+.kpi-primary,
+.kpi-info,
+.kpi-success,
+.kpi-warning,
+.kpi-danger,
+.kpi-neutral {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.kpi-primary .kpi-value { color: var(--primary-dark); }
+.kpi-info .kpi-value { color: #0284c7; }
+.kpi-success .kpi-value { color: var(--success); }
+.kpi-warning .kpi-value { color: var(--warning); }
+.kpi-danger .kpi-value { color: var(--danger); }
+
+.kpi-primary .kpi-label,
+.kpi-info .kpi-label,
+.kpi-success .kpi-label,
+.kpi-warning .kpi-label,
+.kpi-danger .kpi-label,
+.kpi-neutral .kpi-label {
+  color: var(--muted);
+}
+
+/* ─── Formulários ─── */
+
+input,
+select,
+textarea {
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 14%, transparent);
+}
+
+.form-field label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+/* ─── Abas de módulo ─── */
+
+.module-nav-tabs a.active,
+.module-tabs a.active,
+.patient-view-tab.active {
+  color: var(--primary-dark);
+  border-color: var(--primary);
+  background: var(--primary-light);
+}
+
+/* ─── Login estilo OnDoctor ─── */
+
+.login-page--professional {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+  padding: 24px;
+  grid-template-columns: 1fr;
+  background-color: #ffffff;
+  background-image:
+    radial-gradient(circle at 12% 18%, color-mix(in srgb, var(--primary) 8%, transparent) 0, transparent 42%),
+    radial-gradient(circle at 88% 82%, color-mix(in srgb, var(--primary) 6%, transparent) 0, transparent 38%),
+    radial-gradient(circle, color-mix(in srgb, var(--primary) 18%, #fff) 1px, transparent 1px);
+  background-size: auto, auto, 22px 22px;
+  overflow: auto;
+}
+
+.login-shell {
+  position: relative;
+  width: min(100%, 980px);
+  z-index: 1;
+}
+
+.login-shell-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  background: var(--surface);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 24px 64px rgba(15, 23, 42, 0.12);
+  border: 1px solid color-mix(in srgb, var(--border) 80%, var(--primary-soft));
+  overflow: hidden;
+  min-height: min(620px, calc(100dvh - 48px));
+}
+
+.login-panel--form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 44px;
+  background: var(--surface);
+}
+
+.login-panel--form .login-logo {
+  max-height: 93px;
+  width: auto;
+  margin: 0 auto 20px;
+  padding: 8px 12px;
+  box-sizing: border-box;
+}
+
+.login-panel-tagline {
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin: 0 0 24px;
+}
+
+.login-panel-tagline a {
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+
+.login-panel--form h2 {
+  margin: 0 0 6px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  text-align: center;
+}
+
+.login-panel--form > p {
+  margin: 0 0 20px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.login-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.login-divider::before,
+.login-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.login-panel--form .login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.login-panel--form .form-field label {
+  font-size: 0.78rem;
+  margin-bottom: 6px;
+}
+
+.login-panel--form input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+}
+
+.login-panel--form .btn.full-width {
+  margin-top: 6px;
+  padding: 12px 18px;
+  background: var(--btn-login-bg, var(--primary-soft));
+  color: var(--btn-login-text, var(--primary-dark));
+  font-size: 0.95rem;
+}
+
+.login-panel--form .btn.full-width:hover {
+  background: var(--btn-primary-hover, var(--primary));
+  color: #fff;
+}
+
+.login-forgot {
+  display: block;
+  text-align: center;
+  margin-top: 16px;
+  font-size: 0.82rem;
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+
+.login-panel--hero {
+  position: relative;
+  background-color: #1a5c52;
+  background-image: url('/backgroundLogin.jpg');
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 36px;
+  min-height: 100%;
+}
+
+.login-panel--hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(30, 120, 105, 0.55) 0%,
+    rgba(15, 60, 55, 0.88) 100%
+  );
+}
+
+.login-hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.login-hero-content h3 {
+  margin: 0 0 12px;
+  font-size: 1.35rem;
+  line-height: 1.35;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.login-hero-content p {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  opacity: 0.92;
+  max-width: 36ch;
+}
+
+.login-hero-dots {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 8px;
+  margin-top: 28px;
+}
+
+.login-hero-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  transition: transform 0.2s, background 0.2s;
+}
+
+.login-hero-dots span.is-active {
+  background: #fff;
+  transform: scale(1.15);
+}
+
+.login-hints {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  font-size: 0.72rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.login-hints p {
+  margin: 4px 0;
+}
+
+.login-page--bootstrapping.login-page--professional {
+  background: var(--bg);
+}
+
+@media (max-width: 900px) {
+  .login-shell-card {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .login-panel--hero {
+    min-height: 240px;
+    padding: 28px;
+  }
+
+  .login-panel--form {
+    padding: 32px 24px;
+  }
+}
+
+.action-tile {
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.1s;
+}
+
+.action-tile:hover {
+  border-color: color-mix(in srgb, var(--primary) 35%, var(--border));
+  box-shadow: var(--shadow);
+  transform: translateY(-1px);
+}
+
+.action-tile .nav-icon {
+  color: var(--primary-dark);
+}
+
+.module-nav-tabs a,
+.module-tabs a {
+  border-radius: 8px;
+}
+
+.modal-panel,
+.module-search-panel {
+  border-radius: var(--radius-md);
+}
+
+.alert {
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 20px 16px 88px;
+  }
+
+  .topbar {
+    padding: 12px 16px;
+  }
+}

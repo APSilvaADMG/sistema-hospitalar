@@ -1,0 +1,22 @@
+
+# Banco de dados SQLite
+data/database.db    
+
+# Ignorar arquivos de CRUD do banco de dados
+src/backend/database_crud.py
+
+# Ignorar o ambiente virtual
+venv/
+env/
+# Ignorar arquivos de cache do Python
+__pycache__/
+
+# Ignorar arquivos de validação
+src/backend/validations.py
+# Ignorar arquivos calculo INSS
+src/backend/CalculadoraINSS.py
+
+# Ignorar arquivos
+base.py
+
+

@@ -1,0 +1,7228 @@
+{
+  "generatedAt": "2026-06-11T15:18:24.191Z",
+  "source": "Diversos/Scripts/_extracted/sghc-php/hospitalar",
+  "views": [
+    {
+      "file": "accountant/dashboard.php",
+      "role": "accountant",
+      "hasBox": true,
+      "tabs": [],
+      "tables": [],
+      "phraseKeys": [
+        "invoice / take_payment",
+        "view_payment",
+        "calendar_schedule",
+        "noticeboard"
+      ],
+      "cssClasses": [
+        "action-nav-button",
+        "action-nav-normal",
+        "avatar",
+        "blue",
+        "box",
+        "box-content",
+        "box-header",
+        "box-section",
+        "container-fluid",
+        "icon-2x",
+        "icon-calendar",
+        "icon-money",
+        "icon-reorder",
+        "icon-tag",
+        "icon-tint",
+        "news",
+        "news-content",
+        "news-text",
+        "news-time",
+        "news-title",
+        "padded",
+        "row-fluid",
+        "scrollable",
+        "span2",
+        "span30",
+        "span6",
+        "title",
+        "with-icons"
+      ],
+      "icons": [
+        "icon-tint",
+        "icon-money",
+        "icon-calendar",
+        "icon-reorder",
+        "icon-tag",
+        "icon-2x"
+      ]
+    },
+    {
+      "file": "accountant/manage_invoice.php",
+      "role": "accountant",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "edit",
+          "label": "edit_invoice",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "list",
+          "label": "invoice_list",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "add",
+          "label": "add_invoice",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "invoice_id",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "title",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "amount",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "patient",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "date",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "status",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "option",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "edit_invoice",
+        "invoice_list",
+        "add_invoice",
+        "patient",
+        "title",
+        "amount",
+        "description",
+        "add_description",
+        "status",
+        "paid",
+        "unpaid",
+        "invoice_id",
+        "date",
+        "option",
+        "take_cash_payment",
+        "edit",
+        "delete"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "btn-gray",
+        "btn-mini",
+        "btn-red",
+        "center",
+        "chat-message-box",
+        "chzn-select",
+        "closable-chat-box",
+        "control-group",
+        "control-label",
+        "controls",
+        "dTable",
+        "form-actions",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-trash",
+        "icon-wrench",
+        "label",
+        "label-green",
+        "label-red",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane",
+        "uniform"
+      ],
+      "icons": [
+        "icon-wrench",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-wrench",
+        "icon-trash"
+      ]
+    },
+    {
+      "file": "accountant/manage_profile.php",
+      "role": "accountant",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "list",
+          "label": "manage_profile",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [],
+      "phraseKeys": [
+        "manage_profile",
+        "name",
+        "email",
+        "address",
+        "phone",
+        "update_profile",
+        "change_password",
+        "password",
+        "new_password",
+        "confirm_new_password",
+        "update_password"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "control-group",
+        "control-label",
+        "controls",
+        "form-actions",
+        "icon-align-justify",
+        "icon-lock",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-align-justify",
+        "icon-lock"
+      ]
+    },
+    {
+      "file": "accountant/payment_history.php",
+      "role": "accountant",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "list",
+          "label": "view_payment",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "time",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "amount",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "payment_type",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "transaction_id",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "invoice_id",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "accountant",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "method",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "description",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "view_payment",
+        "time",
+        "amount",
+        "payment_type",
+        "transaction_id",
+        "invoice_id",
+        "accountant",
+        "method",
+        "description"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "dTable",
+        "icon-align-justify",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-align-justify"
+      ]
+    },
+    {
+      "file": "accountant/take_cash_payment.php",
+      "role": "accountant",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "add",
+          "label": "take_cash_payment",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [],
+      "phraseKeys": [
+        "take_cash_payment",
+        "patient",
+        "title",
+        "amount",
+        "description",
+        "add_description",
+        "status",
+        "paid",
+        "unpaid",
+        "add_invoice"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "chat-message-box",
+        "chzn-select",
+        "closable-chat-box",
+        "control-group",
+        "control-label",
+        "controls",
+        "form-actions",
+        "icon-plus",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "tab-content",
+        "tab-pane",
+        "uniform"
+      ],
+      "icons": [
+        "icon-plus"
+      ]
+    },
+    {
+      "file": "accountant/view_invoice.php",
+      "role": "accountant",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "list",
+          "label": "invoice_list",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "invoice_id",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "amount",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "accountant",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "title",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "description",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "creation_timestamp",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "status",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "option",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "invoice_list",
+        "invoice_id",
+        "amount",
+        "accountant",
+        "title",
+        "description",
+        "creation_timestamp",
+        "status",
+        "option"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "dTable",
+        "icon-align-justify",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-align-justify"
+      ]
+    },
+    {
+      "file": "accountant/view_payment.php",
+      "role": "accountant",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "list",
+          "label": "view_payment",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "time",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "amount",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "payment_type",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "transaction_id",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "invoice_id",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "patient",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "method",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "description",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "view_payment",
+        "time",
+        "amount",
+        "payment_type",
+        "transaction_id",
+        "invoice_id",
+        "patient",
+        "method",
+        "description"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "dTable",
+        "icon-align-justify",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-align-justify"
+      ]
+    },
+    {
+      "file": "admin/backup_restore.php",
+      "role": "admin",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "backup",
+          "label": "backup",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "restore",
+          "label": "restore",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [],
+      "phraseKeys": [
+        "backup",
+        "restore",
+        "upload_&_restore_from_backup"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "btn-default",
+        "icon-align-justify",
+        "icon-download-alt",
+        "icon-trash",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "span6",
+        "span7",
+        "tab-content",
+        "tab-pane",
+        "table",
+        "table-normal"
+      ],
+      "icons": [
+        "icon-align-justify",
+        "icon-align-justify",
+        "icon-download-alt",
+        "icon-trash"
+      ]
+    },
+    {
+      "file": "admin/dashboard.php",
+      "role": "admin",
+      "hasBox": true,
+      "tabs": [],
+      "tables": [],
+      "phraseKeys": [
+        "doctor",
+        "patient",
+        "nurse",
+        "pharmacist",
+        "laboratorist",
+        "accountant",
+        "appointment",
+        "payment",
+        "blood_bank",
+        "medicine",
+        "operation_report",
+        "birth_report",
+        "death_report",
+        "bed_allotment",
+        "noticeboard",
+        "settings",
+        "language",
+        "backup",
+        "calendar_schedule"
+      ],
+      "cssClasses": [
+        "action-nav-button",
+        "action-nav-normal",
+        "avatar",
+        "blue",
+        "box",
+        "box-content",
+        "box-header",
+        "box-section",
+        "container-fluid",
+        "icon-2x",
+        "icon-beaker",
+        "icon-calendar",
+        "icon-columns",
+        "icon-credit-card",
+        "icon-download-alt",
+        "icon-exchange",
+        "icon-github-alt",
+        "icon-globe",
+        "icon-h-sign",
+        "icon-hdd",
+        "icon-medkit",
+        "icon-minus-sign",
+        "icon-money",
+        "icon-plus-sign-alt",
+        "icon-reorder",
+        "icon-tag",
+        "icon-tint",
+        "icon-user",
+        "icon-user-md",
+        "news",
+        "news-content",
+        "news-text",
+        "news-time",
+        "news-title",
+        "padded",
+        "row-fluid",
+        "scrollable",
+        "span2",
+        "span30",
+        "span6",
+        "title",
+        "with-icons"
+      ],
+      "icons": [
+        "icon-user-md",
+        "icon-user",
+        "icon-plus-sign-alt",
+        "icon-medkit",
+        "icon-beaker",
+        "icon-money",
+        "icon-exchange",
+        "icon-credit-card",
+        "icon-tint",
+        "icon-medkit",
+        "icon-reorder",
+        "icon-github-alt",
+        "icon-minus-sign",
+        "icon-hdd",
+        "icon-columns",
+        "icon-h-sign",
+        "icon-globe",
+        "icon-download-alt",
+        "icon-calendar",
+        "icon-reorder",
+        "icon-tag",
+        "icon-2x"
+      ]
+    },
+    {
+      "file": "admin/manage_accountant.php",
+      "role": "admin",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "edit",
+          "label": "edit_accountant",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "list",
+          "label": "accountant_list",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "add",
+          "label": "add_accountant",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "accountant_name",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "email",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "address",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "phone",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "edit_accountant",
+        "accountant_list",
+        "add_accountant",
+        "name",
+        "email",
+        "password",
+        "address",
+        "phone",
+        "accountant_name",
+        "options",
+        "edit",
+        "delete"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "btn-red",
+        "control-group",
+        "control-label",
+        "controls",
+        "dTable",
+        "form-actions",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-trash",
+        "icon-wrench",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-wrench",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-wrench",
+        "icon-trash"
+      ]
+    },
+    {
+      "file": "admin/manage_department.php",
+      "role": "admin",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "edit",
+          "label": "edit_department",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "list",
+          "label": "department_list",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "add",
+          "label": "add_department",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "department_name",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "description",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "edit_department",
+        "department_list",
+        "add_department",
+        "department_name",
+        "department_description",
+        "description",
+        "options",
+        "edit",
+        "delete"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "btn-red",
+        "control-group",
+        "control-label",
+        "controls",
+        "dTable",
+        "form-actions",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-trash",
+        "icon-wrench",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-wrench",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-wrench",
+        "icon-trash"
+      ]
+    },
+    {
+      "file": "admin/manage_doctor.php",
+      "role": "admin",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "edit",
+          "label": "edit_doctor",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "list",
+          "label": "doctor_list",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "add",
+          "label": "add_doctor",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "doctor_name",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "department",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "edit_doctor",
+        "doctor_list",
+        "add_doctor",
+        "name",
+        "email",
+        "password",
+        "address",
+        "phone",
+        "department",
+        "profile",
+        "doctor_name",
+        "options",
+        "edit",
+        "delete"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "btn-red",
+        "control-group",
+        "control-label",
+        "controls",
+        "dTable",
+        "form-actions",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-trash",
+        "icon-wrench",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane",
+        "uniform"
+      ],
+      "icons": [
+        "icon-wrench",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-wrench",
+        "icon-trash"
+      ]
+    },
+    {
+      "file": "admin/manage_laboratorist.php",
+      "role": "admin",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "edit",
+          "label": "edit_laboratorist",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "list",
+          "label": "laboratorist_list",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "add",
+          "label": "add_laboratorist",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "laboratorist_name",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "email",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "address",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "phone",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "edit_laboratorist",
+        "laboratorist_list",
+        "add_laboratorist",
+        "name",
+        "email",
+        "password",
+        "address",
+        "phone",
+        "laboratorist_name",
+        "options",
+        "edit",
+        "delete"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "btn-red",
+        "control-group",
+        "control-label",
+        "controls",
+        "dTable",
+        "form-actions",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-trash",
+        "icon-wrench",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-wrench",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-wrench",
+        "icon-trash"
+      ]
+    },
+    {
+      "file": "admin/manage_language.php",
+      "role": "admin",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "list",
+          "label": "phrase_list",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "add",
+          "label": "add_phrase",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "add_lang",
+          "label": "add_language",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [],
+      "phraseKeys": [
+        "phrase_list",
+        "add_phrase",
+        "add_language",
+        "phrase",
+        "delete_language",
+        "update_phrase",
+        "language"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "btn-gray",
+        "control-group",
+        "control-label",
+        "controls",
+        "form-actions",
+        "icon-align-justify",
+        "icon-angle-right",
+        "icon-plus",
+        "icon-trash",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane",
+        "table",
+        "table-normal"
+      ],
+      "icons": [
+        "icon-align-justify",
+        "icon-plus",
+        "icon-plus",
+        "icon-trash",
+        "icon-angle-right"
+      ]
+    },
+    {
+      "file": "admin/manage_noticeboard.php",
+      "role": "admin",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "edit",
+          "label": "edit_noticeboard",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "list",
+          "label": "noticeboard_list",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "add",
+          "label": "add_noticeboard",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "title",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "notice",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "date",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "edit_noticeboard",
+        "noticeboard_list",
+        "add_noticeboard",
+        "title",
+        "notice",
+        "date",
+        "options",
+        "edit",
+        "delete"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "btn-red",
+        "control-group",
+        "control-label",
+        "controls",
+        "dTable",
+        "datepicker",
+        "fill-up",
+        "form-actions",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-trash",
+        "icon-wrench",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-wrench",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-wrench",
+        "icon-trash"
+      ]
+    },
+    {
+      "file": "admin/manage_nurse.php",
+      "role": "admin",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "edit",
+          "label": "edit_nurse",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "list",
+          "label": "nurse_list",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "add",
+          "label": "add_nurse",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "nurse_name",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "email",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "address",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "phone",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "edit_nurse",
+        "nurse_list",
+        "add_nurse",
+        "name",
+        "email",
+        "password",
+        "address",
+        "phone",
+        "nurse_name",
+        "options",
+        "edit",
+        "delete"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "btn-red",
+        "control-group",
+        "control-label",
+        "controls",
+        "dTable",
+        "form-actions",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-trash",
+        "icon-wrench",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-wrench",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-wrench",
+        "icon-trash"
+      ]
+    },
+    {
+      "file": "admin/manage_patient.php",
+      "role": "admin",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "edit",
+          "label": "edit_patient",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "list",
+          "label": "patient_list",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "add",
+          "label": "add_patient",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "patient_name",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "age",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "sex",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "blood_group",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "birth_date",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "edit_patient",
+        "patient_list",
+        "add_patient",
+        "name",
+        "email",
+        "password",
+        "address",
+        "phone",
+        "sex",
+        "male",
+        "female",
+        "birth_date",
+        "age",
+        "blood_group",
+        "patient_name",
+        "options",
+        "edit",
+        "delete"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "btn-red",
+        "control-group",
+        "control-label",
+        "controls",
+        "dTable",
+        "datepicker",
+        "fill-up",
+        "form-actions",
+        "form-horizontal",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-trash",
+        "icon-wrench",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane",
+        "uniform",
+        "validatable"
+      ],
+      "icons": [
+        "icon-wrench",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-wrench",
+        "icon-trash"
+      ]
+    },
+    {
+      "file": "admin/manage_pharmacist.php",
+      "role": "admin",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "edit",
+          "label": "edit_pharmacist",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "list",
+          "label": "pharmacist_list",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "add",
+          "label": "add_pharmacist",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "pharmacist_name",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "email",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "address",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "phone",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "edit_pharmacist",
+        "pharmacist_list",
+        "add_pharmacist",
+        "name",
+        "email",
+        "password",
+        "address",
+        "phone",
+        "pharmacist_name",
+        "options",
+        "edit",
+        "delete"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "btn-red",
+        "control-group",
+        "control-label",
+        "controls",
+        "dTable",
+        "form-actions",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-trash",
+        "icon-wrench",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-wrench",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-wrench",
+        "icon-trash"
+      ]
+    },
+    {
+      "file": "admin/manage_profile.php",
+      "role": "admin",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "list",
+          "label": "manage_profile",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [],
+      "phraseKeys": [
+        "manage_profile",
+        "name",
+        "email",
+        "address",
+        "phone",
+        "update_profile",
+        "change_password",
+        "password",
+        "new_password",
+        "confirm_new_password",
+        "update_password"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "control-group",
+        "control-label",
+        "controls",
+        "form-actions",
+        "icon-align-justify",
+        "icon-lock",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-align-justify",
+        "icon-lock"
+      ]
+    },
+    {
+      "file": "admin/system_settings.php",
+      "role": "admin",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "list",
+          "label": "system_settings",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [],
+      "phraseKeys": [
+        "system_settings",
+        "save"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "control-group",
+        "control-label",
+        "controls",
+        "icon-align-justify",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-align-justify"
+      ]
+    },
+    {
+      "file": "admin/view_appointment.php",
+      "role": "admin",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "list",
+          "label": "view_appointment",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "time",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "doctor",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "patient",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "view_appointment",
+        "time",
+        "doctor",
+        "patient"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "dTable",
+        "icon-align-justify",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-align-justify"
+      ]
+    },
+    {
+      "file": "admin/view_bed_status.php",
+      "role": "admin",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "list",
+          "label": "bed_allotment",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "list_blood_bank",
+          "label": "bed_list",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "bed_id",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "bed_type",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "patient",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "allotment_time",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "discharge_time",
+              "labelSource": "phrase"
+            }
+          ]
+        },
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "bed_number",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "type",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "bed_allotment",
+        "bed_list",
+        "bed_id",
+        "bed_type",
+        "patient",
+        "allotment_time",
+        "discharge_time",
+        "bed_number",
+        "type"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "dTable",
+        "icon-align-justify",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-align-justify",
+        "icon-align-justify"
+      ]
+    },
+    {
+      "file": "admin/view_blood_bank.php",
+      "role": "admin",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "list",
+          "label": "blood_donor_list",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "list_blood_bank",
+          "label": "blood_bank",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "name",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "age",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "sex",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "blood_group",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "last_donation_date",
+              "labelSource": "phrase"
+            }
+          ]
+        },
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "blood_group",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "status",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "blood_donor_list",
+        "blood_bank",
+        "name",
+        "age",
+        "sex",
+        "blood_group",
+        "last_donation_date",
+        "status"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "dTable",
+        "icon-align-justify",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-align-justify",
+        "icon-align-justify"
+      ]
+    },
+    {
+      "file": "admin/view_log.php",
+      "role": "admin",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "list",
+          "label": "view_log",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "type",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "date",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "user",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "name",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "description",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "ip",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "location",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "view_log",
+        "type",
+        "date",
+        "user",
+        "name",
+        "description",
+        "ip",
+        "location"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "dTable",
+        "icon-align-justify",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-align-justify"
+      ]
+    },
+    {
+      "file": "admin/view_medicine.php",
+      "role": "admin",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "list",
+          "label": "view_medicine",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "name",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "category",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "description",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "price",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "manufacturing_company",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "view_medicine",
+        "name",
+        "category",
+        "description",
+        "price",
+        "manufacturing_company"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "dTable",
+        "icon-align-justify",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-align-justify"
+      ]
+    },
+    {
+      "file": "admin/view_payment.php",
+      "role": "admin",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "list",
+          "label": "view_payment",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "time",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "amount",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "payment_type",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "transaction_id",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "invoice_id",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "patient",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "method",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "description",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "view_payment",
+        "time",
+        "amount",
+        "payment_type",
+        "transaction_id",
+        "invoice_id",
+        "patient",
+        "method",
+        "description"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "dTable",
+        "icon-align-justify",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-align-justify"
+      ]
+    },
+    {
+      "file": "admin/view_report.php",
+      "role": "admin",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "list",
+          "label": "view_report",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "description",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "date",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "patient",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "doctor",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "view_report",
+        "description",
+        "date",
+        "patient",
+        "doctor"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "dTable",
+        "icon-align-justify",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-align-justify"
+      ]
+    },
+    {
+      "file": "doctor/dashboard.php",
+      "role": "doctor",
+      "hasBox": true,
+      "tabs": [],
+      "tables": [],
+      "phraseKeys": [
+        "patient",
+        "appointment",
+        "prescription",
+        "bed_allotment",
+        "blood_bank",
+        "manage_report",
+        "calendar_schedule",
+        "noticeboard"
+      ],
+      "cssClasses": [
+        "action-nav-button",
+        "action-nav-normal",
+        "avatar",
+        "blue",
+        "box",
+        "box-content",
+        "box-header",
+        "box-section",
+        "container-fluid",
+        "icon-2x",
+        "icon-calendar",
+        "icon-exchange",
+        "icon-hdd",
+        "icon-hospital",
+        "icon-reorder",
+        "icon-stethoscope",
+        "icon-tag",
+        "icon-tint",
+        "icon-user",
+        "news",
+        "news-content",
+        "news-text",
+        "news-time",
+        "news-title",
+        "padded",
+        "row-fluid",
+        "scrollable",
+        "span2",
+        "span30",
+        "span6",
+        "title",
+        "with-icons"
+      ],
+      "icons": [
+        "icon-user",
+        "icon-exchange",
+        "icon-stethoscope",
+        "icon-hdd",
+        "icon-tint",
+        "icon-hospital",
+        "icon-calendar",
+        "icon-reorder",
+        "icon-tag",
+        "icon-2x"
+      ]
+    },
+    {
+      "file": "doctor/manage_appointment.php",
+      "role": "doctor",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "edit",
+          "label": "edit_appointment",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "list",
+          "label": "appointment_list",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "add",
+          "label": "add_appointment",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "date",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "patient",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "doctor",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "edit_appointment",
+        "appointment_list",
+        "add_appointment",
+        "doctor",
+        "patient",
+        "date",
+        "options",
+        "edit",
+        "delete"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "btn-red",
+        "chzn-select",
+        "control-group",
+        "control-label",
+        "controls",
+        "dTable",
+        "datepicker",
+        "fill-up",
+        "form-actions",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-trash",
+        "icon-wrench",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-wrench",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-wrench",
+        "icon-trash"
+      ]
+    },
+    {
+      "file": "doctor/manage_bed_allotment.php",
+      "role": "doctor",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "edit",
+          "label": "edit_bed_allotment",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "list",
+          "label": "bed_allotment_list",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "add",
+          "label": "add_bed_allotment",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "bed_number",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "bed_type",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "patient",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "allotment_date_time",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "discharge_date_time",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "edit_bed_allotment",
+        "bed_allotment_list",
+        "add_bed_allotment",
+        "bed_number",
+        "patient",
+        "allotment_time",
+        "discharge_time",
+        "bed_type",
+        "allotment_date_time",
+        "discharge_date_time",
+        "options",
+        "edit",
+        "delete"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "btn-red",
+        "chzn-select",
+        "control-group",
+        "control-label",
+        "controls",
+        "dTable",
+        "datepicker",
+        "fill-up",
+        "form-actions",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-trash",
+        "icon-wrench",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-wrench",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-wrench",
+        "icon-trash"
+      ]
+    },
+    {
+      "file": "doctor/manage_patient.php",
+      "role": "doctor",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "edit",
+          "label": "edit_patient",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "list",
+          "label": "patient_list",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "add",
+          "label": "add_patient",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "patient_name",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "age",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "sex",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "blood_group",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "birth_date",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "edit_patient",
+        "patient_list",
+        "add_patient",
+        "name",
+        "email",
+        "password",
+        "address",
+        "phone",
+        "sex",
+        "male",
+        "female",
+        "birth_date",
+        "age",
+        "blood_group",
+        "patient_name",
+        "options",
+        "edit",
+        "delete"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "btn-red",
+        "control-group",
+        "control-label",
+        "controls",
+        "dTable",
+        "form-actions",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-trash",
+        "icon-wrench",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane",
+        "uniform"
+      ],
+      "icons": [
+        "icon-wrench",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-wrench",
+        "icon-trash"
+      ]
+    },
+    {
+      "file": "doctor/manage_prescription.php",
+      "role": "doctor",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "edit",
+          "label": "edit_prescription",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "list",
+          "label": "prescription_list",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "add",
+          "label": "add_prescription",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "date",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "patient",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "doctor",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "edit_prescription",
+        "prescription_list",
+        "add_prescription",
+        "doctor",
+        "patient",
+        "case_history",
+        "add_description",
+        "medication",
+        "medication_from_pharmacist",
+        "description",
+        "date",
+        "diagnosis_report",
+        "report_type",
+        "document_type",
+        "download",
+        "laboratorist",
+        "options",
+        "edit",
+        "delete"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "btn-red",
+        "chat-message-box",
+        "chzn-select",
+        "closable-chat-box",
+        "control-group",
+        "control-label",
+        "controls",
+        "dTable",
+        "datepicker",
+        "fill-up",
+        "form-actions",
+        "icon-align-justify",
+        "icon-download-alt",
+        "icon-plus",
+        "icon-trash",
+        "icon-wrench",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane",
+        "table",
+        "table-normal",
+        "title"
+      ],
+      "icons": [
+        "icon-wrench",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-download-alt",
+        "icon-wrench",
+        "icon-trash"
+      ]
+    },
+    {
+      "file": "doctor/manage_profile.php",
+      "role": "doctor",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "list",
+          "label": "manage_profile",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [],
+      "phraseKeys": [
+        "manage_profile",
+        "name",
+        "email",
+        "address",
+        "phone",
+        "update_profile",
+        "change_password",
+        "password",
+        "new_password",
+        "confirm_new_password",
+        "update_password"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "control-group",
+        "control-label",
+        "controls",
+        "form-actions",
+        "icon-align-justify",
+        "icon-lock",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-align-justify",
+        "icon-lock"
+      ]
+    },
+    {
+      "file": "doctor/manage_report.php",
+      "role": "doctor",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "operation",
+          "label": "operation",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "birth",
+          "label": "birth",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "death",
+          "label": "death",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "other",
+          "label": "other",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "add",
+          "label": "add_report",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "description",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "date",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "patient",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "doctor",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        },
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "description",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "date",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "patient",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "doctor",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        },
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "description",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "date",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "patient",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "doctor",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        },
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "description",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "date",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "patient",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "doctor",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "operation",
+        "birth",
+        "death",
+        "other",
+        "add_report",
+        "description",
+        "date",
+        "patient",
+        "doctor",
+        "options",
+        "delete",
+        "type"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "btn-red",
+        "chzn-select",
+        "control-group",
+        "control-label",
+        "controls",
+        "dTable",
+        "datepicker",
+        "fill-up",
+        "form-actions",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-trash",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane",
+        "uniform"
+      ],
+      "icons": [
+        "icon-align-justify",
+        "icon-align-justify",
+        "icon-align-justify",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-trash",
+        "icon-trash",
+        "icon-trash",
+        "icon-trash"
+      ]
+    },
+    {
+      "file": "doctor/view_blood_bank.php",
+      "role": "doctor",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "list",
+          "label": "blood_donor_list",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "list_blood_bank",
+          "label": "blood_bank",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "name",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "age",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "sex",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "blood_group",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "last_donation_date",
+              "labelSource": "phrase"
+            }
+          ]
+        },
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "blood_group",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "status",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "blood_donor_list",
+        "blood_bank",
+        "name",
+        "age",
+        "sex",
+        "blood_group",
+        "last_donation_date",
+        "status"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "dTable",
+        "icon-align-justify",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-align-justify",
+        "icon-align-justify"
+      ]
+    },
+    {
+      "file": "footer.php",
+      "role": "root",
+      "hasBox": false,
+      "tabs": [],
+      "tables": [],
+      "phraseKeys": [],
+      "cssClasses": [],
+      "icons": []
+    },
+    {
+      "file": "four_zero_four.php",
+      "role": "root",
+      "hasBox": false,
+      "tabs": [],
+      "tables": [],
+      "phraseKeys": [],
+      "cssClasses": [
+        "brand",
+        "btn",
+        "btn-blue",
+        "container",
+        "container-fluid",
+        "error-box",
+        "icon-arrow-left",
+        "message-big",
+        "message-small",
+        "navbar",
+        "navbar-inner",
+        "navbar-inverse",
+        "navbar-top",
+        "offset2",
+        "row-fluid",
+        "span8"
+      ],
+      "icons": [
+        "icon-arrow-left"
+      ]
+    },
+    {
+      "file": "header.php",
+      "role": "root",
+      "hasBox": false,
+      "tabs": [],
+      "tables": [],
+      "phraseKeys": [
+        "account",
+        "profile",
+        "logout",
+        "select_language",
+        "panel"
+      ],
+      "cssClasses": [
+        "brand",
+        "btn",
+        "btn-navbar",
+        "caret",
+        "collapse",
+        "container-fluid",
+        "divider",
+        "dropdown",
+        "dropdown-menu",
+        "dropdown-toggle",
+        "hidden-desktop",
+        "icon-align-justify",
+        "icon-off",
+        "icon-ok",
+        "icon-th-list",
+        "icon-user",
+        "nav",
+        "nav-collapse",
+        "nav-collapse-top",
+        "navbar",
+        "navbar-inner",
+        "navbar-inverse",
+        "navbar-top",
+        "pull-right",
+        "toggle-primary-sidebar",
+        "with-image"
+      ],
+      "icons": [
+        "icon-th-list",
+        "icon-align-justify",
+        "icon-user",
+        "icon-off",
+        "icon-ok",
+        "icon-user"
+      ]
+    },
+    {
+      "file": "includes.php",
+      "role": "root",
+      "hasBox": false,
+      "tabs": [],
+      "tables": [],
+      "phraseKeys": [],
+      "cssClasses": [],
+      "icons": []
+    },
+    {
+      "file": "index.php",
+      "role": "root",
+      "hasBox": false,
+      "tabs": [],
+      "tables": [],
+      "phraseKeys": [],
+      "cssClasses": [
+        "container-fluid",
+        "main-content",
+        "padded"
+      ],
+      "icons": []
+    },
+    {
+      "file": "install/index.php",
+      "role": "install",
+      "hasBox": false,
+      "tabs": [],
+      "tables": [],
+      "phraseKeys": [],
+      "cssClasses": [
+        "result_error",
+        "selected",
+        "step",
+        "submit"
+      ],
+      "icons": []
+    },
+    {
+      "file": "laboratorist/dashboard.php",
+      "role": "laboratorist",
+      "hasBox": true,
+      "tabs": [],
+      "tables": [],
+      "phraseKeys": [
+        "add_diagnosis_report",
+        "manage_blood_bank",
+        "manage_blood_donor",
+        "calendar_schedule",
+        "noticeboard"
+      ],
+      "cssClasses": [
+        "action-nav-button",
+        "action-nav-normal",
+        "avatar",
+        "blue",
+        "box",
+        "box-content",
+        "box-header",
+        "box-section",
+        "container-fluid",
+        "icon-2x",
+        "icon-calendar",
+        "icon-reorder",
+        "icon-stethoscope",
+        "icon-tag",
+        "icon-tint",
+        "icon-user",
+        "news",
+        "news-content",
+        "news-text",
+        "news-time",
+        "news-title",
+        "padded",
+        "row-fluid",
+        "scrollable",
+        "span2",
+        "span30",
+        "span6",
+        "title",
+        "with-icons"
+      ],
+      "icons": [
+        "icon-stethoscope",
+        "icon-tint",
+        "icon-user",
+        "icon-calendar",
+        "icon-reorder",
+        "icon-tag",
+        "icon-2x"
+      ]
+    },
+    {
+      "file": "laboratorist/manage_blood_bank.php",
+      "role": "laboratorist",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "edit",
+          "label": "edit_blood_bank",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "list",
+          "label": "blood_bank_list",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "blood_group",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "status",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "edit_blood_bank",
+        "blood_bank_list",
+        "blood_group",
+        "status",
+        "options",
+        "edit"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "control-group",
+        "control-label",
+        "controls",
+        "dTable",
+        "form-actions",
+        "icon-align-justify",
+        "icon-wrench",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-wrench",
+        "icon-align-justify",
+        "icon-wrench"
+      ]
+    },
+    {
+      "file": "laboratorist/manage_blood_donor.php",
+      "role": "laboratorist",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "edit",
+          "label": "edit_blood_donor",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "list",
+          "label": "blood_donor_list",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "add",
+          "label": "add_blood_donor",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "name",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "age",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "sex",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "blood_group",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "last_donation_date",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "edit_blood_donor",
+        "blood_donor_list",
+        "add_blood_donor",
+        "name",
+        "email",
+        "address",
+        "phone",
+        "sex",
+        "male",
+        "female",
+        "age",
+        "blood_group",
+        "last_donation_date",
+        "options",
+        "edit",
+        "delete"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "btn-red",
+        "control-group",
+        "control-label",
+        "controls",
+        "dTable",
+        "datepicker",
+        "fill-up",
+        "form-actions",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-trash",
+        "icon-wrench",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane",
+        "uniform"
+      ],
+      "icons": [
+        "icon-wrench",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-wrench",
+        "icon-trash"
+      ]
+    },
+    {
+      "file": "laboratorist/manage_prescription.php",
+      "role": "laboratorist",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "edit",
+          "label": "edit_prescription",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "list",
+          "label": "prescription_list",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "date",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "patient",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "doctor",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "report_status",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "edit_prescription",
+        "prescription_list",
+        "doctor",
+        "patient",
+        "case_history",
+        "medication",
+        "medication_from_pharmacist",
+        "description",
+        "date",
+        "diagnosis_report",
+        "report_type",
+        "document_type",
+        "download",
+        "laboratorist",
+        "option",
+        "delete",
+        "add_diagnosis_report",
+        "image",
+        "doc",
+        "pdf",
+        "excel",
+        "other",
+        "upload_document",
+        "report_status",
+        "options",
+        "edit",
+        "add_diagnostic_report"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "btn-red",
+        "control-group",
+        "control-label",
+        "controls",
+        "dTable",
+        "icon-align-justify",
+        "icon-download-alt",
+        "icon-trash",
+        "icon-wrench",
+        "label",
+        "label-blue",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane",
+        "table",
+        "table-normal",
+        "title"
+      ],
+      "icons": [
+        "icon-wrench",
+        "icon-align-justify",
+        "icon-download-alt",
+        "icon-trash",
+        "icon-wrench"
+      ]
+    },
+    {
+      "file": "laboratorist/manage_profile.php",
+      "role": "laboratorist",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "list",
+          "label": "manage_profile",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [],
+      "phraseKeys": [
+        "manage_profile",
+        "name",
+        "email",
+        "address",
+        "phone",
+        "update_profile",
+        "change_password",
+        "password",
+        "new_password",
+        "confirm_new_password",
+        "update_password"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "control-group",
+        "control-label",
+        "controls",
+        "form-actions",
+        "icon-align-justify",
+        "icon-lock",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-align-justify",
+        "icon-lock"
+      ]
+    },
+    {
+      "file": "laboratorist/view_blood_bank.php",
+      "role": "laboratorist",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "list",
+          "label": "blood_donor_list",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "list_blood_bank",
+          "label": "blood_bank",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "name",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "age",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "sex",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "blood_group",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "last_donation_date",
+              "labelSource": "phrase"
+            }
+          ]
+        },
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "blood_group",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "status",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "blood_donor_list",
+        "blood_bank",
+        "name",
+        "age",
+        "sex",
+        "blood_group",
+        "last_donation_date",
+        "status"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "dTable",
+        "icon-align-justify",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-align-justify",
+        "icon-align-justify"
+      ]
+    },
+    {
+      "file": "login.php",
+      "role": "root",
+      "hasBox": false,
+      "tabs": [],
+      "tables": [],
+      "phraseKeys": [
+        "login",
+        "account_type",
+        "admin",
+        "doctor",
+        "patient",
+        "nurse",
+        "pharmacist",
+        "laboratorist",
+        "accountant",
+        "email",
+        "password",
+        "forgot_password?",
+        "reset_password",
+        "reset"
+      ],
+      "cssClasses": [
+        "add-on",
+        "box",
+        "box-content",
+        "box-header",
+        "brand",
+        "btn",
+        "btn-block",
+        "btn-blue",
+        "btn-default",
+        "btn-medium",
+        "caret",
+        "close",
+        "container",
+        "container-fluid",
+        "dropdown",
+        "dropdown-menu",
+        "dropdown-toggle",
+        "fade",
+        "hide",
+        "icon-envelope",
+        "icon-key",
+        "icon-ok",
+        "input-prepend",
+        "login",
+        "m-icon-swapright",
+        "m-icon-white",
+        "modal",
+        "modal-body",
+        "modal-footer",
+        "modal-header",
+        "nav",
+        "navbar",
+        "navbar-inner",
+        "navbar-inverse",
+        "navbar-top",
+        "offset4",
+        "padded",
+        "pull-right",
+        "span4",
+        "title"
+      ],
+      "icons": [
+        "icon-ok",
+        "icon-swapright",
+        "icon-white",
+        "icon-envelope",
+        "icon-key"
+      ]
+    },
+    {
+      "file": "nurse/dashboard.php",
+      "role": "nurse",
+      "hasBox": true,
+      "tabs": [],
+      "tables": [],
+      "phraseKeys": [
+        "patient",
+        "bed_allotment",
+        "blood_bank",
+        "report",
+        "calendar_schedule",
+        "noticeboard"
+      ],
+      "cssClasses": [
+        "action-nav-button",
+        "action-nav-normal",
+        "avatar",
+        "blue",
+        "box",
+        "box-content",
+        "box-header",
+        "box-section",
+        "container-fluid",
+        "icon-2x",
+        "icon-calendar",
+        "icon-hdd",
+        "icon-hospital",
+        "icon-reorder",
+        "icon-tag",
+        "icon-tint",
+        "icon-user",
+        "news",
+        "news-content",
+        "news-text",
+        "news-time",
+        "news-title",
+        "padded",
+        "row-fluid",
+        "scrollable",
+        "span2",
+        "span30",
+        "span6",
+        "title",
+        "with-icons"
+      ],
+      "icons": [
+        "icon-user",
+        "icon-hdd",
+        "icon-tint",
+        "icon-hospital",
+        "icon-calendar",
+        "icon-reorder",
+        "icon-tag",
+        "icon-2x"
+      ]
+    },
+    {
+      "file": "nurse/manage_bed_allotment.php",
+      "role": "nurse",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "edit",
+          "label": "edit_bed_allotment",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "list",
+          "label": "bed_allotment_list",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "add",
+          "label": "add_bed_allotment",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "bed_number",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "bed_type",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "patient",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "allotment_date_time",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "discharge_date_time",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "edit_bed_allotment",
+        "bed_allotment_list",
+        "add_bed_allotment",
+        "bed_number",
+        "patient",
+        "allotment_time",
+        "discharge_time",
+        "bed_type",
+        "allotment_date_time",
+        "discharge_date_time",
+        "options",
+        "edit",
+        "delete"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "btn-red",
+        "chzn-select",
+        "control-group",
+        "control-label",
+        "controls",
+        "dTable",
+        "datepicker",
+        "fill-up",
+        "form-actions",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-trash",
+        "icon-wrench",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-wrench",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-wrench",
+        "icon-trash"
+      ]
+    },
+    {
+      "file": "nurse/manage_bed.php",
+      "role": "nurse",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "edit",
+          "label": "edit_bed",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "list",
+          "label": "bed_list",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "add",
+          "label": "add_bed",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "bed_number",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "type",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "edit_bed",
+        "bed_list",
+        "add_bed",
+        "bed_number",
+        "type",
+        "ward",
+        "cabin",
+        "icu",
+        "other",
+        "description",
+        "options",
+        "edit",
+        "delete"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "btn-red",
+        "control-group",
+        "control-label",
+        "controls",
+        "dTable",
+        "form-actions",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-trash",
+        "icon-wrench",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane",
+        "uniform"
+      ],
+      "icons": [
+        "icon-wrench",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-wrench",
+        "icon-trash"
+      ]
+    },
+    {
+      "file": "nurse/manage_blood_bank.php",
+      "role": "nurse",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "edit",
+          "label": "edit_blood_bank",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "list",
+          "label": "blood_bank_list",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "blood_group",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "status",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "edit_blood_bank",
+        "blood_bank_list",
+        "blood_group",
+        "status",
+        "options",
+        "edit"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "control-group",
+        "control-label",
+        "controls",
+        "dTable",
+        "form-actions",
+        "icon-align-justify",
+        "icon-wrench",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-wrench",
+        "icon-align-justify",
+        "icon-wrench"
+      ]
+    },
+    {
+      "file": "nurse/manage_blood_donor.php",
+      "role": "nurse",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "edit",
+          "label": "edit_blood_donor",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "list",
+          "label": "blood_donor_list",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "add",
+          "label": "add_blood_donor",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "name",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "age",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "sex",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "blood_group",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "last_donation_date",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "edit_blood_donor",
+        "blood_donor_list",
+        "add_blood_donor",
+        "name",
+        "email",
+        "address",
+        "phone",
+        "sex",
+        "male",
+        "female",
+        "age",
+        "blood_group",
+        "last_donation_date",
+        "options",
+        "edit",
+        "delete"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "btn-red",
+        "control-group",
+        "control-label",
+        "controls",
+        "dTable",
+        "datepicker",
+        "fill-up",
+        "form-actions",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-trash",
+        "icon-wrench",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane",
+        "uniform"
+      ],
+      "icons": [
+        "icon-wrench",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-wrench",
+        "icon-trash"
+      ]
+    },
+    {
+      "file": "nurse/manage_patient.php",
+      "role": "nurse",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "edit",
+          "label": "edit_patient",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "list",
+          "label": "patient_list",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "add",
+          "label": "add_patient",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "patient_name",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "age",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "sex",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "blood_group",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "birth_date",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "edit_patient",
+        "patient_list",
+        "add_patient",
+        "name",
+        "email",
+        "password",
+        "address",
+        "phone",
+        "sex",
+        "male",
+        "female",
+        "birth_date",
+        "age",
+        "blood_group",
+        "patient_name",
+        "options",
+        "edit",
+        "delete"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "btn-red",
+        "control-group",
+        "control-label",
+        "controls",
+        "dTable",
+        "datepicker",
+        "fill-up",
+        "form-actions",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-trash",
+        "icon-wrench",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane",
+        "uniform"
+      ],
+      "icons": [
+        "icon-wrench",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-wrench",
+        "icon-trash"
+      ]
+    },
+    {
+      "file": "nurse/manage_profile.php",
+      "role": "nurse",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "list",
+          "label": "manage_profile",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [],
+      "phraseKeys": [
+        "manage_profile",
+        "name",
+        "email",
+        "address",
+        "phone",
+        "update_profile",
+        "change_password",
+        "password",
+        "new_password",
+        "confirm_new_password",
+        "update_password"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "control-group",
+        "control-label",
+        "controls",
+        "form-actions",
+        "icon-align-justify",
+        "icon-lock",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-align-justify",
+        "icon-lock"
+      ]
+    },
+    {
+      "file": "nurse/manage_report.php",
+      "role": "nurse",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "operation",
+          "label": "operation",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "birth",
+          "label": "birth",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "death",
+          "label": "death",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "other",
+          "label": "other",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "add",
+          "label": "add_report",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "description",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "date",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "patient",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "doctor",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        },
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "description",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "date",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "patient",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "doctor",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        },
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "description",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "date",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "patient",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "doctor",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        },
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "description",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "date",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "patient",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "doctor",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "operation",
+        "birth",
+        "death",
+        "other",
+        "add_report",
+        "description",
+        "date",
+        "patient",
+        "doctor",
+        "options",
+        "delete",
+        "type"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "btn-red",
+        "chzn-select",
+        "control-group",
+        "control-label",
+        "controls",
+        "dTable",
+        "datepicker",
+        "fill-up",
+        "form-actions",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-trash",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane",
+        "uniform"
+      ],
+      "icons": [
+        "icon-align-justify",
+        "icon-align-justify",
+        "icon-align-justify",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-trash",
+        "icon-trash",
+        "icon-trash",
+        "icon-trash"
+      ]
+    },
+    {
+      "file": "page_info.php",
+      "role": "root",
+      "hasBox": false,
+      "tabs": [],
+      "tables": [],
+      "phraseKeys": [
+        "doctor",
+        "patient",
+        "appointment",
+        "nurse"
+      ],
+      "cssClasses": [
+        "alert",
+        "alert-info",
+        "area-top",
+        "blue",
+        "clearfix",
+        "close",
+        "container-fluid",
+        "green",
+        "header",
+        "icon-info-sign",
+        "inline",
+        "padded",
+        "pull-left",
+        "pull-right",
+        "red",
+        "row-fluid",
+        "sparkline-box",
+        "sparkline-row",
+        "title"
+      ],
+      "icons": [
+        "icon-info-sign"
+      ]
+    },
+    {
+      "file": "patient/dashboard.php",
+      "role": "patient",
+      "hasBox": true,
+      "tabs": [],
+      "tables": [],
+      "phraseKeys": [
+        "doctor",
+        "appointment",
+        "prescription",
+        "admit_history",
+        "blood_bank",
+        "view_invoice",
+        "calendar_schedule",
+        "noticeboard"
+      ],
+      "cssClasses": [
+        "action-nav-button",
+        "action-nav-normal",
+        "avatar",
+        "blue",
+        "box",
+        "box-content",
+        "box-header",
+        "box-section",
+        "container-fluid",
+        "icon-2x",
+        "icon-calendar",
+        "icon-credit-card",
+        "icon-exchange",
+        "icon-hdd",
+        "icon-reorder",
+        "icon-stethoscope",
+        "icon-tag",
+        "icon-tint",
+        "news",
+        "news-content",
+        "news-text",
+        "news-time",
+        "news-title",
+        "padded",
+        "row-fluid",
+        "scrollable",
+        "span2",
+        "span30",
+        "span6",
+        "title",
+        "with-icons"
+      ],
+      "icons": [
+        "icon-stethoscope",
+        "icon-exchange",
+        "icon-stethoscope",
+        "icon-hdd",
+        "icon-tint",
+        "icon-credit-card",
+        "icon-calendar",
+        "icon-reorder",
+        "icon-tag",
+        "icon-2x"
+      ]
+    },
+    {
+      "file": "patient/manage_patient.php",
+      "role": "patient",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "edit",
+          "label": "edit_patient",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "list",
+          "label": "patient_list",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "add",
+          "label": "add_patient",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "patient_name",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "age",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "sex",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "blood_group",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "birth_date",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "edit_patient",
+        "patient_list",
+        "add_patient",
+        "name",
+        "email",
+        "password",
+        "address",
+        "phone",
+        "sex",
+        "male",
+        "female",
+        "birth_date",
+        "age",
+        "blood_group",
+        "patient_name",
+        "options",
+        "edit",
+        "delete"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "btn-red",
+        "control-group",
+        "control-label",
+        "controls",
+        "dTable",
+        "form-actions",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-trash",
+        "icon-wrench",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane",
+        "uniform"
+      ],
+      "icons": [
+        "icon-wrench",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-wrench",
+        "icon-trash"
+      ]
+    },
+    {
+      "file": "patient/manage_profile.php",
+      "role": "patient",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "list",
+          "label": "manage_profile",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [],
+      "phraseKeys": [
+        "manage_profile",
+        "name",
+        "email",
+        "address",
+        "phone",
+        "update_profile",
+        "change_password",
+        "password",
+        "new_password",
+        "confirm_new_password",
+        "update_password"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "control-group",
+        "control-label",
+        "controls",
+        "form-actions",
+        "icon-align-justify",
+        "icon-lock",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-align-justify",
+        "icon-lock"
+      ]
+    },
+    {
+      "file": "patient/payment_history.php",
+      "role": "patient",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "list",
+          "label": "view_payment",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "time",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "amount",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "payment_type",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "transaction_id",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "invoice_id",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "patient",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "method",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "description",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "view_payment",
+        "time",
+        "amount",
+        "payment_type",
+        "transaction_id",
+        "invoice_id",
+        "patient",
+        "method",
+        "description"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "dTable",
+        "icon-align-justify",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-align-justify"
+      ]
+    },
+    {
+      "file": "patient/view_admit_history.php",
+      "role": "patient",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "list",
+          "label": "bed_allotment_list",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "bed_number",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "bed_type",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "patient",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "allotment_date_time",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "discharge_date_time",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "bed_allotment_list",
+        "bed_number",
+        "bed_type",
+        "patient",
+        "allotment_date_time",
+        "discharge_date_time",
+        "options"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "dTable",
+        "icon-align-justify",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-align-justify"
+      ]
+    },
+    {
+      "file": "patient/view_appointment.php",
+      "role": "patient",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "list",
+          "label": "appointment_list",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "date",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "doctor",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "department",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "appointment_list",
+        "date",
+        "doctor",
+        "department"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "dTable",
+        "icon-align-justify",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-align-justify"
+      ]
+    },
+    {
+      "file": "patient/view_blood_bank.php",
+      "role": "patient",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "list",
+          "label": "blood_donor_list",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "list_blood_bank",
+          "label": "blood_bank",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "name",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "age",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "sex",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "blood_group",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "last_donation_date",
+              "labelSource": "phrase"
+            }
+          ]
+        },
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "blood_group",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "status",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "blood_donor_list",
+        "blood_bank",
+        "name",
+        "age",
+        "sex",
+        "blood_group",
+        "last_donation_date",
+        "status"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "dTable",
+        "icon-align-justify",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-align-justify",
+        "icon-align-justify"
+      ]
+    },
+    {
+      "file": "patient/view_doctor.php",
+      "role": "patient",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "list",
+          "label": "doctor_list",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "doctor_name",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "department",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "doctor_list",
+        "doctor_name",
+        "department"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "dTable",
+        "icon-align-justify",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-align-justify"
+      ]
+    },
+    {
+      "file": "patient/view_invoice.php",
+      "role": "patient",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "list",
+          "label": "invoice_list",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "invoice_id",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "amount",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "patient",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "title",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "description",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "creation_timestamp",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "status",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "option",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "invoice_list",
+        "invoice_id",
+        "amount",
+        "patient",
+        "title",
+        "description",
+        "creation_timestamp",
+        "status",
+        "option"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "dTable",
+        "icon-align-justify",
+        "label",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-align-justify"
+      ]
+    },
+    {
+      "file": "patient/view_operation_history.php",
+      "role": "patient",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "operation",
+          "label": "operation",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "birth",
+          "label": "birth",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "other",
+          "label": "other",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "description",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "date",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "patient",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "patient",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        },
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "description",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "date",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "patient",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "patient",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        },
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "description",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "date",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "patient",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "patient",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "operation",
+        "birth",
+        "other",
+        "description",
+        "date",
+        "patient",
+        "options"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "dTable",
+        "icon-align-justify",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-align-justify",
+        "icon-align-justify",
+        "icon-align-justify"
+      ]
+    },
+    {
+      "file": "patient/view_prescription.php",
+      "role": "patient",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "edit",
+          "label": "edit_prescription",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "list",
+          "label": "prescription_list",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "date",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "patient",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "patient",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "edit_prescription",
+        "prescription_list",
+        "doctor",
+        "patient",
+        "case_history",
+        "medication",
+        "medication_from_pharmacist",
+        "description",
+        "date",
+        "diagnosis_report",
+        "report_type",
+        "document_type",
+        "download",
+        "laboratorist",
+        "options",
+        "view_prescription"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "control-group",
+        "control-label",
+        "controls",
+        "dTable",
+        "form-horizontal",
+        "icon-align-justify",
+        "icon-download-alt",
+        "icon-wrench",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane",
+        "table",
+        "table-normal",
+        "title",
+        "validatable"
+      ],
+      "icons": [
+        "icon-wrench",
+        "icon-align-justify",
+        "icon-download-alt"
+      ]
+    },
+    {
+      "file": "pharmacist/dashboard.php",
+      "role": "pharmacist",
+      "hasBox": true,
+      "tabs": [],
+      "tables": [],
+      "phraseKeys": [
+        "medicine_category",
+        "manage_medicine",
+        "provide_medication",
+        "calendar_schedule",
+        "noticeboard"
+      ],
+      "cssClasses": [
+        "action-nav-button",
+        "action-nav-normal",
+        "avatar",
+        "blue",
+        "box",
+        "box-content",
+        "box-header",
+        "box-section",
+        "container-fluid",
+        "icon-2x",
+        "icon-calendar",
+        "icon-edit",
+        "icon-medkit",
+        "icon-reorder",
+        "icon-stethoscope",
+        "icon-tag",
+        "news",
+        "news-content",
+        "news-text",
+        "news-time",
+        "news-title",
+        "padded",
+        "row-fluid",
+        "scrollable",
+        "span2",
+        "span30",
+        "span6",
+        "title",
+        "with-icons"
+      ],
+      "icons": [
+        "icon-edit",
+        "icon-medkit",
+        "icon-stethoscope",
+        "icon-calendar",
+        "icon-reorder",
+        "icon-tag",
+        "icon-2x"
+      ]
+    },
+    {
+      "file": "pharmacist/manage_medicine_category.php",
+      "role": "pharmacist",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "edit",
+          "label": "edit_medicine_category",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "list",
+          "label": "medicine_category_list",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "add",
+          "label": "add_medicine_category",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "medicine_category_name",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "description",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "edit_medicine_category",
+        "medicine_category_list",
+        "add_medicine_category",
+        "medicine_category_name",
+        "medicine_category_description",
+        "description",
+        "options",
+        "edit",
+        "delete"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "btn-red",
+        "control-group",
+        "control-label",
+        "controls",
+        "dTable",
+        "form-actions",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-trash",
+        "icon-wrench",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane"
+      ],
+      "icons": [
+        "icon-wrench",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-wrench",
+        "icon-trash"
+      ]
+    },
+    {
+      "file": "pharmacist/manage_medicine.php",
+      "role": "pharmacist",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "edit",
+          "label": "edit_medicine",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "list",
+          "label": "medicine_list",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "add",
+          "label": "add_medicine",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "medicine_name",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "medicine_catogory",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "description",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "price",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "manufacturing_company",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "status",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "edit_medicine",
+        "medicine_list",
+        "add_medicine",
+        "name",
+        "medicine_category",
+        "description",
+        "price",
+        "manufacturing_company",
+        "status",
+        "medicine_name",
+        "medicine_catogory",
+        "options",
+        "edit",
+        "delete"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "btn-red",
+        "control-group",
+        "control-label",
+        "controls",
+        "dTable",
+        "form-actions",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-trash",
+        "icon-wrench",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane",
+        "uniform"
+      ],
+      "icons": [
+        "icon-wrench",
+        "icon-align-justify",
+        "icon-plus",
+        "icon-wrench",
+        "icon-trash"
+      ]
+    },
+    {
+      "file": "pharmacist/manage_prescription.php",
+      "role": "pharmacist",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "edit",
+          "label": "edit_prescription",
+          "labelSource": "phrase"
+        },
+        {
+          "id": "list",
+          "label": "prescription_list",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [
+        {
+          "className": "dTable responsive",
+          "columns": [
+            {
+              "label": "#",
+              "labelSource": "html"
+            },
+            {
+              "label": "date",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "patient",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "doctor",
+              "labelSource": "phrase"
+            },
+            {
+              "label": "options",
+              "labelSource": "phrase"
+            }
+          ]
+        }
+      ],
+      "phraseKeys": [
+        "edit_prescription",
+        "prescription_list",
+        "doctor",
+        "patient",
+        "case_history",
+        "medication",
+        "medication_from_pharmacist",
+        "add_description",
+        "description",
+        "date",
+        "options",
+        "edit",
+        "delete"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "btn-red",
+        "chat-message-box",
+        "closable-chat-box",
+        "control-group",
+        "control-label",
+        "controls",
+        "dTable",
+        "form-actions",
+        "form-horizontal",
+        "icon-align-justify",
+        "icon-trash",
+        "icon-wrench",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "responsive",
+        "tab-content",
+        "tab-pane",
+        "validatable"
+      ],
+      "icons": [
+        "icon-wrench",
+        "icon-align-justify",
+        "icon-wrench",
+        "icon-trash"
+      ]
+    },
+    {
+      "file": "pharmacist/manage_profile.php",
+      "role": "pharmacist",
+      "hasBox": true,
+      "tabs": [
+        {
+          "id": "list",
+          "label": "manage_profile",
+          "labelSource": "phrase"
+        }
+      ],
+      "tables": [],
+      "phraseKeys": [
+        "manage_profile",
+        "name",
+        "email",
+        "address",
+        "phone",
+        "update_profile",
+        "change_password",
+        "password",
+        "new_password",
+        "confirm_new_password",
+        "update_password"
+      ],
+      "cssClasses": [
+        "active",
+        "box",
+        "box-content",
+        "box-header",
+        "btn",
+        "btn-blue",
+        "control-group",
+        "control-label",
+        "controls",
+        "form-actions",
+        "form-horizontal",
+        "icon-align-justify",
+        "icon-lock",
+        "nav",
+        "nav-tabs",
+        "nav-tabs-left",
+        "padded",
+        "tab-content",
+        "tab-pane",
+        "validatable"
+      ],
+      "icons": [
+        "icon-align-justify",
+        "icon-lock"
+      ]
+    }
+  ],
+  "navigation": [
+    {
+      "role": "accountant",
+      "file": "accountant/navigation.php",
+      "items": [
+        {
+          "type": "link",
+          "route": "accountant/dashboard",
+          "label": "dashboard",
+          "icon": "icon-desktop icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "accountant/manage_invoice",
+          "label": "invoice / take_payment",
+          "icon": "icon-list-alt icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "accountant/view_payment",
+          "label": "view_payment",
+          "icon": "icon-money icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "accountant/manage_profile",
+          "label": "profile",
+          "icon": "icon-lock icon-2x",
+          "pageNameHint": null
+        }
+      ]
+    },
+    {
+      "role": "admin",
+      "file": "admin/navigation.php",
+      "items": [
+        {
+          "type": "link",
+          "route": "admin/dashboard",
+          "label": "dashboard",
+          "icon": "icon-desktop icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "admin/manage_department",
+          "label": "department",
+          "icon": "icon-sitemap icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "admin/manage_doctor",
+          "label": "doctor",
+          "icon": "icon-user-md icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "admin/manage_patient",
+          "label": "patient",
+          "icon": "icon-user icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "admin/manage_nurse",
+          "label": "nurse",
+          "icon": "icon-plus-sign-alt icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "admin/manage_pharmacist",
+          "label": "pharmacist",
+          "icon": "icon-medkit icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "admin/manage_laboratorist",
+          "label": "laboratorist",
+          "icon": "icon-beaker icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "admin/manage_accountant",
+          "label": "accountant",
+          "icon": "icon-money icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "submenu",
+          "label": "monitor_hospital",
+          "icon": "icon-screenshot icon-2x",
+          "submenuId": "view_hospital_submenu"
+        },
+        {
+          "type": "link",
+          "route": "admin/view_appointment",
+          "label": "view_appointment",
+          "icon": "icon-exchange",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "admin/view_payment",
+          "label": "view_payment",
+          "icon": "icon-money",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "admin/view_bed_status",
+          "label": "view_bed_status",
+          "icon": "icon-hdd",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "admin/view_blood_bank",
+          "label": "view_blood_bank",
+          "icon": "icon-tint",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "admin/view_medicine",
+          "label": "view_medicine",
+          "icon": "icon-medkit",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "admin/view_report/operation",
+          "label": "view_operation",
+          "icon": "icon-reorder",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "admin/view_report/birth",
+          "label": "view_birth_report",
+          "icon": "icon-github-alt",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "admin/view_report/death",
+          "label": "view_death_report",
+          "icon": "icon-user",
+          "pageNameHint": null
+        },
+        {
+          "type": "submenu",
+          "label": "settings",
+          "icon": "icon-wrench icon-2x",
+          "submenuId": "settings_submenu"
+        },
+        {
+          "type": "link",
+          "route": "admin/manage_email_template",
+          "label": "manage_email_template",
+          "icon": "icon-envelope",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "admin/manage_noticeboard",
+          "label": "manage_noticeboard",
+          "icon": "icon-columns",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "admin/system_settings",
+          "label": "system_settings",
+          "icon": "icon-h-sign",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "admin/manage_language",
+          "label": "manage_language",
+          "icon": "icon-globe",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "admin/backup_restore",
+          "label": "backup_restore",
+          "icon": "icon-download-alt",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "admin/manage_profile",
+          "label": "profile",
+          "icon": "icon-lock icon-2x",
+          "pageNameHint": null
+        }
+      ]
+    },
+    {
+      "role": "doctor",
+      "file": "doctor/navigation.php",
+      "items": [
+        {
+          "type": "link",
+          "route": "doctor/dashboard",
+          "label": "dashboard",
+          "icon": "icon-desktop icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "doctor/manage_patient",
+          "label": "patient",
+          "icon": "icon-user icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "doctor/manage_appointment",
+          "label": "manage_appointment",
+          "icon": "icon-edit icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "doctor/manage_prescription",
+          "label": "manage_prescription",
+          "icon": "icon-stethoscope icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "doctor/manage_bed_allotment",
+          "label": "bed_allotment",
+          "icon": "icon-hdd icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "doctor/view_blood_bank",
+          "label": "view_blood_bank",
+          "icon": "icon-tint icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "doctor/manage_report",
+          "label": "manage_report",
+          "icon": "icon-hospital icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "doctor/manage_profile",
+          "label": "profile",
+          "icon": "icon-lock icon-2x",
+          "pageNameHint": null
+        }
+      ]
+    },
+    {
+      "role": "laboratorist",
+      "file": "laboratorist/navigation.php",
+      "items": [
+        {
+          "type": "link",
+          "route": "laboratorist/dashboard",
+          "label": "dashboard",
+          "icon": "icon-desktop icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "laboratorist/manage_prescription",
+          "label": "add_diagnosis_report",
+          "icon": "icon-stethoscope icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "laboratorist/manage_blood_bank",
+          "label": "manage_blood_bank",
+          "icon": "icon-tint icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "laboratorist/manage_blood_donor",
+          "label": "manage_blood_donor",
+          "icon": "icon-user icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "laboratorist/manage_profile",
+          "label": "profile",
+          "icon": "icon-lock icon-2x",
+          "pageNameHint": null
+        }
+      ]
+    },
+    {
+      "role": "nurse",
+      "file": "nurse/navigation.php",
+      "items": [
+        {
+          "type": "link",
+          "route": "nurse/dashboard",
+          "label": "dashboard",
+          "icon": "icon-desktop icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "nurse/manage_patient",
+          "label": "patient",
+          "icon": "icon-user icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "submenu",
+          "label": "bed_ward",
+          "icon": "icon-hdd icon-2x",
+          "submenuId": "bed_submenu"
+        },
+        {
+          "type": "link",
+          "route": "nurse/manage_bed",
+          "label": "manage_bed",
+          "icon": "icon-hdd",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "nurse/manage_bed_allotment",
+          "label": "manage_bed_allotment",
+          "icon": "icon-wrench",
+          "pageNameHint": null
+        },
+        {
+          "type": "submenu",
+          "label": "blood_bank",
+          "icon": "icon-tint icon-2x",
+          "submenuId": "blood_submenu"
+        },
+        {
+          "type": "link",
+          "route": "nurse/manage_blood_bank",
+          "label": "manage_blood_bank",
+          "icon": "icon-tint",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "nurse/manage_blood_donor",
+          "label": "manage_blood_donor",
+          "icon": "icon-user",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "nurse/manage_report",
+          "label": "report",
+          "icon": "icon-hospital icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "nurse/manage_profile",
+          "label": "profile",
+          "icon": "icon-lock icon-2x",
+          "pageNameHint": null
+        }
+      ]
+    },
+    {
+      "role": "patient",
+      "file": "patient/navigation.php",
+      "items": [
+        {
+          "type": "link",
+          "route": "patient/dashboard",
+          "label": "dashboard",
+          "icon": "icon-desktop icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "patient/view_appointment",
+          "label": "view_appointment",
+          "icon": "icon-edit icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "patient/view_prescription",
+          "label": "view_prescription",
+          "icon": "icon-stethoscope icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "patient/view_doctor",
+          "label": "view_doctor",
+          "icon": "icon-user-md icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "patient/view_blood_bank",
+          "label": "view_blood_bank",
+          "icon": "icon-tint icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "patient/view_admit_history",
+          "label": "admit_history",
+          "icon": "icon-hdd icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "patient/view_operation_history",
+          "label": "operation_history",
+          "icon": "icon-hospital icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "patient/view_invoice",
+          "label": "view_invoice",
+          "icon": "icon-credit-card icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "patient/payment_history",
+          "label": "payment_history",
+          "icon": "icon-money icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "patient/manage_profile",
+          "label": "profile",
+          "icon": "icon-lock icon-2x",
+          "pageNameHint": null
+        }
+      ]
+    },
+    {
+      "role": "pharmacist",
+      "file": "pharmacist/navigation.php",
+      "items": [
+        {
+          "type": "link",
+          "route": "pharmacist/dashboard",
+          "label": "dashboard",
+          "icon": "icon-desktop icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "pharmacist/manage_medicine_category",
+          "label": "medicine_category",
+          "icon": "icon-edit icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "pharmacist/manage_medicine",
+          "label": "manage_medicine",
+          "icon": "icon-medkit icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "pharmacist/manage_prescription",
+          "label": "provide_medication",
+          "icon": "icon-stethoscope icon-2x",
+          "pageNameHint": null
+        },
+        {
+          "type": "link",
+          "route": "pharmacist/manage_profile",
+          "label": "profile",
+          "icon": "icon-lock icon-2x",
+          "pageNameHint": null
+        }
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "role": "accountant",
+      "file": "accountant.php",
+      "routes": [
+        {
+          "action": "dashboard",
+          "route": "accountant/dashboard",
+          "pageName": "dashboard",
+          "viewFile": "accountant/dashboard.php"
+        },
+        {
+          "action": "view_blood_bank",
+          "route": "accountant/view_blood_bank",
+          "pageName": "view_blood_bank",
+          "viewFile": "accountant/view_blood_bank.php"
+        },
+        {
+          "action": "manage_invoice",
+          "route": "accountant/manage_invoice",
+          "pageName": "manage_invoice",
+          "viewFile": "accountant/manage_invoice.php"
+        },
+        {
+          "action": "take_cash_payment",
+          "route": "accountant/take_cash_payment",
+          "pageName": null,
+          "viewFile": null
+        },
+        {
+          "action": "view_payment",
+          "route": "accountant/view_payment",
+          "pageName": "view_payment",
+          "viewFile": "accountant/view_payment.php"
+        },
+        {
+          "action": "manage_profile",
+          "route": "accountant/manage_profile",
+          "pageName": "manage_profile",
+          "viewFile": "accountant/manage_profile.php"
+        }
+      ]
+    },
+    {
+      "role": "admin",
+      "file": "admin.php",
+      "routes": [
+        {
+          "action": "dashboard",
+          "route": "admin/dashboard",
+          "pageName": "dashboard",
+          "viewFile": "admin/dashboard.php"
+        },
+        {
+          "action": "manage_department",
+          "route": "admin/manage_department",
+          "pageName": "manage_department",
+          "viewFile": "admin/manage_department.php"
+        },
+        {
+          "action": "manage_doctor",
+          "route": "admin/manage_doctor",
+          "pageName": "manage_doctor",
+          "viewFile": "admin/manage_doctor.php"
+        },
+        {
+          "action": "manage_patient",
+          "route": "admin/manage_patient",
+          "pageName": "manage_patient",
+          "viewFile": "admin/manage_patient.php"
+        },
+        {
+          "action": "manage_nurse",
+          "route": "admin/manage_nurse",
+          "pageName": "manage_nurse",
+          "viewFile": "admin/manage_nurse.php"
+        },
+        {
+          "action": "manage_pharmacist",
+          "route": "admin/manage_pharmacist",
+          "pageName": "manage_pharmacist",
+          "viewFile": "admin/manage_pharmacist.php"
+        },
+        {
+          "action": "manage_laboratorist",
+          "route": "admin/manage_laboratorist",
+          "pageName": "manage_laboratorist",
+          "viewFile": "admin/manage_laboratorist.php"
+        },
+        {
+          "action": "manage_accountant",
+          "route": "admin/manage_accountant",
+          "pageName": "manage_accountant",
+          "viewFile": "admin/manage_accountant.php"
+        },
+        {
+          "action": "view_appointment",
+          "route": "admin/view_appointment",
+          "pageName": "view_appointment",
+          "viewFile": "admin/view_appointment.php"
+        },
+        {
+          "action": "view_payment",
+          "route": "admin/view_payment",
+          "pageName": "view_payment",
+          "viewFile": "admin/view_payment.php"
+        },
+        {
+          "action": "view_bed_status",
+          "route": "admin/view_bed_status",
+          "pageName": "view_bed_status",
+          "viewFile": "admin/view_bed_status.php"
+        },
+        {
+          "action": "view_blood_bank",
+          "route": "admin/view_blood_bank",
+          "pageName": "view_blood_bank",
+          "viewFile": "admin/view_blood_bank.php"
+        },
+        {
+          "action": "view_medicine",
+          "route": "admin/view_medicine",
+          "pageName": "view_medicine",
+          "viewFile": "admin/view_medicine.php"
+        },
+        {
+          "action": "view_report",
+          "route": "admin/view_report",
+          "pageName": "view_report",
+          "viewFile": "admin/view_report.php"
+        },
+        {
+          "action": "manage_email_template",
+          "route": "admin/manage_email_template",
+          "pageName": "manage_email_template",
+          "viewFile": "admin/manage_email_template.php"
+        },
+        {
+          "action": "manage_noticeboard",
+          "route": "admin/manage_noticeboard",
+          "pageName": "manage_noticeboard",
+          "viewFile": "admin/manage_noticeboard.php"
+        },
+        {
+          "action": "system_settings",
+          "route": "admin/system_settings",
+          "pageName": "system_settings",
+          "viewFile": "admin/system_settings.php"
+        },
+        {
+          "action": "manage_language",
+          "route": "admin/manage_language",
+          "pageName": "manage_language",
+          "viewFile": "admin/manage_language.php"
+        },
+        {
+          "action": "backup_restore",
+          "route": "admin/backup_restore",
+          "pageName": "backup_restore",
+          "viewFile": "admin/backup_restore.php"
+        },
+        {
+          "action": "manage_profile",
+          "route": "admin/manage_profile",
+          "pageName": "manage_profile",
+          "viewFile": "admin/manage_profile.php"
+        }
+      ]
+    },
+    {
+      "role": "doctor",
+      "file": "doctor.php",
+      "routes": [
+        {
+          "action": "dashboard",
+          "route": "doctor/dashboard",
+          "pageName": "dashboard",
+          "viewFile": "doctor/dashboard.php"
+        },
+        {
+          "action": "manage_patient",
+          "route": "doctor/manage_patient",
+          "pageName": "manage_patient",
+          "viewFile": "doctor/manage_patient.php"
+        },
+        {
+          "action": "manage_appointment",
+          "route": "doctor/manage_appointment",
+          "pageName": "manage_appointment",
+          "viewFile": "doctor/manage_appointment.php"
+        },
+        {
+          "action": "manage_prescription",
+          "route": "doctor/manage_prescription",
+          "pageName": "manage_prescription",
+          "viewFile": "doctor/manage_prescription.php"
+        },
+        {
+          "action": "view_blood_bank",
+          "route": "doctor/view_blood_bank",
+          "pageName": "view_blood_bank",
+          "viewFile": "doctor/view_blood_bank.php"
+        },
+        {
+          "action": "manage_bed_allotment",
+          "route": "doctor/manage_bed_allotment",
+          "pageName": "manage_bed_allotment",
+          "viewFile": "doctor/manage_bed_allotment.php"
+        },
+        {
+          "action": "manage_report",
+          "route": "doctor/manage_report",
+          "pageName": "manage_report",
+          "viewFile": "doctor/manage_report.php"
+        },
+        {
+          "action": "manage_profile",
+          "route": "doctor/manage_profile",
+          "pageName": "manage_profile",
+          "viewFile": "doctor/manage_profile.php"
+        }
+      ]
+    },
+    {
+      "role": "install",
+      "file": "install.php",
+      "routes": [
+        {
+          "action": "index",
+          "route": "install/index",
+          "pageName": null,
+          "viewFile": null
+        },
+        {
+          "action": "do_install",
+          "route": "install/do_install",
+          "pageName": null,
+          "viewFile": null
+        },
+        {
+          "action": "check_db_connection",
+          "route": "install/check_db_connection",
+          "pageName": null,
+          "viewFile": null
+        }
+      ]
+    },
+    {
+      "role": "laboratorist",
+      "file": "laboratorist.php",
+      "routes": [
+        {
+          "action": "dashboard",
+          "route": "laboratorist/dashboard",
+          "pageName": "dashboard",
+          "viewFile": "laboratorist/dashboard.php"
+        },
+        {
+          "action": "view_prescription",
+          "route": "laboratorist/view_prescription",
+          "pageName": "view_prescription",
+          "viewFile": "laboratorist/view_prescription.php"
+        },
+        {
+          "action": "manage_prescription",
+          "route": "laboratorist/manage_prescription",
+          "pageName": "manage_prescription",
+          "viewFile": "laboratorist/manage_prescription.php"
+        },
+        {
+          "action": "manage_blood_bank",
+          "route": "laboratorist/manage_blood_bank",
+          "pageName": "manage_blood_bank",
+          "viewFile": "laboratorist/manage_blood_bank.php"
+        },
+        {
+          "action": "manage_blood_donor",
+          "route": "laboratorist/manage_blood_donor",
+          "pageName": "manage_blood_donor",
+          "viewFile": "laboratorist/manage_blood_donor.php"
+        },
+        {
+          "action": "manage_profile",
+          "route": "laboratorist/manage_profile",
+          "pageName": "manage_profile",
+          "viewFile": "laboratorist/manage_profile.php"
+        }
+      ]
+    },
+    {
+      "role": "login",
+      "file": "login.php",
+      "routes": [
+        {
+          "action": "_validate_login",
+          "route": "login/_validate_login",
+          "pageName": null,
+          "viewFile": null
+        },
+        {
+          "action": "logout",
+          "route": "login/logout",
+          "pageName": null,
+          "viewFile": null
+        },
+        {
+          "action": "four_zero_four",
+          "route": "login/four_zero_four",
+          "pageName": null,
+          "viewFile": null
+        },
+        {
+          "action": "reset_password",
+          "route": "login/reset_password",
+          "pageName": null,
+          "viewFile": null
+        },
+        {
+          "action": "login_as",
+          "route": "login/login_as",
+          "pageName": null,
+          "viewFile": null
+        }
+      ]
+    },
+    {
+      "role": "multilanguage",
+      "file": "multilanguage.php",
+      "routes": [
+        {
+          "action": "index",
+          "route": "multilanguage/index",
+          "pageName": null,
+          "viewFile": null
+        },
+        {
+          "action": "select_language",
+          "route": "multilanguage/select_language",
+          "pageName": null,
+          "viewFile": null
+        }
+      ]
+    },
+    {
+      "role": "nurse",
+      "file": "nurse.php",
+      "routes": [
+        {
+          "action": "dashboard",
+          "route": "nurse/dashboard",
+          "pageName": "dashboard",
+          "viewFile": "nurse/dashboard.php"
+        },
+        {
+          "action": "manage_patient",
+          "route": "nurse/manage_patient",
+          "pageName": "manage_patient",
+          "viewFile": "nurse/manage_patient.php"
+        },
+        {
+          "action": "manage_bed",
+          "route": "nurse/manage_bed",
+          "pageName": "manage_bed",
+          "viewFile": "nurse/manage_bed.php"
+        },
+        {
+          "action": "manage_bed_allotment",
+          "route": "nurse/manage_bed_allotment",
+          "pageName": "manage_bed_allotment",
+          "viewFile": "nurse/manage_bed_allotment.php"
+        },
+        {
+          "action": "manage_blood_bank",
+          "route": "nurse/manage_blood_bank",
+          "pageName": "manage_blood_bank",
+          "viewFile": "nurse/manage_blood_bank.php"
+        },
+        {
+          "action": "manage_blood_donor",
+          "route": "nurse/manage_blood_donor",
+          "pageName": "manage_blood_donor",
+          "viewFile": "nurse/manage_blood_donor.php"
+        },
+        {
+          "action": "manage_report",
+          "route": "nurse/manage_report",
+          "pageName": "manage_report",
+          "viewFile": "nurse/manage_report.php"
+        },
+        {
+          "action": "manage_profile",
+          "route": "nurse/manage_profile",
+          "pageName": "manage_profile",
+          "viewFile": "nurse/manage_profile.php"
+        }
+      ]
+    },
+    {
+      "role": "patient",
+      "file": "patient.php",
+      "routes": [
+        {
+          "action": "dashboard",
+          "route": "patient/dashboard",
+          "pageName": "dashboard",
+          "viewFile": "patient/dashboard.php"
+        },
+        {
+          "action": "view_appointment",
+          "route": "patient/view_appointment",
+          "pageName": "view_appointment",
+          "viewFile": "patient/view_appointment.php"
+        },
+        {
+          "action": "view_prescription",
+          "route": "patient/view_prescription",
+          "pageName": "view_prescription",
+          "viewFile": "patient/view_prescription.php"
+        },
+        {
+          "action": "view_doctor",
+          "route": "patient/view_doctor",
+          "pageName": "view_doctor",
+          "viewFile": "patient/view_doctor.php"
+        },
+        {
+          "action": "view_admit_history",
+          "route": "patient/view_admit_history",
+          "pageName": "view_admit_history",
+          "viewFile": "patient/view_admit_history.php"
+        },
+        {
+          "action": "view_blood_bank",
+          "route": "patient/view_blood_bank",
+          "pageName": "view_blood_bank",
+          "viewFile": "patient/view_blood_bank.php"
+        },
+        {
+          "action": "view_invoice",
+          "route": "patient/view_invoice",
+          "pageName": "view_invoice",
+          "viewFile": "patient/view_invoice.php"
+        },
+        {
+          "action": "payment_history",
+          "route": "patient/payment_history",
+          "pageName": "payment_history",
+          "viewFile": "patient/payment_history.php"
+        },
+        {
+          "action": "view_operation_history",
+          "route": "patient/view_operation_history",
+          "pageName": "view_operation_history",
+          "viewFile": "patient/view_operation_history.php"
+        },
+        {
+          "action": "manage_profile",
+          "route": "patient/manage_profile",
+          "pageName": "manage_profile",
+          "viewFile": "patient/manage_profile.php"
+        }
+      ]
+    },
+    {
+      "role": "pharmacist",
+      "file": "pharmacist.php",
+      "routes": [
+        {
+          "action": "dashboard",
+          "route": "pharmacist/dashboard",
+          "pageName": "dashboard",
+          "viewFile": "pharmacist/dashboard.php"
+        },
+        {
+          "action": "manage_medicine_category",
+          "route": "pharmacist/manage_medicine_category",
+          "pageName": "manage_medicine_category",
+          "viewFile": "pharmacist/manage_medicine_category.php"
+        },
+        {
+          "action": "manage_medicine",
+          "route": "pharmacist/manage_medicine",
+          "pageName": "manage_medicine",
+          "viewFile": "pharmacist/manage_medicine.php"
+        },
+        {
+          "action": "manage_prescription",
+          "route": "pharmacist/manage_prescription",
+          "pageName": "manage_prescription",
+          "viewFile": "pharmacist/manage_prescription.php"
+        },
+        {
+          "action": "manage_profile",
+          "route": "pharmacist/manage_profile",
+          "pageName": "manage_profile",
+          "viewFile": "pharmacist/manage_profile.php"
+        }
+      ]
+    }
+  ],
+  "phrases": {
+    "count": 20,
+    "usedInViews": [
+      "account",
+      "account_type",
+      "accountant",
+      "accountant_list",
+      "accountant_name",
+      "add_accountant",
+      "add_appointment",
+      "add_bed",
+      "add_bed_allotment",
+      "add_blood_donor",
+      "add_department",
+      "add_description",
+      "add_diagnosis_report",
+      "add_diagnostic_report",
+      "add_doctor",
+      "add_invoice",
+      "add_laboratorist",
+      "add_language",
+      "add_medicine",
+      "add_medicine_category",
+      "add_noticeboard",
+      "add_nurse",
+      "add_patient",
+      "add_pharmacist",
+      "add_phrase",
+      "add_prescription",
+      "add_report",
+      "address",
+      "admin",
+      "admit_history",
+      "age",
+      "allotment_date_time",
+      "allotment_time",
+      "amount",
+      "appointment",
+      "appointment_list",
+      "backup",
+      "bed_allotment",
+      "bed_allotment_list",
+      "bed_id",
+      "bed_list",
+      "bed_number",
+      "bed_type",
+      "birth",
+      "birth_date",
+      "birth_report",
+      "blood_bank",
+      "blood_bank_list",
+      "blood_donor_list",
+      "blood_group",
+      "cabin",
+      "calendar_schedule",
+      "case_history",
+      "category",
+      "change_password",
+      "confirm_new_password",
+      "creation_timestamp",
+      "date",
+      "death",
+      "death_report",
+      "delete",
+      "delete_language",
+      "department",
+      "department_description",
+      "department_list",
+      "department_name",
+      "description",
+      "diagnosis_report",
+      "discharge_date_time",
+      "discharge_time",
+      "doc",
+      "doctor",
+      "doctor_list",
+      "doctor_name",
+      "document_type",
+      "download",
+      "edit",
+      "edit_accountant",
+      "edit_appointment",
+      "edit_bed",
+      "edit_bed_allotment",
+      "edit_blood_bank",
+      "edit_blood_donor",
+      "edit_department",
+      "edit_doctor",
+      "edit_invoice",
+      "edit_laboratorist",
+      "edit_medicine",
+      "edit_medicine_category",
+      "edit_noticeboard",
+      "edit_nurse",
+      "edit_patient",
+      "edit_pharmacist",
+      "edit_prescription",
+      "email",
+      "excel",
+      "female",
+      "forgot_password?",
+      "icu",
+      "image",
+      "invoice / take_payment",
+      "invoice_id",
+      "invoice_list",
+      "ip",
+      "laboratorist",
+      "laboratorist_list",
+      "laboratorist_name",
+      "language",
+      "last_donation_date",
+      "location",
+      "login",
+      "logout",
+      "male",
+      "manage_blood_bank",
+      "manage_blood_donor",
+      "manage_medicine",
+      "manage_profile",
+      "manage_report",
+      "manufacturing_company",
+      "medication",
+      "medication_from_pharmacist",
+      "medicine",
+      "medicine_category",
+      "medicine_category_description",
+      "medicine_category_list",
+      "medicine_category_name",
+      "medicine_catogory",
+      "medicine_list",
+      "medicine_name",
+      "method",
+      "name",
+      "new_password",
+      "notice",
+      "noticeboard",
+      "noticeboard_list",
+      "nurse",
+      "nurse_list",
+      "nurse_name",
+      "operation",
+      "operation_report",
+      "option",
+      "options",
+      "other",
+      "paid",
+      "panel",
+      "password",
+      "patient",
+      "patient_list",
+      "patient_name",
+      "payment",
+      "payment_type",
+      "pdf",
+      "pharmacist",
+      "pharmacist_list",
+      "pharmacist_name",
+      "phone",
+      "phrase",
+      "phrase_list",
+      "prescription",
+      "prescription_list",
+      "price",
+      "profile",
+      "provide_medication",
+      "report",
+      "report_status",
+      "report_type",
+      "reset",
+      "reset_password",
+      "restore",
+      "save",
+      "select_language",
+      "settings",
+      "sex",
+      "status",
+      "system_settings",
+      "take_cash_payment",
+      "time",
+      "title",
+      "transaction_id",
+      "type",
+      "unpaid",
+      "update_password",
+      "update_phrase",
+      "update_profile",
+      "upload_&_restore_from_backup",
+      "upload_document",
+      "user",
+      "view_appointment",
+      "view_invoice",
+      "view_log",
+      "view_medicine",
+      "view_payment",
+      "view_prescription",
+      "view_report",
+      "ward"
+    ],
+    "missingInSql": [
+      "account",
+      "accountant_list",
+      "accountant_name",
+      "add_accountant",
+      "add_appointment",
+      "add_bed",
+      "add_bed_allotment",
+      "add_blood_donor",
+      "add_department",
+      "add_description",
+      "add_diagnosis_report",
+      "add_diagnostic_report",
+      "add_doctor",
+      "add_invoice",
+      "add_laboratorist",
+      "add_language",
+      "add_medicine",
+      "add_medicine_category",
+      "add_noticeboard",
+      "add_nurse",
+      "add_patient",
+      "add_pharmacist",
+      "add_phrase",
+      "add_prescription",
+      "add_report",
+      "address",
+      "admit_history",
+      "age",
+      "allotment_date_time",
+      "allotment_time",
+      "amount",
+      "appointment",
+      "appointment_list",
+      "backup",
+      "bed_allotment",
+      "bed_allotment_list",
+      "bed_id",
+      "bed_list",
+      "bed_number",
+      "bed_type",
+      "birth",
+      "birth_date",
+      "birth_report",
+      "blood_bank",
+      "blood_bank_list",
+      "blood_donor_list",
+      "blood_group",
+      "cabin",
+      "calendar_schedule",
+      "case_history",
+      "category",
+      "change_password",
+      "confirm_new_password",
+      "creation_timestamp",
+      "date",
+      "death",
+      "death_report",
+      "delete",
+      "delete_language",
+      "department_description",
+      "department_list",
+      "department_name",
+      "description",
+      "diagnosis_report",
+      "discharge_date_time",
+      "discharge_time",
+      "doc",
+      "doctor_list",
+      "doctor_name",
+      "document_type",
+      "download",
+      "edit",
+      "edit_accountant",
+      "edit_appointment",
+      "edit_bed",
+      "edit_bed_allotment",
+      "edit_blood_bank",
+      "edit_blood_donor",
+      "edit_department",
+      "edit_doctor",
+      "edit_invoice",
+      "edit_laboratorist",
+      "edit_medicine",
+      "edit_medicine_category",
+      "edit_noticeboard",
+      "edit_nurse",
+      "edit_patient",
+      "edit_pharmacist",
+      "edit_prescription",
+      "excel",
+      "female",
+      "icu",
+      "image",
+      "invoice / take_payment",
+      "invoice_id",
+      "invoice_list",
+      "ip",
+      "laboratorist_list",
+      "laboratorist_name",
+      "language",
+      "last_donation_date",
+      "location",
+      "male",
+      "manage_blood_bank",
+      "manage_blood_donor",
+      "manage_medicine",
+      "manage_profile",
+      "manage_report",
+      "manufacturing_company",
+      "medication",
+      "medication_from_pharmacist",
+      "medicine",
+      "medicine_category",
+      "medicine_category_description",
+      "medicine_category_list",
+      "medicine_category_name",
+      "medicine_catogory",
+      "medicine_list",
+      "medicine_name",
+      "method",
+      "name",
+      "new_password",
+      "notice",
+      "noticeboard",
+      "noticeboard_list",
+      "nurse_list",
+      "nurse_name",
+      "operation",
+      "operation_report",
+      "option",
+      "options",
+      "other",
+      "paid",
+      "panel",
+      "patient_list",
+      "patient_name",
+      "payment",
+      "payment_type",
+      "pdf",
+      "pharmacist_list",
+      "pharmacist_name",
+      "phone",
+      "phrase",
+      "phrase_list",
+      "prescription",
+      "prescription_list",
+      "price",
+      "provide_medication",
+      "report",
+      "report_status",
+      "report_type",
+      "reset",
+      "reset_password",
+      "restore",
+      "save",
+      "select_language",
+      "sex",
+      "status",
+      "system_settings",
+      "take_cash_payment",
+      "time",
+      "title",
+      "transaction_id",
+      "type",
+      "unpaid",
+      "update_password",
+      "update_phrase",
+      "update_profile",
+      "upload_&_restore_from_backup",
+      "upload_document",
+      "user",
+      "view_appointment",
+      "view_invoice",
+      "view_log",
+      "view_medicine",
+      "view_payment",
+      "view_prescription",
+      "view_report",
+      "ward"
+    ]
+  },
+  "cssClassStats": {
+    "total": 148,
+    "inBayannoCss": 131
+  }
+}

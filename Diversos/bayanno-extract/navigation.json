@@ -1,0 +1,502 @@
+[
+  {
+    "role": "accountant",
+    "file": "accountant/navigation.php",
+    "items": [
+      {
+        "type": "link",
+        "route": "accountant/dashboard",
+        "label": "dashboard",
+        "icon": "icon-desktop icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "accountant/manage_invoice",
+        "label": "invoice / take_payment",
+        "icon": "icon-list-alt icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "accountant/view_payment",
+        "label": "view_payment",
+        "icon": "icon-money icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "accountant/manage_profile",
+        "label": "profile",
+        "icon": "icon-lock icon-2x",
+        "pageNameHint": null
+      }
+    ]
+  },
+  {
+    "role": "admin",
+    "file": "admin/navigation.php",
+    "items": [
+      {
+        "type": "link",
+        "route": "admin/dashboard",
+        "label": "dashboard",
+        "icon": "icon-desktop icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "admin/manage_department",
+        "label": "department",
+        "icon": "icon-sitemap icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "admin/manage_doctor",
+        "label": "doctor",
+        "icon": "icon-user-md icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "admin/manage_patient",
+        "label": "patient",
+        "icon": "icon-user icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "admin/manage_nurse",
+        "label": "nurse",
+        "icon": "icon-plus-sign-alt icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "admin/manage_pharmacist",
+        "label": "pharmacist",
+        "icon": "icon-medkit icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "admin/manage_laboratorist",
+        "label": "laboratorist",
+        "icon": "icon-beaker icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "admin/manage_accountant",
+        "label": "accountant",
+        "icon": "icon-money icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "submenu",
+        "label": "monitor_hospital",
+        "icon": "icon-screenshot icon-2x",
+        "submenuId": "view_hospital_submenu"
+      },
+      {
+        "type": "link",
+        "route": "admin/view_appointment",
+        "label": "view_appointment",
+        "icon": "icon-exchange",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "admin/view_payment",
+        "label": "view_payment",
+        "icon": "icon-money",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "admin/view_bed_status",
+        "label": "view_bed_status",
+        "icon": "icon-hdd",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "admin/view_blood_bank",
+        "label": "view_blood_bank",
+        "icon": "icon-tint",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "admin/view_medicine",
+        "label": "view_medicine",
+        "icon": "icon-medkit",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "admin/view_report/operation",
+        "label": "view_operation",
+        "icon": "icon-reorder",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "admin/view_report/birth",
+        "label": "view_birth_report",
+        "icon": "icon-github-alt",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "admin/view_report/death",
+        "label": "view_death_report",
+        "icon": "icon-user",
+        "pageNameHint": null
+      },
+      {
+        "type": "submenu",
+        "label": "settings",
+        "icon": "icon-wrench icon-2x",
+        "submenuId": "settings_submenu"
+      },
+      {
+        "type": "link",
+        "route": "admin/manage_email_template",
+        "label": "manage_email_template",
+        "icon": "icon-envelope",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "admin/manage_noticeboard",
+        "label": "manage_noticeboard",
+        "icon": "icon-columns",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "admin/system_settings",
+        "label": "system_settings",
+        "icon": "icon-h-sign",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "admin/manage_language",
+        "label": "manage_language",
+        "icon": "icon-globe",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "admin/backup_restore",
+        "label": "backup_restore",
+        "icon": "icon-download-alt",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "admin/manage_profile",
+        "label": "profile",
+        "icon": "icon-lock icon-2x",
+        "pageNameHint": null
+      }
+    ]
+  },
+  {
+    "role": "doctor",
+    "file": "doctor/navigation.php",
+    "items": [
+      {
+        "type": "link",
+        "route": "doctor/dashboard",
+        "label": "dashboard",
+        "icon": "icon-desktop icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "doctor/manage_patient",
+        "label": "patient",
+        "icon": "icon-user icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "doctor/manage_appointment",
+        "label": "manage_appointment",
+        "icon": "icon-edit icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "doctor/manage_prescription",
+        "label": "manage_prescription",
+        "icon": "icon-stethoscope icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "doctor/manage_bed_allotment",
+        "label": "bed_allotment",
+        "icon": "icon-hdd icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "doctor/view_blood_bank",
+        "label": "view_blood_bank",
+        "icon": "icon-tint icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "doctor/manage_report",
+        "label": "manage_report",
+        "icon": "icon-hospital icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "doctor/manage_profile",
+        "label": "profile",
+        "icon": "icon-lock icon-2x",
+        "pageNameHint": null
+      }
+    ]
+  },
+  {
+    "role": "laboratorist",
+    "file": "laboratorist/navigation.php",
+    "items": [
+      {
+        "type": "link",
+        "route": "laboratorist/dashboard",
+        "label": "dashboard",
+        "icon": "icon-desktop icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "laboratorist/manage_prescription",
+        "label": "add_diagnosis_report",
+        "icon": "icon-stethoscope icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "laboratorist/manage_blood_bank",
+        "label": "manage_blood_bank",
+        "icon": "icon-tint icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "laboratorist/manage_blood_donor",
+        "label": "manage_blood_donor",
+        "icon": "icon-user icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "laboratorist/manage_profile",
+        "label": "profile",
+        "icon": "icon-lock icon-2x",
+        "pageNameHint": null
+      }
+    ]
+  },
+  {
+    "role": "nurse",
+    "file": "nurse/navigation.php",
+    "items": [
+      {
+        "type": "link",
+        "route": "nurse/dashboard",
+        "label": "dashboard",
+        "icon": "icon-desktop icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "nurse/manage_patient",
+        "label": "patient",
+        "icon": "icon-user icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "submenu",
+        "label": "bed_ward",
+        "icon": "icon-hdd icon-2x",
+        "submenuId": "bed_submenu"
+      },
+      {
+        "type": "link",
+        "route": "nurse/manage_bed",
+        "label": "manage_bed",
+        "icon": "icon-hdd",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "nurse/manage_bed_allotment",
+        "label": "manage_bed_allotment",
+        "icon": "icon-wrench",
+        "pageNameHint": null
+      },
+      {
+        "type": "submenu",
+        "label": "blood_bank",
+        "icon": "icon-tint icon-2x",
+        "submenuId": "blood_submenu"
+      },
+      {
+        "type": "link",
+        "route": "nurse/manage_blood_bank",
+        "label": "manage_blood_bank",
+        "icon": "icon-tint",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "nurse/manage_blood_donor",
+        "label": "manage_blood_donor",
+        "icon": "icon-user",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "nurse/manage_report",
+        "label": "report",
+        "icon": "icon-hospital icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "nurse/manage_profile",
+        "label": "profile",
+        "icon": "icon-lock icon-2x",
+        "pageNameHint": null
+      }
+    ]
+  },
+  {
+    "role": "patient",
+    "file": "patient/navigation.php",
+    "items": [
+      {
+        "type": "link",
+        "route": "patient/dashboard",
+        "label": "dashboard",
+        "icon": "icon-desktop icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "patient/view_appointment",
+        "label": "view_appointment",
+        "icon": "icon-edit icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "patient/view_prescription",
+        "label": "view_prescription",
+        "icon": "icon-stethoscope icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "patient/view_doctor",
+        "label": "view_doctor",
+        "icon": "icon-user-md icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "patient/view_blood_bank",
+        "label": "view_blood_bank",
+        "icon": "icon-tint icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "patient/view_admit_history",
+        "label": "admit_history",
+        "icon": "icon-hdd icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "patient/view_operation_history",
+        "label": "operation_history",
+        "icon": "icon-hospital icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "patient/view_invoice",
+        "label": "view_invoice",
+        "icon": "icon-credit-card icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "patient/payment_history",
+        "label": "payment_history",
+        "icon": "icon-money icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "patient/manage_profile",
+        "label": "profile",
+        "icon": "icon-lock icon-2x",
+        "pageNameHint": null
+      }
+    ]
+  },
+  {
+    "role": "pharmacist",
+    "file": "pharmacist/navigation.php",
+    "items": [
+      {
+        "type": "link",
+        "route": "pharmacist/dashboard",
+        "label": "dashboard",
+        "icon": "icon-desktop icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "pharmacist/manage_medicine_category",
+        "label": "medicine_category",
+        "icon": "icon-edit icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "pharmacist/manage_medicine",
+        "label": "manage_medicine",
+        "icon": "icon-medkit icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "pharmacist/manage_prescription",
+        "label": "provide_medication",
+        "icon": "icon-stethoscope icon-2x",
+        "pageNameHint": null
+      },
+      {
+        "type": "link",
+        "route": "pharmacist/manage_profile",
+        "label": "profile",
+        "icon": "icon-lock icon-2x",
+        "pageNameHint": null
+      }
+    ]
+  }
+]

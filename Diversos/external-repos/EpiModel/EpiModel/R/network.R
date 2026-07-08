@@ -1,0 +1,122 @@
+
+#' @title Initialize Network Object
+#'
+#' @description Initialize an undirected network object for use in EpiModel
+#'              workflows.
+#'
+#' @param n Network size.
+#'
+#' @details
+#' This function is used in `EpiModel` workflows to initialize an empty
+#' network object.  The network attributes `directed`, `bipartite`,
+#' `hyper`, `loops`, and `multiple` are set to `FALSE`.
+#'
+#' @return
+#' Returns an object of class `network`.
+#'
+#' @export
+#'
+#' @examples
+#' nw <- network_initialize(100)
+#' nw
+#'
+network_initialize <- function(n) {
+  nw <- network.initialize(n, directed = FALSE, hyper = FALSE, loops = FALSE,
+                           multiple = FALSE, bipartite = FALSE)
+  return(nw)
+}
+
+#' @title Set Vertex Attribute on Network Object
+#'
+#' @description Sets a vertex attribute on an object of class `network`.
+#'              This function simplifies the related function in the
+#'              `network` package.
+#'
+#' @param x An object of class network.
+#' @param attrname The name of the attribute to set.
+#' @param value A vector of values of the attribute to be set.
+#' @param v IDs for the vertices whose attributes are to be altered.
+#'
+#' @details
+#' This function is used in `EpiModel` workflows to set vertex attributes
+#' on an initialized empty network object (see [network_initialize()]).
+#'
+#' @return
+#' Returns an object of class `network`.
+#'
+#' @export
+#'
+#' @examples
+#' nw <- network_initialize(100)
+#' nw <- set_vertex_attribute(nw, "age", runif(100, 15, 65))
+#' nw
+#'
+set_vertex_attribute <- function(x, attrname, value, v = NULL) {
+  if (is.null(v)) {
+    v <- seq_len(network.size(x))
+  }
+  g <- set.vertex.attribute(x, attrname, value, v)
+  return(g)
+}
+
+#' @title Get Vertex Attribute on Network Object
+#'
+#' @description Gets a vertex attribute from an object of class `network`.
+#'              This function simplifies the related function in the
+#'              `network` package.
+#'
+#' @param x An object of class network.
+#' @param attrname The name of the attribute to get.
+#'
+#' @details
+#' This function is used in `EpiModel` workflows to query vertex
+#' attributes on an initialized empty network object (see
+#' [network_initialize()]).
+#'
+#' @return
+#' Returns a vector of vertex attribute values for the attribute specified
+#' by `attrname`.
+#'
+#' @export
+#'
+#' @examples
+#' nw <- network_initialize(100)
+#' nw <- set_vertex_attribute(nw, "age", runif(100, 15, 65))
+#' get_vertex_attribute(nw, "age")
+#'
+get_vertex_attribute <- function(x, attrname) {
+  attr <- get.vertex.attribute(x, attrname, na.omit = FALSE,
+                               null.na = TRUE, unlist = TRUE)
+  return(attr)
+}
+
+#' @title Get Network Attributes from a Network Object
+#'
+#' @description Gets all network attributes except `"mnext"` from its
+#'              network argument.
+#'
+#' @param x An object of class `network` or `networkLite`.
+#'
+#' @details
+#' This function is used in `EpiModel` workflows to copy relevant network
+#' attributes from the network object to the `netsim_dat` object when
+#' initializing `netsim` runs.
+#'
+#' @return
+#' Returns the named list of network attributes.
+#'
+#' @export
+#'
+#' @examples
+#' nw <- network_initialize(100)
+#' get_network_attributes(nw)
+#'
+get_network_attributes <- function(x) {
+  out <- list()
+  for (name in setdiff(list.network.attributes(x), c("mnext"))) {
+    new <- list(get.network.attribute(x, name))
+    names(new) <- name
+    out <- c(out, new)
+  }
+  out
+}

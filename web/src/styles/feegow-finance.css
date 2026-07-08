@@ -1,0 +1,581 @@
+/**
+ * Financeiro — layout Feegow
+ */
+
+.feegow-finance-screen {
+  flex: 1;
+  min-width: 0;
+  overflow: auto;
+  background: #f4f7f9;
+}
+
+.feegow-finance-page {
+  padding: 16px 20px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.feegow-finance-page-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.feegow-finance-breadcrumb {
+  margin: 0;
+}
+
+.feegow-finance-print-btn {
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+.feegow-finance-panel {
+  background: #fff;
+  border: 1px solid #dde4e8;
+  border-radius: 4px;
+  padding: 14px 16px;
+}
+
+.feegow-finance-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.feegow-finance-panel-head h3 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: #3d4f57;
+}
+
+.feegow-finance-panel-sub {
+  font-size: 11px;
+  color: #8a9aa3;
+}
+
+.feegow-finance-summary-balance-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.feegow-finance-summary-balance-head h2 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #2f3f47;
+}
+
+.feegow-finance-eye-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.feegow-finance-summary-balance-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.feegow-finance-field-inline {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 11px;
+  color: #6a7a82;
+}
+
+.feegow-finance-field-inline input {
+  font-size: 12px;
+  padding: 5px 8px;
+  border: 1px solid #cfd8dc;
+  border-radius: 3px;
+}
+
+.feegow-finance-summary-balance-value {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #057a8c;
+}
+
+.feegow-finance-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.feegow-finance-status {
+  display: inline-flex;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.feegow-finance-status-open { background: #e8f4fd; color: #057a8c; }
+.feegow-finance-status-partial { background: #fff8e1; color: #b7950b; }
+.feegow-finance-status-paid { background: #e8f8f0; color: #1e8449; }
+.feegow-finance-status-cancelled { background: #f1f3f4; color: #6a7a82; }
+
+.feegow-finance-kpi-card {
+  background: #fff;
+  border: 1px solid #dde4e8;
+  border-radius: 4px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.feegow-finance-kpi-label {
+  font-size: 11px;
+  color: #8a9aa3;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.feegow-finance-kpi-card strong {
+  font-size: 18px;
+  color: #2f3f47;
+}
+
+.feegow-finance-kpi-card a {
+  font-size: 11px;
+  color: #00a0e1;
+  text-decoration: none;
+}
+
+.feegow-finance-kpi-sub {
+  font-size: 12px;
+  color: #607580;
+}
+
+.feegow-finance-row-link {
+  color: #2f3f47;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.feegow-finance-row-link:hover {
+  color: #00a0e1;
+  text-decoration: underline;
+}
+
+.feegow-finance-table-empty {
+  padding: 24px 16px;
+  text-align: center;
+  color: #607580;
+}
+
+.feegow-finance-table-empty p {
+  margin: 0 0 12px;
+}
+
+.guides-kpi-card-link {
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.15s ease;
+}
+
+.guides-kpi-card-link:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.guides-kpi-card-link small {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--muted, #607580);
+}
+
+.feegow-finance-shortcuts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.feegow-finance-shortcut-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 14px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  background: #00c853;
+  color: #fff;
+  border: none;
+}
+
+.feegow-finance-shortcut-btn.is-secondary {
+  background: #fff;
+  color: #057a8c;
+  border: 1px solid #b0bec5;
+}
+
+.feegow-finance-filters {
+  background: #fff;
+  border: 1px solid #dde4e8;
+  border-radius: 4px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.feegow-finance-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.feegow-finance-filter-row label {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 11px;
+  color: #6a7a82;
+  min-width: 120px;
+}
+
+.feegow-finance-filter-row input,
+.feegow-finance-filter-row select {
+  font-size: 12px;
+  padding: 5px 8px;
+  border: 1px solid #cfd8dc;
+  border-radius: 3px;
+  min-height: 30px;
+}
+
+.feegow-finance-filter-btn {
+  background: #00a0e1;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 7px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 30px;
+}
+
+.feegow-finance-table-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.feegow-finance-table-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-bottom: 1px solid #dde4e8;
+  background: #fafbfc;
+}
+
+.feegow-finance-actions-select {
+  font-size: 12px;
+  padding: 4px 8px;
+  border: 1px solid #cfd8dc;
+  border-radius: 3px;
+}
+
+.feegow-finance-table-tools {
+  display: flex;
+  gap: 6px;
+}
+
+.feegow-finance-icon-btn {
+  border: 1px solid #cfd8dc;
+  background: #fff;
+  border-radius: 3px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.feegow-finance-table-wrap {
+  overflow-x: auto;
+}
+
+.feegow-finance-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.feegow-finance-table thead th {
+  background: #4caf50;
+  color: #fff;
+  font-weight: 600;
+  text-align: left;
+  padding: 8px 10px;
+  white-space: nowrap;
+}
+
+.feegow-finance-table tbody td {
+  padding: 7px 10px;
+  border-bottom: 1px solid #eceff1;
+  color: #3d4f57;
+}
+
+.feegow-finance-table tbody tr:hover {
+  background: #f5fafb;
+}
+
+.feegow-finance-check-col {
+  width: 36px;
+  text-align: center;
+}
+
+.feegow-finance-table-empty {
+  text-align: center;
+  color: #8a9aa3;
+  padding: 24px !important;
+}
+
+.feegow-finance-loading {
+  margin: 0;
+  padding: 10px 14px;
+  font-size: 12px;
+  color: #8a9aa3;
+}
+
+.feegow-finance-insert-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.feegow-finance-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.feegow-finance-form-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 11px;
+  color: #6a7a82;
+}
+
+.feegow-finance-form-grid input,
+.feegow-finance-form-grid select,
+.feegow-finance-form-grid textarea {
+  font-size: 12px;
+  padding: 6px 8px;
+  border: 1px solid #cfd8dc;
+  border-radius: 3px;
+  font-family: inherit;
+}
+
+.feegow-finance-field-wide {
+  grid-column: 1 / -1;
+}
+
+.feegow-finance-link-btn {
+  border: none;
+  background: transparent;
+  color: #00a0e1;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.feegow-finance-items-table-wrap {
+  overflow-x: auto;
+}
+
+.feegow-finance-items-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.feegow-finance-items-table th,
+.feegow-finance-items-table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid #eceff1;
+  text-align: left;
+}
+
+.feegow-finance-items-table input {
+  width: 100%;
+  font-size: 12px;
+  padding: 5px 8px;
+  border: 1px solid #cfd8dc;
+  border-radius: 3px;
+}
+
+.feegow-finance-installments-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.feegow-finance-installments-row label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 11px;
+  color: #6a7a82;
+}
+
+.feegow-finance-installments-row input {
+  width: 80px;
+  padding: 5px 8px;
+  border: 1px solid #cfd8dc;
+  border-radius: 3px;
+}
+
+.feegow-finance-placeholder {
+  text-align: center;
+  padding: 40px 20px;
+  color: #6a7a82;
+}
+
+.feegow-finance-placeholder h3 {
+  margin: 0 0 8px;
+  color: #3d4f57;
+}
+
+.feegow-finance-cash-kpis {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.feegow-finance-cash-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px 20px;
+  margin-bottom: 14px;
+}
+
+.feegow-finance-cash-kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  border: 1px solid #e0e8ec;
+  border-radius: 4px;
+  background: #fafcfd;
+}
+
+.feegow-finance-cash-kpi--highlight {
+  border-color: #057a8c;
+  background: #f0fafb;
+}
+
+.feegow-finance-cash-kpi small {
+  font-size: 10px;
+  color: #8a9aa3;
+}
+
+.feegow-finance-cash-hint {
+  margin: 0 0 12px;
+  font-size: 12px;
+  color: #6a7a82;
+  line-height: 1.45;
+}
+
+.feegow-finance-closing-summary {
+  margin-bottom: 16px;
+}
+
+.feegow-finance-cash-kpis div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.feegow-finance-cash-kpis span {
+  font-size: 11px;
+  color: #8a9aa3;
+}
+
+.feegow-finance-cash-kpis strong {
+  font-size: 18px;
+  color: #057a8c;
+}
+
+.feegow-finance-cash-close-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  align-items: end;
+}
+
+.feegow-finance-cash-close-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 11px;
+  color: #6a7a82;
+}
+
+.feegow-finance-cash-close-form input,
+.feegow-finance-cash-close-form textarea {
+  font-size: 12px;
+  padding: 6px 8px;
+  border: 1px solid #cfd8dc;
+  border-radius: 3px;
+  font-family: inherit;
+}
+
+.feegow-inventory-ward-pharmacy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.feegow-inventory-row-low td {
+  background: #fff8e1;
+}
+
+.feegow-vaccination-schedule-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.feegow-vaccination-tab {
+  border: 1px solid #cfd8dc;
+  background: #fff;
+  color: #4a5a62;
+  padding: 6px 12px;
+  font-size: 12px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.feegow-vaccination-tab.is-active {
+  background: #00a0e1;
+  border-color: #00a0e1;
+  color: #fff;
+  font-weight: 600;
+}

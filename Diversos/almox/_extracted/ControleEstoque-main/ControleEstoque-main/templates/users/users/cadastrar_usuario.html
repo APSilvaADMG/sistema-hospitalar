@@ -1,0 +1,31 @@
+{% extends "base/index.html" %}
+{% load static bootstrap %}
+{% block conteudo %} 
+
+    <div class="text-center mb-4">
+        <h2 class="fw-bold"><i class="bi bi-person-plus text-primary"></i> Cadastrar Colaborador</h2>
+        <p class="lead">Adicione novos colaboradores ao sistema para ampliar sua equipe e garantir o controle de acesso e informações dos usuários.</p>
+    </div>
+
+    <div class="container mt-4">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.media}}
+            {{ form|bootstrap }}
+            <div class="d-grid gap-2 col-6 mx-auto mt-3 mb-2">
+                <button type="submit" class="btn btn-success rounded-pill">Cadastrar</button>
+                <button type="button" onclick="history.back()" class="btn btn-danger rounded-pill">Cancelar</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        $('document').ready(function() {
+            $('#id_cpf').mask('000.000.000-00');   
+            $('#id_telefone_celular').mask('(00) 0000-0000'); 
+            var elemento = document.getElementById("id_imagemperfil");
+            elemento.classList.add("form-control");
+        });
+    </script>
+
+
+{% endblock conteudo %}

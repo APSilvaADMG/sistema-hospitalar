@@ -1,0 +1,64 @@
+{% extends "base/index.html" %}
+{% load static bootstrap %}
+{% block conteudo %}
+
+<div class="text-center mb-4">
+    <h2 class="fw-bold"><i class="bi bi-cash-stack text-primary"></i> Cadastrar Venda a Prazo (Fiado)</h2>
+    <p class="lead">Registre vendas a prazo para seus clientes, controle parcelas, produtos vendidos e mantenha o acompanhamento financeiro de forma eficiente.</p>
+</div>
+
+<div class="container mt-5">
+
+    <h2>Cadastrar Venda a Prazo</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form|bootstrap }}
+        <h3 class="mt-2">Itens da Venda</h3>
+        <div id="formset-container">
+            {{ itens_form.management_form }}
+            {% for form in itens_form %}
+                <div class="formset-form">
+                    {{ form|bootstrap }}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="d-grid gap-2 col-6 mx-auto mt-3 mb-2">
+            <button type="submit" class="btn btn-success rounded-pill">Cadastrar Venda</button>
+            <button type="button" onclick="history.back()" class="btn btn-danger rounded-pill">Cancelar</button>
+        </div>
+    </form>
+</div>
+<div id="formset-empty" style="display:none;">
+    {{ itens_form.empty_form|bootstrap }}
+</div>
+<script>    
+    $(document).ready(function() {
+        document.getElementById('add-product').addEventListener('click', function() {
+            var formIdx = $('#id_itemvendafiado_set-TOTAL_FORMS').val();
+            $('#formset-container').append($('#formset-empty').html().replace(/__prefix__/g, formIdx));
+            $('#id_itemvendafiado_set-TOTAL_FORMS').val(parseInt(formIdx) + 1);
+        });
+        $('#id_cliente').select2({
+            ajax: {
+                url: "{% url 'cliente_pesquisar' %}",
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        term: params.term,
+                    };
+                },
+                processResults: function (data) {
+                    return {
+                        results: data.results
+                    };
+                },
+                cache: true
+            },
+            minimumInputLength: 1,
+        });
+    });
+</script>
+
+{% endblock conteudo %}

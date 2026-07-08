@@ -1,0 +1,467 @@
+.funi-guide-page {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.funi-guide-split {
+  display: block;
+}
+
+.funi-guide-split--with-pdf {
+  display: grid;
+  grid-template-columns: minmax(280px, 42%) 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.funi-guide-pdf-panel {
+  position: sticky;
+  top: 72px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--surface);
+  max-height: calc(100vh - 96px);
+  display: flex;
+  flex-direction: column;
+}
+
+.funi-guide-pdf-title {
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-elevated, var(--surface));
+}
+
+.funi-guide-pdf-frame {
+  width: 100%;
+  flex: 1;
+  min-height: 480px;
+  border: none;
+  background: #525659;
+}
+
+.funi-date-row,
+.funi-decimal-row,
+.funi-phone-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 1px;
+}
+
+.funi-date-sep {
+  font-size: 10px;
+  padding: 0 2px;
+  color: #444;
+}
+
+.funi-phone-paren {
+  font-size: 10px;
+  color: #444;
+}
+
+.funi-med-table-wrap {
+  overflow-x: auto;
+  padding: 4px;
+}
+
+.funi-med-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9px;
+}
+
+.funi-med-table th,
+.funi-med-table td {
+  border: 1px solid #888;
+  padding: 3px 4px;
+  vertical-align: top;
+}
+
+.funi-med-table th {
+  background: rgba(0, 165, 168, 0.08);
+  font-weight: 700;
+  text-align: left;
+}
+
+.funi-med-table input,
+.funi-med-table .funi-char-row {
+  width: 100%;
+}
+
+.funi-med-table .funi-char-cell {
+  width: 12px;
+  height: 16px;
+  font-size: 9px;
+}
+
+@media (max-width: 960px) {
+  .funi-guide-split--with-pdf {
+    grid-template-columns: 1fr;
+  }
+
+  .funi-guide-pdf-panel {
+    position: static;
+    max-height: 420px;
+  }
+}
+
+.funi-guide-toolbar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.funi-operator-banner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #c8e6c9;
+  background: #f1f8e9;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.funi-operator-banner--warn {
+  border-color: #ffe0b2;
+  background: #fff8e1;
+}
+
+.funi-operator-banner-message {
+  margin-top: 4px;
+  color: #555;
+}
+
+.funi-guide-sheet {
+  background: #fff;
+  border: 1px solid #b8d4d5;
+  border-top: 3px solid #00a5a8;
+  padding: 12px 16px 20px;
+  font-size: 11px;
+  color: #1e293b;
+  border-radius: 4px;
+}
+
+.funi-guide-header {
+  display: grid;
+  grid-template-columns: 100px 1fr 140px;
+  gap: 10px;
+  align-items: start;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #b8d4d5;
+}
+
+.funi-guide-header-main {
+  min-width: 0;
+}
+
+.funi-guide-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 6px;
+  box-sizing: border-box;
+}
+
+.funi-guide-logo img {
+  display: block;
+  max-width: 124px;
+  max-height: 62px;
+  object-fit: contain;
+}
+
+.funi-guide-insurance-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.funi-guide-insurance-row select {
+  flex: 1;
+  min-width: 0;
+}
+
+.funi-guide-operator {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  min-height: 72px;
+  justify-content: flex-start;
+  text-align: right;
+}
+
+.funi-guide-operator-logo {
+  border-radius: 8px;
+}
+
+.funi-guide-operator-name {
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1.2;
+  max-width: 130px;
+}
+
+.funi-guide-operator-ans {
+  font-size: 8px;
+  color: #444;
+}
+
+.funi-guide-operator-placeholder {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 9px;
+  color: #666;
+  border: 1px dashed #999;
+  border-radius: 6px;
+  padding: 8px 6px;
+  width: 100%;
+}
+
+.funi-guide-operator-placeholder small {
+  font-size: 8px;
+  color: #888;
+}
+
+.funi-guide-subtitle {
+  text-align: center;
+  font-size: 10px;
+  color: #64748b;
+}
+
+.funi-guide-hospital-brand {
+  display: none;
+}
+
+.funi-guide-title {
+  text-align: center;
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  color: #1e293b;
+}
+
+.funi-guide-meta {
+  text-align: right;
+  font-size: 10px;
+}
+
+.funi-section {
+  border: 1px solid #b8d4d5;
+  margin-bottom: 6px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.funi-section-title {
+  background: rgba(0, 165, 168, 0.14);
+  color: #008b8e;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-bottom: 1px solid #b8d4d5;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.funi-section-body {
+  padding: 6px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 4px 8px;
+}
+
+.funi-field {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.funi-field label {
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.funi-field input,
+.funi-field select,
+.funi-field textarea {
+  border: 1px solid #8aa3a4;
+  padding: 3px 5px;
+  font-size: 11px;
+  background: #fafefe;
+  border-radius: 0;
+}
+
+.funi-field textarea {
+  min-height: 72px;
+  resize: vertical;
+}
+
+.funi-span-2 { grid-column: span 2; }
+.funi-span-3 { grid-column: span 3; }
+.funi-span-4 { grid-column: span 4; }
+.funi-span-6 { grid-column: span 6; }
+.funi-span-8 { grid-column: span 8; }
+.funi-span-12 { grid-column: span 12; }
+
+.funi-char-row {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1px;
+}
+
+.funi-char-cell {
+  width: 14px;
+  height: 18px;
+  text-align: center;
+  padding: 0;
+  font-size: 10px;
+  border: 1px solid #666;
+  background: #efefef;
+}
+
+.funi-signatures {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.funi-signature-box {
+  border: 1px solid #555;
+  min-height: 56px;
+  padding: 4px 6px;
+  font-size: 9px;
+}
+
+.funi-signature-box--pad {
+  min-height: auto;
+  padding: 6px 8px 8px;
+}
+
+.funi-signature-box--signed {
+  border-color: #2e7d32;
+  background: #f9fff9;
+}
+
+.funi-signature-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.funi-signature-badge {
+  font-size: 8px;
+  font-weight: 600;
+  color: #2e7d32;
+  white-space: nowrap;
+}
+
+.funi-signature-pad {
+  margin-top: 2px;
+}
+
+.funi-signature-pad .signature-pad-header {
+  font-size: 8px;
+  margin-bottom: 2px;
+}
+
+.funi-signature-pad .form-hint {
+  font-size: 8px;
+  margin: 2px 0 0;
+}
+
+.funi-signature-pad .signature-canvas {
+  border: 1px dashed #888;
+  background: #fafafa;
+  border-radius: 2px;
+}
+
+.funi-guide-catalog {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.funi-guide-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  background: var(--surface);
+}
+
+.funi-guide-card h3 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+}
+
+.funi-status-implemented { color: var(--success); font-weight: 600; }
+.funi-status-planned { color: var(--muted); }
+
+@media print {
+  body.funi-guide-print-active .layout,
+  body.funi-guide-print-active .app-shell,
+  body.funi-guide-print-active .page-header,
+  body.funi-guide-print-active .module-nav,
+  body.funi-guide-print-active .funi-guide-page > .alert,
+  body.funi-guide-print-active .no-print {
+    display: none !important;
+  }
+
+  body.funi-guide-print-active .funi-guide-print-target {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 190mm;
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  .funi-guide-toolbar,
+  .module-nav,
+  .sidebar,
+  .app-header,
+  .tab-bar,
+  .page-header-actions {
+    display: none !important;
+  }
+
+  .funi-guide-sheet {
+    border: none;
+    padding: 0;
+  }
+
+  .funi-field input,
+  .funi-field select,
+  .funi-field textarea,
+  .funi-char-cell {
+    background: transparent;
+    border-color: #333;
+  }
+
+  .signature-pad-header,
+  .form-hint,
+  button {
+    display: none !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 10mm;
+  }
+}

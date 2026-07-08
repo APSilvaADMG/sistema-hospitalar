@@ -1,0 +1,50 @@
+.feegow-table-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 10px 14px;
+  border-top: 1px solid #dde4e8;
+  background: #f8fafb;
+  font-size: 12px;
+  color: #4a5a62;
+}
+
+.feegow-table-pagination-range {
+  font-weight: 500;
+}
+
+.feegow-table-pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.feegow-table-pagination-page {
+  min-width: 110px;
+  text-align: center;
+  color: #3d4f57;
+}
+
+.feegow-table-pagination-btn {
+  border: 1px solid #b8c5cc;
+  border-radius: 4px;
+  background: #fff;
+  color: #3d4f57;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.feegow-table-pagination-btn:hover:not(:disabled) {
+  background: #eef4f7;
+  border-color: #8a9aa3;
+}
+
+.feegow-table-pagination-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}

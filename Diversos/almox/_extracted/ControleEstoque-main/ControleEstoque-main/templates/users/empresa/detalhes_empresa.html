@@ -1,0 +1,52 @@
+{% extends "base/index.html" %}
+{% load static bootstrap %}
+{% block conteudo %} 
+
+    <div class="container mt-5">
+        <h2>{{ empresa.nome }}</h2>
+        <ul class="list-group mt-4">
+            <li class="list-group-item"><b>Nome: </b>{{empresa.nome}}</li>
+            <li class="list-group-item"><b>Razão Social: </b>{{empresa.razao_social}}</li>
+            <li class="list-group-item"><b>CNPJ: </b>{{empresa.cnpj}}</li>
+            <li class="list-group-item"><b>E-mail: </b>{{empresa.email}}</li>
+            <li class="list-group-item"><b>Resumo: </b>{{empresa.resumo_loja|safe}}</li>
+            <li class="list-group-item"><b>Telefone: </b>{{empresa.telefonedecontato|safe}}</li>
+            <li class="list-group-item"><b>Descrição: </b>{{empresa.descricao|safe}}</li>
+        </ul>
+        <h2 class="mt-4">Colaboradores</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>Email</th>
+                    <th>Função</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for funcionario in funcionarios %}
+                <tr>
+                    <td>{{ funcionario.id }}</td>
+                    <td>{{ funcionario.nome }}</td>
+                    <td>{{ funcionario.cpf }}</td>
+                    <td>{{ funcionario.email }}</td>
+                    <td>
+                        {% if funcionario.if_funcionario %}
+                            Funcionário
+                        {% else %}
+                            Dona da Empresa
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'editar_usuario' funcionario.pk %}" class="btn btn-primary">Editar</a>
+                        <a href="{% url 'detalhe_colaborador' funcionario.pk %}" class="btn btn-warning">Detalhes</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock conteudo %}

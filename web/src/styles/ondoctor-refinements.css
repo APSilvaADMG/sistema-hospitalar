@@ -1,0 +1,811 @@
+/**
+ * Refinamentos visuais baseados nos prints OnDoctor (pasta Diversos/Sistema).
+ * Aplicados ao perfil "Clínica" — Hospital mantém estilo institucional próprio.
+ */
+
+[data-brand='clinica'] {
+  --primary: #009688;
+  --primary-dark: #00796b;
+  --primary-light: #e0f2f1;
+  --primary-soft: #80cbc4;
+  --sidebar-active: #009688;
+  --sidebar-active-text: #ffffff;
+  --sidebar-width: 248px;
+  --accent-orange: #ff6d00;
+  --accent-orange-hover: #e65100;
+  --topbar-height: 64px;
+}
+
+/* ─── Tipografia e shell (OnDoctor / Material) ─── */
+
+html[data-brand='clinica'],
+html[data-brand='clinica'] body {
+  font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+[data-brand='clinica'] .layout {
+  background: #fafafa;
+}
+
+[data-brand='clinica'] .sidebar {
+  background: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  border-right: none;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+  padding: 0;
+}
+
+[data-brand='clinica'] .sidebar-header {
+  display: flex;
+  align-items: center;
+  min-height: 80px;
+  padding: 12px 12px;
+  margin: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+[data-brand='clinica'] .sidebar-nav {
+  padding: 8px 6px 12px;
+}
+
+[data-brand='clinica'] .sidebar-user {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 12px 8px;
+  margin-top: auto;
+}
+
+[data-brand='clinica'] .user-card {
+  background: rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+[data-brand='clinica'] .user-name {
+  color: #fff;
+  font-size: 0.82rem;
+}
+
+[data-brand='clinica'] .user-role {
+  color: var(--sidebar-muted);
+  font-size: 0.72rem;
+}
+
+[data-brand='clinica'] .user-avatar {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  color: #fff;
+  font-weight: 700;
+}
+
+[data-brand='clinica'] .sidebar-logout {
+  color: rgba(255, 255, 255, 0.88);
+  border-radius: 4px;
+}
+
+[data-brand='clinica'] .sidebar-logout:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+[data-brand='clinica'] .nav-mega-header,
+[data-brand='clinica'] .nav-menu-parent,
+[data-brand='clinica'] .nav-subgroup-parent {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+[data-brand='clinica'] .nav-mega-header:hover,
+[data-brand='clinica'] .nav-menu-parent:hover,
+[data-brand='clinica'] .nav-subgroup-parent:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+[data-brand='clinica'] .nav-menu-chevron {
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+[data-brand='clinica'] .nav-shortcuts-eyebrow {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+[data-brand='clinica'] .nav-shortcut-chip {
+  background: rgba(0, 0, 0, 0.15);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+[data-brand='clinica'] .nav-shortcut-chip:hover,
+[data-brand='clinica'] .nav-shortcut-chip.active {
+  background: var(--sidebar-active);
+  border-color: transparent;
+  color: #fff;
+}
+
+[data-brand='clinica'] .sidebar-module-search {
+  background: rgba(0, 0, 0, 0.15);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+[data-brand='clinica'] .sidebar-module-search:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+[data-brand='clinica'] .sidebar-nav::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+[data-brand='clinica'] .content {
+  padding: var(--content-padding-y) var(--content-padding-x) 32px;
+  background: #fafafa;
+}
+
+[data-brand='clinica'] .card,
+[data-brand='clinica'] .card-panel {
+  border-radius: 4px;
+  box-shadow: none;
+  border-color: #e0e0e0;
+}
+
+[data-brand='clinica'] .page-header h1 {
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+[data-brand='clinica'] .page-eyebrow {
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-weight: 500;
+  color: var(--primary-dark);
+}
+
+[data-brand='clinica'] .btn {
+  border-radius: 4px;
+  box-shadow: none;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+  padding: 10px 16px;
+}
+
+[data-brand='clinica'] .btn-secondary {
+  background: #fff;
+  border: 1px solid #bdbdbd;
+  color: rgba(0, 0, 0, 0.87);
+  text-transform: none;
+  font-size: 0.84rem;
+  letter-spacing: 0;
+}
+
+[data-brand='clinica'] input,
+[data-brand='clinica'] select,
+[data-brand='clinica'] textarea {
+  border-radius: 4px;
+  border-color: #e0e0e0;
+}
+
+[data-brand='clinica'] .topbar-avatar {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  border-radius: 50%;
+}
+
+/* ─── Sidebar compacta (só ícones) ─── */
+
+html[data-sidebar='icons'],
+html[data-sidebar='icons'][data-brand='clinica'],
+html[data-sidebar='icons'][data-brand='clinica'][data-scheme='light'],
+html[data-sidebar='icons'][data-brand='clinica'][data-scheme='dark'],
+html[data-sidebar='icons'][data-brand='hospital'],
+html[data-sidebar='icons'][data-brand='hospital'][data-scheme='light'],
+html[data-sidebar='icons'][data-brand='hospital'][data-scheme='dark'] {
+  --sidebar-width: 64px;
+}
+
+html[data-sidebar='icons'] .sidebar,
+html[data-sidebar='icons'] .sidebar.sidebar-icons {
+  padding: 12px 6px;
+}
+
+html[data-sidebar='icons'] .sidebar-header {
+  justify-content: center;
+  padding-bottom: 8px;
+}
+
+html[data-sidebar='icons'] .sidebar-logo {
+  max-width: 72px;
+  padding: 6px 4px;
+}
+
+html[data-sidebar='icons'] .sidebar-collapse-btn {
+  display: none;
+}
+
+.sidebar-icon-rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  min-height: 0;
+}
+
+.sidebar-rail-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  overflow-y: auto;
+  width: 100%;
+  padding: 4px 0;
+}
+
+.sidebar-rail-link,
+.sidebar-rail-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+.sidebar-rail-link:hover,
+.sidebar-rail-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.sidebar-rail-link.active {
+  background: var(--primary);
+  color: #fff;
+}
+
+.sidebar-rail-link .nav-icon,
+.sidebar-rail-btn .nav-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.sidebar-rail-expand {
+  margin-top: auto;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.sidebar-collapse-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.sidebar-collapse-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* ─── Faixa laranja de aviso ─── */
+
+.system-alert-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 8px 16px;
+  background: var(--accent-orange, #ff6d00);
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.system-alert-banner-text {
+  margin: 0;
+  flex: 1;
+}
+
+.system-alert-banner-close {
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 4px;
+  opacity: 0.9;
+}
+
+.system-alert-banner-close:hover {
+  opacity: 1;
+}
+
+.appearance-checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+/* ─── Guia de configuração inicial ─── */
+
+.clinic-setup-progress {
+  height: 6px;
+  background: #e8e8e8;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.clinic-setup-progress span {
+  display: block;
+  height: 100%;
+  background: var(--primary);
+  border-radius: 3px;
+  transition: width 0.25s ease;
+}
+
+.clinic-setup-ondoctor {
+  font-size: 0.78rem;
+  color: var(--primary-dark);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.clinic-setup-done td {
+  opacity: 0.65;
+}
+
+.clinic-setup-done strong {
+  text-decoration: line-through;
+}
+
+/* ─── Dashboard — gráfico status agenda ─── */
+
+.dashboard-status-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dashboard-status-row {
+  display: grid;
+  grid-template-columns: 120px 1fr 32px;
+  gap: 10px;
+  align-items: center;
+}
+
+.dashboard-status-label {
+  font-size: 0.78rem;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dashboard-status-bar-track {
+  height: 10px;
+  background: #eeeeee;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.dashboard-status-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.2s ease;
+}
+
+.dashboard-status-count {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-align: right;
+  color: var(--text);
+}
+
+/* ─── Topbar estilo OnDoctor ─── */
+
+[data-brand='clinica'] .topbar {
+  padding: 10px 20px;
+  gap: 16px;
+  min-height: var(--topbar-height);
+}
+
+[data-brand='clinica'] .topbar-left {
+  flex: 1;
+  gap: 12px;
+}
+
+[data-brand='clinica'] .topbar-center {
+  flex: 1.6;
+  max-width: 560px;
+  min-width: 0;
+}
+
+[data-brand='clinica'] .topbar-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex-shrink: 0;
+}
+
+[data-brand='clinica'] .topbar-profile .topbar-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 0.8rem;
+}
+
+[data-brand='clinica'] .topbar-profile-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+[data-brand='clinica'] .topbar-profile-name {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+[data-brand='clinica'] .topbar-profile-org {
+  font-size: 0.72rem;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+[data-brand='clinica'] .topbar-date {
+  display: none;
+}
+
+[data-brand='clinica'] .topbar-right {
+  gap: 4px;
+}
+
+[data-brand='clinica'] .topbar-shortcut {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  justify-content: center;
+  border: none;
+  background: transparent;
+}
+
+[data-brand='clinica'] .topbar-shortcut span {
+  display: none;
+}
+
+[data-brand='clinica'] .topbar-shortcut:hover {
+  background: var(--primary-light);
+}
+
+[data-brand='clinica'] .topbar-icon-btn,
+[data-brand='clinica'] .topbar-theme-toggle {
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  color: var(--primary-dark);
+}
+
+[data-brand='clinica'] .topbar-icon-btn:hover,
+[data-brand='clinica'] .topbar-theme-toggle:hover {
+  background: var(--primary-light);
+}
+
+[data-brand='clinica'] .topbar-user {
+  display: none;
+}
+
+/* Busca global — campo largo + botão laranja */
+
+[data-brand='clinica'] .global-search-wrap {
+  display: flex;
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+[data-brand='clinica'] .module-search-trigger {
+  flex: 1;
+  max-width: none;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  padding: 10px 14px;
+  color: var(--muted);
+}
+
+[data-brand='clinica'] .module-search-trigger:hover {
+  box-shadow: none;
+  color: var(--text);
+}
+
+[data-brand='clinica'] .module-search-trigger-kbd {
+  display: none;
+}
+
+[data-brand='clinica'] .global-search-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  flex-shrink: 0;
+  border: none;
+  background: var(--accent-orange);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+[data-brand='clinica'] .global-search-submit:hover {
+  background: var(--accent-orange-hover);
+}
+
+[data-brand='clinica'] .global-search-submit .nav-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* ─── Sidebar — item ativo sólido teal ─── */
+
+[data-brand='clinica'] .nav-sublink {
+  border-left: none;
+  border-radius: 4px;
+  margin-left: 8px;
+  margin-right: 4px;
+  padding: 9px 12px;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+[data-brand='clinica'] .nav-sublink:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-left-color: transparent;
+  color: #fff;
+}
+
+[data-brand='clinica'] .nav-link-icon,
+[data-brand='clinica'] .nav-sublink-icon {
+  color: rgba(255, 255, 255, 0.85);
+  opacity: 1;
+}
+
+[data-brand='clinica'] .nav-sublink::before {
+  display: none;
+}
+
+[data-brand='clinica'] .nav-sublink.active {
+  background: var(--primary);
+  color: var(--sidebar-active-text);
+  font-weight: 600;
+}
+
+[data-brand='clinica'] .nav-sublink.active .nav-sublink-icon,
+[data-brand='clinica'] .nav-sublink.active .nav-link-icon {
+  color: #fff;
+  opacity: 1;
+}
+
+[data-brand='clinica'] .nav-mega-block .nav-sublink.active {
+  background: var(--primary);
+  color: #fff;
+  border-left-color: transparent;
+}
+
+[data-brand='clinica'] .nav-mega-block .nav-sublink.active .nav-sublink-icon {
+  color: #fff;
+}
+
+[data-brand='clinica'] .nav-menu-group.has-active > .nav-menu-parent,
+[data-brand='clinica'] .nav-mega-header.has-active {
+  color: var(--primary-dark);
+  font-weight: 700;
+}
+
+[data-brand='clinica'] .nav-mega-block.is-expanded {
+  background: rgba(0, 0, 0, 0.1);
+  box-shadow: none;
+}
+
+/* ─── Abas de módulo — sublinhado (não pill) ─── */
+
+[data-brand='clinica'] .module-tabs {
+  gap: 0;
+  margin: 12px 0 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+[data-brand='clinica'] .module-tab {
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  padding: 10px 18px;
+  margin-bottom: -1px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--muted);
+  border-bottom: 3px solid transparent;
+}
+
+[data-brand='clinica'] .module-tab:hover {
+  color: var(--primary-dark);
+  background: transparent;
+}
+
+[data-brand='clinica'] .module-tab.active {
+  background: transparent;
+  color: var(--primary-dark);
+  border-bottom-color: var(--primary);
+}
+
+/* ─── KPIs — cartões brancos com ícone discreto ─── */
+
+[data-brand='clinica'] .kpi-card {
+  border-radius: 6px;
+  box-shadow: none;
+  border: 1px solid #e8e8e8;
+}
+
+[data-brand='clinica'] .kpi-card::before {
+  display: none;
+}
+
+[data-brand='clinica'] .kpi-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* ─── Tabelas — cabeçalho cinza claro, linhas finas ─── */
+
+[data-brand='clinica'] .data-table thead th,
+[data-brand='clinica'] .table thead th {
+  background: #fafafa;
+  color: #666;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.8rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+[data-brand='clinica'] .data-table td,
+[data-brand='clinica'] .table td {
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.84rem;
+}
+
+[data-brand='clinica'] .card-panel {
+  border-radius: 6px;
+  box-shadow: none;
+  border-color: #e8e8e8;
+}
+
+[data-brand='clinica'] .card-panel-header {
+  background: #fafafa;
+  border-bottom: 1px solid #e8e8e8;
+  font-weight: 700;
+  color: #444;
+}
+
+/* ─── Botões primários ─── */
+
+[data-brand='clinica'] .btn {
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+[data-brand='clinica'] .btn-secondary {
+  border-radius: 4px;
+}
+
+/* ─── Rodapé do app ─── */
+
+.app-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 24px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  font-size: 0.72rem;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.app-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  color: var(--primary-dark);
+}
+
+.app-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.app-footer-links a {
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+
+.app-footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* Perfil Hospital — mantém topbar clássica */
+
+[data-brand='hospital'] .topbar-profile {
+  display: none;
+}
+
+[data-brand='hospital'] .topbar-user {
+  display: flex;
+}
+
+[data-brand='hospital'] .global-search-submit {
+  display: none;
+}
+
+[data-brand='hospital'] .global-search-wrap {
+  border: none;
+  background: transparent;
+}
+
+[data-brand='hospital'] .module-search-trigger {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  max-width: 420px;
+}
+
+[data-brand='hospital'] .topbar-shortcut span {
+  display: inline;
+}
+
+@media (max-width: 768px) {
+  .app-footer {
+    display: none;
+  }
+
+  [data-brand='clinica'] .topbar-center,
+  .topbar-center.mobile-only {
+    flex: 1;
+    max-width: none;
+  }
+
+  [data-brand='clinica'] .topbar-profile {
+    display: none;
+  }
+
+  .topbar-left .topbar-center.mobile-only {
+    display: flex;
+    min-width: 0;
+  }
+}

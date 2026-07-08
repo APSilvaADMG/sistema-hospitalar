@@ -1,0 +1,482 @@
+/**
+ * Variantes de tema: marca (clínica/hospital) × esquema (claro/escuro) × densidade.
+ * Ativadas via data-brand, data-scheme e data-density no <html>.
+ */
+
+/* ─── Clínica · Claro (padrão OnDoctor) ─── */
+:root,
+[data-brand='clinica'][data-scheme='light'] {
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --surface-elevated: #ffffff;
+  --primary: #009688;
+  --primary-dark: #00796b;
+  --primary-light: #e0f2f1;
+  --primary-soft: #80cbc4;
+  --accent-orange: #ff6d00;
+  --accent-orange-hover: #e65100;
+  --accent: #009688;
+  --accent-soft: #e0f2f1;
+  --text: rgba(0, 0, 0, 0.87);
+  --muted: rgba(0, 0, 0, 0.6);
+  --text-muted: rgba(0, 0, 0, 0.6);
+  --border: #e0e0e0;
+  --sidebar-bg: linear-gradient(180deg, #00d4bc 0%, #00b8a3 100%);
+  --sidebar-bg-solid: #00c4ad;
+  --sidebar-text: rgba(255, 255, 255, 0.94);
+  --sidebar-muted: rgba(255, 255, 255, 0.72);
+  --sidebar-hover: rgba(255, 255, 255, 0.16);
+  --sidebar-active: #009688;
+  --sidebar-active-border: transparent;
+  --sidebar-width: 248px;
+  --table-head: #fafafa;
+  --table-head-text: #666666;
+  --btn-primary-bg: #009688;
+  --btn-primary-hover: #00796b;
+  --btn-login-bg: #009688;
+  --btn-login-text: #ffffff;
+  --topbar-shortcut-bg: transparent;
+  --content-padding-x: 20px;
+  --content-padding-y: 20px;
+  --table-cell-py: 10px;
+  --table-cell-px: 12px;
+  --nav-link-py: 8px;
+  --shadow: none;
+  --shadow-lg: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --radius-sm: 4px;
+  --radius-md: 4px;
+  color-scheme: light;
+}
+
+/* ─── Hospital · Claro ─── */
+[data-brand='hospital'][data-scheme='light'] {
+  --bg: #eef2f7;
+  --surface: #ffffff;
+  --surface-elevated: #ffffff;
+  --primary: #1565c0;
+  --primary-dark: #0d47a1;
+  --primary-light: #e3f2fd;
+  --primary-soft: #bbdefb;
+  --accent: #00897b;
+  --accent-soft: #b2dfdb;
+  --text: #1a2332;
+  --muted: #5c6b7a;
+  --text-muted: #5c6b7a;
+  --border: #d8e0ea;
+  --sidebar-bg: #ffffff;
+  --sidebar-text: #334155;
+  --sidebar-muted: #94a3b8;
+  --sidebar-hover: #f1f5f9;
+  --sidebar-active: #e3f2fd;
+  --sidebar-active-border: #1565c0;
+  --sidebar-width: 280px;
+  --table-head: #f1f5f9;
+  --table-head-text: #334155;
+  --btn-primary-bg: #1565c0;
+  --btn-primary-hover: #0d47a1;
+  --btn-login-bg: #1565c0;
+  --btn-login-text: #ffffff;
+  --topbar-shortcut-bg: #f1f5f9;
+  color-scheme: light;
+}
+
+/* ─── Clínica · Escuro ─── */
+[data-brand='clinica'][data-scheme='dark'] {
+  --bg: #0f1419;
+  --surface: #1a222d;
+  --surface-elevated: #222c3a;
+  --primary: #3dd6c4;
+  --primary-dark: #2eb8a5;
+  --primary-light: #134e48;
+  --primary-soft: #1a3d38;
+  --accent: #3dd6c4;
+  --accent-soft: #134e48;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --text-muted: #94a3b8;
+  --border: #2d3a4d;
+  --sidebar-bg: #151b24;
+  --sidebar-text: #e2e8f0;
+  --sidebar-muted: #64748b;
+  --sidebar-hover: #1e2836;
+  --sidebar-active: #134e48;
+  --sidebar-active-border: #3dd6c4;
+  --sidebar-width: 252px;
+  --table-head: #1e2836;
+  --table-head-text: #cbd5e1;
+  --btn-primary-bg: #2eb8a5;
+  --btn-primary-hover: #3dd6c4;
+  --btn-login-bg: #1a3d38;
+  --btn-login-text: #3dd6c4;
+  --topbar-shortcut-bg: #1e2836;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 4px 20px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.35);
+  color-scheme: dark;
+}
+
+/* ─── Hospital · Escuro ─── */
+[data-brand='hospital'][data-scheme='dark'] {
+  --bg: #0c1220;
+  --surface: #151d2e;
+  --surface-elevated: #1c2740;
+  --primary: #60a5fa;
+  --primary-dark: #3b82f6;
+  --primary-light: #1e3a5f;
+  --primary-soft: #172554;
+  --accent: #2dd4bf;
+  --accent-soft: #134e4a;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --text-muted: #94a3b8;
+  --border: #2a3650;
+  --sidebar-bg: #111827;
+  --sidebar-text: #e2e8f0;
+  --sidebar-muted: #64748b;
+  --sidebar-hover: #1e293b;
+  --sidebar-active: #1e3a5f;
+  --sidebar-active-border: #60a5fa;
+  --sidebar-width: 280px;
+  --table-head: #1e293b;
+  --table-head-text: #cbd5e1;
+  --btn-primary-bg: #2563eb;
+  --btn-primary-hover: #3b82f6;
+  --btn-login-bg: #1e3a5f;
+  --btn-login-text: #93c5fd;
+  --topbar-shortcut-bg: #1e293b;
+  color-scheme: dark;
+}
+
+/* ─── Densidade ─── */
+[data-density='compact'] {
+  --content-padding-x: 24px;
+  --content-padding-y: 20px;
+  --table-cell-py: 7px;
+  --table-cell-px: 10px;
+  --nav-link-py: 5px;
+}
+
+[data-density='compact'] .kpi-card {
+  padding: 10px 12px;
+}
+
+[data-density='compact'] .kpi-value {
+  font-size: 1.1rem;
+}
+
+[data-density='compact'] .page-header h1 {
+  font-size: 1.35rem;
+}
+
+[data-density='compact'] .btn {
+  padding: 8px 14px;
+}
+
+[data-density='compact'] .btn-sm {
+  padding: 4px 10px;
+}
+
+/* ─── Ajustes globais por tokens ─── */
+
+.content {
+  padding: var(--content-padding-y, 28px) var(--content-padding-x, 32px) 40px;
+}
+
+.data-table th,
+.data-table td,
+.table th,
+.table td {
+  padding: var(--table-cell-py, 11px) var(--table-cell-px, 14px);
+}
+
+.nav-sublink {
+  padding-top: var(--nav-link-py, 7px);
+  padding-bottom: var(--nav-link-py, 7px);
+}
+
+.btn {
+  background: var(--btn-primary-bg, var(--primary));
+}
+
+.btn:hover {
+  background: var(--btn-primary-hover, var(--primary-dark));
+}
+
+[data-scheme='dark'] .card,
+[data-scheme='dark'] .card-panel {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+[data-scheme='dark'] .card-panel-header {
+  background: var(--surface-elevated);
+  color: var(--text);
+}
+
+[data-scheme='dark'] .topbar,
+[data-scheme='dark'] .sidebar {
+  background: var(--sidebar-bg);
+  border-color: var(--border);
+}
+
+[data-scheme='dark'] .data-table tbody tr:nth-child(even),
+[data-scheme='dark'] .table tbody tr:nth-child(even) {
+  background: color-mix(in srgb, var(--surface-elevated) 60%, var(--bg));
+}
+
+[data-scheme='dark'] .data-table tbody tr:hover,
+[data-scheme='dark'] .table tbody tr:hover {
+  background: var(--sidebar-hover);
+}
+
+[data-scheme='dark'] .module-search-trigger {
+  background: var(--surface-elevated);
+}
+
+[data-scheme='dark'] .btn-secondary {
+  background: var(--surface-elevated);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+[data-scheme='dark'] .user-card {
+  background: var(--surface-elevated);
+}
+
+[data-scheme='dark'] .login-page--professional {
+  background-color: var(--bg);
+}
+
+[data-scheme='dark'] .login-shell-card {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+[data-scheme='dark'] .login-panel--form {
+  background: var(--surface);
+}
+
+[data-brand='hospital'] .login-panel--form .btn.full-width {
+  background: var(--btn-login-bg);
+  color: var(--btn-login-text);
+}
+
+[data-brand='hospital'] .login-panel--form .btn.full-width:hover {
+  background: var(--btn-primary-hover);
+  color: #fff;
+}
+
+/* ─── Configurações · Aparência ─── */
+
+.appearance-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.appearance-block h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+
+.appearance-brand-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.appearance-brand-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+  padding: 16px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-md, 12px);
+  background: var(--surface);
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.appearance-brand-card strong {
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.appearance-brand-card span {
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.appearance-brand-card.active {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 15%, transparent);
+}
+
+.appearance-swatch-row {
+  display: flex;
+  gap: 6px;
+}
+
+.appearance-swatch-row span {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.appearance-toggle-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.appearance-pill {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.appearance-pill.active {
+  background: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--primary-dark);
+}
+
+.appearance-preview-shell {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: var(--radius-md, 12px);
+  background: var(--bg);
+  border: 1px solid var(--border);
+}
+
+.appearance-preview-sidebar {
+  border-radius: 4px;
+  background: var(--sidebar-bg);
+  border: 1px solid var(--border);
+  min-height: 140px;
+}
+
+[data-brand='clinica'] .appearance-preview-sidebar {
+  background: linear-gradient(180deg, #00897b 0%, #00695c 100%);
+  border: none;
+}
+
+.appearance-preview-main {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.appearance-preview-topbar {
+  height: 22px;
+  border-radius: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.appearance-preview-kpis {
+  display: flex;
+  gap: 6px;
+}
+
+.appearance-preview-kpis span {
+  flex: 1;
+  height: 28px;
+  border-radius: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--primary);
+}
+
+.appearance-preview-table {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.appearance-preview-row {
+  height: 14px;
+  border-radius: 4px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.appearance-preview-row.head {
+  background: var(--table-head);
+}
+
+/* ─── Atalhos no topo (estilo OnDoctor) ─── */
+
+.topbar-shortcuts {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 8px;
+}
+
+.topbar-shortcut {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--topbar-shortcut-bg, #f8fafc);
+  color: var(--text);
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+.topbar-shortcut:hover {
+  border-color: color-mix(in srgb, var(--primary) 35%, var(--border));
+  background: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+.topbar-shortcut .nav-icon {
+  width: 15px;
+  height: 15px;
+  color: var(--primary-dark);
+}
+
+.topbar-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--topbar-shortcut-bg, #f8fafc);
+  color: var(--muted);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.topbar-theme-toggle:hover {
+  color: var(--primary-dark);
+  border-color: color-mix(in srgb, var(--primary) 30%, var(--border));
+  background: var(--primary-light);
+}
+
+@media (max-width: 1100px) {
+  .topbar-shortcuts {
+    display: none;
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "Hospital Management System",
+  "short_name": "HMS",
+  "description": "Sistema integrado de gestão hospitalar.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#00b4fc",
+  "orientation": "any",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "/logo-mark.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

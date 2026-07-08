@@ -1,0 +1,83 @@
+{
+  "description": "Referências open source para o APSMedCore / sistema-hospitalar. Clone com sync-external-repos.ps1",
+  "updated": "2026-06-10",
+  "fieldMappings": {
+    "backend": "src/SistemaHospitalar.Infrastructure/Reports/ReportFieldMappings.cs",
+    "frontend": "web/src/data/reportFieldMappings.ts",
+    "snapshots": "Diversos/external-repos/template-snapshots/README.md"
+  },
+  "repositories": [
+    {
+      "id": "hospitalrun-core",
+      "name": "HospitalRun (org)",
+      "url": "https://github.com/HospitalRun/hospitalrun-frontend",
+      "license": "MIT",
+      "stack": "React + PouchDB/CouchDB",
+      "clonePath": "HospitalRun/hospitalrun-frontend",
+      "integration": "Padrões de UX e módulos clínicos portados para .NET + PostgreSQL"
+    },
+    {
+      "id": "hospitalrun-server",
+      "name": "HospitalRun Server",
+      "url": "https://github.com/HospitalRun/hospitalrun-server",
+      "license": "MIT",
+      "stack": "Node + CouchDB",
+      "clonePath": "HospitalRun/hospitalrun-server",
+      "integration": "Referência de API offline-first; não embeddable"
+    },
+    {
+      "id": "sitrep",
+      "name": "R4EPI sitrep",
+      "url": "https://github.com/R4EPI/sitrep",
+      "license": "GPL-3.0",
+      "stack": "R / RMarkdown",
+      "clonePath": "R4EPI/sitrep",
+      "integration": "Templates epidemiológicos reimplementados em ccih.* e export CSV"
+    },
+    {
+      "id": "epimodel",
+      "name": "EpiModel",
+      "url": "https://github.com/EpiModel/EpiModel",
+      "license": "GPL-3.0",
+      "stack": "R",
+      "clonePath": "EpiModel/EpiModel",
+      "integration": "Referência para modelagem; export de dados agregados"
+    },
+    {
+      "id": "database-hospital",
+      "name": "DataBase-Hospital",
+      "url": "https://github.com/FabiolaCosta/DataBase-Hospital",
+      "license": "MIT",
+      "stack": "MySQL SQL",
+      "clonePath": "FabiolaCosta/DataBase-Hospital",
+      "integration": "Comparativo de entidades ER vs EF Core"
+    },
+    {
+      "id": "dev-queiroz",
+      "name": "sistema-hospitalar (dev-queiroz)",
+      "url": "https://github.com/dev-queiroz/sistema-hospitalar",
+      "license": "Apache-2.0",
+      "stack": "Node + Supabase + Groq IA",
+      "clonePath": "dev-queiroz/sistema-hospitalar",
+      "integration": "Inspiração para relatórios IA de surto e triagem"
+    },
+    {
+      "id": "prontomed",
+      "name": "Prontomed",
+      "url": "https://github.com/CarlosSLoureiro/prontomed",
+      "license": "GPL-3.0",
+      "stack": "Laravel 9 + PHP 8 + MySQL + JWT",
+      "clonePath": "CarlosSLoureiro/prontomed",
+      "integration": "Referência UX consulta/observação; não portável (stack PHP)"
+    },
+    {
+      "id": "prontuario-medico",
+      "name": "ProNele (prontuario-medico)",
+      "url": "https://github.com/FelipeFelipeRenan/prontuario-medico",
+      "license": "—",
+      "stack": "React Native + Strapi",
+      "clonePath": "FelipeFelipeRenan/prontuario-medico",
+      "integration": "Campo anamnesis na entidade Consulta; inspirou aba /pep/anamnese"
+    }
+  ]
+}

@@ -1,0 +1,372 @@
+/**
+ * Relatórios Bayanno — dTable + dataTables_wrapper (view_report.php / manage_report.php).
+ */
+
+/* ─── DataTables / dTable ─── */
+[data-brand='bayanno'] table.dataTable,
+[data-brand='feegow'] table.dataTable {
+  width: 100%;
+  margin: 0;
+  clear: both;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+[data-brand='bayanno'] table.dataTable thead th,
+[data-brand='feegow'] table.dataTable thead th,
+[data-brand='bayanno'] table.dataTable thead th div,
+[data-brand='feegow'] table.dataTable thead th div {
+  padding: 3px 10px;
+  font-weight: 600;
+  font-size: 12px;
+  color: #555;
+}
+
+[data-brand='bayanno'] table.dataTable td,
+[data-brand='feegow'] table.dataTable td {
+  padding: 7px 11px;
+  font-size: 12px;
+  color: #444;
+}
+
+[data-brand='bayanno'] table.dataTable td.center,
+[data-brand='feegow'] table.dataTable td.center,
+[data-brand='bayanno'] table.dataTable td.dataTables_empty,
+[data-brand='feegow'] table.dataTable td.dataTables_empty {
+  text-align: center;
+}
+
+[data-brand='bayanno'] table.dataTable tbody tr td,
+[data-brand='feegow'] table.dataTable tbody tr td {
+  border-left: 1px solid #eaebef;
+}
+
+[data-brand='bayanno'] table.dataTable thead tr th,
+[data-brand='feegow'] table.dataTable thead tr th {
+  border-left: 1px solid #b5b7c3;
+  border-bottom: 1px solid #b5b7c3;
+  border-top: 1px solid #c3c5ce;
+}
+
+[data-brand='bayanno'] table.dataTable tbody tr td:first-child,
+[data-brand='feegow'] table.dataTable tbody tr td:first-child,
+[data-brand='bayanno'] table.dataTable thead tr th:first-child,
+[data-brand='feegow'] table.dataTable thead tr th:first-child {
+  border-left: none;
+}
+
+[data-brand='bayanno'] table.dataTable thead tr,
+[data-brand='feegow'] table.dataTable thead tr {
+  background: linear-gradient(to bottom, #fdfdfd, #eaeaea);
+}
+
+[data-brand='bayanno'] table.dataTable tr,
+[data-brand='feegow'] table.dataTable tr {
+  border-top: 1px solid #eaebef;
+}
+
+[data-brand='bayanno'] table.dataTable tbody tr.even,
+[data-brand='feegow'] table.dataTable tbody tr.even,
+[data-brand='bayanno'] table.dataTable tbody tr:nth-child(even),
+[data-brand='feegow'] table.dataTable tbody tr:nth-child(even) {
+  background-color: #f3f4f8;
+}
+
+[data-brand='bayanno'] table.dataTable tbody tr:hover,
+[data-brand='feegow'] table.dataTable tbody tr:hover {
+  background-color: #eef6f8;
+}
+
+[data-brand='bayanno'] .dataTables_wrapper,
+[data-brand='feegow'] .dataTables_wrapper {
+  position: relative;
+  clear: both;
+}
+
+[data-brand='bayanno'] .dataTables_filter,
+[data-brand='feegow'] .dataTables_filter {
+  float: left;
+  font-size: 11px;
+  margin: 0;
+}
+
+[data-brand='bayanno'] .dataTables_filter label,
+[data-brand='feegow'] .dataTables_filter label {
+  line-height: 40px;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+[data-brand='bayanno'] .dataTables_filter input[type='search'],
+[data-brand='feegow'] .dataTables_filter input[type='search'],
+[data-brand='bayanno'] .dataTables_filter input[type='text'],
+[data-brand='feegow'] .dataTables_filter input[type='text'] {
+  height: auto;
+  padding: 4px 8px;
+  margin: 0;
+  width: 200px;
+  max-width: 100%;
+  background: #f9f9f9;
+  border: 1px solid #d7d7d7;
+  border-radius: 0;
+  font-size: 12px;
+}
+
+[data-brand='bayanno'] .dataTables_length,
+[data-brand='feegow'] .dataTables_length,
+[data-brand='bayanno'] .entries-per-page,
+[data-brand='feegow'] .entries-per-page {
+  float: right;
+  font-size: 11px;
+  margin: 0 0 0 12px;
+}
+
+[data-brand='bayanno'] .dataTables_length label,
+[data-brand='feegow'] .dataTables_length label {
+  line-height: 40px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+[data-brand='bayanno'] .dataTables_length select,
+[data-brand='feegow'] .dataTables_length select,
+[data-brand='bayanno'] .bayanno-reports-toolbar select,
+[data-brand='feegow'] .bayanno-reports-toolbar select {
+  height: auto;
+  padding: 4px 6px;
+  background: #f9f9f9;
+  border: 1px solid #d7d7d7;
+  border-radius: 0;
+  font-size: 12px;
+  max-width: 100%;
+}
+
+[data-brand='bayanno'] .dataTables_info,
+[data-brand='feegow'] .dataTables_info {
+  clear: both;
+  float: left;
+  padding: 10px 0 6px;
+  font-size: 11px;
+  color: #777;
+}
+
+[data-brand='bayanno'] .bayanno-reports-toolbar,
+[data-brand='feegow'] .bayanno-reports-toolbar {
+  overflow: hidden;
+  padding: 8px 0 4px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 0;
+}
+
+[data-brand='bayanno'] .bayanno-reports-toolbar-extra,
+[data-brand='feegow'] .bayanno-reports-toolbar-extra {
+  clear: both;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+  padding: 8px 0 10px;
+  font-size: 12px;
+}
+
+[data-brand='bayanno'] .bayanno-reports-check,
+[data-brand='feegow'] .bayanno-reports-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  margin: 0;
+  cursor: pointer;
+}
+
+[data-brand='bayanno'] .bayanno-reports-dates,
+[data-brand='feegow'] .bayanno-reports-dates {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+[data-brand='bayanno'] .bayanno-reports-dates input[type='date'],
+[data-brand='feegow'] .bayanno-reports-dates input[type='date'] {
+  padding: 4px 6px;
+  border: 1px solid #d7d7d7;
+  background: #f9f9f9;
+  border-radius: 0;
+  font-size: 12px;
+}
+
+[data-brand='bayanno'] .tab-pane.box,
+[data-brand='feegow'] .tab-pane.box {
+  background: #fff;
+  border: 1px solid #d4d4d4;
+  padding: 0;
+  margin-top: 0;
+}
+
+[data-brand='bayanno'] .tab-pane.box + .tab-pane.box,
+[data-brand='feegow'] .tab-pane.box + .tab-pane.box {
+  margin-top: 15px;
+}
+
+[data-brand='bayanno'] .bayanno-report-result-head,
+[data-brand='feegow'] .bayanno-report-result-head {
+  overflow: hidden;
+  padding: 10px 12px;
+  border-bottom: 1px solid #e0e0e0;
+  background: linear-gradient(to bottom, #fdfdfd, #f5f5f5);
+}
+
+[data-brand='bayanno'] .bayanno-report-result-head h4,
+[data-brand='feegow'] .bayanno-report-result-head h4 {
+  margin: 0 0 2px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+}
+
+[data-brand='bayanno'] .bayanno-report-result-head p,
+[data-brand='feegow'] .bayanno-report-result-head p {
+  margin: 0;
+  font-size: 11px;
+  color: #888;
+}
+
+[data-brand='bayanno'] .bayanno-report-result-actions,
+[data-brand='feegow'] .bayanno-report-result-actions {
+  float: right;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+[data-brand='bayanno'] .bayanno-report-kpis,
+[data-brand='feegow'] .bayanno-report-kpis {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px 12px;
+  border-bottom: 1px solid #eee;
+  background: #fafafa;
+}
+
+[data-brand='bayanno'] .bayanno-report-kpi,
+[data-brand='feegow'] .bayanno-report-kpi {
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  background: #fff;
+  font-size: 11px;
+  min-width: 100px;
+}
+
+[data-brand='bayanno'] .bayanno-report-kpi strong,
+[data-brand='feegow'] .bayanno-report-kpi strong {
+  display: block;
+  font-size: 14px;
+  color: #066d86;
+  margin-top: 2px;
+}
+
+[data-brand='bayanno'] .bayanno-report-desc,
+[data-brand='feegow'] .bayanno-report-desc {
+  color: #777;
+  font-size: 11px;
+  max-width: 320px;
+}
+
+[data-brand='bayanno'] .bayanno-report-badge,
+[data-brand='feegow'] .bayanno-report-badge {
+  display: inline-block;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-weight: 600;
+  border: 1px solid #ccc;
+  background: #f5f5f5;
+  color: #666;
+  white-space: nowrap;
+}
+
+[data-brand='bayanno'] .bayanno-report-badge.is-mvp,
+[data-brand='feegow'] .bayanno-report-badge.is-mvp {
+  border-color: #17a4c2;
+  background: #e8f7fa;
+  color: #066d86;
+}
+
+[data-brand='bayanno'] .bayanno-report-badge.is-ready,
+[data-brand='feegow'] .bayanno-report-badge.is-ready {
+  border-color: #5cb85c;
+  background: #edf7ed;
+  color: #3d8b3d;
+}
+
+[data-brand='bayanno'] .btn.btn-green,
+[data-brand='feegow'] .btn.btn-green {
+  background: #5cb85c;
+  border-color: #4cae4c;
+  color: #fff;
+  box-shadow: 0 0 5px #5cb85c inset;
+}
+
+[data-brand='bayanno'] .btn.btn-green:hover,
+[data-brand='feegow'] .btn.btn-green:hover {
+  background: #449d44;
+  border-color: #398439;
+}
+
+[data-brand='bayanno'] .btn.btn-blue,
+[data-brand='feegow'] .btn.btn-blue {
+  background: #17a4c2;
+  border-color: #17a4c2;
+  color: #fff;
+}
+
+[data-brand='bayanno'] .btn.btn-blue:hover,
+[data-brand='feegow'] .btn.btn-blue:hover {
+  background: #187386;
+  border-color: #187386;
+}
+
+[data-brand='bayanno'] .table-responsive-wrap,
+[data-brand='feegow'] .table-responsive-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 768px) {
+  [data-brand='bayanno'] .dataTables_filter,
+[data-brand='feegow'] .dataTables_filter,
+  [data-brand='bayanno'] .dataTables_length,
+[data-brand='feegow'] .dataTables_length,
+  [data-brand='bayanno'] .entries-per-page,
+[data-brand='feegow'] .entries-per-page {
+    float: none;
+    width: 100%;
+    margin: 0 0 8px;
+  }
+
+  [data-brand='bayanno'] .dataTables_filter label,
+[data-brand='feegow'] .dataTables_filter label,
+  [data-brand='bayanno'] .dataTables_length label,
+[data-brand='feegow'] .dataTables_length label {
+    line-height: 1.4;
+    flex-wrap: wrap;
+  }
+
+  [data-brand='bayanno'] .dataTables_filter input[type='search'],
+[data-brand='feegow'] .dataTables_filter input[type='search'] {
+    width: 100%;
+    flex: 1;
+    min-width: 0;
+  }
+
+  [data-brand='bayanno'] .bayanno-report-result-actions,
+[data-brand='feegow'] .bayanno-report-result-actions {
+    float: none;
+    margin-top: 8px;
+  }
+}

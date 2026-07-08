@@ -1,0 +1,100 @@
+services:
+  # Antes de buildar: .\scripts\verify-build.ps1  (ou npm run typecheck em web/)
+  postgres:
+    image: postgres:16-alpine
+    container_name: hospital-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: sistema_hospitalar
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: hospital-redis
+    ports:
+      - "6379:6379"
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: hospital-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "rabbitmq-diagnostics -q ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.api
+    container_name: hospital-api
+    volumes:
+      - ./Diversos:/app/Diversos:ro
+      - ./data:/app/data:ro
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__DefaultConnection: Host=postgres;Port=5432;Database=sistema_hospitalar;Username=postgres;Password=postgres
+      ConnectionStrings__RabbitMQ: amqp://guest:guest@rabbitmq:5672
+      # Seeds de demonstração (pacientes/filas/financeiro fictício). Homologação: "false".
+      Hospital__EnableDemoSeeds: "true"
+      # WhatsApp Connect — Meta Cloud API (official). UseMockProvider=true = Modo demonstração.
+      Connect__WhatsApp__Enabled: "true"
+      Connect__WhatsApp__UseMockProvider: "true"
+      Connect__WhatsApp__VerifyToken: connect-demo-token
+      Connect__WhatsApp__AppSecret: ""
+      Connect__WhatsApp__PhoneNumberId: ""
+      Connect__WhatsApp__AccessToken: ""
+      Connect__WhatsApp__PublicWebhookUrl: ""
+      Connect__WhatsApp__TemplateLanguageCode: pt_BR
+      # PIX cobrança — UseMockPixProvider=true = Modo demonstração (BR Code local + webhook simulado).
+      Connect__Collection__Enabled: "true"
+      Connect__Collection__PixEnabled: "true"
+      Connect__Collection__UseMockPixProvider: "true"
+      Connect__Collection__PixWebhookSecret: pix-demo-secret
+      Connect__Collection__PixKey: financeiro@hospital.local
+      Connect__Collection__PixBeneficiary: Hospital Management System
+      Connect__Collection__PixCity: SAO PAULO
+      # TISS — credenciais por operadora no banco (HealthInsurance.WebServiceUrl). Ver /configuracoes/integracoes.
+    ports:
+      - "0.0.0.0:8080:8080"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/health/ready > /dev/null || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 180s
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+
+  web:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.web
+    container_name: hospital-web
+    ports:
+      - "0.0.0.0:5173:80"
+    restart: unless-stopped
+    depends_on:
+      api:
+        condition: service_healthy
+
+volumes:
+  postgres_data:

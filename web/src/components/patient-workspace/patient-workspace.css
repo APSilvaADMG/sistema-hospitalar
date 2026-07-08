@@ -1,0 +1,110 @@
+.patient-workspace-shell {
+  margin-bottom: 16px;
+}
+
+.patient-context-header {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 16px;
+  background: var(--surface-elevated, var(--card-bg));
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 0;
+}
+
+.patient-context-header-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.patient-context-header h3 {
+  margin: 0 0 4px;
+  font-size: 1.15rem;
+}
+
+.patient-context-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.patient-context-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.patient-view-tabs {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  padding: 8px 12px;
+  background: var(--surface-muted, rgba(0, 0, 0, 0.03));
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  margin-bottom: 16px;
+}
+
+.patient-view-tab {
+  padding: 6px 12px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.patient-view-tab:hover {
+  color: var(--text);
+  background: var(--surface-elevated, var(--card-bg));
+}
+
+.patient-view-tab.active {
+  color: var(--primary);
+  background: var(--surface-elevated, var(--card-bg));
+  border-color: var(--border);
+  font-weight: 600;
+}
+
+.patient-panel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.patient-panel-section {
+  margin-bottom: 16px;
+}
+
+.patient-panel-section h4 {
+  margin: 0 0 8px;
+  font-size: 0.95rem;
+}
+
+.patient-workspace-empty {
+  padding: 24px;
+  text-align: center;
+  color: var(--muted);
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+}
+
+.patient-workspace-split {
+  display: grid;
+  grid-template-columns: minmax(280px, 340px) 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .patient-workspace-split {
+    grid-template-columns: 1fr;
+  }
+}

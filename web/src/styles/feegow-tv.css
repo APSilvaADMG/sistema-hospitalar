@@ -1,0 +1,1677 @@
+/* ─── TV Player — sala de espera ─── */
+.tv-player,
+.tv-player-loading,
+.tv-player-error {
+  position: fixed;
+  inset: 0;
+  background: #071018;
+  color: #f8fafc;
+  overflow: hidden;
+  font-family: 'Segoe UI', 'Open Sans', system-ui, sans-serif;
+}
+
+.tv-player {
+  --tv-accent: #14b8a6;
+  --tv-accent-soft: rgba(20, 184, 166, 0.18);
+  --tv-surface: rgba(15, 32, 48, 0.82);
+  --tv-surface-border: rgba(148, 163, 184, 0.22);
+  --tv-glow: rgba(20, 184, 166, 0.35);
+}
+
+.tv-player-backdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 0%, rgba(20, 184, 166, 0.14), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 100% 100%, rgba(14, 116, 144, 0.2), transparent 50%),
+    linear-gradient(165deg, #071018 0%, #0c1f2e 45%, #0a1628 100%);
+  pointer-events: none;
+}
+
+.tv-player-backdrop::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image: radial-gradient(circle at 1px 1px, #fff 1px, transparent 0);
+  background-size: 28px 28px;
+}
+
+.tv-player-chrome {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 22px;
+  background: linear-gradient(180deg, rgba(7, 16, 24, 0.92) 0%, rgba(7, 16, 24, 0) 100%);
+  pointer-events: none;
+}
+
+.tv-player-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tv-player-brand-mark {
+  display: none;
+}
+
+.tv-player-brand-logo {
+  flex-shrink: 0;
+  display: block;
+  max-width: min(220px, 28vw);
+  max-height: 40px;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain;
+}
+
+.tv-player-chrome-time {
+  font-size: 1.35rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: rgba(248, 250, 252, 0.85);
+}
+
+.tv-player-loading,
+.tv-player-error {
+  display: grid;
+  place-items: center;
+  font-size: 1.4rem;
+}
+
+.tv-player-loading {
+  color: var(--tv-accent);
+}
+
+.tv-player-error {
+  color: #fca5a5;
+}
+
+.tv-zone {
+  position: absolute;
+  box-sizing: border-box;
+  padding: 10px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.tv-zone > * {
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  background: var(--tv-surface);
+  border: 1px solid var(--tv-surface-border);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(14px);
+}
+
+.tv-media-frame {
+  position: relative;
+  padding: 0 !important;
+  background: #000 !important;
+  border: none !important;
+  overflow: hidden;
+}
+
+.tv-media-image,
+.tv-media-video {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  display: block;
+}
+
+.tv-media-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 28px 20px 16px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 0 0 16px 16px;
+}
+
+.tv-widget-media-empty {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  text-align: center;
+  padding: 32px;
+  gap: 8px;
+  background: linear-gradient(145deg, rgba(20, 184, 166, 0.25), rgba(8, 145, 178, 0.35)) !important;
+  border-color: rgba(20, 184, 166, 0.35) !important;
+}
+
+.tv-media-empty-icon {
+  font-size: 3rem;
+  margin-bottom: 8px;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+}
+
+.tv-widget-media-empty h2 {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.tv-widget-media-empty p {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 1.05rem;
+}
+
+.tv-media-empty-hint {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  opacity: 0.65;
+}
+
+/* Fila de atendimento */
+.tv-widget-queue {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px;
+  background: linear-gradient(180deg, rgba(18, 38, 56, 0.95), rgba(12, 28, 42, 0.9)) !important;
+}
+
+.tv-queue-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+.tv-queue-header-icon {
+  font-size: 1.6rem;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--tv-accent-soft);
+}
+
+.tv-queue-header-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--tv-accent);
+  font-weight: 700;
+}
+
+.tv-queue-header-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.tv-call-active {
+  background: linear-gradient(135deg, #fbbf24 0%, #f97316 55%, #ea580c 100%);
+  color: #1c1917;
+  border-radius: 14px;
+  padding: 18px 16px;
+  text-align: center;
+  box-shadow: 0 8px 28px rgba(249, 115, 22, 0.45);
+  animation: tv-call-glow 2s ease-in-out infinite;
+}
+
+.tv-call-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  opacity: 0.85;
+}
+
+.tv-call-ticket {
+  font-size: clamp(2.5rem, 6vw, 3.75rem);
+  font-weight: 800;
+  line-height: 1.05;
+  margin: 6px 0;
+  letter-spacing: 0.04em;
+}
+
+.tv-call-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.tv-call-dest {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.tv-call-dest-label {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.75;
+  margin-bottom: 2px;
+}
+
+.tv-call-idle {
+  text-align: center;
+  padding: 20px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px dashed rgba(148, 163, 184, 0.25);
+}
+
+.tv-call-idle-icon {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+  opacity: 0.7;
+}
+
+.tv-call-idle p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: rgba(248, 250, 252, 0.7);
+}
+
+.tv-call-list-title {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(148, 163, 184, 0.9);
+  font-weight: 700;
+}
+
+.tv-call-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.tv-call-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  border-left: 3px solid var(--tv-accent);
+}
+
+.tv-call-item strong {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--tv-accent);
+}
+
+.tv-call-item span {
+  font-size: 0.9rem;
+  color: rgba(248, 250, 252, 0.8);
+  text-align: right;
+}
+
+/* Rodapé — notícias */
+.tv-widget-ticker-wrap {
+  display: flex;
+  align-items: stretch;
+  padding: 0 !important;
+  background: linear-gradient(90deg, #0f766e, #0e7490) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  overflow: hidden;
+}
+
+.tv-ticker-badge {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  background: rgba(0, 0, 0, 0.2);
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.tv-widget-ticker {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.tv-ticker-track {
+  display: flex;
+  gap: 48px;
+  white-space: nowrap;
+  animation: tv-marquee 45s linear infinite;
+  padding: 0 24px;
+}
+
+.tv-ticker-item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 1.05rem;
+}
+
+.tv-ticker-item strong {
+  font-weight: 700;
+}
+
+.tv-ticker-item em {
+  font-style: normal;
+  opacity: 0.88;
+}
+
+/* Clima */
+.tv-widget-weather {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+  padding: 20px !important;
+  background: linear-gradient(145deg, rgba(14, 116, 144, 0.5), rgba(15, 32, 48, 0.9)) !important;
+}
+
+.tv-weather-icon {
+  font-size: 2.8rem;
+  line-height: 1;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.25));
+}
+
+.tv-weather-city {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.75;
+}
+
+.tv-weather-temp {
+  font-size: 2.6rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: #5eead4;
+}
+
+.tv-weather-condition {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.tv-weather-humidity {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  margin-top: 4px;
+}
+
+.tv-widget-clock,
+.tv-widget-dashboard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 16px;
+}
+
+.tv-clock-time {
+  font-size: 2.4rem;
+  font-weight: 700;
+}
+
+.tv-clock-date {
+  text-transform: capitalize;
+  opacity: 0.8;
+}
+
+.tv-widget-dashboard {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.tv-widget-dashboard div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.tv-widget-dashboard strong {
+  font-size: 1.8rem;
+  color: var(--tv-accent);
+}
+
+.tv-widget-dashboard span {
+  font-size: 0.8rem;
+  opacity: 0.75;
+  text-align: center;
+}
+
+.tv-widget-announcements {
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.tv-announcement-item {
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+.tv-announcement-item:last-child {
+  border-bottom: none;
+}
+
+.tv-zone:has(.tv-widget-ticker-wrap) {
+  padding: 0;
+}
+
+.tv-zone:has(.tv-widget-ticker-wrap) > * {
+  border-radius: 0;
+}
+.tv-widget-schedule {
+  padding: 12px 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tv-schedule-title {
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.tv-schedule-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.tv-schedule-item strong {
+  display: block;
+}
+
+.tv-schedule-item span {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.8rem;
+}
+
+.tv-schedule-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  white-space: nowrap;
+}
+
+.tv-schedule-empty {
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+
+.tv-layout-editor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+  margin-bottom: 16px;
+}
+
+.tv-layout-editor-toolbar label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 180px;
+}
+
+.tv-layout-editor-body {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 16px;
+}
+
+.tv-layout-canvas {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #0b1f2a;
+  border: 2px dashed #94a3b8;
+  border-radius: 12px;
+  overflow: hidden;
+  touch-action: none;
+}
+
+.tv-layout-zone {
+  position: absolute;
+  box-sizing: border-box;
+  border: 2px solid rgba(13, 148, 136, 0.8);
+  background: rgba(13, 148, 136, 0.2);
+  border-radius: 8px;
+  cursor: move;
+  user-select: none;
+}
+
+.tv-layout-zone.selected {
+  border-color: #f59e0b;
+  background: rgba(245, 158, 11, 0.2);
+  z-index: 2;
+}
+
+.tv-layout-zone-label {
+  position: absolute;
+  top: 4px;
+  left: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  pointer-events: none;
+}
+
+.tv-layout-zone-handle {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 14px;
+  height: 14px;
+  border: none;
+  background: #f59e0b;
+  border-radius: 4px 0 8px 0;
+  cursor: se-resize;
+}
+
+.tv-layout-sidebar label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.tv-layout-zone-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+
+.tv-layout-picker {
+  margin-bottom: 12px;
+}
+
+.tv-inline-fields {
+  display: flex;
+  gap: 8px;
+}
+
+/* ─── TV Admin — painel de gestão ─── */
+.tv-admin-page {
+  padding-bottom: 32px;
+}
+
+.tv-admin-alert {
+  margin-bottom: 12px;
+}
+
+.tv-admin-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 20px 0 8px;
+  padding: 6px;
+  background: #eef4f3;
+  border-radius: 12px;
+  border: 1px solid #dce8e6;
+}
+
+.tv-admin-page .tv-admin-tabs button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  border-radius: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #475569;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.tv-admin-page .tv-admin-tabs button:hover {
+  background: rgba(255, 255, 255, 0.7);
+  color: #0f766e;
+}
+
+.tv-admin-page .tv-admin-tabs button.active {
+  background: #fff;
+  border-color: #99d5cf;
+  color: #0f766e;
+  box-shadow: 0 2px 8px rgba(15, 118, 110, 0.12);
+}
+
+.tv-tab-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.tv-tab-badge {
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: #0d9488;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  display: inline-grid;
+  place-items: center;
+}
+
+.tv-admin-page .tv-admin-tabs button.active .tv-tab-badge {
+  background: #0f766e;
+}
+
+.tv-admin-tab-hint {
+  margin: 0 0 16px;
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.tv-admin-tab-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tv-admin-split {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.tv-admin-kpis {
+  margin-bottom: 4px;
+}
+
+.tv-admin-panel {
+  margin: 0;
+  overflow: hidden;
+}
+
+.tv-admin-panel-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px 0;
+}
+
+.tv-admin-panel-head .card-panel-header {
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 1rem;
+}
+
+.tv-admin-panel-sub {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.tv-admin-panel-actions {
+  flex-shrink: 0;
+}
+
+.tv-admin-panel-body {
+  padding: 16px 20px 20px;
+}
+
+.tv-layout-select {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.tv-layout-select select {
+  min-width: 220px;
+}
+
+.tv-admin-empty {
+  text-align: center;
+  padding: 36px 20px;
+  border: 1px dashed #cbd5e1;
+  border-radius: 12px;
+  background: #f8fafc;
+}
+
+.tv-admin-empty-icon {
+  display: block;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.tv-admin-empty strong {
+  display: block;
+  font-size: 1rem;
+  color: #334155;
+}
+
+.tv-admin-empty p {
+  margin: 6px 0 0;
+  font-size: 0.88rem;
+  color: #64748b;
+}
+
+.tv-display-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+.tv-display-cards-compact .tv-display-card {
+  padding: 14px;
+}
+
+.tv-display-card {
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+}
+
+.tv-display-card-1 {
+  border-left: 4px solid #10b981;
+}
+
+.tv-display-card-2 {
+  border-left: 4px solid #f59e0b;
+}
+
+.tv-display-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.tv-display-card h4 {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+  color: #0f172a;
+}
+
+.tv-display-card-sector {
+  font-size: 0.75rem;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.tv-display-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.tv-slug {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: #f1f5f9;
+  font-size: 0.78rem;
+  color: #475569;
+}
+
+.tv-table-wrap {
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid #e8eef2;
+}
+
+.tv-admin-table {
+  margin: 0;
+}
+
+.tv-admin-table th {
+  background: #f8fafc;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #64748b;
+}
+
+.tv-form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tv-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.tv-form-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.tv-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.tv-form input,
+.tv-form select,
+.tv-form textarea {
+  font-weight: 400;
+  color: #0f172a;
+}
+
+.tv-form-check {
+  flex-direction: row !important;
+  align-items: center;
+  gap: 8px !important;
+  font-weight: 500 !important;
+}
+
+.tv-form-check-inline {
+  align-self: end;
+  padding-bottom: 8px;
+}
+
+.tv-field-hint {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #94a3b8;
+}
+
+.tv-select-multi {
+  min-height: 120px;
+}
+
+.tv-campaign-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tv-campaign-card {
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background: linear-gradient(135deg, #f8fafc, #fff);
+}
+
+.tv-campaign-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.tv-campaign-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.82rem;
+  color: #64748b;
+}
+
+.tv-priority-badge {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #e0f2fe;
+  color: #0369a1;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.tv-media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.tv-media-card {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+}
+
+.tv-media-thumb {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: #0f172a;
+  overflow: hidden;
+}
+
+.tv-media-thumb img,
+.tv-media-thumb video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tv-media-type {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.tv-media-info {
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tv-media-info strong {
+  font-size: 0.9rem;
+}
+
+.tv-media-info span {
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.tv-feed-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tv-feed-list li {
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid #e8eef2;
+  background: #fafbfc;
+}
+
+.tv-feed-list strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #0f172a;
+}
+
+.tv-feed-list p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #475569;
+  line-height: 1.45;
+}
+
+.tv-feed-tag {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: #ccfbf1;
+  color: #0f766e;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.tv-feed-list-announce li {
+  border-left: 3px solid #f59e0b;
+}
+
+.tv-announce-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.tv-item-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tv-item-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #eef2f4;
+}
+
+.tv-item-list span {
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.tv-calls-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.tv-call-form {
+  gap: 12px;
+}
+
+.tv-btn-call {
+  background: linear-gradient(135deg, #f59e0b, #ea580c);
+  border-color: #ea580c;
+  align-self: flex-start;
+}
+
+.tv-btn-call:hover {
+  filter: brightness(1.05);
+}
+
+.tv-ticket-pill {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: #ccfbf1;
+  color: #0f766e;
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+.tv-kiosk-settings {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #e8eef2;
+}
+
+.tv-admin-page .btn-sm {
+  padding: 6px 12px;
+  font-size: 0.8rem;
+}
+
+.tv-admin-page .btn-danger {
+  background: #dc2626;
+  color: #fff;
+}
+
+.tv-admin-page .btn-secondary {
+  background: #e2e8f0;
+  color: #1e293b;
+  border: 1px solid #cbd5e1;
+}
+
+.tv-display-meta {
+  font-size: 0.82rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.tv-status {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.tv-status-1 { background: #d1fae5; color: #065f46; }
+.tv-status-2 { background: #fee2e2; color: #991b1b; }
+
+.tv-admin-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 1100px) {
+  .tv-admin-split,
+  .tv-calls-top,
+  .tv-form-grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .tv-admin-grid,
+  .tv-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tv-admin-page .tv-admin-tabs button {
+    padding: 8px 10px;
+  }
+
+  .tv-tab-label {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .tv-layout-editor-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+@keyframes tv-call-glow {
+  0%, 100% { box-shadow: 0 8px 28px rgba(249, 115, 22, 0.45); }
+  50% { box-shadow: 0 12px 36px rgba(249, 115, 22, 0.65); }
+}
+
+@keyframes tv-marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ─── Layout institucional SGH (referência LayoutTVHospital) ─── */
+.tv-player-hospital-sgh {
+  background: #e8f4fc;
+  color: #1e3a5f;
+  font-family: 'Segoe UI', 'Open Sans', system-ui, sans-serif;
+}
+
+.tv-hospital-board {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f0f8ff 0%, #e3f2fa 45%, #dceefb 100%);
+}
+
+.tv-hospital-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 14px 28px 18px;
+  background: #fff;
+  border-bottom: 1px solid #c5dce8;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.tv-hospital-header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 1;
+}
+
+.tv-hospital-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  line-height: 1.1;
+}
+
+.tv-hospital-logo-img {
+  flex-shrink: 0;
+  display: block;
+  max-width: min(280px, 32vw);
+  max-height: 56px;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain;
+}
+
+.tv-hospital-header-divider {
+  width: 2px;
+  height: 48px;
+  background: linear-gradient(180deg, #2d8fb8, #7ec8e8);
+  border-radius: 2px;
+}
+
+.tv-hospital-mission {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1a6b96;
+  max-width: 320px;
+  line-height: 1.35;
+}
+
+.tv-hospital-header-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  z-index: 1;
+}
+
+.tv-hospital-clock-block,
+.tv-hospital-date-block {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tv-hospital-clock-time {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #0e4f7a;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.tv-hospital-date-line {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0e4f7a;
+}
+
+.tv-hospital-date-weekday {
+  font-size: 0.85rem;
+  color: #2d8fb8;
+  text-transform: capitalize;
+}
+
+.tv-hospital-header-curve {
+  position: absolute;
+  top: -20px;
+  right: -40px;
+  width: 280px;
+  height: 120px;
+  background: linear-gradient(135deg, #2d8fb8 0%, #5ec4e0 50%, transparent 70%);
+  border-radius: 0 0 0 80%;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.tv-hospital-main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 32%;
+  gap: 14px;
+  padding: 14px 16px;
+  min-height: 0;
+}
+
+.tv-hospital-queue-panel {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #7ec8e8;
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(14, 79, 122, 0.08);
+}
+
+.tv-hospital-panel-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #fff;
+}
+
+.tv-hospital-panel-title-queue {
+  background: linear-gradient(90deg, #0e4f7a, #1a6b96);
+  clip-path: polygon(0 0, 88% 0, 82% 100%, 0 100%);
+  padding-right: 80px;
+}
+
+.tv-hospital-panel-title-ad {
+  background: linear-gradient(90deg, #1a8a6a, #2db88a);
+}
+
+.tv-hospital-panel-title-alert {
+  background: linear-gradient(90deg, #c53030, #e53e3e);
+}
+
+.tv-hospital-panel-icon {
+  font-size: 1.1rem;
+}
+
+.tv-hospital-queue-head {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 8px;
+  padding: 10px 20px;
+  background: #f7fbfe;
+  border-bottom: 1px solid #d0e8f4;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #0e4f7a;
+  letter-spacing: 0.12em;
+  text-align: center;
+}
+
+.tv-hospital-queue-head span:first-child {
+  text-align: left;
+}
+
+.tv-hospital-queue-body {
+  position: relative;
+  flex: 1;
+  min-height: 200px;
+  padding: 12px 16px 48px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(232, 246, 252, 0.95)),
+    repeating-linear-gradient(90deg, transparent, transparent 48px, rgba(126, 200, 232, 0.06) 48px, rgba(126, 200, 232, 0.06) 49px);
+  overflow: auto;
+}
+
+.tv-hospital-ekg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 8px;
+  height: 36px;
+  opacity: 0.45;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 40'%3E%3Cpath fill='none' stroke='%232d8fb8' stroke-width='2' d='M0 20 H40 L50 8 L60 32 L70 20 H400'/%3E%3C/svg%3E") repeat-x center;
+  background-size: 200px 36px;
+}
+
+.tv-hospital-queue-empty {
+  display: grid;
+  place-items: center;
+  min-height: 180px;
+  color: #5a8fad;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.tv-hospital-queue-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tv-hospital-queue-table tr {
+  border-bottom: 1px solid #e2f0f7;
+}
+
+.tv-hospital-queue-table tr.is-active {
+  background: linear-gradient(90deg, rgba(255, 237, 160, 0.5), rgba(255, 248, 220, 0.3));
+  animation: tv-hospital-pulse 2s ease-in-out infinite;
+}
+
+.tv-hospital-queue-table td {
+  padding: 14px 12px;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 1.05rem;
+  color: #1e3a5f;
+}
+
+.tv-hospital-queue-table .col-senha {
+  text-align: left;
+}
+
+.tv-hospital-senha {
+  display: block;
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: #0e4f7a;
+  line-height: 1.1;
+}
+
+.tv-hospital-patient {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #2d8fb8;
+  margin-top: 4px;
+}
+
+.tv-hospital-sector-tag {
+  padding: 6px 14px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #5a8fad;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-top: 1px solid #e2f0f7;
+  background: #f7fbfe;
+}
+
+.tv-hospital-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+}
+
+.tv-hospital-side-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(14, 79, 122, 0.08);
+  flex: 1;
+  min-height: 0;
+}
+
+.tv-hospital-ad-card {
+  flex: 1.1;
+}
+
+.tv-hospital-ad-body,
+.tv-hospital-comunicados-body {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.tv-hospital-ad-body {
+  padding: 10px;
+  background: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+}
+
+.tv-hospital-ad-media {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  min-height: 120px;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.12);
+}
+
+.tv-hospital-ad-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 140px;
+  border: 2px dashed #94a3b8;
+  border-radius: 8px;
+  background: #e8eef4;
+  text-align: center;
+  padding: 16px;
+}
+
+.tv-hospital-ad-icon {
+  font-size: 2.5rem;
+  opacity: 0.5;
+  margin-bottom: 10px;
+}
+
+.tv-hospital-ad-placeholder p {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #64748b;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+}
+
+.tv-hospital-comunicados-body {
+  padding: 12px 14px;
+  background:
+    repeating-linear-gradient(transparent, transparent 27px, #e2e8f0 27px, #e2e8f0 28px),
+    #fff;
+}
+
+.tv-hospital-comunicados-empty {
+  color: #64748b;
+  font-size: 0.9rem;
+  padding: 20px 8px;
+}
+
+.tv-hospital-comunicados-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tv-hospital-comunicados-list li {
+  margin-bottom: 14px;
+}
+
+.tv-hospital-comunicados-list strong {
+  display: block;
+  color: #0e4f7a;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+.tv-hospital-comunicados-list p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #334155;
+  line-height: 1.4;
+}
+
+.tv-hospital-footer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 12px 24px;
+  background: linear-gradient(90deg, #0a3d62, #0e4f7a 40%, #0a3d62);
+  color: #fff;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.tv-hospital-footer-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 1;
+}
+
+.tv-hospital-footer-left strong {
+  display: block;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+}
+
+.tv-hospital-footer-left span {
+  font-size: 0.75rem;
+  color: #7ec8e8;
+  font-weight: 600;
+}
+
+.tv-hospital-footer-icon {
+  font-size: 1.8rem;
+}
+
+.tv-hospital-footer-values {
+  display: flex;
+  gap: 20px;
+  z-index: 1;
+}
+
+.tv-hospital-value-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 1.2rem;
+}
+
+.tv-hospital-value-item small {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  opacity: 0.9;
+}
+
+.tv-hospital-footer-curve {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 200px;
+  height: 100%;
+  background: linear-gradient(135deg, transparent, rgba(94, 196, 224, 0.25));
+  pointer-events: none;
+}
+
+@keyframes tv-hospital-pulse {
+  0%, 100% { background-color: rgba(255, 237, 160, 0.35); }
+  50% { background-color: rgba(255, 220, 100, 0.55); }
+}
+
+@media (max-width: 900px) {
+  .tv-hospital-main {
+    grid-template-columns: 1fr;
+  }
+
+  .tv-hospital-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .tv-hospital-footer {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .tv-hospital-footer-values {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+

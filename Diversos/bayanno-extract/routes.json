@@ -1,0 +1,500 @@
+[
+  {
+    "role": "accountant",
+    "file": "accountant.php",
+    "routes": [
+      {
+        "action": "dashboard",
+        "route": "accountant/dashboard",
+        "pageName": "dashboard",
+        "viewFile": "accountant/dashboard.php"
+      },
+      {
+        "action": "view_blood_bank",
+        "route": "accountant/view_blood_bank",
+        "pageName": "view_blood_bank",
+        "viewFile": "accountant/view_blood_bank.php"
+      },
+      {
+        "action": "manage_invoice",
+        "route": "accountant/manage_invoice",
+        "pageName": "manage_invoice",
+        "viewFile": "accountant/manage_invoice.php"
+      },
+      {
+        "action": "take_cash_payment",
+        "route": "accountant/take_cash_payment",
+        "pageName": null,
+        "viewFile": null
+      },
+      {
+        "action": "view_payment",
+        "route": "accountant/view_payment",
+        "pageName": "view_payment",
+        "viewFile": "accountant/view_payment.php"
+      },
+      {
+        "action": "manage_profile",
+        "route": "accountant/manage_profile",
+        "pageName": "manage_profile",
+        "viewFile": "accountant/manage_profile.php"
+      }
+    ]
+  },
+  {
+    "role": "admin",
+    "file": "admin.php",
+    "routes": [
+      {
+        "action": "dashboard",
+        "route": "admin/dashboard",
+        "pageName": "dashboard",
+        "viewFile": "admin/dashboard.php"
+      },
+      {
+        "action": "manage_department",
+        "route": "admin/manage_department",
+        "pageName": "manage_department",
+        "viewFile": "admin/manage_department.php"
+      },
+      {
+        "action": "manage_doctor",
+        "route": "admin/manage_doctor",
+        "pageName": "manage_doctor",
+        "viewFile": "admin/manage_doctor.php"
+      },
+      {
+        "action": "manage_patient",
+        "route": "admin/manage_patient",
+        "pageName": "manage_patient",
+        "viewFile": "admin/manage_patient.php"
+      },
+      {
+        "action": "manage_nurse",
+        "route": "admin/manage_nurse",
+        "pageName": "manage_nurse",
+        "viewFile": "admin/manage_nurse.php"
+      },
+      {
+        "action": "manage_pharmacist",
+        "route": "admin/manage_pharmacist",
+        "pageName": "manage_pharmacist",
+        "viewFile": "admin/manage_pharmacist.php"
+      },
+      {
+        "action": "manage_laboratorist",
+        "route": "admin/manage_laboratorist",
+        "pageName": "manage_laboratorist",
+        "viewFile": "admin/manage_laboratorist.php"
+      },
+      {
+        "action": "manage_accountant",
+        "route": "admin/manage_accountant",
+        "pageName": "manage_accountant",
+        "viewFile": "admin/manage_accountant.php"
+      },
+      {
+        "action": "view_appointment",
+        "route": "admin/view_appointment",
+        "pageName": "view_appointment",
+        "viewFile": "admin/view_appointment.php"
+      },
+      {
+        "action": "view_payment",
+        "route": "admin/view_payment",
+        "pageName": "view_payment",
+        "viewFile": "admin/view_payment.php"
+      },
+      {
+        "action": "view_bed_status",
+        "route": "admin/view_bed_status",
+        "pageName": "view_bed_status",
+        "viewFile": "admin/view_bed_status.php"
+      },
+      {
+        "action": "view_blood_bank",
+        "route": "admin/view_blood_bank",
+        "pageName": "view_blood_bank",
+        "viewFile": "admin/view_blood_bank.php"
+      },
+      {
+        "action": "view_medicine",
+        "route": "admin/view_medicine",
+        "pageName": "view_medicine",
+        "viewFile": "admin/view_medicine.php"
+      },
+      {
+        "action": "view_report",
+        "route": "admin/view_report",
+        "pageName": "view_report",
+        "viewFile": "admin/view_report.php"
+      },
+      {
+        "action": "manage_email_template",
+        "route": "admin/manage_email_template",
+        "pageName": "manage_email_template",
+        "viewFile": "admin/manage_email_template.php"
+      },
+      {
+        "action": "manage_noticeboard",
+        "route": "admin/manage_noticeboard",
+        "pageName": "manage_noticeboard",
+        "viewFile": "admin/manage_noticeboard.php"
+      },
+      {
+        "action": "system_settings",
+        "route": "admin/system_settings",
+        "pageName": "system_settings",
+        "viewFile": "admin/system_settings.php"
+      },
+      {
+        "action": "manage_language",
+        "route": "admin/manage_language",
+        "pageName": "manage_language",
+        "viewFile": "admin/manage_language.php"
+      },
+      {
+        "action": "backup_restore",
+        "route": "admin/backup_restore",
+        "pageName": "backup_restore",
+        "viewFile": "admin/backup_restore.php"
+      },
+      {
+        "action": "manage_profile",
+        "route": "admin/manage_profile",
+        "pageName": "manage_profile",
+        "viewFile": "admin/manage_profile.php"
+      }
+    ]
+  },
+  {
+    "role": "doctor",
+    "file": "doctor.php",
+    "routes": [
+      {
+        "action": "dashboard",
+        "route": "doctor/dashboard",
+        "pageName": "dashboard",
+        "viewFile": "doctor/dashboard.php"
+      },
+      {
+        "action": "manage_patient",
+        "route": "doctor/manage_patient",
+        "pageName": "manage_patient",
+        "viewFile": "doctor/manage_patient.php"
+      },
+      {
+        "action": "manage_appointment",
+        "route": "doctor/manage_appointment",
+        "pageName": "manage_appointment",
+        "viewFile": "doctor/manage_appointment.php"
+      },
+      {
+        "action": "manage_prescription",
+        "route": "doctor/manage_prescription",
+        "pageName": "manage_prescription",
+        "viewFile": "doctor/manage_prescription.php"
+      },
+      {
+        "action": "view_blood_bank",
+        "route": "doctor/view_blood_bank",
+        "pageName": "view_blood_bank",
+        "viewFile": "doctor/view_blood_bank.php"
+      },
+      {
+        "action": "manage_bed_allotment",
+        "route": "doctor/manage_bed_allotment",
+        "pageName": "manage_bed_allotment",
+        "viewFile": "doctor/manage_bed_allotment.php"
+      },
+      {
+        "action": "manage_report",
+        "route": "doctor/manage_report",
+        "pageName": "manage_report",
+        "viewFile": "doctor/manage_report.php"
+      },
+      {
+        "action": "manage_profile",
+        "route": "doctor/manage_profile",
+        "pageName": "manage_profile",
+        "viewFile": "doctor/manage_profile.php"
+      }
+    ]
+  },
+  {
+    "role": "install",
+    "file": "install.php",
+    "routes": [
+      {
+        "action": "index",
+        "route": "install/index",
+        "pageName": null,
+        "viewFile": null
+      },
+      {
+        "action": "do_install",
+        "route": "install/do_install",
+        "pageName": null,
+        "viewFile": null
+      },
+      {
+        "action": "check_db_connection",
+        "route": "install/check_db_connection",
+        "pageName": null,
+        "viewFile": null
+      }
+    ]
+  },
+  {
+    "role": "laboratorist",
+    "file": "laboratorist.php",
+    "routes": [
+      {
+        "action": "dashboard",
+        "route": "laboratorist/dashboard",
+        "pageName": "dashboard",
+        "viewFile": "laboratorist/dashboard.php"
+      },
+      {
+        "action": "view_prescription",
+        "route": "laboratorist/view_prescription",
+        "pageName": "view_prescription",
+        "viewFile": "laboratorist/view_prescription.php"
+      },
+      {
+        "action": "manage_prescription",
+        "route": "laboratorist/manage_prescription",
+        "pageName": "manage_prescription",
+        "viewFile": "laboratorist/manage_prescription.php"
+      },
+      {
+        "action": "manage_blood_bank",
+        "route": "laboratorist/manage_blood_bank",
+        "pageName": "manage_blood_bank",
+        "viewFile": "laboratorist/manage_blood_bank.php"
+      },
+      {
+        "action": "manage_blood_donor",
+        "route": "laboratorist/manage_blood_donor",
+        "pageName": "manage_blood_donor",
+        "viewFile": "laboratorist/manage_blood_donor.php"
+      },
+      {
+        "action": "manage_profile",
+        "route": "laboratorist/manage_profile",
+        "pageName": "manage_profile",
+        "viewFile": "laboratorist/manage_profile.php"
+      }
+    ]
+  },
+  {
+    "role": "login",
+    "file": "login.php",
+    "routes": [
+      {
+        "action": "_validate_login",
+        "route": "login/_validate_login",
+        "pageName": null,
+        "viewFile": null
+      },
+      {
+        "action": "logout",
+        "route": "login/logout",
+        "pageName": null,
+        "viewFile": null
+      },
+      {
+        "action": "four_zero_four",
+        "route": "login/four_zero_four",
+        "pageName": null,
+        "viewFile": null
+      },
+      {
+        "action": "reset_password",
+        "route": "login/reset_password",
+        "pageName": null,
+        "viewFile": null
+      },
+      {
+        "action": "login_as",
+        "route": "login/login_as",
+        "pageName": null,
+        "viewFile": null
+      }
+    ]
+  },
+  {
+    "role": "multilanguage",
+    "file": "multilanguage.php",
+    "routes": [
+      {
+        "action": "index",
+        "route": "multilanguage/index",
+        "pageName": null,
+        "viewFile": null
+      },
+      {
+        "action": "select_language",
+        "route": "multilanguage/select_language",
+        "pageName": null,
+        "viewFile": null
+      }
+    ]
+  },
+  {
+    "role": "nurse",
+    "file": "nurse.php",
+    "routes": [
+      {
+        "action": "dashboard",
+        "route": "nurse/dashboard",
+        "pageName": "dashboard",
+        "viewFile": "nurse/dashboard.php"
+      },
+      {
+        "action": "manage_patient",
+        "route": "nurse/manage_patient",
+        "pageName": "manage_patient",
+        "viewFile": "nurse/manage_patient.php"
+      },
+      {
+        "action": "manage_bed",
+        "route": "nurse/manage_bed",
+        "pageName": "manage_bed",
+        "viewFile": "nurse/manage_bed.php"
+      },
+      {
+        "action": "manage_bed_allotment",
+        "route": "nurse/manage_bed_allotment",
+        "pageName": "manage_bed_allotment",
+        "viewFile": "nurse/manage_bed_allotment.php"
+      },
+      {
+        "action": "manage_blood_bank",
+        "route": "nurse/manage_blood_bank",
+        "pageName": "manage_blood_bank",
+        "viewFile": "nurse/manage_blood_bank.php"
+      },
+      {
+        "action": "manage_blood_donor",
+        "route": "nurse/manage_blood_donor",
+        "pageName": "manage_blood_donor",
+        "viewFile": "nurse/manage_blood_donor.php"
+      },
+      {
+        "action": "manage_report",
+        "route": "nurse/manage_report",
+        "pageName": "manage_report",
+        "viewFile": "nurse/manage_report.php"
+      },
+      {
+        "action": "manage_profile",
+        "route": "nurse/manage_profile",
+        "pageName": "manage_profile",
+        "viewFile": "nurse/manage_profile.php"
+      }
+    ]
+  },
+  {
+    "role": "patient",
+    "file": "patient.php",
+    "routes": [
+      {
+        "action": "dashboard",
+        "route": "patient/dashboard",
+        "pageName": "dashboard",
+        "viewFile": "patient/dashboard.php"
+      },
+      {
+        "action": "view_appointment",
+        "route": "patient/view_appointment",
+        "pageName": "view_appointment",
+        "viewFile": "patient/view_appointment.php"
+      },
+      {
+        "action": "view_prescription",
+        "route": "patient/view_prescription",
+        "pageName": "view_prescription",
+        "viewFile": "patient/view_prescription.php"
+      },
+      {
+        "action": "view_doctor",
+        "route": "patient/view_doctor",
+        "pageName": "view_doctor",
+        "viewFile": "patient/view_doctor.php"
+      },
+      {
+        "action": "view_admit_history",
+        "route": "patient/view_admit_history",
+        "pageName": "view_admit_history",
+        "viewFile": "patient/view_admit_history.php"
+      },
+      {
+        "action": "view_blood_bank",
+        "route": "patient/view_blood_bank",
+        "pageName": "view_blood_bank",
+        "viewFile": "patient/view_blood_bank.php"
+      },
+      {
+        "action": "view_invoice",
+        "route": "patient/view_invoice",
+        "pageName": "view_invoice",
+        "viewFile": "patient/view_invoice.php"
+      },
+      {
+        "action": "payment_history",
+        "route": "patient/payment_history",
+        "pageName": "payment_history",
+        "viewFile": "patient/payment_history.php"
+      },
+      {
+        "action": "view_operation_history",
+        "route": "patient/view_operation_history",
+        "pageName": "view_operation_history",
+        "viewFile": "patient/view_operation_history.php"
+      },
+      {
+        "action": "manage_profile",
+        "route": "patient/manage_profile",
+        "pageName": "manage_profile",
+        "viewFile": "patient/manage_profile.php"
+      }
+    ]
+  },
+  {
+    "role": "pharmacist",
+    "file": "pharmacist.php",
+    "routes": [
+      {
+        "action": "dashboard",
+        "route": "pharmacist/dashboard",
+        "pageName": "dashboard",
+        "viewFile": "pharmacist/dashboard.php"
+      },
+      {
+        "action": "manage_medicine_category",
+        "route": "pharmacist/manage_medicine_category",
+        "pageName": "manage_medicine_category",
+        "viewFile": "pharmacist/manage_medicine_category.php"
+      },
+      {
+        "action": "manage_medicine",
+        "route": "pharmacist/manage_medicine",
+        "pageName": "manage_medicine",
+        "viewFile": "pharmacist/manage_medicine.php"
+      },
+      {
+        "action": "manage_prescription",
+        "route": "pharmacist/manage_prescription",
+        "pageName": "manage_prescription",
+        "viewFile": "pharmacist/manage_prescription.php"
+      },
+      {
+        "action": "manage_profile",
+        "route": "pharmacist/manage_profile",
+        "pageName": "manage_profile",
+        "viewFile": "pharmacist/manage_profile.php"
+      }
+    ]
+  }
+]

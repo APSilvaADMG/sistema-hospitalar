@@ -1,0 +1,467 @@
+/**
+ * Requisição de estoque — espelhado dos prints Feegow (23-13-00 / 23-13-26)
+ */
+
+.feegow-requisition-page {
+  padding: 14px 18px 24px;
+  min-height: 100%;
+}
+
+.feegow-requisition-page-head,
+.feegow-requisition-insert-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.feegow-requisition-page-title-wrap,
+.feegow-requisition-insert-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.feegow-requisition-page-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #4a5a62;
+}
+
+.feegow-requisition-page-title-icons,
+.feegow-requisition-insert-toolbar-icons {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #00a0e1;
+  font-size: 14px;
+}
+
+.feegow-requisition-insert-slash {
+  color: #8a9aa3;
+  font-size: 18px;
+}
+
+.feegow-requisition-icon-btn {
+  border: none;
+  background: transparent;
+  color: #00a0e1;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 2px 4px;
+}
+
+.feegow-requisition-insert-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 4px;
+  background: #5cb85c;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 9px 18px;
+  text-decoration: none;
+  font-family: inherit;
+}
+
+.feegow-requisition-filter-card,
+.feegow-requisition-table-card,
+.feegow-requisition-panel,
+.feegow-requisition-empty-card {
+  background: #fff;
+  border: 1px solid #e3e9ec;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.feegow-requisition-filter-card {
+  padding: 14px 16px;
+  margin-bottom: 14px;
+}
+
+.feegow-requisition-filter-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 12px;
+  align-items: end;
+}
+
+.feegow-requisition-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.feegow-requisition-field > span {
+  font-size: 11px;
+  color: #6a7a82;
+  font-weight: 600;
+}
+
+.feegow-requisition-field input,
+.feegow-requisition-field select,
+.feegow-requisition-field textarea {
+  width: 100%;
+  border: 1px solid #cfd8dc;
+  border-radius: 4px;
+  background: #fff;
+  padding: 8px 10px;
+  font-size: 12px;
+  font-family: inherit;
+  color: #4a5a62;
+}
+
+.feegow-requisition-field textarea {
+  resize: vertical;
+  min-height: 56px;
+}
+
+.feegow-requisition-date-wrap {
+  position: relative;
+}
+
+.feegow-requisition-date-icon {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  pointer-events: none;
+}
+
+.feegow-requisition-date-wrap input {
+  padding-left: 28px;
+}
+
+.feegow-requisition-search-btn {
+  border: none;
+  border-radius: 4px;
+  background: #00a0e1;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 9px 16px;
+  cursor: pointer;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.feegow-requisition-table-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.feegow-requisition-count {
+  margin: 0;
+  padding: 10px 14px;
+  font-size: 12px;
+  color: #6a7a82;
+  border-bottom: 1px solid #edf1f3;
+}
+
+.feegow-requisition-table-wrap {
+  overflow: auto;
+}
+
+.feegow-requisition-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.feegow-requisition-table thead th {
+  background: #edf8ed;
+  color: #4a5a62;
+  font-weight: 700;
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid #dceee0;
+  white-space: nowrap;
+}
+
+.feegow-requisition-table tbody td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #edf1f3;
+  color: #4a5a62;
+}
+
+.feegow-requisition-table-row {
+  cursor: pointer;
+}
+
+.feegow-requisition-table-row:hover td {
+  background: #f7fbfc;
+}
+
+.feegow-requisition-table-empty {
+  text-align: center;
+  padding: 36px 16px !important;
+  color: #8a9aa3;
+}
+
+.feegow-requisition-insert-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 14px;
+  align-items: start;
+}
+
+.feegow-requisition-panel {
+  margin-bottom: 14px;
+}
+
+.feegow-requisition-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 14px;
+  border-bottom: 1px solid #edf1f3;
+}
+
+.feegow-requisition-panel-head h2 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #4a5a62;
+}
+
+.feegow-requisition-panel-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.feegow-requisition-panel-body {
+  padding: 14px;
+}
+
+.feegow-requisition-save-btn {
+  border: none;
+  border-radius: 4px;
+  background: #00a0e1;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.feegow-requisition-secondary-btn {
+  border: 1px solid #cfd8dc;
+  border-radius: 4px;
+  background: #fff;
+  color: #4a5a62;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.feegow-requisition-secondary-btn-danger {
+  border-color: #ef6c00;
+  color: #ef6c00;
+}
+
+.feegow-requisition-form-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.feegow-requisition-form-grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.feegow-requisition-form-grid-4 {
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+}
+
+.feegow-requisition-field-grow,
+.feegow-requisition-field-grow2 {
+  grid-column: span 1;
+}
+
+.feegow-requisition-field-grow2 {
+  grid-column: span 2;
+}
+
+.feegow-requisition-add-line-btn {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 4px;
+  background: #5cb85c;
+  color: #fff;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.feegow-requisition-products-stack {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.feegow-requisition-product-block {
+  padding-bottom: 14px;
+  border-bottom: 1px solid #edf1f3;
+}
+
+.feegow-requisition-product-block:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.feegow-requisition-money-wrap {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 6px;
+}
+
+.feegow-requisition-money-wrap > span {
+  font-size: 12px;
+  color: #6a7a82;
+}
+
+.feegow-requisition-notes-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: end;
+  margin-top: 12px;
+}
+
+.feegow-requisition-delete-line-btn {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 4px;
+  background: #e53935;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.feegow-requisition-audit {
+  margin: 0 0 8px;
+  font-size: 11px;
+  color: #8a9aa3;
+}
+
+.feegow-requisition-interactions {
+  background: #fff;
+  border: 1px solid #e3e9ec;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+}
+
+.feegow-requisition-interactions-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border-bottom: 1px solid #edf1f3;
+}
+
+.feegow-requisition-interactions-head h2 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #4a5a62;
+}
+
+.feegow-requisition-interactions-body {
+  flex: 1;
+  padding: 14px;
+}
+
+.feegow-requisition-interactions-empty {
+  background: #e8f4fd;
+  border: 1px solid #cfe8fb;
+  border-radius: 4px;
+  padding: 10px 12px;
+  font-size: 12px;
+  color: #4a5a62;
+}
+
+.feegow-requisition-interactions-foot {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  padding: 12px 14px;
+  border-top: 1px solid #edf1f3;
+}
+
+.feegow-requisition-interactions-input {
+  border: 1px solid #cfd8dc;
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-size: 12px;
+  font-family: inherit;
+}
+
+.feegow-requisition-interactions-send {
+  border: none;
+  border-radius: 4px;
+  background: #00a0e1;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 8px 14px;
+  cursor: default;
+  font-family: inherit;
+}
+
+.feegow-requisition-empty-card {
+  padding: 28px;
+  text-align: center;
+  color: #6a7a82;
+}
+
+@media (max-width: 1100px) {
+  .feegow-requisition-filter-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .feegow-requisition-insert-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .feegow-requisition-form-grid-3,
+  .feegow-requisition-form-grid-4 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .feegow-requisition-field-grow2 {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 720px) {
+  .feegow-requisition-filter-grid,
+  .feegow-requisition-form-grid-3,
+  .feegow-requisition-form-grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .feegow-requisition-field-grow2 {
+    grid-column: span 1;
+  }
+}

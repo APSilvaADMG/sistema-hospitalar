@@ -1,0 +1,74 @@
+/**
+ * Tema Feegow Clinic — cores, tipografia e acentos.
+ * Estrutura de layout compartilhada com o shell clinic (bayanno-layout).
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+[data-brand='feegow'] {
+  --feegow-cyan: #00b4fc;
+  --feegow-teal: #0ecfbc;
+  --feegow-teal-dark: #057a8c;
+  --feegow-sidebar: #056d7f;
+  --feegow-sidebar-active: #045a68;
+  --feegow-page-bg: #eef2f4;
+  --feegow-accent: #00b4fc;
+  --bayanno-sidebar-width: clamp(280px, 26vw, 320px);
+}
+
+html[data-brand='feegow'],
+html[data-brand='feegow'] body {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  background: var(--feegow-page-bg);
+}
+
+[data-brand='feegow'] .sidebar-background .primary-sidebar-background {
+  background: var(--feegow-sidebar) !important;
+}
+
+[data-brand='feegow'] .nav-menu-link.active,
+[data-brand='feegow'] .nav-sublink.active,
+[data-brand='feegow'] .primary-sidebar .dark-nav.active > a {
+  background: var(--feegow-sidebar-active) !important;
+}
+
+[data-brand='feegow'] .navbar.navbar-top.navbar-inverse {
+  background: linear-gradient(90deg, var(--feegow-sidebar) 0%, #068192 100%) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+[data-brand='feegow'] .box {
+  border-radius: 8px;
+  border-color: #dde4e8;
+  box-shadow: 0 1px 3px rgba(5, 109, 127, 0.06);
+}
+
+[data-brand='feegow'] .box-header {
+  background: #f8fbfc;
+  border-bottom: 1px solid #dde4e8;
+}
+
+[data-brand='feegow'] .btn-primary,
+[data-brand='feegow'] .btn.btn-primary {
+  background: var(--feegow-cyan) !important;
+  border-color: #00a0e0 !important;
+}
+
+[data-brand='feegow'] .btn-primary:hover {
+  background: #0096d4 !important;
+}
+
+[data-brand='feegow'] .nav-tabs > li.active > a,
+[data-brand='feegow'] .nav-tabs > li.active > a:hover {
+  border-top-color: var(--feegow-cyan) !important;
+  color: var(--feegow-teal-dark) !important;
+}
+
+[data-brand='feegow'] table.dTable thead th {
+  background: #f0f7f9;
+  color: #056d7f;
+}
+
+[data-brand='feegow'] .glow {
+  background: var(--feegow-cyan) !important;
+}

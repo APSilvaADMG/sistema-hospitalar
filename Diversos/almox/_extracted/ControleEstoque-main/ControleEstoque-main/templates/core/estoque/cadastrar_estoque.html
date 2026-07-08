@@ -1,0 +1,21 @@
+{% extends "base/index.html" %}
+{% load static bootstrap %}
+{% block conteudo %} 
+
+    <div class="text-center mb-4">
+        <h2 class="fw-bold"><i class="bi bi-box-seam text-primary"></i> Cadastrar Estoque</h2>
+        <p class="lead">Registre novas entradas de estoque para manter o controle preciso dos produtos disponíveis e garantir uma gestão eficiente do seu inventário.</p>
+    </div>
+
+    <div class="container mt-5">
+        <form method="post">
+            {% csrf_token %}
+            {{ form|bootstrap }}
+            <div class="d-grid gap-2 col-6 mx-auto mt-3 mb-2">
+                <button type="submit" class="btn btn-success rounded-pill">Cadastrar</button>
+                <button type="button" onclick="history.back()" class="btn btn-danger rounded-pill">Cancelar</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock conteudo %}

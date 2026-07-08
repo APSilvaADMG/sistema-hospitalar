@@ -1,0 +1,265 @@
+/**
+ * Telas amigáveis Bayanno — painéis tab-pane, tabelas dTable, hubs e guias.
+ */
+
+[data-brand='bayanno'] .bayanno-module-tools,
+[data-brand='feegow'] .bayanno-module-tools {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 0 0 15px;
+}
+
+[data-brand='bayanno'] .module-nav-atalhos,
+[data-brand='feegow'] .module-nav-atalhos {
+  margin: 0 0 12px !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+[data-brand='bayanno'] .bayanno-panel-head,
+[data-brand='feegow'] .bayanno-panel-head {
+  overflow: hidden;
+  padding: 10px 12px;
+  border-bottom: 1px solid #e0e0e0;
+  background: linear-gradient(to bottom, #fdfdfd, #f0f0f0);
+}
+
+[data-brand='bayanno'] .bayanno-panel-head .title,
+[data-brand='feegow'] .bayanno-panel-head .title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+  text-shadow: 0 1px #fff;
+}
+
+[data-brand='bayanno'] .bayanno-panel-head .title i,
+[data-brand='feegow'] .bayanno-panel-head .title i {
+  margin-right: 6px;
+  color: #066d86;
+}
+
+[data-brand='bayanno'] .bayanno-panel-head .bayanno-panel-hint,
+[data-brand='feegow'] .bayanno-panel-head .bayanno-panel-hint {
+  display: block;
+  margin-top: 3px;
+  font-size: 11px;
+  color: #888;
+  font-weight: 400;
+}
+
+[data-brand='bayanno'] .bayanno-panel-actions,
+[data-brand='feegow'] .bayanno-panel-actions {
+  float: right;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+[data-brand='bayanno'] .bayanno-panel-body,
+[data-brand='feegow'] .bayanno-panel-body {
+  padding: 0;
+}
+
+[data-brand='bayanno'] .bayanno-panel-body.padded,
+[data-brand='feegow'] .bayanno-panel-body.padded {
+  padding: 12px;
+}
+
+[data-brand='bayanno'] .bayanno-stats-table,
+[data-brand='feegow'] .bayanno-stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  background: #fafafa;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+[data-brand='bayanno'] .bayanno-stats-table th,
+[data-brand='feegow'] .bayanno-stats-table th,
+[data-brand='bayanno'] .bayanno-stats-table td,
+[data-brand='feegow'] .bayanno-stats-table td {
+  padding: 10px 12px;
+  text-align: center;
+  border: 1px solid #e0e0e0;
+}
+
+[data-brand='bayanno'] .bayanno-stats-table th,
+[data-brand='feegow'] .bayanno-stats-table th {
+  background: linear-gradient(to bottom, #fdfdfd, #eaeaea);
+  color: #666;
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+[data-brand='bayanno'] .bayanno-stats-table td,
+[data-brand='feegow'] .bayanno-stats-table td {
+  font-size: 18px;
+  font-weight: 700;
+  color: #066d86;
+}
+
+[data-brand='bayanno'] .bayanno-stats-table td.is-warning,
+[data-brand='feegow'] .bayanno-stats-table td.is-warning {
+  color: #d48806;
+}
+
+[data-brand='bayanno'] .bayanno-stats-table td.is-success,
+[data-brand='feegow'] .bayanno-stats-table td.is-success {
+  color: #3d8b3d;
+}
+
+[data-brand='bayanno'] .bayanno-stats-table td.is-danger,
+[data-brand='feegow'] .bayanno-stats-table td.is-danger {
+  color: #c0392b;
+}
+
+[data-brand='bayanno'] .bayanno-inline-hint,
+[data-brand='feegow'] .bayanno-inline-hint {
+  padding: 10px 12px;
+  font-size: 12px;
+  color: #666;
+  background: #f9f9f9;
+  border-bottom: 1px solid #eee;
+  margin: 0;
+}
+
+[data-brand='bayanno'] .bayanno-table-actions,
+[data-brand='feegow'] .bayanno-table-actions {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+[data-brand='bayanno'] .bayanno-status-badge,
+[data-brand='feegow'] .bayanno-status-badge {
+  display: inline-block;
+  padding: 2px 7px;
+  font-size: 10px;
+  font-weight: 600;
+  border: 1px solid #ccc;
+  background: #f5f5f5;
+  color: #555;
+  white-space: nowrap;
+}
+
+[data-brand='bayanno'] .bayanno-status-badge.is-ready,
+[data-brand='feegow'] .bayanno-status-badge.is-ready {
+  border-color: #5cb85c;
+  background: #edf7ed;
+  color: #3d8b3d;
+}
+
+[data-brand='bayanno'] .bayanno-status-badge.is-pending,
+[data-brand='feegow'] .bayanno-status-badge.is-pending {
+  border-color: #f0ad4e;
+  background: #fff8e8;
+  color: #a66d00;
+}
+
+[data-brand='bayanno'] .bayanno-status-badge.is-form,
+[data-brand='feegow'] .bayanno-status-badge.is-form {
+  border-color: #17a4c2;
+  background: #e8f7fa;
+  color: #066d86;
+}
+
+/* Patient workspace — legível no Bayanno */
+[data-brand='bayanno'] .patient-workspace-shell,
+[data-brand='feegow'] .patient-workspace-shell {
+  margin-bottom: 0;
+}
+
+[data-brand='bayanno'] .patient-context-header,
+[data-brand='feegow'] .patient-context-header {
+  border-radius: 0;
+  background: #fff;
+  border: 1px solid #d4d4d4;
+  margin-bottom: 0;
+}
+
+[data-brand='bayanno'] .patient-context-header h3,
+[data-brand='feegow'] .patient-context-header h3 {
+  font-size: 15px;
+  color: #333;
+}
+
+[data-brand='bayanno'] .patient-context-meta,
+[data-brand='feegow'] .patient-context-meta {
+  font-size: 12px;
+  color: #666;
+}
+
+[data-brand='bayanno'] .patient-view-tabs,
+[data-brand='feegow'] .patient-view-tabs {
+  border-radius: 0;
+  background: #f5f5f5;
+  border: 1px solid #d4d4d4;
+  border-top: none;
+  padding: 6px 8px;
+  gap: 2px;
+}
+
+[data-brand='bayanno'] .patient-view-tab,
+[data-brand='feegow'] .patient-view-tab {
+  border-radius: 0;
+  font-size: 12px;
+  padding: 7px 12px;
+  color: #555;
+  border: 1px solid transparent;
+}
+
+[data-brand='bayanno'] .patient-view-tab.active,
+[data-brand='feegow'] .patient-view-tab.active {
+  color: #066d86;
+  background: #fff;
+  border-color: #cdcdcd;
+  font-weight: 600;
+}
+
+[data-brand='bayanno'] .hub-patient-picker .dataTables_filter input,
+[data-brand='feegow'] .hub-patient-picker .dataTables_filter input {
+  width: 100%;
+  max-width: 280px;
+}
+
+[data-brand='bayanno'] .hub-patient-picker tr.is-selected td,
+[data-brand='feegow'] .hub-patient-picker tr.is-selected td {
+  background: #eef6f8 !important;
+  font-weight: 600;
+}
+
+[data-brand='bayanno'] .hub-patient-picker tbody tr,
+[data-brand='feegow'] .hub-patient-picker tbody tr {
+  cursor: pointer;
+}
+
+[data-brand='bayanno'] .funi-guide-catalog-table,
+[data-brand='feegow'] .funi-guide-catalog-table {
+  margin-top: 0;
+}
+
+[data-brand='bayanno'] .module-section-banner,
+[data-brand='feegow'] .module-section-banner {
+  padding: 8px 12px;
+  font-size: 12px;
+  color: #666;
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  border-top: none;
+  margin-bottom: 12px;
+}
+
+[data-brand='bayanno'] .module-context-tools .module-context-block,
+[data-brand='feegow'] .module-context-tools .module-context-block,
+[data-brand='bayanno'] .module-context-tools .module-context-grid,
+[data-brand='feegow'] .module-context-tools .module-context-grid,
+[data-brand='bayanno'] .module-context-tools .module-context-card,
+[data-brand='feegow'] .module-context-tools .module-context-card,
+[data-brand='bayanno'] .module-context-tools .module-context-report-list,
+[data-brand='feegow'] .module-context-tools .module-context-report-list {
+  display: none !important;
+}

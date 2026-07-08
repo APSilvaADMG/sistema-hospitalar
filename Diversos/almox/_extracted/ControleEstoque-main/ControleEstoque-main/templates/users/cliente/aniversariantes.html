@@ -1,0 +1,41 @@
+{% extends "base/index.html" %}
+{% load static bootstrap %}
+{% block conteudo %} 
+
+    <div class="container mt-5">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold"><i class="bi bi-gift text-primary"></i> Aniversáriantes</h2>
+            <p class="lead">Acompanhe os clientes aniversariantes e entre em contato para parabenizá-los.</p>
+        </div>
+        {% if aniversariantes %}
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Data de Aniversário</th>
+                        <th>Telefone Celular</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cliente in aniversariantes %}
+                    <tr>
+                        <td>{{ cliente.id }}</td>
+                        <td>{{ cliente.nome }}</td>
+                        <td>{{ cliente.data_aniversario }}</td>
+                        <td>{{ cliente.telefone_celular }}</td>
+                        <td>
+                            <a class="btn btn-danger disabled">Notificar (Em breve)</a>                         
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="alert alert-danger" role="alert">
+                Não há clientes aniversariantes hoje.
+            </div>
+        {% endif %}
+    </div>
+{% endblock conteudo %}

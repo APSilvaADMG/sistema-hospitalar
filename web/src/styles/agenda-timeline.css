@@ -1,0 +1,216 @@
+/* Timeline vertical de agenda — estilo OnDoctor */
+
+.agenda-day-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.agenda-timeline-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  background: #fafafa;
+}
+
+[data-scheme='dark'] .agenda-timeline-header {
+  background: var(--surface-elevated, #1e293b);
+}
+
+.agenda-timeline-prof {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.agenda-timeline-prof-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.agenda-timeline-prof strong {
+  display: block;
+  font-size: 0.9rem;
+}
+
+.agenda-timeline-room {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.agenda-timeline-date {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.agenda-timeline-grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.agenda-timeline-row {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  min-height: 44px;
+  border-bottom: 1px solid #ececec;
+  align-items: stretch;
+}
+
+[data-scheme='dark'] .agenda-timeline-row {
+  border-bottom-color: var(--border);
+}
+
+.agenda-timeline-row.is-empty {
+  min-height: 36px;
+}
+
+.agenda-timeline-time {
+  padding: 10px 8px 10px 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-align: right;
+  border-right: 1px solid #ececec;
+  background: #fcfcfc;
+}
+
+[data-scheme='dark'] .agenda-timeline-time {
+  background: transparent;
+  border-right-color: var(--border);
+}
+
+.agenda-timeline-slot {
+  padding: 4px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  justify-content: center;
+  min-height: 36px;
+}
+
+.agenda-timeline-empty {
+  display: flex;
+  align-items: center;
+  min-height: 28px;
+}
+
+.agenda-timeline-empty-label {
+  color: #d0d0d0;
+  font-size: 0.85rem;
+}
+
+.agenda-timeline-empty-btn {
+  border: 1px dashed #d8d8d8;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.agenda-timeline-empty-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary-dark);
+}
+
+.agenda-timeline-appt {
+  display: grid;
+  grid-template-columns: 8px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 10px;
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  border-left: 3px solid var(--primary);
+}
+
+[data-scheme='dark'] .agenda-timeline-appt {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+.agenda-timeline-appt.appt-card-status-1 { border-left-color: #0288d1; }
+.agenda-timeline-appt.appt-card-status-2 { border-left-color: #1565c0; }
+.agenda-timeline-appt.appt-card-status-3 { border-left-color: #ef6c00; }
+.agenda-timeline-appt.appt-card-status-4 { border-left-color: #2e7d32; }
+.agenda-timeline-appt.appt-card-status-5 { border-left-color: #94a3b8; }
+.agenda-timeline-appt.appt-card-status-6 { border-left-color: #c62828; }
+
+.agenda-timeline-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary);
+  align-self: center;
+}
+
+.agenda-timeline-status-dot.status-1 { background: #0288d1; }
+.agenda-timeline-status-dot.status-2 { background: #1565c0; }
+.agenda-timeline-status-dot.status-3 { background: #ef6c00; }
+.agenda-timeline-status-dot.status-4 { background: #2e7d32; }
+.agenda-timeline-status-dot.status-5 { background: #94a3b8; }
+.agenda-timeline-status-dot.status-6 { background: #c62828; }
+
+.agenda-timeline-appt-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.agenda-timeline-appt-top strong {
+  font-size: 0.86rem;
+}
+
+.agenda-timeline-appt-time {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  white-space: nowrap;
+}
+
+.agenda-timeline-appt-meta {
+  font-size: 0.74rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.agenda-timeline-appt-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+@media (max-width: 900px) {
+  .agenda-timeline-appt {
+    grid-template-columns: 8px 1fr;
+  }
+
+  .agenda-timeline-appt-actions {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+    padding-left: 18px;
+  }
+}

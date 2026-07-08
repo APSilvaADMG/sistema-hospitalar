@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="Campanha de Vacina��o">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#007d6f"/>
+      <stop offset="100%" stop-color="#27589d"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg)"/>
+  <text x="40" y="110" fill="#ffffff" font-family="Segoe UI, Arial, sans-serif" font-size="46" font-weight="700">VACINA��O 2026</text>
+  <text x="40" y="170" fill="#ffffff" font-family="Segoe UI, Arial, sans-serif" font-size="26">Influenza e COVID-19 dispon�veis</text>
+  <text x="40" y="220" fill="#ffffff" font-family="Segoe UI, Arial, sans-serif" font-size="22" opacity="0.9">Seg a Sex � 7h �s 17h � Recep��o</text>
+  <circle cx="700" cy="300" r="70" fill="#ffffff" opacity="0.15"/>
+  <text x="660" y="310" fill="#ffffff" font-size="64">=�</text>
+</svg>

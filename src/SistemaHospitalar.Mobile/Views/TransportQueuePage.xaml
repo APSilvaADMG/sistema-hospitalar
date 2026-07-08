@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SistemaHospitalar.Mobile.Views.TransportQueuePage"
+             Title="Fila de transportes">
+    <Grid RowDefinitions="Auto,*" Padding="16">
+        <VerticalStackLayout Grid.Row="0" Spacing="8">
+            <Label x:Name="UserLabel" FontAttributes="Bold" />
+            <Label x:Name="NetworkLabel" FontSize="12" />
+            <HorizontalStackLayout Spacing="8">
+                <Button Text="Sincronizar" Clicked="OnSyncClicked" />
+                <Button Text="Sair" Clicked="OnLogoutClicked" />
+            </HorizontalStackLayout>
+            <Label x:Name="SyncStatusLabel" FontSize="12" TextColor="Gray" />
+        </VerticalStackLayout>
+
+        <CollectionView Grid.Row="1" x:Name="QueueView" Margin="0,12,0,0">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Stroke="#E5E7EB" StrokeThickness="1" Padding="12" Margin="0,0,0,8">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="{Binding PatientName}" FontAttributes="Bold" />
+                            <Label Text="{Binding RouteText}" FontSize="12" />
+                            <Label Text="{Binding Status}" FontSize="12" TextColor="#0B5FFF" />
+                            <HorizontalStackLayout Spacing="8">
+                                <Button Text="Aceitar" CommandParameter="{Binding Id}" Clicked="OnAcceptClicked" IsVisible="{Binding CanAccept}" />
+                                <Button Text="Deslocar" CommandParameter="{Binding Id}" Clicked="OnTransitClicked" IsVisible="{Binding CanTransit}" />
+                                <Button Text="Concluir" CommandParameter="{Binding Id}" Clicked="OnCompleteClicked" IsVisible="{Binding CanComplete}" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

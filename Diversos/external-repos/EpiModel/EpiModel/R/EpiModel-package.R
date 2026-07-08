@@ -1,0 +1,150 @@
+
+#' Mathematical Modeling of Infectious Disease Dynamics
+#'
+#' \tabular{ll}{
+#'    Package: \tab EpiModel\cr
+#'    Type: \tab Package\cr
+#'    Version: \tab 2.6.1\cr
+#'    Date: \tab 2026-05-12\cr
+#'    License: \tab GPL-3\cr
+#'    LazyLoad: \tab yes\cr
+#' }
+#'
+#' @details
+#' The EpiModel software package provides tools for building, solving, and
+#' visualizing mathematical models of infectious disease dynamics. These tools
+#' allow users to simulate epidemic models in multiple frameworks for both
+#' pedagogical purposes ("base models") and novel research purposes
+#' ("extension models").
+#'
+#' @section Model Classes and Infectious Disease Types:
+#' EpiModel provides functionality for three classes of epidemic models:
+#'
+#'  * **Deterministic Compartmental Models:** these continuous-time
+#'        models are solved using ordinary differential equations. EpiModel
+#'        allows for easy specification of sensitivity analyses to compare
+#'        multiple scenarios of the same model across different parameter
+#'        values.
+#'  * **Stochastic Individual Contact Models:** a novel class of
+#'        individual-based, microsimulation models that were developed to add
+#'        random variation in all components of the transmission system, from
+#'        infection to recovery to vital dynamics (arrivals and departures).
+#'  * **Stochastic Network Models:** with the underlying statistical
+#'        framework of temporal exponential random graph models (ERGMs) recently
+#'        developed in the **Statnet** suite of software in R, network
+#'        models over epidemics simulate edge (e.g., partnership) formation and
+#'        dissolution stochastically according to a specified statistical model,
+#'        with disease spread across that network.
+#'
+#'
+#' EpiModel supports three infectious disease types to be run across all of the
+#' three classes.
+#'
+#'   * **Susceptible-Infectious (SI):** a two-state disease in which
+#'         there is life-long infection without recovery. HIV/AIDS is one
+#'         example, although for this case it is common to model infection
+#'         stages as separate compartments.
+#'   * **Susceptible-Infectious-Recovered (SIR):** a three-stage
+#'         disease in which one has life-long recovery with immunity after
+#'         infection. Measles is one example, but modern models for the disease
+#'         also require consideration of vaccination patterns in the population.
+#'   * **Susceptible-Infectious-Susceptible (SIS):** a two-stage
+#'         disease in which one may transition back and forth from the
+#'         susceptible to infected states throughout life. Examples include
+#'         bacterial sexually transmitted diseases like gonorrhea.
+#'
+#' These basic disease types may be extended in any arbitrarily complex way to
+#' simulate specific diseases for research questions.
+#'
+#' @section Model Parameterization and Simulation:
+#' EpiModel uses three model setup functions for each model class to input the
+#' necessary parameters, initial conditions, and control settings:
+#'
+#'  * [param.dcm()], [param.icm()], and
+#'        [param.net()] are used to input epidemic parameters for each
+#'        of the three model classes. Parameters include the rate of contacts or
+#'        acts between actors, the probability of transmission per contact, and
+#'        recovery and demographic rates for models that include those
+#'        transitions.
+#'  * [init.dcm()], [init.icm()], and
+#'        [init.net()] are used to input the initial conditions for
+#'        each class. The main conditions are limited to the numbers or, if
+#'        applicable, the specific agents in the population who are infected or
+#'        recovered at the simulation outset.
+#'  * [control.dcm()], [control.icm()], and
+#'        [control.net()] are used to specify the remaining control
+#'        settings for each simulation. The core controls for base model
+#'        types include the disease type, number of time steps, and number of
+#'        simulations. Controls are also used to input new model functions (for
+#'        DCMs) and new model modules (for ICMs and network models) to allow the
+#'        user to simulate fully original epidemic models in EpiModel. See the
+#'        documentation for the specific control functions help pages.
+#'
+#'
+#' With the models parameterized, the functions for simulating epidemic models
+#' are:
+#'
+#' * [dcm()] for deterministic compartmental models.
+#' * [icm()] for individual contact models.
+#' * Network models are simulated in a three-step process:
+#'    1. [netest()] estimates the statistical model for the network
+#'       structure itself (i.e., how partnerships form and dissolve over time
+#'       given the parameterization of those processes). This function is a
+#'       wrapper around the `ergm` and `tergm` functions in the
+#'       `ergm` and `tergm` packages. The current statistical
+#'       framework for model simulation is called "egocentric inference":
+#'       target statistics summarizing these formation and dissolution
+#'       processes collected from an egocentric sample of the population.
+#'    2. [netdx()] runs diagnostics on the dynamic model fit by
+#'       simulating the base network over time to ensure the model fits the
+#'       targets for formation and dissolution.
+#'    3. [netsim()] simulates the stochastic network epidemic
+#'       models, with a given network model fit in [netest()]. Here
+#'       the function requires this model fit object along with the
+#'       parameters, initial conditions, and control settings as defined
+#'       above.
+#'
+#'
+#'
+#' @references
+#' The EpiModel website is at <https://www.epimodel.org/>, and the source
+#' code is at <https://github.com/EpiModel/EpiModel>. Bug reports and
+#' feature requests are welcome.
+#'
+#' Our primary methods paper on EpiModel is published in the **Journal of
+#' Statistical Software**. If you use EpiModel for any research or teaching
+#' purposes, please cite this reference:
+#'
+#' Jenness SM, Goodreau SM, and Morris M. EpiModel: An R Package for
+#' Mathematical Modeling of Infectious Disease over Networks. Journal of
+#' Statistical Software. 2018; 84(8): 1-47. \doi{10.18637/jss.v084.i08}.
+#'
+#' We have also developed two extension packages for modeling specific disease
+#' dynamics. For HIV and bacterial sexually transmitted infections, we have
+#' developed `EpiModelHIV`, which is available on Github at
+#' <https://github.com/EpiModel/EpiModelHIV>. For COVID-19, we have
+#' developed `EpiModelCOVID`, which is available at
+#' <https://github.com/EpiModel/EpiModelCOVID>.
+#'
+#' @name EpiModel-package
+#' @aliases EpiModel
+#' @import ergm network networkLite networkDynamic tergm ggplot2
+#' @importFrom deSolve dede ode
+#' @importFrom RColorBrewer brewer.pal brewer.pal.info
+#' @importFrom graphics abline arrows boxplot legend lines mtext par plot points polygon text title
+#' @importFrom grDevices col2rgb colorRampPalette rgb adjustcolor
+#' @importFrom stats complete.cases quantile rbinom rgeom sd setNames simulate supsmu terms.formula update dgeom coef na.omit
+#' @importFrom utils head tail packageVersion
+#' @importFrom ape as.phylo collapse.singles
+#' @importFrom lazyeval lazy_dots lazy_eval
+#' @importFrom statnet.common trim_env set.control.class check.control.class NVL paste.and .Deprecate_once
+#' @importFrom methods is
+#' @importFrom tibble as_tibble tibble
+#' @importFrom coda effectiveSize
+#' @importFrom rlang .data
+#'
+#' @useDynLib EpiModel, .registration = TRUE
+#'
+#' @keywords package
+#'
+"_PACKAGE"

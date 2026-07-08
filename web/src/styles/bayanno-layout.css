@@ -1,0 +1,575 @@
+/**
+ * Shell Bayanno HMS — estrutura idêntica ao index.php do SGHC.
+ * Sidebar teal responsiva (--bayanno-sidebar-width), topbar navbar-inverse.
+ */
+
+[data-brand='bayanno'],
+[data-brand='feegow'] {
+  --bayanno-sidebar-width: clamp(280px, 26vw, 320px);
+  --bayanno-sidebar-text: #f0fafc;
+  --bayanno-sidebar-text-muted: #d4eef5;
+  --bayanno-sidebar-text-dim: #b8e0eb;
+  --bayanno-sidebar-border: rgb(8, 103, 116);
+}
+
+@media (max-width: 1400px) {
+  [data-brand='bayanno'],
+[data-brand='feegow'] {
+    --bayanno-sidebar-width: clamp(268px, 28vw, 300px);
+  }
+}
+
+@media (max-width: 1100px) {
+  [data-brand='bayanno'],
+[data-brand='feegow'] {
+    --bayanno-sidebar-width: clamp(252px, 34vw, 280px);
+  }
+}
+
+html[data-brand='bayanno'],
+html[data-brand='feegow'],
+html[data-brand='bayanno'] body,
+html[data-brand='feegow'] body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  font-size: 13px;
+  background: #f0f0f0;
+  color: #333;
+}
+
+[data-brand='bayanno'] .layout,
+[data-brand='feegow'] .layout {
+  display: block;
+  min-height: 100vh;
+  background: #f0f0f0;
+}
+
+[data-brand='bayanno'] .sidebar-background,
+[data-brand='feegow'] .sidebar-background {
+  position: fixed;
+  z-index: 1;
+  width: var(--bayanno-sidebar-width, 260px);
+  background: #eaeaea;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-right: 1px solid #ccc;
+  pointer-events: none;
+}
+
+[data-brand='bayanno'] .sidebar-background .primary-sidebar-background,
+[data-brand='feegow'] .sidebar-background .primary-sidebar-background {
+  width: var(--bayanno-sidebar-width, 260px);
+  background: rgb(0, 85, 102);
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+[data-brand='bayanno'] .sidebar,
+[data-brand='feegow'] .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: var(--bayanno-sidebar-width, 260px) !important;
+  min-height: 100vh;
+  max-height: none;
+  background: transparent !important;
+  border-right: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+}
+
+[data-brand='bayanno'] .sidebar-header,
+[data-brand='feegow'] .sidebar-header {
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  padding: 14px 12px 10px !important;
+  text-align: center;
+}
+
+[data-brand='bayanno'] .sidebar-logo,
+[data-brand='feegow'] .sidebar-logo {
+  filter: brightness(1.15);
+  max-width: calc(100% - 8px);
+  padding: 6px 8px;
+  margin-inline: auto;
+  box-sizing: border-box;
+}
+
+[data-brand='bayanno'] .sidebar-collapse-btn,
+[data-brand='feegow'] .sidebar-collapse-btn,
+[data-brand='bayanno'] .sidebar-close-btn,
+[data-brand='feegow'] .sidebar-close-btn {
+  display: none !important;
+}
+
+[data-brand='bayanno'] .sidebar-nav,
+[data-brand='feegow'] .sidebar-nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 !important;
+  margin: 0 0 12px !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[data-brand='bayanno'] .sidebar-mega-nav,
+[data-brand='feegow'] .sidebar-mega-nav {
+  gap: 0 !important;
+}
+
+/* Mega-grupos: lista plana Bayanno (sem cards claros do index.css) */
+[data-brand='bayanno'] .sidebar-nav .nav-mega-block,
+[data-brand='feegow'] .sidebar-nav .nav-mega-block {
+  border-radius: 0 !important;
+  overflow: visible;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+[data-brand='bayanno'] .sidebar-nav .nav-mega-block.nav-mega-collapsed-default .nav-mega-header,
+[data-brand='feegow'] .sidebar-nav .nav-mega-block.nav-mega-collapsed-default .nav-mega-header {
+  opacity: 1 !important;
+}
+
+[data-brand='bayanno'] .sidebar-nav .nav-mega-header,
+[data-brand='feegow'] .sidebar-nav .nav-mega-header {
+  width: 100%;
+  gap: 10px;
+  padding: 11px 14px !important;
+  border: none !important;
+  border-top: 1px solid var(--bayanno-sidebar-border) !important;
+  border-radius: 0 !important;
+  background: rgba(0, 0, 0, 0.08) !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+[data-brand='bayanno'] .sidebar-nav .nav-mega-header:hover,
+[data-brand='feegow'] .sidebar-nav .nav-mega-header:hover {
+  filter: none !important;
+  background: rgba(0, 0, 0, 0.14) !important;
+}
+
+[data-brand='bayanno'] .sidebar-nav .nav-mega-header.has-active,
+[data-brand='feegow'] .sidebar-nav .nav-mega-header.has-active,
+[data-brand='bayanno'] .sidebar-nav .nav-mega-header.expanded,
+[data-brand='feegow'] .sidebar-nav .nav-mega-header.expanded {
+  background: rgb(11, 107, 121) !important;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 0 4px 2px inset;
+}
+
+[data-brand='bayanno'] .sidebar-nav .nav-mega-stripe,
+[data-brand='feegow'] .sidebar-nav .nav-mega-stripe {
+  background: #7dd8e8 !important;
+}
+
+[data-brand='bayanno'] .sidebar-nav .nav-mega-icon,
+[data-brand='feegow'] .sidebar-nav .nav-mega-icon {
+  background: rgba(255, 255, 255, 0.14) !important;
+  color: #fff !important;
+  width: 30px;
+  height: 30px;
+}
+
+[data-brand='bayanno'] .sidebar-nav .nav-mega-icon .nav-icon,
+[data-brand='feegow'] .sidebar-nav .nav-mega-icon .nav-icon {
+  width: 17px;
+  height: 17px;
+}
+
+[data-brand='bayanno'] .sidebar-nav .nav-mega-title,
+[data-brand='feegow'] .sidebar-nav .nav-mega-title {
+  font-size: 0.82rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #ffffff !important;
+  line-height: 1.3;
+}
+
+[data-brand='bayanno'] .sidebar-nav .nav-mega-subtitle,
+[data-brand='feegow'] .sidebar-nav .nav-mega-subtitle {
+  font-size: 0.78rem !important;
+  color: var(--bayanno-sidebar-text-muted) !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  line-height: 1.35;
+}
+
+[data-brand='bayanno'] .sidebar-nav .nav-mega-chevron,
+[data-brand='feegow'] .sidebar-nav .nav-mega-chevron {
+  border-color: #fff !important;
+  opacity: 0.9;
+  width: 8px;
+  height: 8px;
+}
+
+[data-brand='bayanno'] .sidebar-nav .nav-mega-sections,
+[data-brand='feegow'] .sidebar-nav .nav-mega-sections {
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+[data-brand='bayanno'] .sidebar-nav .nav-mega-block.is-expanded,
+[data-brand='feegow'] .sidebar-nav .nav-mega-block.is-expanded {
+  background: rgb(11, 107, 121) !important;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 0 4px 2px inset;
+}
+
+[data-brand='bayanno'] .sidebar-nav .nav-mega-header,
+[data-brand='feegow'] .sidebar-nav .nav-mega-header,
+[data-brand='bayanno'] .sidebar-nav .nav-menu-parent,
+[data-brand='feegow'] .sidebar-nav .nav-menu-parent,
+[data-brand='bayanno'] .sidebar-nav .nav-subgroup-parent,
+[data-brand='feegow'] .sidebar-nav .nav-subgroup-parent {
+  color: var(--bayanno-sidebar-text) !important;
+  text-shadow: none !important;
+  font-size: 14px !important;
+  font-weight: 600;
+  line-height: 1.4;
+  padding: 10px 14px 10px 16px !important;
+  border-top: 1px solid var(--bayanno-sidebar-border) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+[data-brand='bayanno'] .sidebar-nav .nav-menu-parent:hover,
+[data-brand='feegow'] .sidebar-nav .nav-menu-parent:hover,
+[data-brand='bayanno'] .sidebar-nav .nav-subgroup-parent:hover,
+[data-brand='feegow'] .sidebar-nav .nav-subgroup-parent:hover,
+[data-brand='bayanno'] .sidebar-nav .nav-mega-block .nav-menu-parent:hover,
+[data-brand='feegow'] .sidebar-nav .nav-mega-block .nav-menu-parent:hover,
+[data-brand='bayanno'] .sidebar-nav .nav-mega-block .nav-subgroup-parent:hover,
+[data-brand='feegow'] .sidebar-nav .nav-mega-block .nav-subgroup-parent:hover {
+  color: #ffffff !important;
+  background: #146576 !important;
+}
+
+[data-brand='bayanno'] .sidebar-nav .nav-mega-block .nav-menu-group.has-active > .nav-menu-parent,
+[data-brand='feegow'] .sidebar-nav .nav-mega-block .nav-menu-group.has-active > .nav-menu-parent,
+[data-brand='bayanno'] .sidebar-nav .nav-mega-block .nav-subgroup.has-active > .nav-subgroup-parent,
+[data-brand='feegow'] .sidebar-nav .nav-mega-block .nav-subgroup.has-active > .nav-subgroup-parent,
+[data-brand='bayanno'] .sidebar-nav .nav-mega-block .nav-menu-group.expanded > .nav-menu-parent,
+[data-brand='feegow'] .sidebar-nav .nav-mega-block .nav-menu-group.expanded > .nav-menu-parent,
+[data-brand='bayanno'] .sidebar-nav .nav-mega-block .nav-subgroup.expanded > .nav-subgroup-parent,
+[data-brand='feegow'] .sidebar-nav .nav-mega-block .nav-subgroup.expanded > .nav-subgroup-parent {
+  color: #ffffff !important;
+  background: rgba(6, 109, 134, 0.55) !important;
+}
+
+[data-brand='bayanno'] .sidebar-nav .nav-section-in-mega > .nav-menu-parent,
+[data-brand='feegow'] .sidebar-nav .nav-section-in-mega > .nav-menu-parent {
+  font-size: 13px !important;
+  color: var(--bayanno-sidebar-text-muted) !important;
+  font-weight: 600;
+}
+
+[data-brand='bayanno'] .sidebar-nav .nav-journey-step > .nav-menu-parent,
+[data-brand='feegow'] .sidebar-nav .nav-journey-step > .nav-menu-parent {
+  border-left: 3px solid rgba(125, 216, 232, 0.65) !important;
+  padding-left: 12px !important;
+}
+
+[data-brand='bayanno'] .sidebar-nav .nav-mega-block .nav-subgroup-menu,
+[data-brand='feegow'] .sidebar-nav .nav-mega-block .nav-subgroup-menu {
+  border-left: 2px solid rgba(125, 216, 232, 0.35) !important;
+  margin-left: 14px;
+  padding-left: 4px;
+}
+
+[data-brand='bayanno'] .sidebar-nav .nav-item-text,
+[data-brand='feegow'] .sidebar-nav .nav-item-text {
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: 1.4;
+}
+
+[data-brand='bayanno'] .sidebar-nav .nav-sublink,
+[data-brand='feegow'] .sidebar-nav .nav-sublink,
+[data-brand='bayanno'] .sidebar-nav .nav-sublink-standalone,
+[data-brand='feegow'] .sidebar-nav .nav-sublink-standalone,
+[data-brand='bayanno'] .sidebar-nav .nav-mega-block .nav-sublink,
+[data-brand='feegow'] .sidebar-nav .nav-mega-block .nav-sublink {
+  position: relative;
+  display: block;
+  color: var(--bayanno-sidebar-text) !important;
+  text-shadow: none !important;
+  padding: 10px 14px 10px 18px !important;
+  white-space: normal;
+  line-height: 1.45;
+  word-break: break-word;
+  border: none !important;
+  border-left: none !important;
+  border-top: 1px solid var(--bayanno-sidebar-border) !important;
+  border-radius: 0 !important;
+  font-size: 14px !important;
+  font-weight: 500;
+  text-decoration: none;
+  background: transparent !important;
+}
+
+[data-brand='bayanno'] .sidebar-nav .nav-sublink:hover,
+[data-brand='feegow'] .sidebar-nav .nav-sublink:hover,
+[data-brand='bayanno'] .sidebar-nav .nav-sublink-standalone:hover,
+[data-brand='feegow'] .sidebar-nav .nav-sublink-standalone:hover,
+[data-brand='bayanno'] .sidebar-nav .nav-mega-block .nav-sublink:hover,
+[data-brand='feegow'] .sidebar-nav .nav-mega-block .nav-sublink:hover {
+  color: #ffffff !important;
+  background: #146576 !important;
+}
+
+[data-brand='bayanno'] .sidebar-nav .nav-sublink.active,
+[data-brand='feegow'] .sidebar-nav .nav-sublink.active,
+[data-brand='bayanno'] .sidebar-nav .nav-sublink-standalone.active,
+[data-brand='feegow'] .sidebar-nav .nav-sublink-standalone.active,
+[data-brand='bayanno'] .sidebar-nav .nav-mega-block .nav-sublink.active,
+[data-brand='feegow'] .sidebar-nav .nav-mega-block .nav-sublink.active {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  background: rgb(6, 109, 134) !important;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 0 4px 2px inset;
+}
+
+[data-brand='bayanno'] .sidebar-nav .nav-sublink.active::after,
+[data-brand='feegow'] .sidebar-nav .nav-sublink.active::after,
+[data-brand='bayanno'] .sidebar-nav .nav-sublink-standalone.active::after,
+[data-brand='feegow'] .sidebar-nav .nav-sublink-standalone.active::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: #7dd8e8;
+  box-shadow: 0 0 2px 1px #b8ecf5 inset;
+}
+
+[data-brand='bayanno'] .sidebar-nav .nav-sublink.active::before,
+[data-brand='feegow'] .sidebar-nav .nav-sublink.active::before,
+[data-brand='bayanno'] .sidebar-nav .nav-mega-block .nav-sublink::before,
+[data-brand='feegow'] .sidebar-nav .nav-mega-block .nav-sublink::before {
+  display: none !important;
+}
+
+[data-brand='bayanno'] .sidebar-nav .nav-sublink-icon,
+[data-brand='feegow'] .sidebar-nav .nav-sublink-icon,
+[data-brand='bayanno'] .sidebar-nav .nav-link-icon,
+[data-brand='feegow'] .sidebar-nav .nav-link-icon,
+[data-brand='bayanno'] .sidebar-nav .nav-mega-block .nav-sublink-icon,
+[data-brand='feegow'] .sidebar-nav .nav-mega-block .nav-sublink-icon,
+[data-brand='bayanno'] .sidebar-nav .nav-mega-block .nav-menu-parent .nav-link-icon,
+[data-brand='feegow'] .sidebar-nav .nav-mega-block .nav-menu-parent .nav-link-icon,
+[data-brand='bayanno'] .sidebar-nav .nav-mega-block .nav-subgroup-parent .nav-link-icon,
+[data-brand='feegow'] .sidebar-nav .nav-mega-block .nav-subgroup-parent .nav-link-icon {
+  color: inherit !important;
+  opacity: 1 !important;
+}
+
+[data-brand='bayanno'] .sidebar-nav .nav-sublink-icon .nav-icon,
+[data-brand='feegow'] .sidebar-nav .nav-sublink-icon .nav-icon,
+[data-brand='bayanno'] .sidebar-nav .nav-link-icon .nav-icon,
+[data-brand='feegow'] .sidebar-nav .nav-link-icon .nav-icon {
+  width: 17px;
+  height: 17px;
+}
+
+[data-brand='bayanno'] .sidebar-nav .nav-shortcuts-eyebrow,
+[data-brand='feegow'] .sidebar-nav .nav-shortcuts-eyebrow,
+[data-brand='bayanno'] .sidebar-nav .nav-profile-shortcuts,
+[data-brand='feegow'] .sidebar-nav .nav-profile-shortcuts {
+  display: none;
+}
+
+[data-brand='bayanno'] .sidebar-nav::-webkit-scrollbar-thumb,
+[data-brand='feegow'] .sidebar-nav::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+[data-brand='bayanno'] .sidebar-user,
+[data-brand='feegow'] .sidebar-user {
+  border-top: 1px solid rgb(8, 103, 116) !important;
+  padding: 10px !important;
+  background: rgba(0, 0, 0, 0.12);
+}
+
+[data-brand='bayanno'] .sidebar-user .user-card,
+[data-brand='feegow'] .sidebar-user .user-card {
+  background: transparent !important;
+  border: none !important;
+}
+
+[data-brand='bayanno'] .sidebar-user .user-name,
+[data-brand='feegow'] .sidebar-user .user-name {
+  color: #fff !important;
+  font-size: 14px !important;
+  font-weight: 600;
+}
+
+[data-brand='bayanno'] .sidebar-user .user-role,
+[data-brand='feegow'] .sidebar-user .user-role {
+  color: var(--bayanno-sidebar-text-muted) !important;
+  font-size: 12px !important;
+}
+
+[data-brand='bayanno'] .sidebar-logout,
+[data-brand='feegow'] .sidebar-logout {
+  color: #ffffff !important;
+  font-size: 13px !important;
+  font-weight: 600;
+}
+
+[data-brand='bayanno'] .app-shell,
+[data-brand='feegow'] .app-shell {
+  margin-left: calc(var(--bayanno-sidebar-width, 260px) + 1px);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f0f0f0;
+}
+
+[data-brand='bayanno'] .topbar,
+[data-brand='feegow'] .topbar {
+  display: none !important;
+}
+
+[data-brand='bayanno'] .content,
+[data-brand='feegow'] .content {
+  flex: 1;
+  padding: 0 !important;
+  background: #f0f0f0;
+  max-width: none !important;
+}
+
+[data-brand='bayanno'] .app-footer,
+[data-brand='feegow'] .app-footer {
+  display: none;
+}
+
+[data-brand='bayanno'] .mobile-bottom-nav,
+[data-brand='feegow'] .mobile-bottom-nav {
+  display: none !important;
+}
+
+[data-brand='bayanno'] .card,
+[data-brand='feegow'] .card,
+[data-brand='bayanno'] .card-panel,
+[data-brand='feegow'] .card-panel {
+  border: 1px solid #cdcdcd;
+  border-radius: 0;
+  box-shadow: 0 2px 2px -2px #ccc;
+  background: #fbfbfb;
+}
+
+[data-brand='bayanno'] .card-panel-header,
+[data-brand='feegow'] .card-panel-header {
+  background: linear-gradient(top, rgb(233, 233, 233), rgb(236, 236, 236));
+  border-bottom: 1px solid #cdcdcd;
+  color: #636363;
+  font-weight: 600;
+  text-shadow: 0 1px white;
+}
+
+[data-brand='bayanno'] .btn-primary,
+[data-brand='feegow'] .btn-primary,
+[data-brand='bayanno'] .btn.btn-primary,
+[data-brand='feegow'] .btn.btn-primary {
+  background: #066d86 !important;
+  border-color: #005566 !important;
+  border-radius: 0;
+}
+
+[data-brand='bayanno'] .btn,
+[data-brand='feegow'] .btn {
+  border-radius: 0;
+}
+
+[data-brand='bayanno'] .filter-bar,
+[data-brand='feegow'] .filter-bar,
+[data-brand='bayanno'] .dashboard-meta,
+[data-brand='feegow'] .dashboard-meta,
+[data-brand='bayanno'] .dashboard-section-label,
+[data-brand='feegow'] .dashboard-section-label {
+  font-family: inherit;
+}
+
+[data-brand='bayanno'] .bayanno-logout-link,
+[data-brand='feegow'] .bayanno-logout-link {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 3px 20px;
+  color: #333;
+  cursor: pointer;
+  font: inherit;
+}
+
+[data-brand='bayanno'] .navbar.navbar-top,
+[data-brand='feegow'] .navbar.navbar-top {
+  position: relative;
+  z-index: 90;
+  margin-bottom: 0;
+}
+
+[data-brand='bayanno'] .navbar-inverse .navbar-inner,
+[data-brand='feegow'] .navbar-inverse .navbar-inner {
+  background: #2c3e50;
+  background-image: linear-gradient(to bottom, #34495e, #2c3e50);
+  border-color: #1a252f;
+  border-radius: 0;
+  min-height: 40px;
+}
+
+[data-brand='bayanno'] .navbar-inverse .brand,
+[data-brand='feegow'] .navbar-inverse .brand {
+  color: #ecf0f1 !important;
+  text-shadow: none;
+  font-weight: 700;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+
+[data-brand='bayanno'] .navbar-inverse .nav > li > a,
+[data-brand='feegow'] .navbar-inverse .nav > li > a {
+  color: #ecf0f1;
+  text-shadow: none;
+}
+
+@media (max-width: 900px) {
+  [data-brand='bayanno'] .sidebar-background,
+[data-brand='feegow'] .sidebar-background,
+  [data-brand='bayanno'] .sidebar,
+[data-brand='feegow'] .sidebar {
+    transform: translateX(-105%);
+    transition: transform 0.28s ease;
+  }
+
+  [data-brand='bayanno'] .layout.sidebar-open .sidebar-background,
+[data-brand='feegow'] .layout.sidebar-open .sidebar-background,
+  [data-brand='bayanno'] .layout.sidebar-open .sidebar,
+[data-brand='feegow'] .layout.sidebar-open .sidebar {
+    transform: translateX(0);
+  }
+
+  [data-brand='bayanno'] .app-shell,
+[data-brand='feegow'] .app-shell {
+    margin-left: 0;
+  }
+
+  [data-brand='bayanno'] .mobile-bottom-nav,
+[data-brand='feegow'] .mobile-bottom-nav {
+    display: flex !important;
+    background: #2c3e50;
+  }
+}

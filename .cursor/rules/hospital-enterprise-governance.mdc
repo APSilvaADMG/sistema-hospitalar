@@ -1,0 +1,31 @@
+---
+description: Governança de evolução do sistema hospitalar IASGH/GTH
+alwaysApply: true
+---
+
+# Governança Enterprise — Sistema Hospitalar
+
+## Evolução incremental
+- Evoluir o sistema existente; não reescrever módulos inteiros sem necessidade comprovada.
+- Preferir extensões pontuais (campos, endpoints, telas) alinhadas ao domínio já modelado.
+- Não migrar stack para NestJS ou outro framework; backend permanece **.NET** e frontend **React + TypeScript**.
+
+## Análise de impacto antes de mudar
+- Verificar entidades EF, DTOs, controllers, `client.ts`, seeds e telas Feegow afetadas.
+- Manter compatibilidade com dados demo e migrações existentes.
+- Seeds devem ser **idempotentes** (marcadores, contagens mínimas, `EnsureAsync`).
+
+## Stack e convenções
+- API: `SistemaHospitalar.Api` + `Infrastructure` + `Application` + `Domain`.
+- UI operacional Feegow: componentes em `web/src/components/feegow/`, CSS dedicado por módulo.
+- Datas operacionais e KPIs diários: fuso **America/Sao_Paulo** via `HospitalTime` (backend) e helpers BR no frontend.
+
+## UX em português
+- Labels, mensagens de erro/sucesso, KPIs e badges em **português brasileiro**.
+- Formatação monetária `pt-BR` / BRL; datas `dd/MM/yyyy`.
+
+## Qualidade mínima
+- Após alterações de modelo: migration EF + build `dotnet` e `npm run build`.
+- Não commitar segredos (`.env`, credenciais).
+- Escopo mínimo: resolver o pedido sem refatorações paralelas não solicitadas.
+- **Status de agendamento:** a API retorna enums operacionais em **PT-BR** (`Agendado`, `Confirmado`, …) via `PortugueseEnumJsonConverterFactory`. No frontend, use `normalizeAppointmentStatus` / `appointmentStatusLabel` para lógica e exibição — não compare com inglês nem indexe `appointmentStatusLabels` com string crua.

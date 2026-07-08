@@ -1,0 +1,28 @@
+{% extends "base/index.html" %}
+{% load static bootstrap %}
+{% block conteudo %} 
+
+    <div class="text-center mb-4">
+        <h2 class="fw-bold"><i class="bi bi-truck text-primary"></i> Cadastrar Fornecedor</h2>
+        <p class="lead">Adicione novos fornecedores ao sistema para facilitar o controle de compras e o relacionamento com parceiros.</p>
+    </div>
+
+    <div class="container mt-5">
+        <form method="post">
+            {% csrf_token %}
+            {{form.media}}
+            {{ form|bootstrap }}
+            <div class="d-grid gap-2 col-6 mx-auto mt-3 mb-2">
+                <button type="submit" class="btn btn-success rounded-pill">Cadastrar</button>
+                <button type="button" onclick="history.back()" class="btn btn-danger rounded-pill">Cancelar</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        $('document').ready(function() {
+            $('#id_cep').mask('00000-000');
+            $('#id_telefone').mask('(00) 0000-0000'); 
+        });
+    </script>
+
+{% endblock conteudo %}

@@ -1,0 +1,25 @@
+name: Ping for HMS
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send GET request to the server
+        run: |
+          echo "Pinging the server..."
+          curl -f --max-time 60 https://sistema-hospitalar.onrender.com || exit 1
+
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run CI
+        run: |
+          echo "Running CI..."
+          npm run build

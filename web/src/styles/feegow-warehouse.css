@@ -1,0 +1,354 @@
+/**
+ * Almoxarifado — dashboard, entradas e saídas (Feegow)
+ */
+
+.feegow-warehouse-page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 4px 2px 24px;
+}
+
+.feegow-warehouse-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.feegow-warehouse-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.feegow-warehouse-subtitle {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: #7a8a93;
+}
+
+.feegow-warehouse-head-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.feegow-warehouse-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 4px;
+  border: 1px solid #c5d0d6;
+  background: #fff;
+  color: #3d4f58;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.feegow-warehouse-btn:hover {
+  border-color: #00a0e1;
+  color: #057a8c;
+}
+
+.feegow-warehouse-btn-primary {
+  background: #00a0e1;
+  border-color: #00a0e1;
+  color: #fff;
+}
+
+.feegow-warehouse-btn-primary:hover {
+  background: #008ec7;
+  color: #fff;
+}
+
+.feegow-warehouse-btn-ghost {
+  background: transparent;
+}
+
+.feegow-warehouse-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+.feegow-warehouse-kpi {
+  background: #fff;
+  border: 1px solid #dde4e8;
+  border-radius: 6px;
+  padding: 14px;
+}
+
+.feegow-warehouse-kpi-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.feegow-warehouse-kpi-label {
+  margin-top: 4px;
+  font-size: 11px;
+  color: #7a8a93;
+}
+
+.feegow-warehouse-kpi-footer {
+  margin-top: 8px;
+  font-size: 11px;
+}
+
+.feegow-warehouse-kpi-footer a {
+  color: #00a0e1;
+  text-decoration: none;
+}
+
+.feegow-warehouse-kpi-red .feegow-warehouse-kpi-value { color: #c0392b; }
+.feegow-warehouse-kpi-yellow .feegow-warehouse-kpi-value { color: #d68910; }
+.feegow-warehouse-kpi-green .feegow-warehouse-kpi-value { color: #1e8449; }
+.feegow-warehouse-kpi-teal .feegow-warehouse-kpi-value { color: #057a8c; }
+
+.feegow-warehouse-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.feegow-warehouse-card {
+  background: #fff;
+  border: 1px solid #dde4e8;
+  border-radius: 6px;
+  padding: 14px;
+}
+
+.feegow-warehouse-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.feegow-warehouse-card-head h2 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #3d4f58;
+}
+
+.feegow-warehouse-table-wrap {
+  overflow-x: auto;
+}
+
+.feegow-warehouse-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.feegow-warehouse-table th,
+.feegow-warehouse-table td {
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 1px solid #eef2f4;
+}
+
+.feegow-warehouse-table th {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #8a9aa3;
+}
+
+.feegow-warehouse-empty {
+  text-align: center;
+  color: #8a9aa3;
+  padding: 16px !important;
+}
+
+.feegow-warehouse-warn {
+  color: #c0392b;
+  font-weight: 600;
+}
+
+.feegow-warehouse-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.feegow-warehouse-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 11px;
+  color: #5a6a72;
+}
+
+.feegow-warehouse-field span {
+  font-weight: 600;
+}
+
+.feegow-warehouse-field input,
+.feegow-warehouse-field select {
+  padding: 8px 10px;
+  border: 1px solid #c5d0d6;
+  border-radius: 4px;
+  font-size: 12px;
+  font-family: inherit;
+}
+
+.feegow-warehouse-field-wide {
+  grid-column: 1 / -1;
+}
+
+.feegow-warehouse-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.feegow-warehouse-item-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) auto;
+  gap: 10px;
+  align-items: end;
+  padding: 10px;
+  background: #f8fafb;
+  border-radius: 4px;
+}
+
+.feegow-warehouse-remove-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 8px;
+}
+
+.feegow-warehouse-form-foot {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.feegow-warehouse-nf-totals {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #eef2f4;
+  font-size: 12px;
+  color: #5a6a72;
+}
+
+.feegow-warehouse-nf-totals > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.feegow-warehouse-nf-totals strong {
+  font-size: 14px;
+  color: #2c3e50;
+}
+
+.feegow-warehouse-nf-total-final strong {
+  color: #057a8c;
+  font-size: 16px;
+}
+
+.feegow-warehouse-line-total {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 11px;
+  color: #5a6a72;
+  justify-content: end;
+  padding-bottom: 8px;
+}
+
+.feegow-warehouse-line-total strong {
+  font-size: 13px;
+  color: #2c3e50;
+}
+
+.feegow-warehouse-last-receipt {
+  font-size: 12px;
+  color: #4a5a62;
+  line-height: 1.5;
+}
+
+.feegow-warehouse-last-receipt p {
+  margin: 0 0 6px;
+}
+
+.feegow-warehouse-nfe-key {
+  font-family: monospace;
+  font-size: 11px;
+  word-break: break-all;
+}
+
+.feegow-warehouse-panel {
+  padding: 24px;
+  color: #7a8a93;
+}
+
+.feegow-warehouse-deny-btn {
+  border-color: #e74c3c;
+  color: #c0392b;
+}
+
+.feegow-warehouse-deny-btn:hover {
+  background: #fdecea;
+}
+
+.feegow-warehouse-totals {
+  grid-column: 1 / -1;
+}
+
+.feegow-warehouse-totals-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.feegow-warehouse-totals-grid small {
+  display: block;
+  font-size: 10px;
+  color: #8a9aa3;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.feegow-warehouse-totals-grid strong {
+  font-size: 14px;
+  color: #2c3e50;
+}
+
+.feegow-warehouse-total-final strong {
+  color: #057a8c;
+  font-size: 16px;
+}
+
+.feegow-warehouse-receipt-summary {
+  font-size: 12px;
+  color: #4a5a62;
+  line-height: 1.5;
+}
+
+.feegow-warehouse-receipt-summary p {
+  margin: 0 0 6px;
+}
+
+.feegow-warehouse-receipt-key {
+  font-family: monospace;
+  font-size: 11px;
+  word-break: break-all;
+}

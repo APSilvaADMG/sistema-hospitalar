@@ -1,0 +1,647 @@
+#' @title Get an Edgelist From the Specified Network
+#'
+#' @description This function outputs an edgelist from the specified network,
+#'              selecting the method depending on the stored network type.
+#' @inheritParams recovery.net
+#' @param network Numerical index of the network from which the edgelist should
+#'                be extracted. (May be > 1 for models with multiple overlapping
+#'                networks.)
+#'
+#' @return
+#' An edgelist in matrix form with two columns. Each column contains the
+#' posit_ids (see `get_posit_ids`) of the nodes in each edge.
+#'
+#' @export
+get_edgelist <- function(dat, network) {
+
+  if (get_control(dat, "tergmLite")) {
+    if (!network %in% seq_len(dat$num.nw)) {
+      stop("There is no network '", network, "' to get an edgelist from")
+    }
+    el <- dat$run$el[[network]]
+  } else {
+    if (!network %in% seq_len(dat$num.nw)) {
+      stop("There is no network '", network, "' to get an edgelist from")
+    }
+    at <- get_current_timestep(dat)
+    net <- get_network(dat, network = network)
+    el <- networkDynamic::get.dyads.active(net, at = at)
+  }
+
+  return(el)
+}
+
+## Discordant Edgelist ---------------------------------------------------------
+
+#' @title Get Discordant Edgelist Based on Specified Status Variable
+#'
+#' @description This function returns a `data.frame` with a discordant
+#'              edgelist, defined as the set of edges for which the status attribute
+#'              of interest is discordant between the two partners.
+#'
+#' @inheritParams get_cumulative_edgelists_df
+#' @param status.attr The name of the status attribute of interest.
+#' @param head.status The value(s) of `status.attr` for which to look for the head of the edge.
+#'        Can be a single value or a vector.
+#' @param tail.status  The value(s) of `status.attr` for which to look for the tail of the edge.
+#'        Can be a single value or a vector.
+#'
+#' @details
+#' This is a generalized version of the `discord_edgelist` function.
+#' It creates an edgelist of current partnerships in which the status attribute
+#' of interest (as specified by the parameter `status.attr`) of one partner matches
+#' the value (or one of the values) of the `head.status` parameter while the
+#' corresponding status attribute of the other partner matches the value (or
+#' one of the values) of the `tail.status` parameter.
+#'
+#' @return
+#' A `data.frame` with the following columns:
+#'  * `head`: Positional ID of the head node.
+#'  * `tail`: Positional ID of the tail node.
+#'  * `head_status`: Status of the head node.
+#'  * `tail_status`: Status of the tail node.
+#'  * `network`: The numerical index of the network on which the partnership is located.
+#'
+#' @seealso [discord_edgelist()]
+#'
+#' @export
+#' @keywords netMod internal
+#'
+get_discordant_edgelist <- function(dat, status.attr, head.status,
+                                    tail.status, networks = NULL) {
+  if (get_current_timestep(dat) == get_control(dat, "start") + 1 &&
+        length(intersect(head.status, tail.status)) > 0) {
+    warning("The head.status and tail.status arguments should be discordant.")
+  }
+
+  status <- get_attr(dat, status.attr)
+
+  d_el <- get_edgelists_df(dat, networks)
+
+  d_el_ordered <- dplyr::filter(
+    d_el,
+    status[d_el$head] %in% head.status &
+      status[d_el$tail] %in% tail.status
+  )
+
+  d_el_rev <- dplyr::filter(
+    d_el,
+    status[d_el$tail] %in% head.status &
+      status[d_el$head] %in% tail.status
+  ) |>
+    dplyr::select(head = "tail", tail = "head", "network")
+
+  d_el <- dplyr::bind_rows(d_el_ordered, d_el_rev) |>
+    dplyr::mutate(
+      head_status = status[.data$head],
+      tail_status = status[.data$tail]
+    ) |>
+    dplyr::select(
+      "head", "tail", "head_status", "tail_status", "network"
+    )
+
+  return(d_el)
+
+}
+
+#' @title Get the Edgelist(s) from the Specified Network(s)
+#'
+#' @inheritParams get_cumulative_edgelists_df
+#'
+#' @return
+#' A `data.frame` with the following columns:
+#'  * `head`: Positional ID of the head node.
+#'  * `tail`: Positional ID of the tail node.
+#'  * `network`: The numerical index of the network on which the edge is located.
+#'
+#' @export
+get_edgelists_df <- function(dat, networks = NULL) {
+
+  networks <- if (is.null(networks)) seq_len(dat$num.nw) else networks
+  el_list <- lapply(networks, get_edgelist, dat = dat)
+  el_tibble <- lapply(el_list, as_tibble_edgelist)
+  d_el <- dplyr::bind_rows(el_tibble)
+
+  el_sizes <- vapply(el_list, nrow, numeric(1))
+  d_el[["network"]] <- rep(networks, el_sizes)
+
+  return(d_el)
+}
+
+#' @title Convert an Edgelist into a Tibble
+#'
+#' @param el An edgelist in matrix or data frame form.
+#'
+#' @return
+#' The edgelist in tibble form with two columns named `head` and `tail`.
+#'
+#' @export
+as_tibble_edgelist <- function(el) {
+
+  if (nrow(el) > 0) {
+    t_el <- tibble::tibble(head = el[, 1], tail = el[, 2])
+  } else {
+    t_el <- tibble::tibble(head = integer(0), tail = integer(0))
+  }
+
+  return(t_el)
+}
+
+## Cumulative Edgelists --------------------------------------------------------
+
+#' @title Get a Cumulative Edgelist From a Specified Network
+#'
+#' @description
+#' Returns the cumulative edgelist for a given network: a record of every edge
+#' EpiModel has tracked, with the time steps at which each edge formed and
+#' (if no longer active) dissolved. This is the canonical mechanism for
+#' querying partnership histories during or after a simulation, and is
+#' particularly important under `tergmLite = TRUE`, where the full
+#' `networkDynamic` history is not retained.
+#'
+#' @inheritParams recovery.net
+#' @param network Numerical index of the network from which the cumulative
+#'                edgelist should be extracted. (May be > 1 for models with
+#'                multiple overlapping networks.)
+#'
+#' @return
+#' A `tibble` with four columns:
+#'
+#'   * `head`: the unique ID (see [get_unique_ids()]) of the head node.
+#'   * `tail`: the unique ID of the tail node.
+#'   * `start`: the time step at which the edge formed.
+#'   * `stop`: the time step at which the edge dissolved, or `NA` if the edge
+#'         is still active. Edges are active over `[start, stop]` inclusive.
+#'
+#' @details
+#' Cumulative-edgelist tracking is opt-in. It must be enabled via
+#' `control.net(cumulative.edgelist = TRUE)` (see [control.net()]); calling
+#' this function on a simulation that did not enable tracking raises an error.
+#'
+#' Inside a custom module (where `dat` is the live `netsim_dat` object), call
+#' this function directly. After a `netsim()` run, the saved edgelists are
+#' attached to the returned object as `sim$cumulative.edgelist[[s]]` (one
+#' element per simulation, populated when `save.cumulative.edgelist = TRUE`);
+#' read those directly rather than calling this function on the processed
+#' output.
+#'
+#' For the *current* (active-only, no history) edgelist, see [get_edgelist()]
+#' and [get_edgelists_df()].
+#'
+#' @family cumulative_edgelist
+#' @seealso [control.net()] for the controlling flags (`cumulative.edgelist`,
+#'   `truncate.el.cuml`, `save.cumulative.edgelist`).
+#'   `vignette("network-objects", package = "EpiModel")` walks through the
+#'   full lifecycle.
+#'
+#' @examples
+#' \dontrun{
+#' # Inside a custom module (dat is the live netsim_dat object):
+#' el <- get_cumulative_edgelist(dat, network = 1)
+#'
+#' # Post-simulation on a processed netsim object, read the saved slot:
+#' sim$cumulative.edgelist[[1]]
+#' }
+#'
+#' @export
+get_cumulative_edgelist <- function(dat, network) {
+  if (!network %in% seq_len(dat$num.nw)) {
+    stop("There is no network '", network,
+         "' from which to get the cumulative edgelist.")
+  }
+
+  if (!get_control(dat, "cumulative.edgelist")) {
+    stop("Failed to get the cumulative edgelist. It is likely not stored because the
+         `cumulative.edgelist` control setting is set to `FALSE`.")
+  }
+
+  el_cuml <- dplyr::bind_rows(
+    get_raw_elcuml(dat, network, active = FALSE),
+    get_raw_elcuml(dat, network, active = TRUE)
+  )
+
+  return(el_cuml)
+}
+
+#' @title Update a Cumulative Edgelist of the Specified Network
+#'
+#' @description
+#' Records the current network state into the cumulative edgelist, stamping
+#' newly observed edges with their `start` step and edges that have just
+#' dissolved with their `stop` step. Returns `dat` unchanged when
+#' cumulative-edgelist tracking is disabled.
+#'
+#' @inheritParams recovery.net
+#' @param network Numerical index of the network for which the cumulative
+#'                edgelist will be updated. (May be > 1 for models with
+#'                multiple overlapping networks.)
+#' @param truncate After how many time steps a partnership that is no longer
+#'                 active should be removed from the output. See the
+#'                 Truncation section.
+#'
+#' @details
+#' Calling this function is a no-op unless `control.net(cumulative.edgelist
+#' = TRUE)`. With tracking enabled, the built-in network-resimulation module
+#' [resim_nets()] calls this once per network at every time step, using
+#' `truncate = control$truncate.el.cuml`. Custom modules that mutate the
+#' network outside the TERGM machinery (e.g., forming or dissolving edges
+#' directly) should call this manually after the change so the cumulative
+#' record stays consistent.
+#'
+#' @section Truncation:
+#' To avoid storing a cumulative edgelist too long, the `truncate`
+#' parameter defines a number of steps after which an edge that is no longer
+#' active is dropped from the stored history.
+#' When `truncate = Inf`, no edges are ever removed. When
+#' `truncate = 0` (the default), only currently active edges are kept; this
+#' is useful for tracking the `start` step of each active edge while keeping
+#' memory low.
+#'
+#' @inherit recovery.net return
+#'
+#' @family cumulative_edgelist
+#' @seealso [control.net()] (`cumulative.edgelist`, `truncate.el.cuml`),
+#'   [get_cumulative_edgelist()] to read the result.
+#'
+#' @examples
+#' \dontrun{
+#' # Inside a custom module, after editing the network outside the TERGM:
+#' for (n in seq_len(dat$num.nw)) {
+#'   dat <- update_cumulative_edgelist(dat, n,
+#'     truncate = get_control(dat, "truncate.el.cuml"))
+#' }
+#' }
+#'
+#' @export
+update_cumulative_edgelist <- function(dat, network, truncate = 0) {
+  if (!get_control(dat, "cumulative.edgelist")) {
+    return(dat)
+  }
+
+  el <- get_edgelist(dat, network)
+  el_cuml_cur <- get_raw_elcuml(dat, network, active = TRUE)
+  el_cuml_hist <- get_raw_elcuml(dat, network, active = FALSE)
+
+  at <- get_current_timestep(dat)
+
+  # truncate el_cuml_hist
+  if (truncate != Inf && truncate != 0) {
+    rel.age <- at - el_cuml_hist$stop
+    el_cuml_hist <- el_cuml_hist[rel.age <= truncate, ]
+  }
+
+  el <- tibble::tibble(
+    head = get_unique_ids(dat, el[, 2]),
+    tail = get_unique_ids(dat, el[, 1]),
+    current = TRUE
+  )
+
+  el_cuml_cur <- dplyr::full_join(el_cuml_cur, el, by = c("head", "tail"))
+
+  # new edges
+  new_edges_ids <- which(is.na(el_cuml_cur$start))
+  if (length(new_edges_ids) > 0) {
+    el_cuml_cur[new_edges_ids, ]$start <- at
+  }
+
+  # terminated edges
+  terminated_edges_ids <- which(is.na(el_cuml_cur$current))
+  el_cuml_cur$current <- NULL
+
+  if (length(terminated_edges_ids) > 0) {
+    el_cuml_term <- el_cuml_cur[terminated_edges_ids, ]
+
+    # with truncate == 0, don't save any historic edges
+    if (truncate != 0) {
+      el_cuml_term$stop <- at - 1
+      el_cuml_hist <- dplyr::bind_rows(el_cuml_hist, el_cuml_term)
+    }
+
+    el_cuml_cur <- el_cuml_cur[-terminated_edges_ids, ]
+  }
+
+  dat <- set_raw_elcuml(dat, network, el_cuml_cur, active = TRUE)
+  dat <- set_raw_elcuml(dat, network, el_cuml_hist, active = FALSE)
+
+  return(dat)
+}
+
+# Seed the cumulative edgelist once at initialization, at the end of
+# sim_nets_t1(). Without it, the first call to update_cumulative_edgelist()
+# happens at at=2 from resim_nets(), so persistent edges receive start=2 and
+# edges that dissolved during the initial ERGM -> TERGM transition are lost
+# entirely. See issue #1016.
+#
+# The seed records two pieces of state, on the same clock as the underlying
+# networkDynamic object (where time 0 is the cross-sectional ergm sample and
+# time 1 is the state after the first TERGM step, which is what EpiModel
+# observes as at = 1):
+#
+#   * el_cuml_cur (active edges):
+#       - persistent initial edges (in t=0 and t=1) get start=0, stop=NA
+#       - edges formed during the first TERGM step (in t=1, not t=0) get
+#         start=1, stop=NA
+#   * el_cuml_hist (terminated edges, only when truncate.el.cuml != 0):
+#       - edges active in the cross-section but dissolved by t=1 get
+#         start=0, stop=0 (mirrors networkDynamic spell [0, 1))
+#
+# In tergmLite mode the cross-section edgelist is no longer recoverable from
+# the post-simulation state (networkLite discards history), so sim_nets_t1
+# stashes it on dat$run$el_t0_seed before simulate_dat() runs and we consume
+# it here. In non-tergmLite mode the full networkDynamic history is intact
+# and we query it directly via get.dyads.active().
+seed_cumulative_edgelist_t1 <- function(dat) {
+  if (!get_control(dat, "cumulative.edgelist")) {
+    dat$run$el_t0_seed <- NULL
+    return(dat)
+  }
+
+  truncate <- get_control(dat, "truncate.el.cuml")
+  tergmLite <- get_control(dat, "tergmLite")
+
+  for (network in seq_len(dat$num.nw)) {
+    if (tergmLite) {
+      el_t0 <- dat$run$el_t0_seed[[network]]
+      el_t1 <- dat$run$el[[network]]
+    } else {
+      nw <- get_network(dat, network = network)
+      el_t0 <- networkDynamic::get.dyads.active(nw, at = 0)
+      el_t1 <- networkDynamic::get.dyads.active(nw, at = 1)
+    }
+
+    keys_t0 <- if (NROW(el_t0) > 0) {
+      paste(el_t0[, 1], el_t0[, 2], sep = "_")
+    } else {
+      character(0)
+    }
+    keys_t1 <- if (NROW(el_t1) > 0) {
+      paste(el_t1[, 1], el_t1[, 2], sep = "_")
+    } else {
+      character(0)
+    }
+
+    persistent_idx <- which(keys_t1 %in% keys_t0)
+    new_idx        <- which(!keys_t1 %in% keys_t0)
+    dropped_idx    <- which(!keys_t0 %in% keys_t1)
+
+    seed_cur_pieces <- list()
+    if (length(persistent_idx) > 0) {
+      el_p <- el_t1[persistent_idx, , drop = FALSE]
+      seed_cur_pieces[[length(seed_cur_pieces) + 1]] <- tibble::tibble(
+        head  = get_unique_ids(dat, el_p[, 2]),
+        tail  = get_unique_ids(dat, el_p[, 1]),
+        start = 0,
+        stop  = NA_real_
+      )
+    }
+    if (length(new_idx) > 0) {
+      el_n <- el_t1[new_idx, , drop = FALSE]
+      seed_cur_pieces[[length(seed_cur_pieces) + 1]] <- tibble::tibble(
+        head  = get_unique_ids(dat, el_n[, 2]),
+        tail  = get_unique_ids(dat, el_n[, 1]),
+        start = 1,
+        stop  = NA_real_
+      )
+    }
+    if (length(seed_cur_pieces) > 0) {
+      el_cuml_cur <- get_raw_elcuml(dat, network, active = TRUE)
+      dat <- set_raw_elcuml(
+        dat, network,
+        dplyr::bind_rows(c(list(el_cuml_cur), seed_cur_pieces)),
+        active = TRUE
+      )
+    }
+
+    if (truncate != 0 && length(dropped_idx) > 0) {
+      el_d <- el_t0[dropped_idx, , drop = FALSE]
+      seed_hist <- tibble::tibble(
+        head  = get_unique_ids(dat, el_d[, 2]),
+        tail  = get_unique_ids(dat, el_d[, 1]),
+        start = 0,
+        stop  = 0
+      )
+      el_cuml_hist <- get_raw_elcuml(dat, network, active = FALSE)
+      dat <- set_raw_elcuml(
+        dat, network,
+        dplyr::bind_rows(el_cuml_hist, seed_hist),
+        active = FALSE
+      )
+    }
+  }
+
+  dat$run$el_t0_seed <- NULL
+  return(dat)
+}
+
+#' @title Get the Cumulative Edgelists of a Model
+#'
+#' @description
+#' Combines the cumulative edgelists from one or more network layers into a
+#' single `data.frame`, adding a `network` column to identify the layer.
+#' Like [get_cumulative_edgelist()], this requires
+#' `control.net(cumulative.edgelist = TRUE)`.
+#'
+#' @inheritParams recovery.net
+#' @param networks Numerical indexes of the networks to extract the partnerships
+#'                 from. (May be > 1 for models with multiple overlapping
+#'                 networks.) If `NULL`, extract from all networks.
+#'
+#' @return
+#' A `data.frame` with 5 columns:
+#'
+#'   * `head`: the unique ID (see [get_unique_ids()]) of the head node.
+#'   * `tail`: the unique ID of the tail node.
+#'   * `start`: the time step at which the edge formed.
+#'   * `stop`: the time step at which the edge dissolved, or `NA` if still
+#'         active.
+#'   * `network`: the numerical index of the network on which the
+#'         partnership lives.
+#'
+#' Note: column names `head`/`tail` here match the single-network
+#' [get_cumulative_edgelist()] output. The `index`/`partner` naming used by
+#' [get_partners()] is reserved for queries about specific index nodes.
+#'
+#' @family cumulative_edgelist
+#' @seealso [get_cumulative_edgelist()] (single network), [control.net()]
+#'   (`cumulative.edgelist`, `save.cumulative.edgelist`).
+#'   `vignette("network-objects", package = "EpiModel")` walks through the
+#'   full lifecycle.
+#'
+#' @export
+get_cumulative_edgelists_df <- function(dat, networks = NULL) {
+  networks <- if (is.null(networks)) seq_len(dat$num.nw) else networks
+
+  el_cuml_list <- lapply(networks, get_cumulative_edgelist, dat = dat)
+  el_cuml_df <- dplyr::bind_rows(el_cuml_list)
+
+  el_sizes <- vapply(el_cuml_list, nrow, numeric(1))
+  el_cuml_df[["network"]] <- rep(networks, el_sizes)
+
+  return(el_cuml_df)
+}
+
+#' @title Return the Historical Contacts (Partners) of a Set of Index Nodes
+#'
+#' @description
+#' Pulls every cumulative-edgelist row touching one of the supplied "index"
+#' nodes, returning each `(index, partner)` pair together with the
+#' partnership start/stop times and the network layer. This is the building
+#' block for contact tracing over the simulated network history.
+#'
+#' @param index_posit_ids The positional IDs of the indexes of interest.
+#' @param networks Numerical indexes of the networks to extract the partnerships from. (May be > 1
+#'        for models with multi-layer networks.) If `NULL`, extract from all networks.
+#' @param only.active.nodes If `TRUE`, then inactive (e.g., deceased) partners will be removed from
+#'        the output.
+#' @inheritParams update_cumulative_edgelist
+#'
+#' @return
+#' A `data.frame` with 5 columns:
+#'   * `index`: the unique IDs of the indexes.
+#'   * `partner`: the unique IDs of the partners/contacts.
+#'   * `start`: the time step at which the edge started.
+#'   * `stop`: the time step in which the edge stopped; if ongoing, then `NA` is returned.
+#'   * `network`: the numerical index for the network on which the partnership/contact is located.
+#'
+#' @details
+#' Indexes are passed as positional IDs but the output uses unique IDs,
+#' because partners may include nodes that have already departed (and thus
+#' no longer have a positional ID). Use [get_unique_ids()] and
+#' [get_posit_ids()] to convert between the two systems.
+#'
+#' The `truncate` argument here filters by edge age: only edges whose `stop`
+#' step is within `truncate` time steps of the current step are kept (active
+#' edges are always included). It operates on whatever history is already
+#' stored in the cumulative edgelist; it cannot recover edges that were
+#' dropped earlier by [update_cumulative_edgelist()] or by
+#' `control$truncate.el.cuml`.
+#'
+#' @family cumulative_edgelist
+#' @seealso [get_cumulative_degree()] for a partner count per index;
+#'   [get_cumulative_edgelist()] / [get_cumulative_edgelists_df()] for the
+#'   underlying edgelist; [get_unique_ids()] / [get_posit_ids()] for ID
+#'   conversion.
+#'
+#' @examples
+#' \dontrun{
+#' # Contacts of nodes 1..10 across all networks within the last 30 steps,
+#' # excluding partners who have since departed:
+#' get_partners(dat,
+#'              index_posit_ids = 1:10,
+#'              truncate = 30,
+#'              only.active.nodes = TRUE)
+#' }
+#'
+#' @export
+#'
+get_partners <- function(dat, index_posit_ids, networks = NULL,
+                         truncate = Inf, only.active.nodes = FALSE) {
+
+  el_cuml_df <- get_cumulative_edgelists_df(dat, networks)
+  index_unique_ids <- get_unique_ids(dat, index_posit_ids)
+
+  partner_head_df <- el_cuml_df[el_cuml_df[["head"]] %in% index_unique_ids, ]
+  partner_tail_df <- el_cuml_df[
+    el_cuml_df[["tail"]] %in% index_unique_ids,
+    c(2, 1, 3:5) # switch the head and tail columns
+  ]
+
+  colnames(partner_head_df) <- c("index", "partner", "start", "stop", "network")
+  colnames(partner_tail_df) <- colnames(partner_head_df)
+
+  partner_df <- dplyr::bind_rows(partner_head_df, partner_tail_df)
+
+  if (only.active.nodes) {
+    active_partners <- is_active_unique_ids(dat, partner_df[["partner"]])
+    partner_df <- partner_df[active_partners, ]
+  }
+
+  if (truncate != Inf) {
+    at <- get_current_timestep(dat)
+    rel.age <- at - partner_df[["stop"]]
+    rel.age <- ifelse(is.na(rel.age), 0, rel.age)
+    partner_df <- partner_df[rel.age <= truncate, ]
+  }
+
+  return(partner_df)
+}
+
+#' @title Return the Cumulative Degree of a Set of Index Nodes
+#'
+#' @description
+#' Counts the number of distinct partners each of a set of index nodes has
+#' accumulated over the tracked history. A thin wrapper around
+#' [get_partners()] that collapses the partner list to a count per index.
+#'
+#' @inheritParams get_partners
+#'
+#' @return
+#' A `data.frame` with 2 columns:
+#'
+#'   * `index_pid`: the positional ID (see [get_posit_ids()]) of the indexes.
+#'   * `degree`: the cumulative degree of the index.
+#'
+#' @section Cumulative Degree:
+#' The cumulative degree of a node is the number of distinct partners
+#' connected to it during the tracked time window. The window is whatever
+#' history the cumulative edgelist currently contains (controlled at
+#' simulation time by `control$truncate.el.cuml` and at call time by the
+#' `truncate` argument).
+#'
+#' @family cumulative_edgelist
+#' @seealso [get_partners()] for the full partner list backing this count.
+#'
+#' @examples
+#' \dontrun{
+#' get_cumulative_degree(dat, index_posit_ids = 1:50, truncate = 52)
+#' }
+#'
+#' @export
+get_cumulative_degree <- function(dat, index_posit_ids, networks = NULL,
+                                  truncate = Inf, only.active.nodes = FALSE) {
+  get_partners(
+    dat, index_posit_ids, networks,
+    truncate, only.active.nodes
+  ) |>
+    dplyr::summarize(degree = dplyr::n(), .by = "index") |>
+    dplyr::mutate(index = get_posit_ids(dat, .data$index)) |>
+    dplyr::select(index_pid = "index", "degree")
+}
+
+# Helper functions to get and set the cumulative edgelists
+#
+# Cumulative edgelists are split in to:
+#   - el_cuml_cur: for the edges not yet disolved
+#   - el_cuml_hist: for the edges where the start and stop time are known
+#   (dissolved edges)
+get_raw_elcuml <- function(dat, network, active) {
+  loc <- if (active) "el_cuml_cur" else "el_cuml_hist"
+
+  if (length(dat$run[[loc]]) >= network) {
+    el_cuml <- dat$run[[loc]][[network]]
+  } else {
+    el_cuml <- NULL
+  }
+
+  if (is.null(el_cuml)) {
+    el_cuml <- empty_el_cuml()
+  }
+
+  return(el_cuml)
+}
+
+set_raw_elcuml <- function(dat, network, el_cuml, active) {
+  loc <- if (active) "el_cuml_cur" else "el_cuml_hist"
+  dat$run[[loc]][[network]] <- el_cuml
+  return(dat)
+}
+
+# template for the cumulative edgelists
+empty_el_cuml <- function() {
+  tibble::tibble(
+    head  = numeric(0),
+    tail  = numeric(0),
+    start = numeric(0),
+    stop  = numeric(0)
+  )
+}

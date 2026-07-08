@@ -1,0 +1,572 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="{% if objuser %}{{ objuser.theme }}{% else %}dark{% endif %}">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#F2BD24"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.compat.css" />
+
+    <!-- importando CSS e JV  -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/styles.css'%}">    
+    <link href="{% static 'css/HoldOn.min.css'%}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.min.css' %}">
+    <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js'%}"></script>
+    <script src="{% static 'js/jquery.mask.js' %}"></script>
+    <script src="{% static 'js/select2.min.js' %}"></script>
+    <script src="{% static 'js/index.global.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.mask.min.js'%}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap-datepicker.min.js'%}"></script>
+    <link rel="stylesheet" href="{% static 'css/flatpickr.min.css' %}">
+    <script src="{% static 'js/flatpickr.min.js' %}"></script>
+    <script src="{% static 'js/pt.js' %}"></script>
+    
+    {% comment %} Importação de cdn de charts {% endcomment %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    {% comment %} -------- {% endcomment %}
+    <script src="https://kit.fontawesome.com/2cbdb08e7a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>   
+
+
+    <!-- Importando icones -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    {% if objuser and objuser.empresa.logo_navegador %}
+        <link rel="shortcut icon" href="{{ objuser.empresa.logo_navegador.url }}">
+    {% else %}
+        <link rel="shortcut icon" href="{% static 'images/logobrancaq.pngo' %}">    
+    {% endif %}    
+    <title>Afrodite 
+        {% if objuser.empresa %}
+            -{{objuser.empresa.nome}}       
+        {% endif %}
+    </title>
+    <!-- Bootstrap Icons CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+    <body>
+        {% csrf_token %}
+        <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+            <symbol id="check-circle-fill" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </symbol>
+            <symbol id="info-fill" viewBox="0 0 16 16">
+                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </symbol>
+            <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
+                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+            </symbol>
+        </svg>
+        <style>        
+            {% if objuser and objuser.empresa.color %}
+                .cor-menu {
+                    background-color: {{ objuser.empresa.color }}!important;
+                }
+                .navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+                    color: {{ objuser.empresa.color_fonte }} !important;
+                }
+                .nav-link {
+                    color: {{ objuser.empresa.color_fonte }} !important;
+                }         
+            {% endif %}
+            .cor-extra{
+                background-image: radial-gradient(ellipse at 50% 30%, #23243a 60%, #181828 100%)!important;
+            } 
+        </style>
+
+        <nav class="navbar navbar-expand-lg bg-body-tertiary  shadow-sm
+        {% if objuser and objuser.empresa.color %} cor-menu{% endif %}
+        {% if not objuser %} cor-extra{% endif %}">    
+            <div class="container-fluid">
+                <a class="navbar-brand ms-5 d-flex align-items-center" href="{% url 'inicio' %}">
+                    {% if objuser and objuser.empresa.logo %}
+                        <img src="{{objuser.empresa.logo.url}}" alt="Logo" width="120" height="36" class="d-inline-block align-text-top me-2">
+                    {% else %}
+                        <img src="{% static 'images/logobrancaq.png' %}" alt="Logo" width="120" height="36" class="d-inline-block align-text-top me-2">
+                    {% endif %}
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        {% if objuser.is_superuser %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-gear"></i> Painel de Controle
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{% url 'cadastrar_empresa' %}"><i class="bi bi-building-add"></i> Cadastrar Empresa</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'lista_empresas' %}"><i class="bi bi-list-ul"></i> Listagem de Empresa</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'cadastrar_usuario_admin' %}"><i class="bi bi-person-plus"></i> Cadastrar Usuário</a></li>
+                                </ul>
+                            </li>
+                        {% endif %}
+                        {% if objuser and not objuser.is_superuser %}
+                            {% if objuser.if_funcionario %}
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="{% url 'home' %}"><i class="bi bi-house-door"></i> Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="{% url 'cadastrar_venda' %}"><i class="bi bi-cart-plus"></i> Cadastrar Venda</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-people"></i> Clientes
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{% url 'aniversariantes' %}"><i class="bi bi-gift"></i> Aniversáriantes</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'cadastrar_cliente' %}"><i class="bi bi-person-plus"></i> Cadastrar</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'lista_clientes' %}"><i class="bi bi-people"></i> Clientes</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-bag"></i> Pedidos
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{% url 'cadastrar_pedido' %}"><i class="bi bi-plus-circle"></i> Cadastrar</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'lista_pedidos' %}"><i class="bi bi-list-check"></i> Pedidos</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-box"></i> Produtos
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{% url 'cadastrar_produto' %}"><i class="bi bi-plus-circle"></i> Cadastrar Produto</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'lista_produtos_empresa' objuser.empresa.pk %}"><i class="bi bi-box-seam"></i> Produtos Disponível</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'lista_produtos_indisponivel' objuser.empresa.pk %}"><i class="bi bi-boxes"></i> Produtos Indisponível</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-arrows-expand"></i> Tamanho de Produto
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{% url 'listar_tamanho' %}"><i class="bi bi-list-ul"></i> Lista de Tamanho</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'cadastrar_tamanho' %}"><i class="bi bi-plus-circle"></i> Cadastrar Tamanho de Produto</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-tags"></i> Tipo de Produto
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{% url 'tipo_produto_criar' %}"><i class="bi bi-plus-circle"></i> Cadastrar Tipo de Produto</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'listar_tipos_de_produtos' %}"><i class="bi bi-list-ul"></i> Listar Tipo de Produto</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-award"></i> Marca
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{% url 'cadastrar_marca' %}"><i class="bi bi-plus-circle"></i> Cadastrar Marca</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'listar_marcas' %}"><i class="bi bi-list-ul"></i> Listar Marcas</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'relatorios_home' %}"><i class="bi bi-bar-chart-line"></i> Relatórios</a>
+                                </li>
+                            {% endif %}
+                            {% if not objuser.if_funcionario %}
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="{% url 'home' %}"><i class="bi bi-house-door"></i> Home</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-cart-plus"></i> Vendas
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{% url 'cadastrar_venda' %}"><i class="bi bi-plus-circle"></i> Cadastrar Venda</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'lista_produtos_empresa' objuser.empresa.pk %}"><i class="bi bi-plus-circle"></i> Cadastrar Venda a Prazo</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'listar_vendas_fiado' %}"><i class="bi bi-cash-stack"></i> Listar Venda a Prazo</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-box"></i> Produto
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{% url 'cadastrar_produto' %}"><i class="bi bi-plus-circle"></i> Cadastrar Produto</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'lista_produtos_empresa' objuser.empresa.pk %}"><i class="bi bi-box-seam"></i> Produtos Disponível</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'lista_produtos_indisponivel' objuser.empresa.pk %}"><i class="bi bi-boxes"></i> Produtos Indisponível</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-bag"></i> Pedido
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{% url 'cadastrar_pedido' %}"><i class="bi bi-plus-circle"></i> Cadastrar Pedidos</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'lista_pedidos' %}"><i class="bi bi-list-check"></i> Pedidos</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-gift"></i> Vale Presente
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{% url 'cadastrar_vale_presente' %}"><i class="bi bi-plus-circle"></i> Cadastrar Vale Presente</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'listar_vale_presente' %}"><i class="bi bi-list-ul"></i> Listar Vale Presente</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-people"></i> Cliente
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{% url 'aniversariantes' %}"><i class="bi bi-gift"></i> Aniversáriantes</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'cadastrar_cliente' %}"><i class="bi bi-person-plus"></i> Cadastrar</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'lista_clientes' %}"><i class="bi bi-people"></i> Clientes</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Mais Opções
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a class="nav-link" href="{% url 'relatorios_home' %}"><i class="bi bi-bar-chart-line"></i> Relatórios</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="nav-link" href="{% url 'agenda' %}"><i class="bi bi-calendar3"></i> Agenda</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li> <a class="nav-link" href="{% url 'listar_despesa'%}"><i class="bi bi-receipt"></i> Despesas</a></li>
+                                    </ul>
+                                </li>
+                                {% comment %} <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'relatorios_home' %}"><i class="bi bi-bar-chart-line"></i> Relatórios</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'agenda' %}"><i class="bi bi-calendar3"></i> Agenda</a>
+                                </li> {% endcomment %}
+                            {% endif %}
+                        {% endif %}
+                    </ul>
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                        {% if objuser %}
+                            <li class="nav-item">
+                                <span class="navbar-text fw-semibold me-3"><i class="bi bi-person-circle"></i> {{nome_e_sobrenome}}</span>
+                            </li>
+                            <li class="nav-item">
+                                <button class="btn btn-link nav-link theme-toggle" type="button" title="Alternar tema">
+                                    <i class="bi bi-{% if objuser.theme == 'dark' %}sun{% else %}moon{% endif %}-fill"></i>
+                                </button>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'pendencias' %}" class="nav-link position-relative">
+                                    <i class="fas fa-bell fa-lg"></i>
+                                    <span class="notification-badge position-absolute top-1 translate-middle p-2 bg-danger border border-light rounded-circle">
+                                        <span class="visually-hidden">New alerts</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <button class="btn btn-link nav-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                                    <i class="material-icons">settings</i>
+                                </button>
+                            </li>
+                            <li class="nav-item">
+                                <form id="logout-form" action="{% url 'logout' %}" method="POST" style="display: none;">{% csrf_token %}</form>
+                                <a href="#" class="nav-link" onclick="document.getElementById('logout-form').submit();">
+                                    <span class="material-icons" style="font-size: 24px;">logout</span>
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a href="{% url 'login' %}" class="btn btn-light rounded-pill me-5">Acessar</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header bg-primary text-white">
+                <h5 class="offcanvas-title d-flex align-items-center" id="offcanvasRightLabel">
+                    <i class="bi bi-gear me-2"></i> Configurações
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                {% if objuser and not objuser.if_funcionario %}
+                    <h6 class="mt-3 text-secondary"><i class="bi bi-building"></i> Empresa</h6>
+                    <ul class="list-group mb-2">
+                        <a class="list-group-item list-group-item-action d-flex align-items-center" href="{% url 'editar_empresa' objuser.empresa.pk %}"><i class="bi bi-pencil-square me-2 text-primary"></i> Editar Empresa</a>
+                        <a class="list-group-item list-group-item-action d-flex align-items-center mt-1" href="{% url 'detalhes_empresa' objuser.empresa.pk %}"><i class="bi bi-eye me-2 text-info"></i> Visualizar Empresa</a>
+                    </ul>
+                    <h6 class="mt-3 text-secondary"><i class="bi bi-bullseye"></i> Meta</h6>
+                    <ul class="list-group mb-2">
+                        <a class="list-group-item list-group-item-action d-flex align-items-center" href="{% url 'cadastrar_meta'%}"><i class="bi bi-plus-circle me-2 text-success"></i> Cadastrar Meta</a>
+                        <a class="list-group-item list-group-item-action d-flex align-items-center mt-1" href="{% url 'lista_metas'%}"><i class="bi bi-list-ul me-2 text-warning"></i> Listagem de Metas</a>
+                    </ul>
+                    <h6 class="mt-3 text-secondary"><i class="bi bi-box-seam"></i> Estoque</h6>
+                    <ul class="list-group mb-2">
+                        <a class="list-group-item list-group-item-action d-flex align-items-center" href="{% url 'cadastrar_estoque' %}"><i class="bi bi-plus-circle me-2 text-success"></i> Cadastrar Estoque</a>
+                    </ul>
+                    <h6 class="mt-3 text-secondary"><i class="bi bi-box"></i> Produto</h6>
+                    <ul class="list-group mb-2">
+                        <a class="list-group-item list-group-item-action d-flex align-items-center" href="{% url 'cadastrar_tamanho' %}"><i class="bi bi-plus-circle me-2 text-success"></i> Cadastrar Tamanho de Produto</a>
+                        <a class="list-group-item list-group-item-action d-flex align-items-center mt-1" href="{% url 'listar_tamanho' %}"><i class="bi bi-list-ul me-2 text-warning"></i> Lista de Tamanho</a>
+                        <a class="list-group-item list-group-item-action d-flex align-items-center mt-1" href="{% url 'tipo_produto_criar' %}"><i class="bi bi-plus-circle me-2 text-success"></i> Cadastrar Tipo de Produto</a>
+                        <a class="list-group-item list-group-item-action d-flex align-items-center mt-1" href="{% url 'listar_tipos_de_produtos' %}"><i class="bi bi-list-ul me-2 text-warning"></i> Listar Tipo de Produto</a>
+                        <a class="list-group-item list-group-item-action d-flex align-items-center mt-1" href="{% url 'cadastrar_marca' %}"><i class="bi bi-plus-circle me-2 text-success"></i> Cadastrar Marca</a>
+                        <a class="list-group-item list-group-item-action d-flex align-items-center mt-1" href="{% url 'listar_marcas' %}"><i class="bi bi-list-ul me-2 text-warning"></i> Listar Marcas</a>
+                        <a class="list-group-item list-group-item-action d-flex align-items-center mt-1" href="{% url 'cadastrar_fornecedor' %}"><i class="bi bi-plus-circle me-2 text-success"></i> Cadastrar Fornecedor</a>
+                        <a class="list-group-item list-group-item-action d-flex align-items-center mt-1" href="{% url 'listar_fornecedores' %}"><i class="bi bi-list-ul me-2 text-warning"></i> Listar Fornecedores</a>
+                    </ul>
+                    <h6 class="mt-3 text-secondary"><i class="bi bi-person-badge"></i> Colaborador</h6>
+                    <ul class="list-group mb-2">
+                        <a class="list-group-item list-group-item-action d-flex align-items-center" href="{% url 'cadastrar_usuario' %}"><i class="bi bi-person-plus me-2 text-success"></i> Cadastrar Colaborador</a>
+                        <a class="list-group-item list-group-item-action d-flex align-items-center mt-1" href="{% url 'lista_usuarios' objuser.empresa.pk %}"><i class="bi bi-people me-2 text-info"></i> Listar Colaborador</a>
+                    </ul>
+                    <h6 class="mt-3 text-secondary"><i class="bi bi-cash-stack"></i> Conta Corrente</h6>
+                    <ul class="list-group mb-2">
+                        <a class="list-group-item list-group-item-action d-flex align-items-center" href="{% url 'nova_conta' %}"><i class="bi bi-plus-circle me-2 text-success"></i> Cadastrar Conta Corrente</a>
+                        <a class="list-group-item list-group-item-action d-flex align-items-center mt-1" href="{% url 'listar_contas' %}"><i class="bi bi-list-ul me-2 text-warning"></i> Listar Conta Corrente</a>
+                    </ul>
+                    <h6 class="mt-3 text-secondary"><i class="bi bi-clock-history"></i> Vendas a Prazo</h6>
+                    <ul class="list-group mb-2">
+                        <a class="list-group-item list-group-item-action d-flex align-items-center" href="{% url 'nova_venda_fiado' %}"><i class="bi bi-plus-circle me-2 text-success"></i> Cadastrar Vendas a Prazo</a> 
+                        <a class="list-group-item list-group-item-action d-flex align-items-center mt-1" href="{% url 'listar_vendas_fiado' %}"><i class="bi bi-list-ul me-2 text-warning"></i> Listar Vendas a Prazo</a>
+                    </ul>
+                    <h6 class="mt-3 text-secondary"><i class="bi bi-bar-chart-line"></i> Relatórios</h6>
+                    <ul class="list-group mb-2">
+                        <a class="list-group-item list-group-item-action d-flex align-items-center mt-1" href="{% url 'relatorios_home' %}">
+                            <i class="bi bi-graph-up-arrow me-2 text-success"></i> Relatórios
+                        </a>
+                    </ul>
+                    <h6 class="mt-3 text-secondary"><i class="bi bi-calendar-event"></i> Agenda</h6>
+                    {% if objuser.empresa.agenda %}
+                        <ul class="list-group mb-2">
+                            <a class="list-group-item list-group-item-action d-flex align-items-center" href="{% url 'agenda' %}"><i class="bi bi-calendar-check me-2 text-success"></i> Agenda</a>
+                        </ul>
+                    {% else %}
+                        <ul class="list-group mb-2">
+                            <a class="list-group-item list-group-item-action d-flex align-items-center">
+                                <i class="bi bi-calendar-x me-2 text-muted"></i> Agenda
+                                <span class="text-muted ms-2">(Não liberado)</span>
+                            </a>
+                        </ul>
+                    {% endif %}
+                    <h6 class="mt-3 text-secondary"><i class="bi bi-receipt"></i> Controle de Despesas</h6>
+                    <ul class="list-group mb-2">
+                        <a class="list-group-item list-group-item-action d-flex align-items-center" href="{% url 'criar_tipo_despesa'%}"><i class="bi bi-plus-circle me-2 text-success"></i> Cadastrar Tipo de Despesa</a>
+                        <a class="list-group-item list-group-item-action d-flex align-items-center mt-1" href="{% url 'listar_tipo_despesa'%}"><i class="bi bi-list-ul me-2 text-warning"></i> Listar Tipo de Despesa</a>
+                        <a class="list-group-item list-group-item-action d-flex align-items-center" href="{% url 'criar_despesa'%}"><i class="bi bi-plus-circle me-2 text-success"></i> Cadastrar Despesa</a>
+                        <a class="list-group-item list-group-item-action d-flex align-items-center" href="{% url 'listar_despesa'%}"><i class="bi bi-list-ul me-2 text-warning"></i> Listar Despesa</a>
+                    </ul>
+                    <h6 class="mt-3 text-secondary"><i class="bi bi-shop"></i> Loja Online</h6>
+                    {% if objuser.empresa.lista_produto %}
+                        <ul class="list-group mb-2">
+                            <a class="list-group-item list-group-item-action d-flex align-items-center" href="{% url 'loja' objuser.empresa.pk %}"><i class="bi bi-bag-check me-2 text-success"></i> Loja Online</a>
+                        </ul>
+                    {% else %}
+                        <ul class="list-group mb-2">
+                            <a class="list-group-item list-group-item-action d-flex align-items-center">
+                                <i class="bi bi-bag-x me-2 text-muted"></i> Loja Online
+                                <span class="text-muted ms-2">(Não liberado)</span>
+                            </a>
+                        </ul>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+        {% if alertas and objuser and not objuser.is_superuser %}
+        <div class="container">
+            {% for alerta in alertas %}
+                <div class="card mb-4 border-danger">
+                    <div class="card-header">
+                        Aviso!
+                    </div>
+                    <div class="card-body">
+                    <h5 class="card-title">{{alerta.titulo}}</h5>
+                    <p class="card-text">{{alerta.resumo}}</p>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{alerta.id}}">
+                            Maiores Informações.
+                        </button>
+                        <div class="modal fade" id="exampleModal{{alerta.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">{{alerta.titulo}}</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {{alerta.descricao|safe}}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+            
+        {% if objuser %}        
+            <div class="row justify-content-md-start my-4 ms-3">
+                <div class="col-auto mb-2 btn_cadastrar_venda">
+                    <a type="button" class="btn btn-lg btn-gradient-primary shadow-sm d-flex align-items-center px-4 py-2" href="{% url 'cadastrar_venda' %}" style="font-size: 1.1rem;">
+                        <i class="bi bi-cart-plus me-2"></i> Cadastrar Venda
+                    </a>
+                </div>
+                <div class="col-auto mb-2 btn_cadastrar_venda_a_prazo">
+                    <a type="button" class="btn btn-lg btn-gradient-danger shadow-sm d-flex align-items-center px-4 py-2" href="{% url 'nova_venda_fiado' %}" style="font-size: 1.1rem;">
+                        <i class="bi bi-cash-coin me-2"></i> Cadastrar Venda a Prazo
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+
+        <main>        
+            {% block conteudo %} 
+            {% endblock conteudo %}
+        </main>
+
+        <footer class="text-center text-black bg-dark mt-5 {% if not objuser %} cor-extra{% endif %}">
+            <div class="container pt-4">
+                <section class="mb-4">
+                    <a
+                        class="btn btn-link btn-floating btn-lg text-dark m-1 bg-light" target="_blank"
+                        href="https://www.facebook.com/profile.php?id=100057154180788&mibextid=ZbWKwL"
+                        role="button"
+                        data-mdb-ripple-color="dark"><i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a
+                        class="btn btn-link btn-floating btn-lg text-dark m-1 bg-light" target="_blank"
+                        href="https://www.instagram.com/milagomes.dev?igsh=c2ppeDBzNXNhMjJx"
+                        role="button"
+                        data-mdb-ripple-color="dark"><i class="fab fa-instagram"></i>
+                    </a> 
+                    <a
+                        class="btn btn-link btn-floating btn-lg text-dark m-1 bg-light" target="_blank"
+                        href="https://www.instagram.com/camilaadrianagomes/"
+                        role="button"
+                        data-mdb-ripple-color="dark"><i class="fab fa-instagram"></i></a>      
+                    <a
+                        class="btn btn-link btn-floating btn-lg text-dark m-1 bg-light" target="_blank"
+                        href="https://linkedin.com/in/camilaadrianagomes" 
+                        role="button"
+                        data-mdb-ripple-color="dark"><i class="fab fa-linkedin"></i></a>
+                    <a
+                        class="btn btn-link btn-floating btn-lg text-dark m-1 bg-light" target="_blank"
+                        href="https://github.com/GomesMilla" 
+                        role="button"
+                        data-mdb-ripple-color="dark"><i class="fab fa-github"></i>
+                    </a>
+                </section>
+            </div>
+            <footer class="page-footer font-small bg-dark {% if not objuser %} cor-extra{% endif %}">
+                <div class="footer-copyright text-center py-3 text-white">© 2024 GOMES TECHNOLOGY</div>
+                <span class="footer-copyright text-center py-3 text-white">Sistema Afrodite</span>
+            </footer>       
+        </footer>
+        <script>
+            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+            const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+            
+            // Funcionalidade de alternar tema
+            document.addEventListener('DOMContentLoaded', function() {
+                const themeToggle = document.querySelector('.theme-toggle');
+                if (themeToggle) {
+                    themeToggle.addEventListener('click', function() {
+                        fetch('{% url "toggle_theme" %}', {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                                'X-Requested-With': 'XMLHttpRequest'
+                            }
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                // Atualiza o ícone
+                                const icon = themeToggle.querySelector('i');
+                                if (data.new_theme === 'dark') {
+                                    icon.className = 'bi bi-sun-fill';
+                                    themeToggle.title = 'Alternar para tema claro';
+                                } else {
+                                    icon.className = 'bi bi-moon-fill';
+                                    themeToggle.title = 'Alternar para tema escuro';
+                                }
+                                
+                                // Atualiza o tema da página
+                                document.documentElement.setAttribute('data-bs-theme', data.new_theme);
+                                
+                                // Recarrega a página para aplicar todas as mudanças de tema
+                                setTimeout(() => {
+                                    window.location.reload();
+                                }, 300);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Erro ao alternar tema:', error);
+                        });
+                    });
+                }
+            });
+        </script>
+        <style>
+            .btn-gradient-primary {
+                background: linear-gradient(90deg, #007bff 0%, #00c6ff 100%);
+                color: #fff;
+                border: none;
+            }
+            .btn-gradient-primary:hover {
+                background: linear-gradient(90deg, #0056b3 0%, #00aaff 100%);
+                color: #fff;
+            }
+            .btn-gradient-danger {
+                background: linear-gradient(90deg, #dc3545 0%, #ff7675 100%);
+                color: #fff;
+                border: none;
+            }
+            .btn-gradient-danger:hover {
+                background: linear-gradient(90deg, #b71c1c 0%, #ff5252 100%);
+                color: #fff;
+            }
+            .theme-toggle {
+                transition: all 0.3s ease;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 0.5rem;
+            }
+            .theme-toggle:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+                transform: scale(1.1);
+            }
+            .theme-toggle i {
+                font-size: 1.2rem;
+            }
+        </style>
+    </body>
+</html>
+
+{% comment %} JAVA SCRIPT NÃO MAIS USADOS {% endcomment %}
+{% comment %} <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script> {% endcomment %}
+{% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/locales-all.min.js"></script> {% endcomment %}
+{% comment %} <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script> {% endcomment %}
+{% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script> {% endcomment %}
+{% comment %} <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">  {% endcomment %}

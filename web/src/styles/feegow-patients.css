@@ -1,0 +1,1414 @@
+/**
+ * Pacientes — Inserir (print Feegow 16-36-06)
+ */
+
+.feegow-patient-sidebar-host {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.feegow-patient-sidebar-host .feegow-patient-sidebar {
+  width: 100%;
+  height: 100%;
+  border-right: none;
+}
+
+.feegow-patient-sidebar {
+  width: 272px;
+  flex-shrink: 0;
+  background: #eceff1;
+  border-right: 1px solid #dde4e8;
+  padding: 14px 12px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+}
+
+.feegow-patient-search {
+  margin-bottom: 2px;
+}
+
+.feegow-patient-start-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  border: none;
+  border-radius: 4px;
+  background: #00a0e1;
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 11px 12px;
+  cursor: pointer;
+  font-family: inherit;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.feegow-patient-start-icon {
+  font-size: 10px;
+}
+
+.feegow-patient-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 4px;
+}
+
+.feegow-patient-nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border: none;
+  background: transparent;
+  text-align: left;
+  padding: 5px 10px 5px 14px;
+  font-size: 11px;
+  line-height: 1.25;
+  color: #4a5a62;
+  cursor: pointer;
+  font-family: inherit;
+  border-left: 3px solid transparent;
+  border-radius: 0 4px 4px 0;
+  text-decoration: none;
+}
+
+.feegow-patient-nav-item:hover {
+  background: rgba(0, 160, 225, 0.08);
+  color: #2a3a42;
+}
+
+.feegow-patient-nav-item.is-active {
+  background: #fff;
+  color: #1a2a32;
+  font-weight: 600;
+  border-left-color: #00c9a7;
+}
+
+.feegow-patient-nav-badge {
+  flex-shrink: 0;
+  background: #00c9a7;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+.feegow-patient-screen {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  background: #f4f7f6;
+}
+
+.feegow-patient-main {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 12px 16px;
+  overflow: auto;
+}
+
+.feegow-layout.feegow-layout-patient-insert .feegow-main-scroll {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.feegow-layout.feegow-layout-patient-insert .feegow-page-bare {
+  padding: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.feegow-layout.feegow-layout-patient-insert .feegow-patient-screen {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* ─── Card principal ─── */
+.feegow-patient-card {
+  background: #fff;
+  border: 1px solid #dde4e8;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  min-height: calc(100% - 8px);
+  display: flex;
+  flex-direction: column;
+}
+
+.feegow-patient-card-empty {
+  padding: 24px;
+}
+
+.feegow-patient-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 7px 12px;
+  border-bottom: 1px solid #e8ecef;
+  flex-wrap: wrap;
+}
+
+.feegow-patient-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #6a7a82;
+}
+
+.feegow-patient-crumb-icon {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.feegow-patient-crumb-user {
+  color: #00a0e1;
+}
+
+.feegow-patient-crumb-label {
+  color: #3a4a52;
+  font-weight: 500;
+}
+
+.feegow-patient-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.feegow-patient-toggle {
+  position: relative;
+  display: inline-flex;
+  cursor: pointer;
+  margin-right: 4px;
+}
+
+.feegow-patient-toggle input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.feegow-patient-toggle-track {
+  width: 36px;
+  height: 20px;
+  background: #ccc;
+  border-radius: 10px;
+  transition: background 0.2s;
+  position: relative;
+}
+
+.feegow-patient-toggle-track::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+
+.feegow-patient-toggle input:checked + .feegow-patient-toggle-track {
+  background: #00a0e1;
+}
+
+.feegow-patient-toggle input:checked + .feegow-patient-toggle-track::after {
+  transform: translateX(16px);
+}
+
+.feegow-patient-tool-btn {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #d5dde2;
+  background: #fff;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #5a6a72;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-family: inherit;
+}
+
+.feegow-patient-tool-btn:hover {
+  background: #f4f7f6;
+}
+
+.feegow-patient-save-btn {
+  border: none;
+  background: #00a0e1;
+  color: #fff;
+  font-weight: 700;
+  font-size: 11px;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+  letter-spacing: 0.04em;
+  margin-left: 4px;
+}
+
+.feegow-patient-save-btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.feegow-patient-form-body {
+  padding: 8px 12px 12px;
+  flex: 1;
+  --feegow-field-row-gap: 9px;
+  --feegow-field-row-gap-tight: 5px;
+}
+
+.feegow-patient-section-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #2a3a42;
+  margin: 0 0 4px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid #eef2f4;
+}
+
+/* ─── Identidade ─── */
+.feegow-patient-form-layout {
+  display: grid;
+  grid-template-columns: 168px minmax(0, 1fr);
+  column-gap: 8px;
+  align-items: start;
+}
+
+.feegow-patient-fields-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--feegow-field-row-gap-tight);
+  min-width: 0;
+}
+
+.feegow-patient-photo-col {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.feegow-patient-photo-box {
+  width: 168px;
+  height: 168px;
+  border: 1px solid #d5dde2;
+  border-radius: 4px;
+  background: #fafbfc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  overflow: hidden;
+}
+
+.feegow-patient-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.feegow-patient-photo-label {
+  font-size: 10px;
+  color: #8a9aa2;
+}
+
+.feegow-patient-photo-input {
+  display: none;
+}
+
+.feegow-patient-photo-actions {
+  display: flex;
+  gap: 4px;
+  width: 168px;
+}
+
+.feegow-patient-photo-btn {
+  flex: 1;
+  min-width: 0;
+  height: 34px;
+  border: none;
+  background: #00a0e1;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.feegow-patient-photo-btn:not(.feegow-patient-photo-btn-remove) {
+  font-size: 25px;
+}
+
+.feegow-patient-photo-btn-remove {
+  flex: 0 0 34px;
+  background: #e8ecef;
+  color: #5a6a72;
+  font-size: 13px;
+}
+
+.feegow-patient-photo-error {
+  display: block;
+  width: 168px;
+  font-size: 9px;
+  color: #e53935;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.feegow-patient-identity-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  column-gap: 6px;
+  row-gap: var(--feegow-field-row-gap);
+  align-items: end;
+}
+
+.feegow-patient-fields-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 6px;
+  row-gap: var(--feegow-field-row-gap);
+  align-items: end;
+}
+
+.feegow-patient-fields-grid > .feegow-field {
+  grid-column: span 2;
+}
+
+.feegow-patient-fields-grid .feegow-field-end,
+.feegow-patient-fields-grid .feegow-field-bairro,
+.feegow-patient-fields-grid .feegow-field-cidade {
+  grid-column: span 5;
+}
+
+.feegow-patient-fields-grid .feegow-field-num,
+.feegow-patient-fields-grid .feegow-field-estado,
+.feegow-patient-fields-grid .feegow-field-pais {
+  grid-column: span 1;
+}
+
+.feegow-patient-fields-grid .feegow-field-grow2 {
+  grid-column: span 4;
+}
+
+.feegow-patient-grid-head {
+  row-gap: var(--feegow-field-row-gap);
+}
+
+.feegow-patient-grid-body {
+  margin-top: 0;
+}
+
+.feegow-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+  justify-content: flex-end;
+}
+
+.feegow-field > span:first-child {
+  font-size: 9px;
+  font-weight: 600;
+  color: #6a7a82;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+  min-height: 11px;
+  margin-bottom: 1px;
+  display: block;
+}
+
+.feegow-req {
+  color: #e53935;
+  margin-left: 1px;
+}
+
+.feegow-field input,
+.feegow-field select,
+.feegow-field textarea {
+  width: 100%;
+  border: 1px solid #d5dde2;
+  border-radius: 2px;
+  padding: 2px 5px;
+  font-size: 11px;
+  line-height: 1.25;
+  min-height: 22px;
+  font-family: inherit;
+  color: #2a3a42;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.feegow-field select {
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+.feegow-field textarea {
+  resize: vertical;
+  min-height: 30px;
+  padding: 3px 5px;
+  line-height: 1.3;
+}
+
+.feegow-field-grow {
+  grid-column: span 2;
+}
+
+.feegow-field-grow2 {
+  grid-column: span 2;
+}
+
+.feegow-field-sm {
+  max-width: 80px;
+}
+
+.feegow-field-full,
+.feegow-field-span-full {
+  grid-column: 1 / -1;
+  align-self: stretch;
+}
+
+.feegow-field-check {
+  justify-content: flex-end;
+}
+
+.feegow-field-check .feegow-check-pill {
+  width: 100%;
+  min-height: 22px;
+  height: 22px;
+  margin: 0;
+  border: 1px solid #d5dde2;
+  border-radius: 2px;
+  padding: 0 6px;
+  box-sizing: border-box;
+  background: #fff;
+  justify-content: flex-start;
+}
+
+.feegow-field-check .feegow-check-pill input[type='checkbox'] {
+  width: 13px;
+  height: 13px;
+  margin: 0;
+  flex-shrink: 0;
+  accent-color: #00a0e1;
+}
+
+.feegow-field-triple .feegow-triple-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 3px;
+}
+
+.feegow-input-wrap {
+  position: relative;
+}
+
+.feegow-input-wrap input {
+  padding-right: 28px;
+}
+
+.feegow-input-icon {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.feegow-check-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #2a3a42;
+  cursor: pointer;
+}
+
+.feegow-check-pill.feegow-check-warn {
+  background: #fff8e1;
+  border-color: #ffe082;
+}
+
+.feegow-color-select {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.feegow-color-swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 2px;
+  border: 1px solid #ccc;
+  flex-shrink: 0;
+}
+
+.feegow-color-select select {
+  flex: 1;
+}
+
+.feegow-field-hint {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 1px);
+  font-size: 9px;
+  line-height: 1.1;
+  color: #00a0e1;
+  white-space: nowrap;
+}
+
+.feegow-field-hint.is-error {
+  color: #dc2626;
+}
+
+.feegow-field:has(.feegow-field-hint) {
+  position: relative;
+}
+
+.feegow-cep-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 22px;
+  max-height: 22px;
+}
+
+.feegow-cep-row input {
+  flex: 1;
+}
+
+.feegow-cep-link {
+  border: none;
+  background: none;
+  color: #00a0e1;
+  font-size: 9px;
+  line-height: 1;
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 0;
+  font-family: inherit;
+  text-decoration: underline;
+  flex-shrink: 0;
+}
+
+.feegow-patient-notes-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: var(--feegow-field-row-gap);
+  align-items: end;
+}
+
+.feegow-field-notes textarea,
+.feegow-field-warnings textarea {
+  min-height: 80px;
+}
+
+.feegow-warnings-row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.feegow-warnings-row textarea {
+  flex: 1;
+}
+
+.feegow-warnings-flag {
+  font-size: 18px;
+  padding-top: 6px;
+}
+
+/* ─── Formulários Feegow (modais, filtros, agenda) ─── */
+.feegow-form-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 6px;
+  row-gap: var(--feegow-field-row-gap, 9px);
+  align-items: end;
+}
+
+.feegow-form-grid > .feegow-field {
+  grid-column: span 2;
+}
+
+.feegow-form-grid .feegow-field-grow2 {
+  grid-column: span 4;
+}
+
+.feegow-form-grid .feegow-field-grow3 {
+  grid-column: span 6;
+}
+
+.feegow-form-grid .feegow-field-span-full .feegow-check-pill {
+  min-height: 22px;
+  padding: 4px 0;
+}
+
+.feegow-form-grid .feegow-field-span-full .feegow-check-pill span {
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.feegow-form-grid .feegow-field-span-full {
+  grid-column: 1 / -1;
+  align-self: stretch;
+}
+
+.feegow-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  grid-column: 1 / -1;
+  padding-top: 4px;
+}
+
+.feegow-form-btn-cancel {
+  border: 1px solid #d5dde2;
+  background: #fff;
+  color: #5a6a72;
+  font-weight: 600;
+  font-size: 11px;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.feegow-form-btn-cancel:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.feegow-form-grid .alert {
+  grid-column: 1 / -1;
+}
+
+.feegow-agenda-filter-sidebar .feegow-field + .feegow-field,
+.feegow-agenda-filter-sidebar .feegow-field {
+  margin-bottom: 2px;
+}
+
+.feegow-map-filters-row .feegow-field {
+  flex: 1 1 140px;
+  min-width: 120px;
+}
+
+.feegow-multi-filters .feegow-field {
+  min-width: 0;
+}
+
+.feegow-agenda-side-panel .feegow-field-notes textarea {
+  min-height: 100px;
+}
+
+.feegow-waiting-head-filters .feegow-field,
+.feegow-waiting-toolbar-filters .feegow-field {
+  min-width: 0;
+}
+
+.feegow-waiting-sort-field {
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+}
+
+.feegow-waiting-sort-field > span:first-child {
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+/* ─── Convênios / programação ─── */
+.feegow-patient-subtable-section {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid #eef2f4;
+}
+
+.feegow-patient-subtable-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.feegow-patient-subtable-toolbar .feegow-patient-section-title {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.feegow-subtable-icon-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  border: 1px solid #d5dde2;
+  background: #fff;
+  color: #3a4a52;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.feegow-subtable-icon-btn-add {
+  border-color: #4caf50;
+  color: #4caf50;
+}
+
+.feegow-subtable-icon-btn-add:hover {
+  background: #4caf50;
+  color: #fff;
+}
+
+.feegow-subtable-icon-btn-remove {
+  border-color: #e53935;
+  color: #e53935;
+}
+
+.feegow-subtable-icon-btn-remove:hover {
+  background: #e53935;
+  color: #fff;
+}
+
+.feegow-subtable-actions-col {
+  width: 36px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.feegow-subtable-input {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #d5dde2;
+  border-radius: 2px;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 1.25;
+  min-height: 22px;
+  font-family: inherit;
+  color: #2a3a42;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.feegow-patient-scheduling-table {
+  min-width: 920px;
+}
+
+.feegow-patient-insurance-section {
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px solid #eef2f4;
+}
+
+.feegow-patient-insurance-table-wrap {
+  border: 1px solid #dde4e8;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.feegow-patient-insurance-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+
+.feegow-patient-insurance-table th {
+  background: #f4f7f6;
+  color: #5a6a72;
+  font-weight: 600;
+  text-align: left;
+  padding: 5px 8px;
+  border-bottom: 1px solid #dde4e8;
+}
+
+.feegow-patient-insurance-table td {
+  padding: 6px 8px;
+  color: #8a9aa2;
+}
+
+.feegow-patient-insurance-empty {
+  text-align: center;
+  font-style: italic;
+}
+
+@media (max-width: 1200px) {
+  .feegow-patient-identity-grid,
+  .feegow-patient-fields-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1024px) {
+  .feegow-patient-sidebar-host {
+    position: fixed;
+    top: 55px;
+    left: 0;
+    bottom: 0;
+    z-index: 1050;
+    transform: translateX(-100%);
+    transition: transform 0.2s ease;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.12);
+  }
+
+  .feegow-layout.feegow-layout-patient-insert.sidebar-open .feegow-patient-sidebar-host {
+    transform: translateX(0);
+  }
+
+  .feegow-patient-screen {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .feegow-patient-notes-row {
+    grid-template-columns: 1fr;
+  }
+
+  .feegow-patient-form-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .feegow-patient-photo-col {
+    justify-self: center;
+  }
+
+  .feegow-patient-identity-grid,
+  .feegow-patient-fields-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feegow-form-grid > .feegow-field,
+  .feegow-form-grid .feegow-field-grow2,
+  .feegow-form-grid .feegow-field-grow3,
+  .feegow-field-grow,
+  .feegow-field-grow2,
+  .feegow-patient-fields-grid > .feegow-field,
+  .feegow-patient-fields-grid .feegow-field-end,
+  .feegow-patient-fields-grid .feegow-field-num,
+  .feegow-patient-fields-grid .feegow-field-bairro,
+  .feegow-patient-fields-grid .feegow-field-cidade,
+  .feegow-patient-fields-grid .feegow-field-estado,
+  .feegow-patient-fields-grid .feegow-field-pais {
+    grid-column: span 1;
+  }
+}
+
+/* ─── Listar (print 16-36-28) ─── */
+.feegow-patient-list-sidebar .feegow-patient-list-section-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #8a9aa2;
+  letter-spacing: 0.06em;
+  margin: 8px 0 6px;
+  padding: 0 4px;
+}
+
+.feegow-patient-list-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.feegow-patient-list-nav-item {
+  border: 1px solid #d5dde2;
+  background: #fff;
+  border-left: 3px solid #00a0e1;
+  border-radius: 0 4px 4px 0;
+  text-align: left;
+  padding: 7px 10px;
+  font-size: 11px;
+  text-decoration: none;
+  display: block;
+  font-weight: 700;
+  color: #3a4a52;
+  cursor: pointer;
+  font-family: inherit;
+  letter-spacing: 0.04em;
+}
+
+.feegow-patient-list-nav-item:hover,
+.feegow-patient-list-nav-item.is-active {
+  background: #f8fbfd;
+  color: #1a2a32;
+}
+
+.feegow-patient-chart-search {
+  margin-top: 8px;
+}
+
+.feegow-patient-list-card {
+  background: #fff;
+  border: 1px solid #dde4e8;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  min-height: calc(100% - 8px);
+  display: flex;
+  flex-direction: column;
+}
+
+.feegow-patient-list-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e8ecef;
+}
+
+.feegow-patient-list-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #3a4a52;
+}
+
+.feegow-patient-list-crumb-sep {
+  color: #b0bcc2;
+  font-weight: 400;
+}
+
+.feegow-patient-list-crumb-user {
+  font-size: 16px;
+  color: #00a0e1;
+}
+
+.feegow-patient-insert-btn {
+  display: inline-flex;
+  align-items: center;
+  border: none;
+  background: #4caf50;
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 9px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  font-family: inherit;
+}
+
+.feegow-patient-insert-btn:hover {
+  background: #43a047;
+  color: #fff;
+}
+
+.feegow-patient-list-table-wrap {
+  overflow: auto;
+  flex: 1;
+}
+
+.feegow-patient-list-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  min-width: 1100px;
+}
+
+.feegow-patient-list-table th {
+  background: #fafbfc;
+  color: #5a6a72;
+  font-weight: 600;
+  text-align: left;
+  padding: 6px 8px;
+  border-bottom: 1px solid #dde4e8;
+  white-space: nowrap;
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+.feegow-patient-list-table td {
+  padding: 5px 8px;
+  border-bottom: 1px solid #eef2f4;
+  color: #3a4a52;
+  vertical-align: middle;
+  line-height: 1.25;
+}
+
+.feegow-patient-list-table tbody tr:hover {
+  background: #f8fbfd;
+}
+
+.feegow-patient-list-check-col {
+  width: 36px;
+  text-align: center;
+}
+
+.feegow-patient-list-check-col input {
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}
+
+.feegow-patient-list-name {
+  color: #00a0e1;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.feegow-patient-list-name:hover {
+  text-decoration: underline;
+}
+
+.feegow-patient-list-actions-col {
+  width: 108px;
+}
+
+.feegow-patient-list-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.feegow-patient-action {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-family: inherit;
+  line-height: 1;
+}
+
+.feegow-patient-action-edit {
+  background: #00a0e1;
+}
+
+.feegow-patient-action-finance {
+  background: #4caf50;
+}
+
+.feegow-patient-action-delete {
+  background: #e53935;
+}
+
+.feegow-patient-list-empty {
+  text-align: center;
+  color: #8a9aa2;
+  padding: 32px 16px !important;
+  font-style: italic;
+}
+
+/* ─── Seções do prontuário ─── */
+.feegow-patient-crumb-link {
+  color: #00a0e1;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.feegow-patient-crumb-link:hover {
+  text-decoration: underline;
+}
+
+.feegow-patient-gate-card .feegow-patient-gate-body {
+  padding: 24px 20px;
+  font-size: 13px;
+  color: #4a5a62;
+  line-height: 1.45;
+}
+
+.feegow-patient-gate-link {
+  display: inline-block;
+  margin-top: 12px;
+  background: #00a0e1;
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.feegow-patient-section-panel {
+  border: 1px solid #eef2f4;
+  border-radius: 4px;
+  padding: 10px 12px;
+}
+
+.feegow-patient-section-panel-title {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #2a3a42;
+}
+
+.feegow-clinical-alerts-list {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.feegow-clinical-alert {
+  border-radius: 8px;
+  padding: 10px 12px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  font-size: 13px;
+}
+
+.feegow-clinical-alert-critical {
+  border-color: #f5b7b1;
+  background: #fdf2f2;
+}
+
+.feegow-clinical-alert-warning {
+  border-color: #f9e79f;
+  background: #fffbeb;
+}
+
+.feegow-clinical-alert-info {
+  border-color: #bee3f8;
+  background: #f0f9ff;
+}
+
+.feegow-clinical-alert-rule {
+  margin-left: 6px;
+  font-size: 11px;
+  color: #64748b;
+}
+
+.feegow-clinical-alert p {
+  margin: 4px 0 0;
+  color: #334155;
+}
+
+.feegow-patient-section-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 8px;
+}
+
+.feegow-patient-section-actions-col {
+  width: 72px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.feegow-patient-entry-edit-btn {
+  border: 1px solid #d5dde2;
+  background: #fff;
+  color: #00a0e1;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.feegow-patient-entry-edit-btn:hover:not(:disabled) {
+  background: #f0f9fd;
+  border-color: #00a0e1;
+}
+
+.feegow-patient-entry-edit-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: #8a9aa2;
+}
+
+.feegow-patient-section-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+
+.feegow-patient-section-table th,
+.feegow-patient-section-table td {
+  padding: 5px 8px;
+  border-bottom: 1px solid #eef2f4;
+  text-align: left;
+  line-height: 1.25;
+}
+
+.feegow-patient-section-table th {
+  background: #fafbfc;
+  color: #5a6a72;
+  font-weight: 600;
+}
+
+.feegow-patient-section-empty {
+  margin: 0;
+  color: #8a9aa2;
+  font-size: 12px;
+  font-style: italic;
+}
+
+.feegow-patient-section-pep-link,
+.feegow-patient-section-meta {
+  margin: 10px 0 0;
+  font-size: 11px;
+}
+
+.feegow-patient-section-pep-link a {
+  color: #00a0e1;
+  text-decoration: none;
+}
+
+.feegow-patient-section-pep-link a:hover {
+  text-decoration: underline;
+}
+
+.feegow-patient-section-subtitle {
+  margin: 16px 0 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #2a3a42;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.feegow-patient-section-subtitle:first-child {
+  margin-top: 0;
+}
+
+.feegow-patient-timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-left: 2px solid #dde4e8;
+}
+
+.feegow-patient-timeline-item {
+  position: relative;
+  margin: 0 0 14px 14px;
+  padding: 0 0 0 10px;
+}
+
+.feegow-patient-timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -19px;
+  top: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00a0e1;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px #dde4e8;
+}
+
+.feegow-patient-timeline-item time {
+  display: block;
+  font-size: 10px;
+  color: #5a6a72;
+}
+
+.feegow-patient-timeline-item strong {
+  display: inline-block;
+  margin-right: 6px;
+  font-size: 12px;
+  color: #1f2d33;
+}
+
+.feegow-patient-timeline-cid {
+  font-size: 10px;
+  color: #00a0e1;
+}
+
+.feegow-patient-timeline-item p {
+  margin: 4px 0;
+  font-size: 11px;
+  line-height: 1.45;
+  color: #2a3a42;
+}
+
+.feegow-patient-timeline-meta {
+  font-size: 10px;
+  color: #8a9aa3;
+}
+
+.feegow-legal-responsible-form .feegow-legal-responsible-note {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: #fff8e6;
+  border: 1px solid #f0d48a;
+  color: #6b5a1f;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.feegow-legal-responsible-summary-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 10px;
+  border: 1px solid #dde4e8;
+  border-radius: 6px;
+  background: #f8fbfd;
+  font-size: 12px;
+}
+
+.feegow-legal-responsible-summary-box strong {
+  color: #1f2d33;
+}
+
+.feegow-legal-responsible-summary-box span {
+  color: #5a6a72;
+}
+
+.feegow-form-error {
+  margin: 0;
+  color: #c62828;
+  font-size: 12px;
+}
+

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="Campanha Outubro Rosa">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8b4d9"/>
+      <stop offset="100%" stop-color="#e91e8c"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg)"/>
+  <circle cx="680" cy="90" r="48" fill="#ffffff" opacity="0.25"/>
+  <text x="40" y="120" fill="#ffffff" font-family="Segoe UI, Arial, sans-serif" font-size="52" font-weight="700">OUTUBRO ROSA</text>
+  <text x="40" y="175" fill="#ffffff" font-family="Segoe UI, Arial, sans-serif" font-size="28">Agende sua mamografia</text>
+  <text x="40" y="220" fill="#ffffff" font-family="Segoe UI, Arial, sans-serif" font-size="22" opacity="0.95">Prevencao salva vidas - SGH</text>
+  <rect x="40" y="280" width="280" height="56" rx="28" fill="#ffffff"/>
+  <text x="68" y="317" fill="#c2185b" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="600">Central de Agendamento</text>
+</svg>

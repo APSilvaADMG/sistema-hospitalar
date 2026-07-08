@@ -1,0 +1,669 @@
+
+#' @title Print Method for DCM Objects
+#'
+#' @description Prints a summary of a deterministic compartmental model object,
+#'   including the model type, number of runs, time steps, model parameters, and
+#'   output variable names.
+#'
+#' @param x An object of class `dcm`, from [dcm()].
+#' @param ... Additional arguments (currently ignored).
+#'
+#' @details
+#' Given a `dcm` object, `print.dcm` displays:
+#' - **Simulation summary**: model class, model type (e.g., SI, SIR, SIS;
+#'   omitted for new/custom models), number of runs, number of time steps, and
+#'   number of groups.
+#' - **Model parameters**: all parameters passed via [param.dcm()], excluding
+#'   internal bookkeeping parameters (`groups`, `vital`).
+#' - **Model output**: the names of all epidemic output variables stored in the
+#'   model.
+#'
+#' @method print dcm
+#' @export
+print.dcm <- function(x, ...) {
+
+  # New model
+  new.mod <- ifelse(!is.null(x$control$new.mod), TRUE, FALSE)
+
+  cat("EpiModel Simulation")
+  cat("\n=======================")
+  cat("\nModel class:", class(x))
+
+  cat("\n\nSimulation Summary")
+  cat("\n-----------------------")
+  if (new.mod == FALSE) {
+    cat("\nModel type:", x$control$type)
+  }
+  cat("\nNo. runs:", x$control$nruns)
+  cat("\nNo. time steps:", x$control$nsteps)
+  if (new.mod == FALSE) {
+    cat("\nNo. groups:", x$param$groups)
+  }
+
+  cat("\n\nModel Parameters")
+  cat("\n-----------------------\n")
+  pToPrint <- which(!(names(x$param) %in% c("groups", "vital")))
+  for (i in pToPrint) {
+    cat(names(x$param)[i], "=", x$param[[i]], fill = 60)
+  }
+
+  if (!is.null(x$init)) {
+    cat("\nInitial Conditions")
+    cat("\n-----------------------\n")
+    flow.names <- grep("\\.flow", names(x$init), value = TRUE)
+    iToPrint <- which(!(names(x$init) %in% flow.names))
+    for (i in iToPrint) {
+      cat(names(x$init)[i], "=", x$init[[i]], fill = 60)
+    }
+  }
+
+  cat("\nModel Output")
+  cat("\n-----------------------")
+  cat("\nVariables:", names(x$epi), fill = 60)
+
+  invisible()
+}
+
+
+#' @title Print Method for ICM Objects
+#'
+#' @description Prints a summary of a stochastic individual contact model
+#'   object, including the model type, number of simulations, time steps, model
+#'   parameters, and output variable names.
+#'
+#' @param x An object of class `icm`, from [icm()].
+#' @param ... Additional arguments (currently ignored).
+#'
+#' @details
+#' Given an `icm` object, `print.icm` displays:
+#' - **Simulation summary**: model class, model type (e.g., SI, SIR, SIS),
+#'   number of simulations, number of time steps, and number of groups.
+#' - **Model parameters**: all parameters passed via [param.icm()], excluding
+#'   internal bookkeeping parameters (`groups`, `vital`).
+#' - **Model output**: the names of all epidemic output variables stored in the
+#'   model.
+#'
+#' @method print icm
+#' @export
+print.icm <- function(x, ...) {
+
+  cat("EpiModel Simulation")
+  cat("\n=======================")
+  cat("\nModel class:", class(x))
+
+  cat("\n\nSimulation Summary")
+  cat("\n-----------------------")
+  cat("\nModel type:", x$control$type)
+  cat("\nNo. simulations:", x$control$nsims)
+  cat("\nNo. time steps:", x$control$nsteps)
+  cat("\nNo. groups:", x$param$groups)
+
+  cat("\n\nModel Parameters")
+  cat("\n-----------------------\n")
+  pToPrint <- which(!(names(x$param) %in% c("groups", "vital")))
+  for (i in pToPrint) {
+    cat(names(x$param)[i], "=", x$param[[i]], fill = 60)
+  }
+
+  cat("\nModel Output")
+  cat("\n-----------------------")
+  cat("\nVariables:", names(x$epi), fill = 60)
+
+  invisible()
+}
+
+
+#' @export
+print.netest <- function(x, digits = 3, ...) {
+
+  cat("EpiModel Network Estimation")
+  cat("\n=======================")
+  cat("\nModel class:", class(x))
+  estmeth <- ifelse(x$edapprox == TRUE, "ERGM with Edges Approximation",
+                    "Full STERGM Fit")
+  cat(paste("\nEstimation Method:", estmeth))
+
+  cat("\n\nModel Form")
+  cat("\n-----------------------")
+  cat("\nFormation: ")
+  print(x$formation)
+  cat("Target Statistics:", x$target.stats)
+  cat("\nConstraints: ")
+  cat(paste0(as.character(x$constraints)[1],
+             as.character(x$constraints)[2]))
+  cat("\n\nDissolution: ")
+  cat(as.character(x$coef.diss$dissolution), sep = "")
+  cat("\nTarget Statistics:", x$coef.diss$duration)
+
+  invisible()
+}
+
+#' @rdname print.netdx
+#' @title Utility Function for Printing netdx Object
+#' @description Prints basic information and statistics from a `netdx`
+#'              object.
+#' @param x an object of class `netdx`
+#' @param digits number of digits to print in statistics tables
+#' @param ... additional arguments (currently ignored)
+#' @details
+#' Given a `netdx` object, `print.netdx` prints the diagnostic method
+#' (static/dynamic), number of simulations, and (if dynamic) the number of time
+#' steps per simulation used in generating the `netdx` object, as well as
+#' printing the formation statistics table and (if present) the duration and
+#' dissolution statistics tables.  The statistics tables are interpreted as
+#' follows.
+#'
+#' Each row has the name of a particular network statistic.  In the formation
+#' table, these correspond to actual network statistics in the obvious way.
+#' In the duration and dissolution tables, these correspond to dissolution
+#' model dyad types: in a homogeneous dissolution model, all dyads are of the
+#' `edges` type; in a heterogeneous dissolution model, a dyad with a
+#' nonzero `nodematch` or `nodemix` change statistic in the
+#' dissolution model has type equal to that statistic, and has type equal to
+#' `edges` otherwise.  The statistics of interest for the duration and
+#' dissolution tables are, respectively, the mean age of extant edges and the
+#' edge dissolution rate, broken down by dissolution model dyad type.  (The
+#' current convention is to treat the mean age and dissolution rate for a
+#' particular dissolution dyad type as 0 on time steps with no edges of that
+#' type; this behavior may be changed in the future.)
+#'
+#' The columns are named `Target`, `Sim Mean`, `Pct Diff`,
+#' `Sim SE`, `Z Score`, `SD(Sim Means)`, and
+#' `SD(Statistic)`.  The `Sim Mean` column refers to the mean
+#' statistic value, across all time steps in all simulations in the dynamic
+#' case, and across all sampled networks in all simulations in the static case.
+#' The `Sim SE` column refers to the standard error in the mean, estimated
+#' using [`coda::effectiveSize`].  The `Target`
+#' column indicates the target value (if present) for the statistic, and the
+#' `Pct Diff` column gives `(Sim Mean - Target)/Target` when
+#' `Target` is present.  The `Z Score` column gives
+#' `(Sim Mean - Target)/(Sim SE)`.  The `SD(Sim Means)` column gives
+#' the empirical standard deviation across simulations of the mean statistic
+#' value within simulation, and `SD(Statistic)` gives the empirical
+#' standard deviation of the statistic value across all the simulated data.
+#' @export
+print.netdx <- function(x, digits = 3, ...) {
+
+  cat("EpiModel Network Diagnostics")
+  cat("\n=======================")
+  dxmethod <- ifelse(x$dynamic == TRUE, "Dynamic", "Static")
+  cat("\nDiagnostic Method:", dxmethod)
+  cat("\nSimulations:", x$nsims)
+  if (x$dynamic == TRUE) {
+    cat("\nTime Steps per Sim:", x$nsteps)
+  }
+
+  cat("\n\nFormation Diagnostics")
+  cat("\n----------------------- \n")
+  print_nwstats_table(x$stats.table.formation, digits)
+
+  if (x$dynamic == TRUE && !is.null(x$stats.table.duration)) {
+    cat("\nDuration Diagnostics")
+    cat("\n----------------------- \n")
+    print_nwstats_table(x$stats.table.duration, digits)
+  }
+  if (x$dynamic == TRUE && !is.null(x$stats.table.dissolution)) {
+    cat("\nDissolution Diagnostics")
+    cat("\n----------------------- \n")
+    print_nwstats_table(x$stats.table.dissolution, digits)
+  }
+  if (x$anyNA == TRUE) {
+    cat("\nNOTE: Duration and dissolution data contains undefined values due to",
+        "having zero edges of some dissolution dyad type(s) on some time",
+        "steps; these undefined values will be set to 0 when",
+        "processing the data; this behavior, which introduces a bias",
+        "towards 0, may be changed in the future.")
+  }
+  invisible()
+}
+
+
+#' @title Print Method for Network Model Simulations
+#'
+#' @description Prints a detailed summary of a stochastic network model
+#'   simulation object, including simulation metadata, model parameters,
+#'   output variables, and (optionally) network formation, duration, and
+#'   dissolution statistics with target comparisons.
+#'
+#' @param x An object of class `netsim`, from [netsim()].
+#' @param nwstats If `TRUE` (the default), print network statistics tables
+#'   (formation, duration, and dissolution) when available.
+#' @param digits Number of digits to print in the network statistics tables.
+#' @param network Integer index of the network for which to display statistics,
+#'   for multi-network models. Default is `1`.
+#' @param ... Additional arguments (currently ignored).
+#'
+#' @details
+#' Given a `netsim` object, `print.netsim` displays the following sections:
+#'
+#' **Simulation summary**: model class, model type (e.g., SI, SIR, SIS),
+#' number of simulations, number of time steps, and number of network groups.
+#'
+#' **Model parameters**: printed via `print.param.net()`, showing fixed and
+#' (if applicable) random parameters.
+#'
+#' **Model functions**: for extension models (`type = NULL`), lists the names
+#' of all custom module functions.
+#'
+#' **Model output**: the names of all epidemic output variables, saved network
+#' objects, transmission matrices, and any other saved elements.
+#'
+#' **Network statistics** (when `nwstats = TRUE` and network statistics were
+#' saved during the simulation):
+#'
+#' The formation, duration, and dissolution statistics tables are computed and
+#' displayed in the same way as for [print.netdx()].  Each table contains the
+#' columns `Target`, `Sim Mean`, `Pct Diff`, `Sim SE`, `Z Score`,
+#' `SD(Sim Means)`, and `SD(Statistic)`.  The `Sim Mean` column is the mean
+#' statistic value across all time steps and simulations.  `Sim SE` is the
+#' standard error estimated using [coda::effectiveSize].  `Pct Diff` gives
+#' `(Sim Mean - Target) / Target` and `Z Score` gives
+#' `(Sim Mean - Target) / Sim SE` when a target is available.  `SD(Sim Means)`
+#' is the standard deviation of per-simulation means, and `SD(Statistic)` is
+#' the overall standard deviation of the statistic.
+#'
+#' *Formation statistics*: each row corresponds to a network statistic from the
+#' formation formula (e.g., `edges`, `nodematch`), compared against the target
+#' statistics from network estimation.  These statistics assess whether the
+#' network structure is maintained at target levels during the epidemic
+#' simulation (which is particularly important in open-population models where
+#' demographic turnover can shift network structure).
+#'
+#' *Duration statistics*: each row corresponds to a dissolution model dyad
+#' type.  In a homogeneous dissolution model (`~offset(edges)`), all dyads are
+#' of the `edges` type.  The statistic of interest is the mean age of extant
+#' edges, compared against the target duration from [dissolution_coefs()].
+#'
+#' *Dissolution statistics*: same row structure as the duration table.  The
+#' statistic of interest is the edge dissolution rate (proportion of edges
+#' dissolving per time step), compared against `1 / target duration`.
+#'
+#' Duration and dissolution tables are only available when
+#' `control$save.diss.stats = TRUE`, `control$save.network = TRUE`,
+#' `control$tergmLite = FALSE`, and the dissolution formula is
+#' `~offset(edges)`.  When these conditions are not met, a note listing the
+#' requirements is printed instead.
+#'
+#' @seealso [netsim()], [print.netdx()], [summary.netsim()].
+#'
+#' @method print netsim
+#' @export
+print.netsim <- function(x, nwstats = TRUE, digits = 3, network = 1, ...) {
+
+  nsims <- x$control$nsims
+  if (nsims == 1) {
+    simnames <- "sim1"
+  }
+  if (nsims == 2) {
+    simnames <- "sim1 sim2"
+  }
+  if (nsims > 2) {
+    simnames <- paste0("sim1 ... sim", nsims)
+  }
+
+  cat("EpiModel Simulation")
+  cat("\n=======================")
+  cat("\nModel class:", class(x))
+
+  cat("\n\nSimulation Summary")
+  cat("\n-----------------------")
+  cat("\nModel type:", x$control$type)
+  cat("\nNo. simulations:", nsims)
+  cat("\nNo. time steps:", x$control$nsteps)
+  cat("\nNo. NW groups:", x$param$groups)
+
+  # Parameters
+  cat("\n\n")
+  print(x$param)
+
+  if (is.null(x$control$type)) {
+    cat("\nModel Functions")
+    cat("\n-----------------------\n")
+    for (i in seq_along(x$control$f.names)) {
+      cat(x$control$f.names[i], "\n")
+    }
+  }
+
+  cat("\nModel Output")
+  cat("\n-----------------------")
+  cat("\nVariables:", names(x$epi), fill = 60)
+  if (!(is.null(x$network))) {
+    cat("Networks:", simnames)
+  }
+  if (!(is.null(x$stats$transmat))) {
+    if (!is.null(x$network)) {
+      cat("\nTransmissions:", simnames)
+    } else {
+      cat("Transmissions:", simnames)
+    }
+  }
+  if (!is.null(x$control$save.other)) {
+    names_present <- intersect(x$control$save.other, names(x))
+    if (length(names_present) > 0) {
+      cat("\nOther Elements:", names_present)
+    }
+  }
+  cat("")
+
+  if (nwstats && !is.null(x$stats$nwstats)) {
+    stats <- get_nwstats(x, network = network, mode = "list")
+    nsims <- x$control$nsims
+
+    target.stats <- x$nwparam[[network]]$target.stats
+    ts.attr.names <- x$nwparam[[network]]$target.stats.names
+    names(target.stats) <- ts.attr.names
+
+    stats.table.formation <- make_stats_table(stats, target.stats)
+
+    cat("\n\nFormation Statistics")
+    cat("\n----------------------- \n")
+    print_nwstats_table(stats.table.formation, digits = digits)
+    cat("\n")
+
+    if (x$control$save.diss.stats &&
+          x$control$save.network &&
+          ! x$control$tergmLite &&
+          ! is.null(x$diss.stats) &&
+          x$nwparam[[network]]$coef.diss$dissolution == ~ offset(edges)) {
+
+      if (any(unlist(lapply(x$diss.stats, `[[`, "anyNA")))) {
+        cat("\nNOTE: Duration & dissolution data contains undefined values due to zero edges of some dissolution
+            dyad type(s) on some time step; these undefined values will be set to 0 when processing the data.")
+      }
+
+      dur_stats <- lapply(x$diss.stats, function(ds) ds[[network]][["meanageimputed"]])
+      diss_stats <- lapply(x$diss.stats, function(ds) ds[[network]][["propdiss"]])
+
+      dur_table <- make_stats_table(dur_stats, x$nwparam[[network]]$coef.diss$duration)
+      diss_table <- make_stats_table(diss_stats, 1 / x$nwparam[[network]]$coef.diss$duration)
+
+      cat("\nDuration Statistics")
+      cat("\n----------------------- \n")
+      print_nwstats_table(dur_table, digits)
+
+      cat("\nDissolution Statistics")
+      cat("\n----------------------- \n")
+      print_nwstats_table(diss_table, digits)
+
+    } else {
+      cat("\nDuration and Dissolution Statistics")
+      cat("\n----------------------- \n")
+      cat("Not available when:")
+      cat("\n- `control$tergmLite == TRUE`")
+      cat("\n- `control$save.network == FALSE`")
+      cat("\n- `control$save.diss.stats == FALSE`")
+      cat("\n- dissolution formula is not `~ offset(edges)`")
+      cat("\n- `keep.diss.stats == FALSE` (if merging)")
+      cat("\n")
+    }
+  }
+
+  cat("\n")
+  invisible()
+}
+
+
+#' @export
+print.disscoef <- function(x, ...) {
+
+  cat("Dissolution Coefficients")
+  cat("\n=======================")
+  cat("\nDissolution Model: ")
+  cat(as.character(x$dissolution), sep = "")
+  cat("\nTarget Statistics:", x$duration)
+  cat("\nCrude Coefficient:", x$coef.crude)
+  cat("\nMortality/Exit Rate:", x$d.rate)
+  cat("\nAdjusted Coefficient:", x$coef.adj)
+  cat("\n")
+
+  invisible()
+}
+
+#' @title Format One Parameter for Printing with the `print.param.xxx`
+#'        Functions
+#'
+#' @param param_name The name of the parameter to print.
+#' @param param_value The value of the parameter to print.
+#'
+#' @keywords internal
+format_param <- function(param_name, param_value) {
+  if (is.numeric(param_value) && length(param_value) > 10) {
+    cat(param_name, "=", param_value[1:10], "...", fill = 80)
+  } else if (is.data.frame(param_value)) {
+    cat(param_name, "= <data.frame>\n")
+  } else if (is.list(param_value)) {
+    cat(param_name, "= <list>\n")
+  } else if (inherits(param_value, "lm")) {
+    cat(param_name, "= <lm/glm>\n")
+  } else {
+    cat(param_name, "=", param_value, fill = 80)
+  }
+}
+
+#' @export
+print.param.dcm <- function(x, ...) {
+
+  pToPrint <- seq_along(x)
+
+  cat("DCM Parameters")
+  cat("\n===========================\n")
+  for (i in pToPrint) {
+    format_param(names(x)[i], x[[i]])
+  }
+
+  invisible()
+}
+
+#' @export
+print.param.icm <- function(x, ...) {
+
+  pToPrint <- which(!(names(x) %in% c("vital")))
+
+  cat("ICM Parameters")
+  cat("\n===========================\n")
+  for (i in pToPrint) {
+    format_param(names(x)[i], x[[i]])
+  }
+
+  invisible()
+}
+
+#' @export
+print.param.net <- function(x, ...) {
+
+  randoms <- c("random.params", "random.params.values")
+  pToPrint <- which(!(names(x) %in% c("vital", randoms)))
+  rng_values <- list()
+  rng_defs <- NULL
+
+  if (all(randoms %in% names(x))) {
+    rng_values <- x$random.params.values
+    pToPrint <- pToPrint[! names(x)[pToPrint] %in% names(rng_values)]
+  } else if (randoms[1] %in% names(x)) {
+    rng_defs <- names(x[[randoms[1]]])
+    pToPrint <- pToPrint[! names(x)[pToPrint] %in% rng_defs]
+  }
+
+  cat("Fixed Parameters")
+  cat("\n---------------------------\n")
+  for (i in pToPrint) {
+    format_param(names(x)[i], x[[i]])
+  }
+
+  if (!is.null(rng_defs)) {
+    cat("\nRandom Parameters")
+    cat("\n(Not drawn yet)")
+    cat("\n---------------------------\n")
+    for (prm in rng_defs) {
+      if (prm == "param.random.set") {
+        cat(prm, "= <data.frame> ( dimensions:",
+            dim(x$random.param$param.random.set), ")\n")
+      } else {
+        cat(prm, "= <function>\n")
+      }
+    }
+  }
+
+  if (length(rng_values) > 0) {
+    cat("\nRandom Parameters")
+    cat("\n---------------------------\n")
+    for (i in seq_along(rng_values)) {
+      format_param(names(rng_values)[i], rng_values[[i]])
+    }
+  }
+
+  invisible()
+}
+
+#' @export
+print.init.dcm <- function(x, ...) {
+
+  pToPrint <- seq_along(x)
+
+  cat("DCM Initial Conditions")
+  cat("\n===========================\n")
+  for (i in pToPrint) {
+    if (inherits(x[[i]], c("integer", "numeric")) && length(x[[i]]) > 10) {
+      cat(names(x)[i], "=", x[[i]][1:5], "...", fill = 80)
+    } else if (inherits(x[[i]], "data.frame")) {
+      cat(names(x)[i], "= <data.frame>\n")
+    } else if (inherits(x[[i]], "list")) {
+      cat(names(x)[i], "= <list>\n")
+    } else {
+      cat(names(x)[i], "=", x[[i]], fill = 80)
+    }
+  }
+
+  invisible()
+}
+
+#' @export
+print.init.icm <- function(x, ...) {
+
+  pToPrint <- seq_along(x)
+
+  cat("ICM Initial Conditions")
+  cat("\n===========================\n")
+  for (i in pToPrint) {
+    if (inherits(x[[i]], c("integer", "numeric")) && length(x[[i]]) > 10) {
+      cat(names(x)[i], "=", x[[i]][1:5], "...", fill = 80)
+    } else if (inherits(x[[i]], "data.frame")) {
+      cat(names(x)[i], "= <data.frame>\n")
+    } else if (inherits(x[[i]], "list")) {
+      cat(names(x)[i], "= <list>\n")
+    } else {
+      cat(names(x)[i], "=", x[[i]], fill = 80)
+    }
+  }
+
+  invisible()
+}
+
+#' @export
+print.init.net <- function(x, ...) {
+
+  pToPrint <- seq_along(x)
+
+  cat("Network Model Initial Conditions")
+  cat("\n=================================\n")
+  for (i in pToPrint) {
+    if (inherits(x[[i]], c("integer", "numeric")) && length(x[[i]]) > 10) {
+      cat(names(x)[i], "=", x[[i]][1:5], "...", fill = 80)
+    } else if (inherits(x[[i]], "data.frame")) {
+      cat(names(x)[i], "= <data.frame>\n")
+    } else if (inherits(x[[i]], "list")) {
+      cat(names(x)[i], "= <list>\n")
+    } else {
+      cat(names(x)[i], "=", x[[i]], fill = 80)
+    }
+  }
+
+  invisible()
+}
+
+#' @export
+print.control.dcm <- function(x, ...) {
+
+  pToPrint <- seq_along(names(x))
+  pToPrint <- pToPrint[-which(names(x) == "new.mod")]
+  if (!is.null(x$new.mod)) {
+    names(x)[which(names(x) == "new.mod.name")] <- "new.mod"
+  }
+
+  cat("DCM Control Settings")
+  cat("\n===========================\n")
+  for (i in pToPrint) {
+    cat(names(x)[i], "=", x[[i]], fill = 80)
+  }
+
+  invisible()
+}
+
+#' @export
+print.control.icm <- function(x, ...) {
+
+  pToPrint <- which(!grepl(".FUN", names(x)))
+
+  cat("ICM Control Settings")
+  cat("\n===========================\n")
+  for (i in pToPrint) {
+    cat(names(x)[i], "=", x[[i]], fill = 80)
+  }
+
+  invisible()
+}
+
+#' @export
+print.control.net <- function(x, ...) {
+
+  pToPrint <- which(
+    !grepl(".FUN", names(x)) &
+      names(x) != "f.args" &
+      names(x) != "f.names" &
+      names(x) != "set.control.tergm" &
+      names(x) != "set.control.ergm" &
+      names(x) != "dat.updates" &
+      !(names(x) %in% c("bi.mods", "user.mods"))
+  )
+
+
+
+  cat("Network Model Control Settings")
+  cat("\n===============================\n")
+  for (i in pToPrint) {
+    if (inherits(x[[i]], "formula")) {
+      cat(names(x)[i], "= ")
+      cat(paste0(as.character(x[[i]])[1],
+                 as.character(x[[i]])[2]), "\n")
+    } else if (inherits(x[[i]], "data.frame")) {
+      cat(names(x)[i], "= <data.frame>\n")
+    } else if (inherits(x[[i]], "list")) {
+      cat(names(x)[i], "= <list>\n")
+    } else {
+      cat(names(x)[i], "=", x[[i]], fill = 80)
+    }
+  }
+
+  if (!is.null(x$module.order)) {
+    funToPrint <- x$module.order
+  } else {
+    funToPrint <- names(x)[grep(".FUN", names(x))]
+    funToPrint <- funToPrint[!funToPrint %in% c("initialize.FUN",
+                                                "verbose.FUN")]
+  }
+
+  cat("Dynamic Modules:", funToPrint)
+  cat("\n")
+
+  invisible()
+}
+
+#' @title Print Helper For Network Stats Tables
+#'
+#' @param nwtable A formation or dissolution statistics `data.frame`.
+#' @param digits Argument to be passed to `round`.
+#'
+#' @keywords internal
+print_nwstats_table <- function(nwtable, digits) {
+  print(as.data.frame(round(as.matrix(nwtable), digits = digits)))
+}

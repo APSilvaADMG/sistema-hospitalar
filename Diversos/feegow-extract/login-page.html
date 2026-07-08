@@ -1,0 +1,1019 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+  window.FEEGOW_ENVS = {
+    FC_APP_ENV: 'production',
+    FC_API_URL: 'https://core.feegow.com/',
+    FC_REST_API_URL: 'https://api.feegow.com/v1',
+    FC_LABS_URL: 'https://labs.feegow.com/',
+    FC_ODONTOGRAMA_URL: 'https://odontograma.feegow.com',
+    FC_AUTORIZADOR_ONLINE_URL: 'https://autorizadoronline.feegow.com/',
+    FC_FRONTEND_URL: 'https://frontend-v2.feegow.com/',
+    FC_REACT_FRONTEND_URL: 'https://frontend.feegow.com',
+    FC_QUICK_QUERY_URL: 'https://quick-queries.feegow.com',
+    FC_BENEFIT_CARD_URL: 'https://cartao-beneficios.feegow.com',
+    FC_MEDICAL_RECORDS_URL: 'https://medical-records.feegow.com/v1',
+    FC_LOGS_SERVICE_URL: 'https://galahad.feegow.com/logs',
+    FC_FINANCIAL2_URL: 'https://financial.feegow.com/financial2',
+    FC_IA_ASSISTANT_URL: 'https://ai-assistant-v2.feegow.com',
+    FC_IA_ASSISTANT_URL_V2: 'https://ai-assistant-v2.feegow.com',
+    FC_CDN_URL: 'https://cdn.feegow.com',
+    // URL da API de consulta de CEP. Use {cep} como placeholder. Opções válidas:
+    // - ViaCEP:    https://viacep.com.br/ws/{cep}/json/
+    // - OpenCEP:   https://opencep.com/v1/{cep}
+    // - BrasilAPI: https://brasilapi.com.br/api/cep/v1/{cep}
+    FC_CEP_API_URL: 'https://viacep.com.br/ws/{cep}/json/',
+    FC_ACCOUNTS_URL: 'https://accounts-bff.feegow.com'
+  };
+</script>
+
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-TFRMMGS');</script>
+        <!-- End Google Tag Manager -->
+    
+
+    <meta name="robots" content="noindex">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <title>Feegow - Seja bem-vindo</title>
+    <meta http-equiv="Content-Language" content="pt-br">
+    <meta name="author" content="Feegow">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="msapplication-TitleColor" content="fff">
+    <meta name="theme-color" content="#fff">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/img/feegowclinic.ico" type="image/x-icon" />
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-rqn26AG5Pj86AF4SO72RK5fyefcQ/x32DNQfChxWvbXIyXFePlEktwD18fEz+kQU" crossorigin="anonymous">
+
+    <script src="js/components.js?v=9.4.15-6/11/2026"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="/docs/4.0/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+
+
+    <link rel="stylesheet" href="https://cdn.feegow.com/feegowclinic-v7/vendor/bootstrap/4.2.1/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://cdn.feegow.com/feegowclinic-v7/vendor/bootstrap/4.2.1/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+    <script>
+        // localStorage.clear()
+    </script>
+
+    <style type="text/css">
+
+            body {
+              /*background-color: #eaeaea;*/
+              /*background-image: url("assets/img/login_squared_background.png");*/
+
+              /*background-repeat: no-repeat;*/
+              /*background-position: 50% 50%;*/
+              line-height: 10px;
+              font-family: "Open Sans", Helvetica, Arial, sans-serif;
+            }
+            body {
+                background: linear-gradient(52deg, #00b4fc, #0ecfbc, #00b4fc, #17d0b5);
+                background-size: 800% 800%;
+
+                -webkit-animation: AnimationName 180s ease infinite;
+                -moz-animation: AnimationName 190s ease infinite;
+                animation: AnimationName 180s ease infinite;
+            }
+
+            .login-erro{
+                background-color: #fff3f3;
+                padding: 10px;
+                padding-bottom: 14px;
+                margin-top: 10px;
+                border-radius: 6px;
+                font-size: 12px;
+                color: #ff4d4d;
+                text-align: center;
+                border-left: 3px solid #ff7272;
+                border-top-left-radius: 2px;
+                border-bottom-left-radius: 2px;
+            }
+
+            .carousel{
+                background-image: url(https://cdn.feegow.com/marketing/assets/fw-login/login_bem_vindo.webp);
+                background-size: cover;
+                background-color: #ddddddbf;
+                border-top-right-radius: 14px;
+                border-bottom-right-radius: 14px;
+            }
+
+            .copyright{
+                font-size: 10px;
+                color: #a6a6a6;
+                position: absolute;
+                bottom: 0;
+                text-align: center;
+                margin-bottom: 25px;
+                margin-left: 25px;
+            }
+
+
+            @-webkit-keyframes AnimationName {
+                0%{background-position:0% 87%}
+                50%{background-position:100% 14%}
+                100%{background-position:0% 87%}
+            }
+            @-moz-keyframes AnimationName {
+                0%{background-position:0% 87%}
+                50%{background-position:100% 14%}
+                100%{background-position:0% 87%}
+            }
+            @keyframes AnimationName {
+                0%{background-position:0% 87%}
+                50%{background-position:100% 14%}
+                100%{background-position:0% 87%}
+            }
+
+            @media screen and (max-width: 994px) {
+                body {
+                background-color: #ffffff;
+                  background-image: none;
+                }
+
+                .content-login {
+                    box-shadow: none!important;
+                    border-radius: 0!important;
+                }
+
+                .formloginCol1{
+                    padding: 10px!important;
+                    padding-top: 20px!important;
+                }
+
+                .copyright{
+                    display: none;
+                }
+            }
+
+            .formlogin {
+                margin-left: auto;
+                margin-right: auto;
+             }
+
+            .formLoginContent {
+                padding: 10px;
+                border-radius: 14px;
+                padding-top: 14px;
+                background-color: #ffffff;
+                box-sizing: border-box;
+                padding: 80px;
+                padding-top: 100px;
+             }
+
+            .formloginCol1 {
+                background-color: #ffffff;
+                box-sizing: border-box;
+                padding: 80px;
+                padding-top: 100px;
+                border-top-left-radius: 14px;
+                border-bottom-left-radius: 14px;
+
+            }
+
+            .login-bem-vindo{
+                border-top-right-radius: 14px;
+                border-bottom-right-radius: 14px;
+                height: 610px;
+            }
+            .trigger-error {
+              animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+              transform: translate3d(0, 0, 0);
+              backface-visibility: hidden;
+              perspective: 1000px;
+            }
+
+            @keyframes shake {
+              10%, 90% {
+                transform: translate3d(-1px, 0, 0);
+              }
+
+              20%, 80% {
+                transform: translate3d(2px, 0, 0);
+              }
+
+              30%, 50%, 70% {
+                transform: translate3d(-4px, 0, 0);
+              }
+
+              40%, 60% {
+                transform: translate3d(4px, 0, 0);
+              }
+            }
+            .carousel-inner{
+                border-top-right-radius: 14px;
+                border-bottom-right-radius: 14px;
+            }
+
+            .content-login{
+                display: flex;
+                box-shadow: 0 3px 18px rgba(0, 0, 0, 0.1);
+                border-radius: 14px;
+                width: 100%;
+            }
+
+            div .col {
+                padding-right: 0px !important;
+                padding-left: 0px !important;
+            }
+
+            .formlogin div:nth-child(2) {
+                box-sizing: border-box;
+                padding: 0px;
+            }
+
+            .Agradecimento {
+                width: 259px;
+                height: 55px;
+                font-size: 45px;
+                font-style: normal;
+                font-stretch: normal;
+                line-height: 1.22;
+                letter-spacing: normal;
+                text-align: left;
+                color: #ffffff;
+            }
+
+            .textoRecuperarSenha {
+                font-size: 12px;
+                font-weight: bold;
+                color: #7c7c7c;
+                padding-bottom:2px;
+                line-height: normal;
+            }
+
+            .textoDicaSenha {
+                font-size: 11px;
+                color: #7c7c7c;
+                padding-bottom:2px;
+            }
+
+            .textoCodigoVerificacao {
+                font-size: 11px;
+                font-weight: bold;
+            }
+
+            .textoTitulo {
+                width: 214px;
+                height: 21px;
+                font-size: 27px;
+                font-weight: 600;
+                font-style: normal;
+                font-stretch: normal;
+                line-height: 1.17;
+                letter-spacing: normal;
+                text-align: left;
+                color: #052B3B;
+            }
+
+            .textoTituloInput {
+                width: 46px;
+                font-size: 13px;
+                font-weight: normal;
+                font-style: normal;
+                font-stretch: normal;
+                letter-spacing: normal;
+                text-align: left;
+                color: #052B3B;
+            }
+
+
+            input:-webkit-autofill,
+            input:-webkit-autofill:hover,
+            input:-webkit-autofill:focus,
+            input:-webkit-autofill:active,
+            input:-webkit-autofill:valid {
+                -webkit-transition-delay: 99999s;
+                -webkit-text-fill-color: #2e2e2e;
+            }
+
+            .formloginCol1 input {
+                padding-left: 32px!important;
+            }
+
+
+            input[type=password], input[type=email], input[type=text] {
+                outline: none;
+                border: none;
+                border-radius: 6px;
+                padding: 6px;
+                border: 1px solid #DFDFDF;
+                font-size: 14px;
+                font-weight: normal;
+                font-style: normal;
+                font-stretch: normal;
+                line-height: 1.36;
+                letter-spacing: normal;
+                color: #464646;
+                width: 100%;
+                -webkit-transition: border-color ease-in-out .3s;
+                -o-transition: border-color ease-in-out .3s;
+                transition: border-color ease-in-out .3s;
+            }
+
+            input:focus {
+                outline: none;
+                border: 1px solid #00bad7;
+                color: #2e2e2e;
+            }
+
+            .botao:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+
+            .botao {
+                background: rgba(0,180,252,1);
+
+                border: none;
+                text-align: center;
+                display: inline-block;
+                border-radius: 6px;
+                cursor: pointer;
+                width: 100%;
+                height: 37px;
+                font-size: 14px;
+                font-weight: 500;
+                font-style: normal;
+                font-stretch: normal;
+                line-height: 1.29;
+                letter-spacing: 0.2px;
+                color: #ffffff;
+                -webkit-transition-duration: 0.3s;
+                transition-duration: 0.3s;
+                text-decoration: none;
+
+            }
+
+            .botao:hover {
+                color: white;
+                background: rgba(9,197,210,1);
+                letter-spacing: 0.4px;
+            }
+            .botao:active {
+              letter-spacing: 1px;
+            }
+
+            .senha {
+                background-image: url("assets/img/login_senha.png");
+                background-repeat: no-repeat;
+                background-size: 11px;
+                background-position-y: center;
+                background-position-x: 10px;
+            }
+
+            @-webkit-keyframes autofill_usuario {
+                to {
+                    background-image:url("assets/img/login_usuario.png");
+                }
+            }
+
+            .usuario:-webkit-autofill {
+                -webkit-animation-name: autofill_usuario;
+                -webkit-animation-fill-mode: both;
+            }
+
+            .usuario {
+                background-image: url("assets/img/login_usuario.png");
+                background-repeat: no-repeat;
+                background-size: 11px;
+                background-position-y: center;
+                background-position-x: 10px;
+            }
+
+            /* The container */
+            .container-checkbox {
+                display: block;
+                position: relative;
+                padding-left: 15px;
+                margin-bottom: 5px;
+                cursor: pointer;
+                font-size: 10px;
+                color: #b5b1bd;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+
+            /* Hide the browser's default checkbox */
+            .container-checkbox input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+            }
+
+            /* Create a custom checkbox */
+            .container-checkbox .checkmark {
+                position: absolute;
+                top: 0px;
+                left: 0;
+                height: 12px;
+                border-radius: 2px;
+                width: 12px;
+                background-color: #fff;
+                border: 1px solid #ddd;
+            }
+
+            /* On mouse-over, add a grey background color */
+            .container-checkbox:hover input ~ .checkmark {
+                background-color: #f0f0f0;
+            }
+
+            /* When the checkbox is checked, add a blue background */
+            .container-checkbox input:checked ~ .checkmark {
+                background-color: #ffffff;
+            }
+
+            /* Create the checkmark/indicator (hidden when not checked) */
+            .container-checkbox .checkmark:after {
+                content: "";
+                position: absolute;
+                display: none;
+            }
+
+            /* Show the checkmark when checked */
+            .container-checkbox input:checked ~ .checkmark:after {
+                display: block;
+            }
+
+            /* Style the checkmark/indicator */
+            .container-checkbox .checkmark:after {
+                left: 3px;
+                top: 0;
+                width: 4px;
+                height: 8px;
+                border: solid #00B4FC;
+                border-width: 0 1px 1px 0;
+                -webkit-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                transform: rotate(45deg);
+            }
+
+
+            .onclic {
+              border-color: #bbbbbb;
+              border-width: 3px;
+              opacity: 0.7;
+              font-size: 0;
+              width: 40px;
+              border-left-color: #1ECD97;
+              -webkit-animation: rotating 1s 0.2s linear infinite;
+                      animation: rotating 1s 0.2s linear infinite;
+            }
+
+            .validate {
+              font-size: 13px;
+              color: white;
+              background: #1ECD97;
+            }
+            .validate:after {
+            }
+            /* The container */
+            .container-radio {
+                display: block;
+                position: relative;
+                padding-left: 15px;
+                margin-bottom: 5px;
+                cursor: pointer;
+                font-size: 12px;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+
+            /* Hide the browser's default radio button */
+            .container-radio input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+            }
+
+            /* Create a custom radio button */
+            .container-radio .checkmark {
+                position: absolute;
+                top: 0px;
+                left: 0;
+                height: 12px;
+                width: 12px;
+                background-color: #eee;
+                border-radius: 50%;
+            }
+
+            /* On mouse-over, add a grey background color */
+            .container-radio:hover input ~ .checkmark {
+                background-color: #ccc;
+            }
+
+            /* When the radio button is checked, add a blue background */
+            .container-radio input:checked ~ .checkmark {
+                background-color: #00BAD7;
+            }
+
+            /* Create the indicator (the dot/circle - hidden when not checked) */
+            .container-radio .checkmark:after {
+                content: "";
+                position: absolute;
+                display: none;
+            }
+
+            /* Show the indicator (dot/circle) when checked */
+            .container-radio input:checked ~ .checkmark:after {
+                display: block;
+            }
+
+            /* Style the indicator (dot/circle) */
+            .container-radio .checkmark:after {
+                top: 3px;
+                left: 3px;
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background: white;
+            }
+
+            @media screen and (min-width: 200px) {
+                .formlogin {
+                  padding: 2%;         /* 5% of container width, for medium screens */
+                }
+            }
+
+            @media screen and (min-width: 893px) {
+                .formlogin {
+                  padding: 120px;         /* 5% of 600px, for wide screens */
+                }
+            }
+
+            ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+                font-size: 14px;
+                font-weight: normal;
+                font-style: normal;
+                font-stretch: normal;
+                line-height: 1.36;
+                letter-spacing: normal;
+                color: #e3e3e3;
+            }
+
+            :-ms-input-placeholder { /* Internet Explorer 10-11 */
+                font-size: 14px;
+                font-weight: normal;
+                font-style: normal;
+                font-stretch: normal;
+                line-height: 1.36;
+                letter-spacing: normal;
+                color: #e3e3e3;
+            }
+
+            ::-ms-input-placeholder { /* Microsoft Edge */
+                font-size: 14px;
+                font-weight: normal;
+                font-style: normal;
+                font-stretch: normal;
+                line-height: 1.36;
+                letter-spacing: normal;
+                color: #e3e3e3;
+            }
+
+    </style>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TFRMMGS"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    <form method="post" action="">
+        <div class="container">
+            <div class="row formlogin">
+                <div class="content-login">
+                    
+                    <div class="col-lg-6 col-xs-12 col-xl-6 formloginCol1">
+                        <a href="./?P=Login2" title="Logo">
+                            <input type="hidden" name="RedirectLogin" value="">
+                            
+                                    <img class="login-logo" src="assets/img/login_logo.svg" border="0" width="124" height="36">
+                            
+                        </a>
+                            
+                                <div id="divFormLogin">
+                                        <div  style="margin-top: 15px;" >
+        <span class="textoTitulo">Faça o login na sua conta</span>
+    </div>
+    <div style="margin-top: 30px;">
+        <label for="User" class="textoTituloInput" >E-mail</label>
+        <input type="email" class="usuario" type="email" name="User" id="User" value="" placeholder="digite seu e-mail de acesso" autofocus required>
+    </div>
+    <div style="margin-top: 20px;">
+        <label for="password" class="textoTituloInput">Senha</label>
+        <input type="password" class="senha" placeholder="senha" type="password" value="" name="password" id="password" required autocomplete="new-password" />
+    </div>
+    <div class="container" style="margin-top: 10px;">
+        <div class="row">
+            <div class="col">
+                <label class="container-checkbox">Lembrar dados de acesso
+                <input type="checkbox" name="Lembrarme" id="Lembrarme" value="S" >
+                <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="col">
+                <label class="container-checkbox">
+                    <span id="esqueciSenha"><i class="fal fa-question-circle"></i> Esqueceu sua senha? / primeiro acesso?</span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top: 50px; text-align:center;">
+
+    
+        <button  type="submit" class="botao" data-style="zoom-in" id="Entrar"> <span class="btn-entrar-txt" style="padding-right: 10px;">Entrar</span><i style="font-size: 12px" class="icon-btn-login fal fa-arrow-right"></i></button>
+    </div>
+    <div class="login-erro" style="display: none">
+        <i class="far fa-exclamation-circle"></i>
+        
+    </div>
+    <script>
+        $(document).ready(function() {
+            $("#esqueciSenha").click(function() {
+            $("#divError").html("");
+            postUrl("login/fgtpassword", {
+                "invoices": '0'
+            }, function (data) {
+            $("#divFormLogin").html(data);
+            })});            
+        });
+    </script>
+
+                                </div>
+
+                            <div class="copyright">
+                                <i class="far fa-copyright"></i> 2026 Feegow S.A - Todos direitos reservados
+                            </div>
+                    </div>
+                    <div id="carouselExampleIndicators" class="col-lg-8 col-xl-8 d-none d-lg-block d-xl-block carousel slide" data-ride="carousel" style="width: 506px">
+                        <!-- ol class="carousel-indicators">
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        </ol -->
+                        <div class="carousel-inner">
+                        <!--div class="carousel-item">
+                            <a href="https://promo.feegowclinic.com.br/curso-de-marketing?utm_campaign=email3_curso_de_marketing_cta1&utm_medium=email&utm_source=rdstationt" target="_blank"><img src="assets/img/login_marketing_medico.png"></a>
+                        </div-->
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <input id="authtoken" type="hidden">
+        <input id="qs" type="hidden" name="qs" value="p=ocupacao&pers=1">
+    </form>
+
+    <!-- BEGIN: PAGE SCRIPTS -->
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery-1.11.1.min.js"></script>
+    <script src="vendor/jquery/jquery_ui/jquery-ui.min.js"></script>
+
+    <!-- pki lacuna software -->
+    <script type="text/javascript" src="https://get.webpkiplugin.com/Scripts/LacunaWebPKI/lacuna-web-pki-2.12.0.js"
+                integrity="sha256-jDF8LDaAvViVZ7JJAdzDVGgY2BhjOUQ9py+av84PVFA="
+                crossorigin="anonymous"></script>
+
+    <!-- CanvasBG Plugin(creates mousehover effect) -->
+    <!--script src="vendor/plugins/canvasbg/canvasbg.js"></script>-->
+
+    <!-- Theme Javascript -->
+    <script src="assets/js/utility/utility.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="vendor/plugins/ladda/ladda.min.js"></script>
+
+
+    <!-- Page Javascript -->
+    <script type="text/javascript">
+    var pki = {};
+    try{
+        pki = new LacunaWebPKI();
+    }catch (e) {}
+
+        var selectedCert = null;
+
+        jQuery(document).ready(function () {
+            "use strict";
+            Core.init();
+            Ladda.bind('.ladda-button', {
+                timeout: 8000
+            });
+
+            // Bind progress buttons and simulate loading progress. Note: Button still requires ".ladda-button" class.
+            Ladda.bind('.progress-button', {
+                callback: function (instance) {
+                    var progress = 0;
+                    var interval = setInterval(function () {
+                        progress = Math.min(progress + Math.random() * 0.1, 1);
+                        instance.setProgress(progress);
+
+                        if (progress === 1) {
+                            instance.stop();
+                            clearInterval(interval);
+                        }
+                    }, 200);
+                }
+            });
+
+            
+
+            $('#certificateSelect').on("change",function(){
+                var selectedCertThumb = $('#certificateSelect').val();
+
+                for (var i = 0; i < certificates.length; i++) {
+                    var cert = certificates[i];
+                    if (cert.thumbprint == selectedCertThumb) {
+                        selectedCert = cert;
+                    }
+                }
+                return null;
+            });
+
+            $('#loginDigitalCertificate').on('click',function(){
+                const cert = sessionStorage.getItem('defaultcertificate');
+
+                if(cert!==null){
+                    selectedCert = JSON.parse(cert,true);
+                    InitAuthCert();
+
+                }else{
+                    $('#certsModal').modal('show');
+                }
+            });
+
+            $('#loginCertButton').on('click',function(){
+                    InitAuthCert();
+            });
+
+            function startPki() {
+                pki.init({
+                    ready: onWebPkiReady,
+                    notInstalled: onWebPkiNotInstalled
+                });
+            }
+
+        function onWebPkiNotInstalled(status, message) {
+            var alerta = `<span>Você precisa instalar a Extensão WebPki para usar o certificado digital.</span>
+                            <a href='https://chrome.google.com/webstore/detail/web-pki/dcngeagmmhegagicpcmpinaoklddcgon'>Ir para download</a>`;
+
+        }
+
+        function onWebPkiReady() {
+            $('#certificadoArea').show('slow');
+
+            pki.listTokens({
+                pkcs11Modules: [pki.pkcs11Modules.safeSign, pki.pkcs11Modules.safeNet]
+            }).success(function (tokens) {
+                var select = $('#certificateSelect');
+                    $.each(tokens, function () {
+                });
+            });
+
+            pki.listCertificates().success(function (certs) {
+                var select = $('#certificateSelect');
+                certificates = [];
+                $.each(certs, function () {
+                    if(VerificarPropositoCertificado(this)){
+                        certificates.push(this);
+                        select.append(
+                            $('<option />')
+                                .val(this.thumbprint)
+                                .text(this.subjectName + ' (issued by ' + this.issuerName + ')')
+                        );
+                    }
+                });
+            });
+        }
+
+        function destroyPhpSession() {
+            $.get(domain + "destroy-session", function(data) {
+                console.log(data);
+            })
+        }
+
+        function InitAuthCert() {
+            $.ajax({
+                url: domain +'digital-certification/reg-login-start/',
+                method: 'POST',
+                dataType: 'json',
+                data: {
+                        nome:selectedCert.subjectName,
+                        certificado: JSON.stringify(selectedCert)
+                        },
+                success: function(data)  {
+                    if(data.status == "ok"){
+                        pki.signWithRestPki({
+                            token: data.token,
+                            thumbprint: selectedCert.thumbprint
+                        }).success(function (result) {
+                            CompletAuthCert(result);
+                        });
+                    }else{
+                        alert(data.msg);
+                        }
+                    }
+                });
+        }
+
+        function CompletAuthCert(token) {
+            $.ajax({
+                url: domain +'digital-certification/reg-login-end/',
+                method: 'POST',
+                dataType: 'json',
+                data: {
+                        regToken: token,
+                        certificado: JSON.stringify(selectedCert)
+                    },
+                success: OnLoginCompleted
+            });
+        }
+
+        function OnLoginCompleted(result) {
+            if(result.token=="")
+            {
+                alert(result.msg);
+                sessionStorage.removeItem('defaultcertificate');
+                $('#certsModal').modal('hide');
+
+            }else{
+
+                sessionStorage.setItem('defaultcertificate',JSON.stringify(selectedCert));
+                console.log(result);
+                $('#tokenLogin').val(result.token);
+                $('#regLogin').val(result.filename);
+                $('form').submit();
+            }
+        }
+
+            $('form').on('submit', function(e){
+                $(".btn-entrar-txt").fadeOut(150);
+                $( ".botao" ).addClass( "onclic");
+                $( ".icon-btn-login" ).removeClass("fa-arrow-right").addClass( "fa-spinner-third fa-spin");
+
+                if($('#tokenLogin').val()=='')
+                {
+                    sessionStorage.removeItem('defaultcertificate');
+                }
+
+            });
+
+            function VerificarPropositoCertificado(certificado)
+            {
+                var result = (certificado.keyUsage.nonRepudiation && certificado.keyUsage.digitalSignature);
+                return result;
+            }
+
+        });
+
+        
+        var captchaToken = null;
+
+        function recaptchaSuccess(token){
+            $("#Entrar").attr("disabled",false);
+        }
+
+        
+        sessionStorage.removeItem("tk");
+        sessionStorage.removeItem("htk");
+        localStorage.removeItem("tk");
+        sessionStorage.removeItem("doctoraliaAuthenticationData");
+        sessionStorage.removeItem("codeDpSpaces");
+
+        
+
+        // send a message to feegow app if it's running on a webview to invalidate user token
+        
+    </script>
+</body>
+
+
+<script src="https://cdn.feegow.com/feegowclinic-v7/vendor/sweetalert/sweetalert2@11.js"></script>
+<script>
+
+function chatNotificacao(titulo, mensagem) {
+    let options = {
+      body: mensagem,
+      icon: "https://cdn.feegow.com/feegowclinic-v7/assets/img/logo_white_icon.png",
+      silent: true
+  };
+  // Verifica se o browser suporta notificações
+  if (!("Notification" in window)) {
+    alert("Este browser não suporta notificações de Desktop");
+  }
+  // Let's check whether notification permissions have already been granted
+  else if (Notification.permission === "granted") {
+    // If it's okay let's create a notification
+    let notification = new Notification(titulo, options);
+  }
+  // Otherwise, we need to ask the user for permission
+  else if (Notification.permission !== 'denied') {
+    Notification.requestPermission(function (permission) {
+      // If the user accepts, let's create a notification
+      if (permission === "granted") {
+        let notification = new Notification(titulo, options);
+      }
+    });
+  }
+  // At last, if the user has denied notifications, and you
+  // want to be respectful there is no need to bother them any more.
+}
+
+</script>
+
+
+<script>
+
+    function verificarStatusLicencaProfissional(licencaId,professionalId) {
+        const cacheKey = "statusLicencaProfissional";
+        const token = fgwGetStorageItem("tk");
+
+        
+
+        const CacheProfEnabled = ''
+        const CacheProfIsVip = ''
+
+        if (CacheProfEnabled !== "" && CacheProfIsVip !== "") {
+
+          const enabled = CacheProfEnabled.toLowerCase() === 'true' || CacheProfEnabled === '1' || CacheProfEnabled.toLowerCase() === 'verdadeiro';
+          const isVip = CacheProfIsVip.toLowerCase() === 'true' || CacheProfIsVip === '1' || CacheProfIsVip.toLowerCase() === 'verdadeiro';
+          const jsonResult = { enabled: enabled, isVip: isVip };
+          
+          sessionStorage.setItem(`aiAssistantStatusResponse_${licencaId}_${professionalId}`, JSON.stringify(jsonResult))
+          return jsonResult
+        }
+        let baseUrlNoa = IAAssistantURLV2;
+        const apiUrl = `${baseUrlNoa}/api/management/licenses/${licencaId}/professionals/${professionalId}/status`;
+
+        return fetch(apiUrl, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json"
+            }
+        })
+        .then(response => {
+          if (!response.ok){
+              saveAssento(licencaId, professionalId, { enabled: false, isVip: false });
+              throw new Error(`HTTP error! Erro ao varificar aiAssistantStatus status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            const response = { enabled: data.enabled, isVip: data.isVip };
+            saveAssento(licencaId, professionalId, response);
+            return response;
+        })
+        .catch(error => {
+            saveAssento(licencaId, professionalId, { enabled: false, isVip: false });
+            console.error(`Erro ao verificar aiAssistantStatus status: `, error);
+            return { enabled: false, isVip: false };
+        });
+    }
+
+    function saveAssento(licencaId, professionalId, response) {
+      $.post('saveAssento.asp', {
+                licencaId: licencaId,
+                response: JSON.stringify(response)
+            });
+      sessionStorage.setItem(`aiAssistantStatusResponse_${licencaId}_${professionalId}`, JSON.stringify(response));
+    }
+
+    let timeoutId_token;
+
+    function verificarToken(funcao) {
+      if (!fgwGetStorageItem("tk")) {
+        timeoutId_token = setTimeout(() => verificarToken(funcao), 200);
+      } else {
+        if (typeof funcao === 'function') {
+          funcao();
+        } else if (timeoutId_token) {
+          clearTimeout(timeoutId_token);
+        }
+      }
+    }
+
+  
+</script>
+
+

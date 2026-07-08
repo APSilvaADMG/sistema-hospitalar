@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MIMIC-III to Sistema Hospitalar mapping",
+  "warning": "Sandbox/research only. Never import into production sistema_hospitalar schema.",
+  "mimicVersion": "1.4",
+  "tables": [
+    {
+      "mimic": "PATIENTS",
+      "local": "Patient",
+      "joinKey": "SUBJECT_ID",
+      "notes": "Map to synthetic Guid; no CPF/CNS. Flag DataSource=MimicDemo."
+    },
+    {
+      "mimic": "ADMISSIONS",
+      "local": "Hospitalization",
+      "joinKey": "HADM_ID",
+      "notes": "HOSPITAL_EXPIRE_FLAG maps loosely to IsDeceased; dates are shifted."
+    },
+    {
+      "mimic": "ICUSTAYS",
+      "local": "Hospitalization + Ward (Uti)",
+      "joinKey": "ICUSTAY_ID",
+      "notes": "FIRST_CAREUNIT / LAST_CAREUNIT → Ward name; US ICU types."
+    },
+    {
+      "mimic": "TRANSFERS",
+      "local": "BedTransfer",
+      "joinKey": "ICUSTAY_ID",
+      "notes": "Optional; bed-level detail not 1:1 with MIMIC."
+    },
+    {
+      "mimic": "CHARTEVENTS",
+      "local": "VitalSignRecord",
+      "joinKey": "ICUSTAY_ID + ITEMID",
+      "itemIds": {
+        "heartRate": "220045",
+        "systolicBp": "220179",
+        "diastolicBp": "220180",
+        "spo2": "220277",
+        "respiratoryRate": "220210",
+        "temperatureC": "223761"
+      },
+      "notes": "Aggregate hourly rows into VitalSignRecord snapshots."
+    },
+    {
+      "mimic": "LABEVENTS",
+      "local": "LabOrder + LabResult",
+      "joinKey": "HADM_ID + ITEMID",
+      "dictionary": "D_LABITEMS",
+      "notes": "Map common ITEMIDs to LabExamCatalog codes."
+    },
+    {
+      "mimic": "DIAGNOSES_ICD",
+      "local": "Cid10Catalog (via ICD-9)",
+      "joinKey": "HADM_ID",
+      "dictionary": "D_ICD_DIAGNOSES",
+      "notes": "ICD-9 only; optional crosswalk to CID-10."
+    },
+    {
+      "mimic": "PRESCRIPTIONS",
+      "local": "PharmacyDispensing",
+      "joinKey": "HADM_ID",
+      "notes": "Different prescription model; use for analytics only."
+    },
+    {
+      "mimic": "NOTEEVENTS",
+      "local": "MedicalRecordEntry",
+      "joinKey": "HADM_ID",
+      "notes": "Free text; keep in research DB or isolated demo PEP."
+    },
+    {
+      "mimic": "D_ITEMS",
+      "local": null,
+      "notes": "Dictionary for CHARTEVENTS / IO events."
+    },
+    {
+      "mimic": "D_LABITEMS",
+      "local": "LabExamCatalog",
+      "notes": "Seed or map lab catalog entries."
+    }
+  ],
+  "subsetTablesForDev": [
+    "PATIENTS",
+    "ADMISSIONS",
+    "ICUSTAYS",
+    "D_ITEMS",
+    "D_LABITEMS",
+    "CHARTEVENTS",
+    "LABEVENTS"
+  ],
+  "staging": {
+    "schema": "mimic_staging",
+    "etlRunTable": "etl_run",
+    "rawVitalsTable": "chartevents_vitals_raw",
+    "snapshotTable": "vital_sign_snapshot",
+    "mapsToLocalEntity": "VitalSignRecord",
+    "isolatedFromProduction": true
+  }
+}

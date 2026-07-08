@@ -1,0 +1,48 @@
+{
+  "name": "sistema-hospitalar-web",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:local": "vite --port 5174",
+    "build": "tsc -b && vite build",
+    "typecheck": "tsc -b",
+    "sync:bayanno-screens": "node scripts/extract-bayanno-screens.mjs",
+    "sync:bayanno-catalog": "node scripts/generate-bayanno-catalog.mjs",
+    "sync:feegow-theme": "node scripts/extract-feegow-theme.mjs",
+    "extract:bayanno": "node scripts/extract-bayanno-site.mjs",
+    "extract:bayanno:views": "node scripts/extract-bayanno-site.mjs views",
+    "extract:bayanno:menu": "node scripts/extract-bayanno-site.mjs menu",
+    "extract:bayanno:routes": "node scripts/extract-bayanno-site.mjs routes",
+    "extract:bayanno:phrases": "node scripts/extract-bayanno-site.mjs phrases",
+    "extract:bayanno:css": "node scripts/extract-bayanno-site.mjs css",
+    "extract:feegow": "node scripts/extract-feegow.mjs",
+    "extract:feegow:api": "node scripts/feegow/extract-api.mjs",
+    "extract:feegow:ocupacao": "node scripts/feegow/extract-ocupacao.mjs",
+    "extract:feegow:tk": "node scripts/feegow/extract-with-tk.mjs",
+    "extract:feegow:cdp": "node scripts/feegow/connect-cdp.mjs",
+    "feegow:login": "node scripts/feegow/save-session.mjs",
+    "feegow:reset": "node scripts/feegow/reset-profile.mjs",
+    "preview": "vite preview",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
+  },
+  "dependencies": {
+    "@microsoft/signalr": "^10.0.0",
+    "qrcode": "^1.5.4",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.6.2"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.61.1",
+    "@types/qrcode": "^1.5.6",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^4.5.2",
+    "playwright": "^1.52.0",
+    "typescript": "~5.8.3",
+    "vite": "^6.3.5"
+  }
+}

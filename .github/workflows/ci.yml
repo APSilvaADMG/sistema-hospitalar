@@ -1,0 +1,134 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend:
+    name: Backend (.NET)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: dotnet build (Release)
+        run: dotnet build -c Release --nologo src/SistemaHospitalar.Api/SistemaHospitalar.Api.csproj
+
+      - name: dotnet test
+        run: dotnet test -c Release --nologo src/SistemaHospitalar.Tests/SistemaHospitalar.Tests.csproj
+
+  frontend:
+    name: Frontend (React)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: npm ci
+        working-directory: web
+        run: npm ci
+
+      - name: TypeScript check
+        working-directory: web
+        run: npx tsc -b
+
+      - name: npm run build
+        working-directory: web
+        run: npm run build
+
+  e2e-smoke:
+    name: E2E smoke (Playwright)
+    runs-on: ubuntu-latest
+    needs: [backend, frontend]
+    timeout-minutes: 30
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: sistema_hospitalar
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://0.0.0.0:8080
+      ConnectionStrings__DefaultConnection: Host=localhost;Port=5432;Database=sistema_hospitalar;Username=postgres;Password=postgres
+      PLAYWRIGHT_API_URL: http://127.0.0.1:8080
+      CI: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Build API
+        run: dotnet build -c Release --nologo src/SistemaHospitalar.Api/SistemaHospitalar.Api.csproj
+
+      - name: Start API
+        run: |
+          dotnet run --no-build -c Release --project src/SistemaHospitalar.Api/SistemaHospitalar.Api.csproj &
+          echo "API_PID=$!" >> "$GITHUB_ENV"
+
+      - name: Wait for API health
+        run: |
+          for i in $(seq 1 72); do
+            if curl -sf http://127.0.0.1:8080/health > /dev/null; then
+              echo "API ready after attempt $i"
+              exit 0
+            fi
+            echo "Waiting for API... ($i/72)"
+            sleep 5
+          done
+          echo "API failed to become healthy in time"
+          exit 1
+
+      - name: Install web dependencies
+        working-directory: web
+        run: npm ci
+
+      - name: Install Playwright browsers
+        working-directory: web
+        run: npx playwright install chromium --with-deps
+
+      - name: Run smoke tests
+        working-directory: web
+        run: npx playwright test e2e/smoke.spec.ts --retries=0
+
+      - name: Stop API
+        if: always()
+        run: |
+          if [ -n "${API_PID:-}" ]; then
+            kill "$API_PID" 2>/dev/null || true
+          fi

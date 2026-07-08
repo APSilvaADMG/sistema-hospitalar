@@ -1,0 +1,431 @@
+/**
+ * Tema Bayanno HMS (SGHC) — sidebar teal escura, glow, tiles no dashboard, topbar escura.
+ * Referência: Diversos/Scripts/_extracted/sghc-php/hospitalar/template/css/bayanno.css
+ */
+
+/* ─── Tokens Bayanno · Claro ─── */
+[data-brand='bayanno'][data-scheme='light'],
+[data-brand='feegow'][data-scheme='light'] {
+  --bg: #f5f5f5;
+  --surface: #ffffff;
+  --surface-elevated: #ffffff;
+  --primary: #066d86;
+  --primary-dark: #005566;
+  --primary-light: #e8f4f7;
+  --primary-soft: #92c5da;
+  --accent: #4291a6;
+  --accent-soft: #7dd8e8;
+  --text: #333333;
+  --muted: #777777;
+  --text-muted: #777777;
+  --border: #cccccc;
+  --sidebar-bg: #005566;
+  --sidebar-bg-solid: #005566;
+  --sidebar-text: #92c5da;
+  --sidebar-muted: rgba(146, 197, 218, 0.75);
+  --sidebar-hover: rgba(66, 145, 166, 0.35);
+  --sidebar-active: #066d86;
+  --sidebar-active-glow: #4291a6;
+  --sidebar-active-text: #ffffff;
+  --sidebar-width: clamp(280px, 26vw, 320px);
+  --table-head: #f0f0f0;
+  --table-head-text: #555555;
+  --btn-primary-bg: #066d86;
+  --btn-primary-hover: #005566;
+  --btn-login-bg: #005566;
+  --btn-login-text: #ffffff;
+  --topbar-bg: #2c3e50;
+  --topbar-text: #ecf0f1;
+  --topbar-shortcut-bg: rgba(255, 255, 255, 0.08);
+  --content-padding-x: 20px;
+  --content-padding-y: 20px;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.12);
+  --radius-sm: 4px;
+  --radius-md: 4px;
+  color-scheme: light;
+}
+
+html[data-brand='bayanno'],
+[data-brand='feegow'],
+html[data-brand='bayanno'] body,
+[data-brand='feegow'] body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* ─── Sidebar Bayanno ─── */
+
+[data-brand='bayanno'] .sidebar,
+[data-brand='feegow'] .sidebar {
+  background: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  border-right: 1px solid rgb(8, 103, 116);
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+}
+
+[data-brand='bayanno'] .sidebar-header,
+[data-brand='feegow'] .sidebar-header {
+  border-bottom: 1px solid rgb(8, 103, 116);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+[data-brand='bayanno'] .sidebar-user,
+[data-brand='feegow'] .sidebar-user {
+  border-top: 1px solid rgb(8, 103, 116);
+}
+
+[data-brand='bayanno'] .user-card,
+[data-brand='feegow'] .user-card {
+  background: rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+[data-brand='bayanno'] .user-name,
+[data-brand='feegow'] .user-name {
+  color: #fff;
+}
+
+[data-brand='bayanno'] .user-role,
+[data-brand='feegow'] .user-role {
+  color: var(--sidebar-muted);
+}
+
+[data-brand='bayanno'] .user-avatar,
+[data-brand='feegow'] .user-avatar {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+[data-brand='bayanno'] .nav-mega-header,
+[data-brand='feegow'] .nav-mega-header,
+[data-brand='bayanno'] .nav-menu-parent,
+[data-brand='feegow'] .nav-menu-parent,
+[data-brand='bayanno'] .nav-subgroup-parent,
+[data-brand='feegow'] .nav-subgroup-parent {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+[data-brand='bayanno'] .nav-mega-block.is-expanded,
+[data-brand='feegow'] .nav-mega-block.is-expanded {
+  background: rgb(11, 107, 121);
+  box-shadow: rgba(0, 0, 0, 0.3) 0 0 4px 2px inset;
+}
+
+[data-brand='bayanno'] .nav-sublink,
+[data-brand='feegow'] .nav-sublink {
+  color: var(--sidebar-text);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+  border-left: 3px solid transparent;
+  position: relative;
+}
+
+[data-brand='bayanno'] .nav-sublink:hover,
+[data-brand='feegow'] .nav-sublink:hover {
+  color: #7dd8e8;
+  background: rgba(66, 145, 166, 0.2);
+  border-left-color: transparent;
+}
+
+[data-brand='bayanno'] .nav-sublink.active,
+[data-brand='feegow'] .nav-sublink.active {
+  color: #fff;
+  background: rgb(6, 109, 134);
+  border-left-color: var(--sidebar-active-glow);
+  box-shadow: inset 0 0 4px 2px rgba(0, 0, 0, 0.2);
+}
+
+[data-brand='bayanno'] .nav-sublink.active::after,
+[data-brand='feegow'] .nav-sublink.active::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: var(--sidebar-active-glow);
+  box-shadow: 0 0 2px 1px #7bc8d7 inset;
+}
+
+[data-brand='bayanno'] .nav-shortcut-chip,
+[data-brand='feegow'] .nav-shortcut-chip {
+  background: rgba(0, 0, 0, 0.12);
+  border-color: rgb(8, 103, 116);
+  color: var(--sidebar-text);
+}
+
+[data-brand='bayanno'] .nav-shortcut-chip.active,
+[data-brand='feegow'] .nav-shortcut-chip.active,
+[data-brand='bayanno'] .nav-shortcut-chip:hover,
+[data-brand='feegow'] .nav-shortcut-chip:hover {
+  background: rgb(6, 109, 134);
+  color: #fff;
+}
+
+[data-brand='bayanno'] .sidebar-rail-link.active,
+[data-brand='feegow'] .sidebar-rail-link.active,
+[data-brand='bayanno'] .sidebar-rail-link:hover,
+[data-brand='feegow'] .sidebar-rail-link:hover {
+  background: rgb(6, 109, 134);
+  color: #fff;
+}
+
+[data-brand='bayanno'] .sidebar-logout,
+[data-brand='feegow'] .sidebar-logout {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+[data-brand='bayanno'] .sidebar-logout:hover,
+[data-brand='feegow'] .sidebar-logout:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+[data-brand='bayanno'] .sidebar-module-search,
+[data-brand='feegow'] .sidebar-module-search {
+  background: rgba(0, 0, 0, 0.15);
+  border-color: rgb(8, 103, 116);
+  color: var(--sidebar-text);
+}
+
+[data-brand='bayanno'] .sidebar-module-search:hover,
+[data-brand='feegow'] .sidebar-module-search:hover {
+  background: rgb(6, 109, 134);
+  color: #fff;
+}
+
+/* ─── Topbar estilo navbar-inverse ─── */
+
+[data-brand='bayanno'] .topbar,
+[data-brand='feegow'] .topbar {
+  background: var(--topbar-bg);
+  color: var(--topbar-text);
+  border-bottom: 1px solid #1a252f;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+[data-brand='bayanno'] .topbar-title,
+[data-brand='feegow'] .topbar-title,
+[data-brand='bayanno'] .topbar-profile-text strong,
+[data-brand='feegow'] .topbar-profile-text strong,
+[data-brand='bayanno'] .topbar-profile-text span,
+[data-brand='feegow'] .topbar-profile-text span {
+  color: var(--topbar-text);
+}
+
+[data-brand='bayanno'] .topbar-icon-btn,
+[data-brand='feegow'] .topbar-icon-btn,
+[data-brand='bayanno'] .topbar-menu-btn,
+[data-brand='feegow'] .topbar-menu-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: var(--topbar-text);
+}
+
+[data-brand='bayanno'] .topbar-icon-btn:hover,
+[data-brand='feegow'] .topbar-icon-btn:hover,
+[data-brand='bayanno'] .topbar-menu-btn:hover,
+[data-brand='feegow'] .topbar-menu-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+[data-brand='bayanno'] .topbar-avatar,
+[data-brand='feegow'] .topbar-avatar {
+  background: #066d86;
+  color: #fff;
+}
+
+[data-brand='bayanno'] .topbar-shortcut,
+[data-brand='feegow'] .topbar-shortcut {
+  color: #bdc3c7;
+}
+
+[data-brand='bayanno'] .topbar-shortcut:hover,
+[data-brand='feegow'] .topbar-shortcut:hover,
+[data-brand='bayanno'] .topbar-shortcut.active,
+[data-brand='feegow'] .topbar-shortcut.active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ─── Dashboard action tiles (Bayanno) ─── */
+
+.bayanno-action-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.bayanno-action-nav-row {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.bayanno-action-nav-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 96px;
+  padding: 14px 8px;
+  text-align: center;
+  text-decoration: none;
+  color: #555;
+  background: linear-gradient(180deg, #fafafa 0%, #ececec 100%);
+  border: 1px solid #d4d4d4;
+  border-radius: 4px;
+  box-shadow: 0 1px 0 #fff inset, 0 1px 2px rgba(0, 0, 0, 0.08);
+  transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.1s;
+}
+
+.bayanno-action-nav-button:hover {
+  color: #066d86;
+  border-color: #92c5da;
+  background: linear-gradient(180deg, #fff 0%, #e8f4f7 100%);
+  transform: translateY(-1px);
+}
+
+.bayanno-action-nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: #066d86;
+}
+
+.bayanno-action-nav-icon .nav-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.bayanno-action-nav-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+[data-brand='bayanno'] .card-panel,
+[data-brand='feegow'] .card-panel {
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+[data-brand='bayanno'] .card-panel-header,
+[data-brand='feegow'] .card-panel-header {
+  background: #f0f0f0;
+  border-bottom: 1px solid var(--border);
+  color: #444;
+  font-weight: 600;
+}
+
+[data-brand='bayanno'] .btn-primary,
+[data-brand='feegow'] .btn-primary,
+[data-brand='bayanno'] .btn,
+[data-brand='feegow'] .btn {
+  border-radius: 4px;
+}
+
+[data-brand='bayanno'] .btn-primary,
+[data-brand='feegow'] .btn-primary {
+  background: var(--btn-primary-bg);
+  border-color: var(--primary-dark);
+}
+
+[data-brand='bayanno'] .btn-primary:hover,
+[data-brand='feegow'] .btn-primary:hover {
+  background: var(--btn-primary-hover);
+}
+
+/* ─── Login Bayanno ─── */
+
+.login-page--bayanno {
+  background: #eaeaea;
+  min-height: 100vh;
+}
+
+.login-page--bayanno .login-topbar {
+  background: #2c3e50;
+  color: #ecf0f1;
+  padding: 12px 24px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.login-page--bayanno .login-shell {
+  max-width: 420px;
+  margin: 48px auto;
+  padding: 0 16px;
+}
+
+.login-page--bayanno .login-shell-card {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 32px 28px;
+}
+
+.login-page--bayanno .login-panel--form h2 {
+  color: #333;
+  font-size: 1.25rem;
+  margin-top: 16px;
+}
+
+.login-page--bayanno .login-panel--form p {
+  color: #777;
+}
+
+.login-page--bayanno .login-form .btn-primary {
+  width: 100%;
+  padding: 10px;
+  background: #005566;
+  border: 1px solid #004455;
+}
+
+.login-page--bayanno .login-form .btn-primary:hover {
+  background: #066d86;
+}
+
+.login-page--bayanno .login-panel--hero {
+  display: none;
+}
+
+.login-page--bayanno .login-shell-card {
+  display: block;
+}
+
+[data-brand='bayanno'] .layout-patient .mobile-bottom-nav,
+[data-brand='feegow'] .layout-patient .mobile-bottom-nav {
+  background: var(--topbar-bg);
+  border-top-color: #1a252f;
+}
+
+[data-brand='bayanno'] .layout-patient .mobile-bottom-nav a.active,
+[data-brand='feegow'] .layout-patient .mobile-bottom-nav a.active {
+  color: var(--accent-soft);
+}
+
+/* Sidebar compacta Bayanno */
+html[data-brand='bayanno'][data-sidebar='icons'],
+[data-brand='feegow'][data-sidebar='icons'],
+html[data-brand='bayanno'][data-sidebar='icons'][data-scheme='light'],
+[data-brand='feegow'][data-sidebar='icons'][data-scheme='light'] {
+  --sidebar-width: 64px;
+}
+
+@media (max-width: 1200px) {
+  .bayanno-action-nav-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .bayanno-action-nav-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

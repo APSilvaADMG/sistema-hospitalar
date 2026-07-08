@@ -1,0 +1,21 @@
+/** Re-exporta o workflow unificado de guias e relatórios. */
+export {
+  ClinicalDocumentKind,
+  type ClinicalDocumentContext,
+  type ClinicalGuideContext,
+  type ReportCaptureData,
+  guideTypeBySlug,
+  guideSlugByType,
+  reportCodeBySlug,
+  reportSlugByCode,
+  guideTypeLabel,
+  findClinicalSource,
+  findReportSource,
+  saveClinicalSource,
+  saveReportSource,
+  generateGuideFromClinicalData,
+  generateReportFromClinicalData,
+  buildChemoClinicalLabel,
+  parseClinicalFormData,
+  isFuniFormGuideType,
+} from './clinicalDocumentWorkflow';

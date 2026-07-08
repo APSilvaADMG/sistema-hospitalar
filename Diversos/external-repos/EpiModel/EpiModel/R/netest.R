@@ -1,0 +1,525 @@
+
+#' @title Dynamic Network Model Estimation
+#'
+#' @description Estimates statistical network models using the exponential
+#'              random graph modeling (ERGM) framework with extensions for
+#'              dynamic/temporal models (STERGM). This is typically the first
+#'              step in the network modeling pipeline, followed by [`netdx`]
+#'              for model diagnostics and [`netsim`] for epidemic simulation.
+#'
+#' @param nw An object of class `network` or `egor`, with the latter
+#'        indicating an `ergm.ego` fit.
+#' @param formation Right-hand sided STERGM formation formula in the form
+#'        `~edges + ...`, where `...` are additional network statistics
+#'        (ERGM terms). This formula specifies which structural features of
+#'        the network should be reproduced by the model. Common terms include
+#'        `edges` (overall connectivity), `nodematch` (homophily by attribute),
+#'        `concurrent` (overlapping partnerships), and `degree` (degree
+#'        distribution constraints). See [`ergm::ergm-terms`] for the full
+#'        list of available terms.
+#' @param target.stats Vector of target statistics for the formation model, with
+#'        one number for each network statistic in the model. These are the
+#'        observed (or desired) values for each term in the formation formula.
+#'        For example, if `formation = ~edges + concurrent`, then
+#'        `target.stats = c(175, 40)` means the model should produce
+#'        approximately 175 edges and 40 nodes with 2 or more partners. For
+#'        an `edges`-only model, a useful starting value is
+#'        `mean_degree * network_size / 2`. Ignored if fitting via `ergm.ego`.
+#' @param coef.diss An object of class `disscoef` output from the
+#'        [`dissolution_coefs`] function. This encodes the average partnership
+#'        duration(s) and the corresponding dissolution model coefficients.
+#'        For models with vital dynamics (arrivals and departures), the
+#'        `d.rate` argument in [`dissolution_coefs`] should be set to adjust
+#'        for the competing risk of node departure.
+#' @param constraints Right-hand sided formula specifying constraints for the
+#'        modeled network, in the form `~...`, where `...` are
+#'        constraint terms. By default, no constraints are set.
+#' @param coef.form Vector of coefficients for the offset terms in the formation
+#'        formula.
+#' @param edapprox If `TRUE`, use the indirect edges dissolution
+#'        approximation method for the dynamic model fit, otherwise use the
+#'        more time-intensive full STERGM estimation (see details). The
+#'        approximation is recommended for most use cases, especially when
+#'        average partnership durations are moderate to long (> 25 time steps).
+#'        Direct STERGM estimation (`edapprox = FALSE`) is slower but may be
+#'        preferred for very short durations or when inferential quantities
+#'        (standard errors, p-values) on formation coefficients are needed.
+#'        For `nw` of class `egor`, only `edapprox = TRUE` is supported.
+#' @param set.control.ergm Control arguments passed to `ergm` (see details).
+#' @param set.control.ergm.ego Control arguments passed to `ergm.ego` (see
+#'        details).
+#' @param set.control.tergm Control arguments passed to `tergm` (see details).
+#' @param verbose If `TRUE`, print model fitting progress to console.
+#' @param nested.edapprox Logical. If `edapprox = TRUE` the dissolution
+#'        model is an initial segment of the formation model (see details).
+#' @param ergm.ego.popsize Numeric. The `popsize` argument passed to
+#'        `ergm.ego::ergm.ego()` when `nw` is an `egor`. Shifts the edges
+#'        coefficient to reflect a target population size. The default of
+#'        `0` scales the edges term to the size of the egor sample,
+#'        matching the coefficient an equivalent `ergm` fit would produce.
+#'        Set to `1` for per-capita scaling, which lets the fitted model
+#'        be applied to a network of arbitrary size without knowing the
+#'        population size assumed during estimation. See `?ergm.ego` for
+#'        other accepted values.
+#' @param ... Additional arguments passed to other functions.
+#'
+#' @details
+#' `netest` is a wrapper function for the `ergm`, `ergm.ego`, and `tergm`
+#' functions that estimate static and dynamic network models. Network model
+#' estimation is the first step in simulating a stochastic network epidemic model
+#' in `EpiModel`. The output from `netest` is a necessary input for running the
+#' epidemic simulations in [`netsim`]. With a fitted network model, one should
+#' always first proceed to model diagnostics, available through the [`netdx`]
+#' function, to check model fit. A detailed description of fitting these
+#' models, along with examples, may be found in the
+#' [Network Modeling for Epidemics](https://epimodel.github.io/sismid/)
+#' tutorials.
+#'
+#' @section Edges Dissolution Approximation:
+#' The edges dissolution approximation method is described in Carnegie et al.
+#' This approximation requires that the dissolution coefficients are known, that
+#' the formation model is being fit to cross-sectional data conditional on those
+#' dissolution coefficients, and that the terms in the dissolution model are a
+#' subset of those in the formation model. Under certain additional conditions,
+#' the formation coefficients of a STERGM model are approximately equal to the
+#' coefficients of that same model fit to the observed cross-sectional data as
+#' an ERGM, minus the corresponding coefficients in the dissolution model. The
+#' approximation thus estimates this ERGM (which is typically much faster than
+#' estimating a STERGM) and subtracts the dissolution coefficients.
+#'
+#' The conditions under which this approximation best hold are when there are
+#' few relational changes from one time step to another; i.e. when either
+#' average relational durations are long, or density is low, or both.
+#' Conveniently, these are the same conditions under which STERGM estimation is
+#' slowest. Note that the same approximation is also used to obtain starting
+#' values for the STERGM estimate when the latter is being conducted. The
+#' estimation does not allow for calculation of standard errors, p-values, or
+#' likelihood for the formation model; thus, this approach is of most use when
+#' the main goal of estimation is to drive dynamic network simulations rather
+#' than to conduct inference on the formation model. The user is strongly
+#' encouraged to examine the behavior of the resulting simulations to confirm
+#' that the approximation is adequate for their purposes. For an example, see
+#' the vignette for the package `tergm`.
+#'
+#' It has recently been found that subtracting a modified version of the
+#' dissolution coefficients from the formation coefficients provides a more
+#' principled approximation, and this is now the form of the approximation
+#' applied by `netest`. The modified values subtracted from the formation
+#' coefficients are equivalent to the (crude) dissolution coefficients with
+#' their target durations increased by 1. The `nested.edapprox` argument
+#' toggles whether to implement this modified version by appending the
+#' dissolution terms to the formation model and appending the relevant values to
+#' the vector of formation model coefficients (value = `FALSE`), whereas
+#' the standard version subtracts the relevant values from the initial formation
+#' model coefficients (value = `TRUE`).
+#'
+#' @section Control Arguments:
+#' The `ergm`, `ergm.ego`, and `tergm` functions allow control settings for the
+#' model fitting process. When fitting a STERGM directly (setting
+#' `edapprox` to `FALSE`), control parameters may be passed to the
+#' `tergm` function with the `set.control.tergm` argument in `netest`.
+#' The controls should be input through the `control.tergm()` function,
+#' with the available parameters listed in the [`tergm::control.tergm`] help
+#' page in the `tergm` package.
+#'
+#' When fitting a STERGM indirectly (setting `edapprox` to `TRUE`), control
+#' settings may be passed to the `ergm` function using `set.control.ergm`,
+#' or to the `ergm.ego` function using `set.control.ergm.ego`. The controls
+#' should be input through the `control.ergm()` and `control.ergm.ego()`
+#' functions, respectively, with the available parameters listed in the
+#' [`ergm::control.ergm`] help page in the `ergm` package and the
+#' [`ergm.ego::control.ergm.ego`] help page in the `ergm.ego`
+#' package. An example is below.
+#'
+#' @section Typical Workflow:
+#' The network modeling pipeline in EpiModel typically follows these steps:
+#'
+#'  1. Initialize a network: [`network_initialize`]
+#'  2. Specify formation and dissolution: a formation formula (e.g.,
+#'     `~edges + concurrent`) with target statistics, and dissolution
+#'     coefficients via [`dissolution_coefs`]
+#'  3. Estimate the network model: `netest()`
+#'  4. Diagnose model fit: [`netdx`]
+#'  5. Simulate the epidemic: [`netsim`] with [`param.net`], [`init.net`],
+#'     and [`control.net`]
+#'
+#' @return A fitted network model object of class `netest`. This object is
+#' passed to [`netdx`] for diagnostics and to [`netsim`] for epidemic
+#' simulation. Use `print()` to view the model form, including the
+#' formation formula, target statistics, and dissolution model. Use
+#' `summary()` to view the estimated model coefficients and goodness-of-fit
+#' statistics from the underlying ERGM or STERGM fit.
+#'
+#' @references
+#' Krivitsky PN, Handcock MS. "A Separable Model for Dynamic Networks." JRSS(B).
+#' 2014; 76.1: 29-46.
+#'
+#' Carnegie NB, Krivitsky PN, Hunter DR, Goodreau SM. An Approximation Method
+#' for Improving Dynamic Network Model Fitting. Journal of Computational and
+#' Graphical Statistics. 2014; 24(2): 502-519.
+#'
+#' Jenness SM, Goodreau SM and Morris M. EpiModel: An R Package for Mathematical
+#' Modeling of Infectious Disease over Networks. Journal of Statistical
+#' Software. 2018; 84(8): 1-47.
+#'
+#' @keywords model
+#' @seealso Use [`dissolution_coefs`] to compute dissolution coefficients
+#'          before estimation. Use [`netdx`] to diagnose the fitted network
+#'          model, and [`netsim`] to simulate epidemic spread over a simulated
+#'          dynamic network consistent with the model fit. Parameterize the
+#'          epidemic simulation with [`param.net`], [`init.net`], and
+#'          [`control.net`].
+#'
+#' @export
+#'
+#' @examples
+#' # Initialize a network of 100 nodes
+#' nw <- network_initialize(n = 100)
+#'
+#' # Set formation formula
+#' formation <- ~edges + concurrent
+#'
+#' # Set target statistics for formation
+#' target.stats <- c(50, 25)
+#'
+#' # Obtain the offset coefficients
+#' coef.diss <- dissolution_coefs(dissolution = ~offset(edges), duration = 10)
+#'
+#' # Estimate the STERGM using the edges dissolution approximation
+#' est <- netest(nw, formation, target.stats, coef.diss,
+#'               set.control.ergm = control.ergm(MCMC.burnin = 1e5,
+#'                                               MCMC.interval = 1000))
+#' # View the model form (formation, targets, dissolution)
+#' est
+#'
+#' # View the estimated coefficients
+#' summary(est)
+#'
+#' \dontrun{
+#' # Model with homophily on a nodal attribute
+#' nw2 <- network_initialize(n = 500)
+#' nw2 <- set_vertex_attribute(nw2, "risk", rep(0:1, each = 250))
+#' formation2 <- ~edges + nodematch("risk")
+#' target.stats2 <- c(175, 110)
+#' coef.diss2 <- dissolution_coefs(dissolution = ~offset(edges), duration = 50)
+#' est2 <- netest(nw2, formation2, target.stats2, coef.diss2)
+#' est2
+#'
+#' # Direct STERGM estimation (slower, for short durations or inference)
+#' est3 <- netest(nw, formation, target.stats, coef.diss, edapprox = FALSE)
+#' }
+#'
+netest <- function(nw, formation, target.stats, coef.diss, constraints = NULL,
+                   coef.form = NULL, edapprox = TRUE,
+                   set.control.ergm = control.ergm(),
+                   set.control.tergm = control.tergm(MCMC.maxchanges = .Machine$integer.max),
+                   set.control.ergm.ego = NULL,
+                   verbose = FALSE, nested.edapprox = TRUE,
+                   ergm.ego.popsize = 0, ...) {
+
+  if (is.null(constraints)) {
+    constraints	<- trim_env(~.)
+  }
+
+  if (!inherits(coef.diss, "disscoef")) {
+    stop("dissolution must be input through the dissolution_coefs function")
+  }
+  dissolution <- coef.diss$dissolution
+  if (coef.diss$duration[1] == 1) {
+    is.tergm <- FALSE
+  } else {
+    is.tergm <- TRUE
+  }
+
+  if (is.tergm == TRUE && nested.edapprox == TRUE) {
+    diss_check(formation, dissolution)
+  }
+
+  if (edapprox == FALSE) {
+
+    fit <- tergm(~Form(formation) + Persist(dissolution),
+                 basis = nw,
+                 targets = "formation",
+                 target.stats = target.stats,
+                 offset.coef = c(coef.form, coef.diss$coef.crude),
+                 constraints = constraints,
+                 estimate = "EGMME",
+                 eval.loglik = FALSE,
+                 control = set.control.tergm,
+                 verbose = verbose)
+
+    coef.form <- fit # there is no longer a separate formation fit
+    which_form <- which(grepl("^Form~", names(coef(fit))) |
+                          grepl("^offset\\(Form~", names(coef(fit))))
+    form_names <- names(coef(fit)[which_form])[!fit$offset[which_form]]
+
+    out <- list()
+    out$formation <- formation
+    out$target.stats <- target.stats
+    out$target.stats.names <-
+      substr(form_names, 6, nchar(form_names))
+    out$coef.form <- coef(coef.form)[which_form]
+    out$dissolution <- dissolution
+    out$coef.diss <- coef.diss
+    out$constraints <- constraints
+    out$edapprox <- edapprox
+    # convert ergm_state to network
+    out$newnetwork <- as.network(fit$newnetwork)
+    delete.network.attribute(out$newnetwork, "time")
+    delete.network.attribute(out$newnetwork, "lasttoggle")
+    out$formula <- trim_env(fit$formula, keep = c("formation", "dissolution"))
+
+  } else {
+
+    if (inherits(nw, "egor")) {
+      # ergm.ego case
+      if (system.file(package = "ergm.ego") == "")
+        stop("The `ergm.ego` package is required to estimate from `egor` objects.\n ")
+      if (is.null(set.control.ergm.ego))
+        set.control.ergm.ego <- ergm.ego::control.ergm.ego()
+
+      fit <- ergm.ego::ergm.ego(
+        formation,
+        basis = nw,
+        popsize = ergm.ego.popsize,
+        constraints = constraints,
+        offset.coef = coef.form,
+        control = set.control.ergm.ego,
+        verbose = verbose
+      )
+      target.stats <- fit$m
+
+    } else {
+      # ergm case
+      fit <- ergm(formation,
+                  basis = nw,
+                  target.stats = target.stats,
+                  constraints = constraints,
+                  offset.coef = coef.form,
+                  eval.loglik = FALSE,
+                  control = set.control.ergm,
+                  verbose = verbose)
+    }
+
+    coef.form <- coef(fit)
+    coef.form.crude <- coef.form
+    if (is.tergm == TRUE) {
+      if (nested.edapprox == TRUE) {
+        l.cfc <- length(coef.diss$coef.form.corr)
+        coef.form[1:l.cfc] <- coef.form[1:l.cfc] - coef.diss$coef.form.corr
+      } else {
+        ## implement the edapprox by appending the dissolution model to the
+        ## formation model and appending the relevant values to the vector of
+        ## formation model coefficients
+        formation <- trim_env(~Passthrough(formation) + Passthrough(dissolution),
+                              keep = c("formation", "dissolution"))
+        coef.form <- c(coef.form, -coef.diss$coef.form.corr)
+      }
+    }
+
+    out <- list()
+    out$formation <- formation
+    out$target.stats <- target.stats
+    ## subselect coef names for targeted statistics, including extremal targets
+    out$target.stats.names <- names(coef(fit))[!fit$offset | (fit$drop != 0)]
+    out$coef.form <- coef.form
+    out$coef.form.crude <- coef.form.crude
+    out$coef.diss <- coef.diss
+    out$constraints <- constraints
+    out$edapprox <- edapprox
+    out$nested.edapprox <- nested.edapprox
+    out$newnetwork <- NVL(fit$newnetwork, fit$network)
+    out$formula <- fit$formula
+  }
+
+  out$summary <- summary(fit, ...)
+  out$fit <- fit
+
+  class(out) <- "netest"
+  return(out)
+}
+
+
+diss_check <- function(formation, dissolution) {
+
+  # Split formulas into separate terms
+  form.terms <- strsplit(as.character(formation)[2], "[+]")[[1]]
+  diss.terms <- strsplit(as.character(dissolution)[2], "[+]")[[1]]
+
+  # Remove whitespace
+  form.terms <- gsub("\\s", "", form.terms)
+  diss.terms <- gsub("\\s", "", diss.terms)
+
+  offpos.f <- grep("offset(", form.terms, fixed = TRUE)
+  form.terms[offpos.f] <- substr(form.terms[offpos.f], nchar("offset(") + 1,
+                                 nchar(form.terms[offpos.f]) - 1)
+  offpos.d <- grep("offset(", diss.terms, fixed = TRUE)
+  diss.terms[offpos.d] <- substr(diss.terms[offpos.d], nchar("offset(") + 1,
+                                 nchar(diss.terms[offpos.d]) - 1)
+
+  argpos.f <- regexpr("\\(", form.terms)
+  argpos.d <- regexpr("\\(", diss.terms)
+
+  # Matrix with terms in row 1, args in row 2
+  form.terms <- vapply(regmatches(form.terms, argpos.f, invert = TRUE),
+                       function(x) {
+                         if (length(x) < 2) {
+                           x <- c(x, "")
+                         } else {
+                           x[2] <- substr(x[2], 1, nchar(x[2]) - 1)
+                         }
+                         x
+                       },
+                       c(term = "", args = ""))
+  diss.terms <- vapply(regmatches(diss.terms, argpos.d, invert = TRUE),
+                       function(x) {
+                         if (length(x) < 2) {
+                           x <- c(x, "")
+                         } else {
+                           x[2] <- substr(x[2], 1, nchar(x[2]) - 1)
+                         }
+                         x
+                       },
+                       c(term = "", args = ""))
+
+  matchpos <- match(diss.terms[1, ], form.terms[1, ])
+
+  if (any(is.na(matchpos))) {
+    stop("Dissolution model is not a subset of formation model.")
+  }
+  if (!all(diss.terms[1, ] %in% c("edges", "nodemix",
+                                  "nodematch"))) {
+    stop("The only allowed dissolution terms are edges, nodemix,
+         and nodematch")
+  }
+  if (any(matchpos != seq_len(ncol(diss.terms)))) {
+    stop("Order of terms in the dissolution model does not correspond to the ",
+         "formation model.")
+  }
+  if (any(diss.terms[2, ] != form.terms[2, seq_len(ncol(diss.terms))])) {
+    stop("Term options for one or more terms in dissolution model do not ",
+         "match the options in the formation model.")
+  }
+
+}
+
+
+#' @title Adjust Dissolution Component of Network Model Fit
+#'
+#' @description Adjusts the dissolution component of a dynamic ERGM fit using
+#'              the [netest()] function with the edges dissolution
+#'              approximation method.
+#'
+#' @param old.netest An object of class `netest`, from the
+#'        [netest()] function.
+#' @param new.coef.diss An object of class `disscoef`, from the
+#'        [dissolution_coefs()] function.
+#' @param nested.edapprox Logical. If `edapprox = TRUE` the dissolution
+#'        model is an initial segment of the formation model (see details in
+#'        [netest()]).
+#'
+#' @details
+#' Fitting an ERGM is a computationally intensive process when the model
+#' includes dyad dependent terms. With the edges dissolution approximation
+#' method of Carnegie et al, the coefficients for a temporal ERGM are
+#' approximated by fitting a static ERGM and adjusting the formation
+#' coefficients to account for edge dissolution. This function provides a very
+#' efficient method to adjust the coefficients of that model when one wants to
+#' use a different dissolution model; a typical use case may be to fit several
+#' different models with different average edge durations as targets. The
+#' example below exhibits that case.
+#'
+#' @return An updated network model object of class `netest`.
+#'
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' nw <- network_initialize(n = 1000)
+#'
+#' # Two dissolutions: an average duration of 300 versus 200
+#' diss.300 <- dissolution_coefs(~offset(edges), 300, 0.001)
+#' diss.200 <- dissolution_coefs(~offset(edges), 200, 0.001)
+#'
+#' # Fit the two reference models
+#' est300 <- netest(nw = nw,
+#'                 formation = ~edges,
+#'                 target.stats = c(500),
+#'                 coef.diss = diss.300)
+#'
+#' est200 <- netest(nw = nw,
+#'                 formation = ~edges,
+#'                 target.stats = c(500),
+#'                 coef.diss = diss.200)
+#'
+#' # Alternatively, update the 300 model with the 200 coefficients
+#' est200.compare <- update_dissolution(est300, diss.200)
+#'
+#' identical(est200$coef.form, est200.compare$coef.form)
+#'}
+#'
+update_dissolution <- function(old.netest, new.coef.diss,
+                               nested.edapprox = TRUE) {
+
+  if (!inherits(old.netest, "netest")) {
+    stop("old.netest must be an object of class netest")
+  }
+  if (!inherits(new.coef.diss, "disscoef")) {
+    stop("new.coef.diss must be an object of class disscoef")
+  }
+  if (old.netest$edapprox != TRUE) {
+    stop("Edges dissolution approximation must be used for this adjustment")
+  }
+
+  out <- old.netest
+
+  ## if an old correction was applied...
+  if (old.netest$coef.diss$coef.crude[1] != -Inf) {
+    ## remove the old correction
+    if (out$nested.edapprox == TRUE) {
+      ## adjust the formation model coefficients to remove the old edapprox
+      l.cd.o <- length(out$coef.diss$coef.form.corr)
+      out$coef.form[1:l.cd.o] <- out$coef.form[1:l.cd.o] +
+        out$coef.diss$coef.form.corr
+    } else {
+      ## remove the part of the formation model and coefficient vector
+      ## corresponding to the old edapprox
+      out$formation <- eval(quote(formation),
+                            envir = environment(out$formation))
+      out$coef.form <-
+        out$coef.form[seq_len(length(out$coef.form) -
+                                length(out$coef.diss$coef.form.corr))]
+    }
+  }
+
+  ## if a new correction should be applied...
+  if (new.coef.diss$coef.crude[1] != -Inf) {
+    ## apply the new correction
+    if (nested.edapprox == TRUE) {
+      ## check that the new dissolution model is an initial segment of the
+      ## formation model
+      diss_check(out$formation, new.coef.diss$dissolution)
+
+      ## implement new edapprox by adjusting the formation model coefficients
+      l.cd.n <- length(new.coef.diss$coef.form.corr)
+      out$coef.form[1:l.cd.n] <- out$coef.form[1:l.cd.n] -
+        new.coef.diss$coef.form.corr
+    } else {
+      ## implement new edapprox by appending the new dissolution model to the
+      ## formation model and appending the relevant values to the vector of
+      ## formation model coefficients
+      # nolint start
+      formation <- out$formation
+      dissolution <- new.coef.diss$dissolution
+      # nolint end
+      out$formation <- trim_env(~Passthrough(formation) + Passthrough(dissolution),
+                                keep = c("formation", "dissolution"))
+      out$coef.form <- c(out$coef.form, -new.coef.diss$coef.form.corr)
+    }
+  }
+
+  out$coef.diss <- new.coef.diss
+  out$nested.edapprox <- nested.edapprox
+
+  return(out)
+}

@@ -1,0 +1,115 @@
+/**
+ * Feegow Clinic — reforço visual em TODAS as telas autenticadas.
+ * Complementa bayanno-global-ui.css (estrutura compartilhada).
+ */
+
+[data-brand='feegow'] .main-content {
+  background: var(--feegow-page-bg, #eef2f4);
+}
+
+[data-brand='feegow'] .area-top {
+  background: #fff;
+  border-bottom: 1px solid #dde4e8;
+  margin-bottom: 12px;
+}
+
+[data-brand='feegow'] .area-top .title {
+  color: var(--feegow-teal-dark, #057a8c);
+  font-weight: 600;
+}
+
+[data-brand='feegow'] .bayanno-page-box,
+[data-brand='feegow'] .box {
+  border-radius: 8px;
+  border-color: #dde4e8;
+}
+
+[data-brand='feegow'] .box-header,
+[data-brand='feegow'] .bayanno-page-header {
+  background: linear-gradient(180deg, #f8fbfc 0%, #f0f6f8 100%);
+  border-bottom: 1px solid #dde4e8;
+}
+
+[data-brand='feegow'] .box-header .title,
+[data-brand='feegow'] .bayanno-page-header .title {
+  color: var(--feegow-teal-dark, #057a8c);
+  font-weight: 600;
+}
+
+[data-brand='feegow'] .nav-tabs > li > a {
+  color: #5a6a72;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+[data-brand='feegow'] .nav-tabs > li.active > a {
+  color: var(--feegow-cyan, #00b4fc) !important;
+}
+
+[data-brand='feegow'] .btn:not(.btn-secondary):not(.btn-danger):not(.btn-link) {
+  background: var(--feegow-cyan, #00b4fc);
+  border-color: #00a0e0;
+  color: #fff;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+[data-brand='feegow'] .btn {
+  border-radius: 6px !important;
+}
+
+[data-brand='feegow'] .card,
+[data-brand='feegow'] .card-panel {
+  border-radius: 8px !important;
+  border-color: #dde4e8 !important;
+  box-shadow: 0 1px 3px rgba(5, 109, 127, 0.06) !important;
+}
+
+[data-brand='feegow'] .kpi-value {
+  color: var(--feegow-teal-dark, #057a8c) !important;
+}
+
+[data-brand='feegow'] .kpi-card {
+  background: #f8fbfc !important;
+}
+
+[data-brand='feegow'] table.data-table thead th,
+[data-brand='feegow'] table.dTable thead th {
+  background: #f0f7f9;
+  color: var(--feegow-teal-dark, #057a8c);
+  font-weight: 600;
+}
+
+[data-brand='feegow'] table.data-table tbody tr:nth-child(even),
+[data-brand='feegow'] table.dTable tbody tr:nth-child(even) {
+  background: #f9fcfd;
+}
+
+[data-brand='feegow'] .filter-bar,
+[data-brand='feegow'] .bayanno-filter-toolbar {
+  background: #f4f9fa;
+  border-color: #dde4e8;
+}
+
+[data-brand='feegow'] .card-panel-header {
+  background: linear-gradient(180deg, #f8fbfc 0%, #f0f6f8 100%) !important;
+  color: var(--feegow-teal-dark, #057a8c) !important;
+}
+
+[data-brand='feegow'] .module-nav-atalhos,
+[data-brand='feegow'] .clinical-guide-pending-panel {
+  border-color: #dde4e8;
+}
+
+[data-brand='feegow'] .alert {
+  border-radius: 6px;
+}
+
+[data-brand='feegow'] .login-hints {
+  display: none;
+}
+
+/* Esconde cabeçalhos modernos duplicados quando já há area-top */
+[data-brand='feegow'] .page-header:not(.bayanno-page-header) {
+  display: none;
+}

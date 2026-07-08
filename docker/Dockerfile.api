@@ -1,0 +1,23 @@
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+WORKDIR /src
+
+COPY SistemaHospitalar.slnx ./
+COPY src/SistemaHospitalar.Domain/SistemaHospitalar.Domain.csproj src/SistemaHospitalar.Domain/
+COPY src/SistemaHospitalar.Application/SistemaHospitalar.Application.csproj src/SistemaHospitalar.Application/
+COPY src/SistemaHospitalar.Infrastructure/SistemaHospitalar.Infrastructure.csproj src/SistemaHospitalar.Infrastructure/
+COPY src/SistemaHospitalar.Api/SistemaHospitalar.Api.csproj src/SistemaHospitalar.Api/
+
+RUN dotnet restore src/SistemaHospitalar.Api/SistemaHospitalar.Api.csproj
+
+COPY src/ src/
+RUN dotnet publish src/SistemaHospitalar.Api/SistemaHospitalar.Api.csproj -c Release -o /app/publish /p:UseAppHost=false
+
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS final
+WORKDIR /app
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends wget \
+    && rm -rf /var/lib/apt/lists/*
+COPY --from=build /app/publish .
+ENV ASPNETCORE_URLS=http://+:8080
+EXPOSE 8080
+ENTRYPOINT ["dotnet", "SistemaHospitalar.Api.dll"]

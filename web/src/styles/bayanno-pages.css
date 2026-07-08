@@ -1,0 +1,327 @@
+/**
+ * Adaptação global: todas as telas React → aparência Bayanno (manage_*.php / view_*.php).
+ */
+
+[data-brand='bayanno'] .bayanno-page-box,
+[data-brand='feegow'] .bayanno-page-box {
+  margin-bottom: 20px;
+}
+
+[data-brand='bayanno'] .bayanno-page-inner,
+[data-brand='feegow'] .bayanno-page-inner {
+  padding-top: 0 !important;
+}
+
+[data-brand='bayanno'] .bayanno-page-inner > .box-header:first-child,
+[data-brand='feegow'] .bayanno-page-inner > .box-header:first-child,
+[data-brand='bayanno'] .bayanno-page-inner > .bayanno-module-tabs-header:first-child,
+[data-brand='feegow'] .bayanno-page-inner > .bayanno-module-tabs-header:first-child {
+  margin: -15px -15px 15px;
+  width: calc(100% + 30px);
+}
+
+[data-brand='bayanno'] .bayanno-page-header .title,
+[data-brand='feegow'] .bayanno-page-header .title,
+[data-brand='bayanno'] .bayanno-module-tabs-header .nav-tabs-left li a,
+[data-brand='feegow'] .bayanno-module-tabs-header .nav-tabs-left li a {
+  font-size: 12px;
+  font-weight: 600;
+  color: #636363;
+  text-decoration: none;
+}
+
+[data-brand='bayanno'] .bayanno-module-tabs-header .nav-tabs-left,
+[data-brand='feegow'] .bayanno-module-tabs-header .nav-tabs-left {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: none;
+}
+
+[data-brand='bayanno'] .bayanno-module-tabs-header .nav-tabs-left li a,
+[data-brand='feegow'] .bayanno-module-tabs-header .nav-tabs-left li a {
+  display: block;
+  padding: 10px 14px;
+}
+
+[data-brand='bayanno'] .bayanno-module-tabs-header .nav-tabs-left li.active a,
+[data-brand='feegow'] .bayanno-module-tabs-header .nav-tabs-left li.active a {
+  background: #fbfbfb;
+  color: #333;
+}
+
+[data-brand='bayanno'] .bayanno-page-subtitle,
+[data-brand='feegow'] .bayanno-page-subtitle {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  color: #888;
+  margin-top: 4px;
+}
+
+[data-brand='bayanno'] .bayanno-page-toolbar,
+[data-brand='feegow'] .bayanno-page-toolbar {
+  float: right;
+  margin: 0;
+  padding: 6px 10px 0 0;
+  list-style: none;
+}
+
+[data-brand='bayanno'] .bayanno-page-toolbar .toolbar-link,
+[data-brand='feegow'] .bayanno-page-toolbar .toolbar-link {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Cards → conteúdo interno Bayanno */
+[data-brand='bayanno'] .bayanno-page-inner .card,
+[data-brand='feegow'] .bayanno-page-inner .card,
+[data-brand='bayanno'] .bayanno-page-inner .card-panel,
+[data-brand='feegow'] .bayanno-page-inner .card-panel {
+  background: #fff;
+  border: 1px solid #d4d4d4;
+  border-radius: 0;
+  box-shadow: none;
+  margin-bottom: 15px;
+}
+
+[data-brand='bayanno'] .bayanno-page-inner .card-panel-header,
+[data-brand='feegow'] .bayanno-page-inner .card-panel-header {
+  background: linear-gradient(to bottom, #fdfdfd, #eaeaea);
+  border-bottom: 1px solid #cdcdcd;
+  color: #636363;
+  font-weight: 600;
+  font-size: 12px;
+  text-shadow: 0 1px #fff;
+  padding: 10px;
+}
+
+/* Tabelas → dTable / table Bayanno */
+[data-brand='bayanno'] .data-table,
+[data-brand='feegow'] .data-table,
+[data-brand='bayanno'] .table,
+[data-brand='feegow'] .table,
+[data-brand='bayanno'] table,
+[data-brand='feegow'] table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  font-size: 12px;
+}
+
+[data-brand='bayanno'] .data-table thead th,
+[data-brand='feegow'] .data-table thead th,
+[data-brand='bayanno'] .table thead th,
+[data-brand='feegow'] .table thead th,
+[data-brand='bayanno'] table thead th,
+[data-brand='feegow'] table thead th {
+  background: linear-gradient(to bottom, #fafafa, #ececec);
+  border: 1px solid #cdcdcd;
+  color: #555;
+  font-weight: 600;
+  padding: 8px 10px;
+  text-align: left;
+  text-shadow: 0 1px #fff;
+}
+
+[data-brand='bayanno'] .data-table td,
+[data-brand='feegow'] .data-table td,
+[data-brand='bayanno'] .table td,
+[data-brand='feegow'] .table td,
+[data-brand='bayanno'] table td,
+[data-brand='feegow'] table td {
+  border: 1px solid #e0e0e0;
+  padding: 8px 10px;
+  color: #444;
+  vertical-align: middle;
+}
+
+[data-brand='bayanno'] .data-table tbody tr:nth-child(even),
+[data-brand='feegow'] .data-table tbody tr:nth-child(even),
+[data-brand='bayanno'] .table tbody tr:nth-child(even),
+[data-brand='feegow'] .table tbody tr:nth-child(even),
+[data-brand='bayanno'] table tbody tr:nth-child(even),
+[data-brand='feegow'] table tbody tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+[data-brand='bayanno'] .data-table tbody tr:hover,
+[data-brand='feegow'] .data-table tbody tr:hover,
+[data-brand='bayanno'] .table tbody tr:hover,
+[data-brand='feegow'] .table tbody tr:hover,
+[data-brand='bayanno'] table tbody tr:hover,
+[data-brand='feegow'] table tbody tr:hover {
+  background: #f2f8fa;
+}
+
+/* Formulários → control-group Bayanno */
+[data-brand='bayanno'] .form-field,
+[data-brand='feegow'] .form-field,
+[data-brand='bayanno'] .filter-field,
+[data-brand='feegow'] .filter-field {
+  margin-bottom: 12px;
+}
+
+[data-brand='bayanno'] .form-field label,
+[data-brand='feegow'] .form-field label,
+[data-brand='bayanno'] .filter-field label,
+[data-brand='feegow'] .filter-field label,
+[data-brand='bayanno'] .control-label,
+[data-brand='feegow'] .control-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+[data-brand='bayanno'] input,
+[data-brand='feegow'] input,
+[data-brand='bayanno'] select,
+[data-brand='feegow'] select,
+[data-brand='bayanno'] textarea,
+[data-brand='feegow'] textarea {
+  border: 1px solid #ccc;
+  border-radius: 0;
+  padding: 6px 8px;
+  font-size: 12px;
+  background: #fff;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+[data-brand='bayanno'] input:focus,
+[data-brand='feegow'] input:focus,
+[data-brand='bayanno'] select:focus,
+[data-brand='feegow'] select:focus,
+[data-brand='bayanno'] textarea:focus,
+[data-brand='feegow'] textarea:focus {
+  border-color: #66afe9;
+  outline: 0;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px rgba(102, 175, 233, 0.4);
+}
+
+[data-brand='bayanno'] .filter-bar,
+[data-brand='feegow'] .filter-bar {
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 12px;
+  margin-bottom: 15px;
+}
+
+[data-brand='bayanno'] .btn,
+[data-brand='feegow'] .btn {
+  border-radius: 0;
+  font-size: 12px;
+  font-weight: 600;
+  text-shadow: 0 1px rgba(255, 255, 255, 0.35);
+}
+
+[data-brand='bayanno'] .btn-primary,
+[data-brand='feegow'] .btn-primary {
+  background: #066d86 !important;
+  border-color: #005566 !important;
+  color: #fff !important;
+}
+
+[data-brand='bayanno'] .btn-secondary,
+[data-brand='feegow'] .btn-secondary {
+  background: linear-gradient(to bottom, #fff, #e6e6e6);
+  border: 1px solid #bbb;
+  color: #333;
+}
+
+[data-brand='bayanno'] .alert,
+[data-brand='feegow'] .alert {
+  border-radius: 0;
+  border: 1px solid transparent;
+  font-size: 12px;
+}
+
+[data-brand='bayanno'] .alert-error,
+[data-brand='feegow'] .alert-error {
+  background: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+}
+
+[data-brand='bayanno'] .alert-success,
+[data-brand='feegow'] .alert-success {
+  background: #dff0d8;
+  border-color: #d6e9c6;
+  color: #468847;
+}
+
+[data-brand='bayanno'] .kpi-grid,
+[data-brand='feegow'] .kpi-grid,
+[data-brand='bayanno'] .kpi-card,
+[data-brand='feegow'] .kpi-card {
+  font-family: inherit;
+}
+
+[data-brand='bayanno'] .kpi-card,
+[data-brand='feegow'] .kpi-card {
+  border-radius: 0;
+  border: 1px solid #cdcdcd;
+  background: linear-gradient(to bottom, #fafafa, #ececec);
+}
+
+/* Portal paciente e hubs */
+[data-brand='bayanno'] .layout-patient .content,
+[data-brand='feegow'] .layout-patient .content {
+  background: #f0f0f0;
+}
+
+[data-brand='bayanno'] .hub-grid,
+[data-brand='feegow'] .hub-grid,
+[data-brand='bayanno'] .workspace-grid,
+[data-brand='feegow'] .workspace-grid {
+  gap: 12px;
+}
+
+[data-brand='bayanno'] .hub-card,
+[data-brand='feegow'] .hub-card,
+[data-brand='bayanno'] .workspace-tile,
+[data-brand='feegow'] .workspace-tile {
+  border: 1px solid #d4d4d4;
+  border-radius: 0;
+  background: linear-gradient(to bottom, #fafafa, #ececec);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+[data-brand='bayanno'] .hub-card:hover,
+[data-brand='feegow'] .hub-card:hover,
+[data-brand='bayanno'] .workspace-tile:hover,
+[data-brand='feegow'] .workspace-tile:hover {
+  border-color: #92c5da;
+  background: linear-gradient(to bottom, #fff, #e8f4f7);
+}
+
+.payment-installments-panel {
+  border: 1px solid var(--border, #dde4e8);
+  border-radius: 8px;
+  padding: 12px;
+  background: #f8fbfd;
+}
+
+.payment-installments-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.payment-installments-table input {
+  width: 100%;
+}
+
+.payment-history-installments {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--muted, #5a6a72);
+  display: grid;
+  gap: 2px;
+}

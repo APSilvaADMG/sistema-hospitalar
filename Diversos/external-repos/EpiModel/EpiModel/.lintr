@@ -1,0 +1,14 @@
+linters: linters_with_defaults(
+  object_name_linter = NULL,
+  line_length_linter(length = 120L),
+  object_usage_linter(skip_with = TRUE),
+  trailing_blank_lines_linter=NULL,
+  return_linter=NULL)
+exclusions: list(
+  "inst",
+  "tests",
+  "vignettes",
+  "R/test.R",
+  "R/RcppExports.R",
+  "R/dcm.mods.R",
+  "R/EpiModel-package.R" = list(line_length_linter = 136))

@@ -1,0 +1,106 @@
+{% extends "base/index.html" %}
+{% load static bootstrap %}
+{% block conteudo %} 
+
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h2 class="fw-bold"><i class="bi bi-box text-primary"></i> Cadastrar Produto</h2>
+        <p class="lead">Cadastre seus produtos e acompanhe o estoque e as vendas relacionadas a eles.</p>
+    </div>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.media}}
+        {{ form|bootstrap }}
+        <div class="d-grid gap-2 col-6 mx-auto mt-3 mb-2">
+            <button type="submit" class="btn btn-success rounded-pill">Cadastrar</button>
+            <button type="button" onclick="history.back()" class="btn btn-danger rounded-pill">Cancelar</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    var elemento = document.getElementById("id_imagemperfil");
+    elemento.classList.add("form-control");
+</script>
+{% endblock conteudo %}
+
+<script>    
+    $(document).ready(function() {
+        $('#id_fornecedor').select2({
+            ajax: {
+                url: "{% url 'fornecedores_pesquisar' %}",
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        term: params.term,
+                    };
+                },
+                processResults: function (data) {
+                    return {
+                        results: data.results
+                    };
+                },
+                cache: true
+            },
+            minimumInputLength: 1,
+        });
+        $('#id_marca').select2({
+            ajax: {
+                url: "{% url 'marca_pesquisar' %}",
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        term: params.term,
+                    };
+                },
+                processResults: function (data) {
+                    return {
+                        results: data.results
+                    };
+                },
+                cache: true
+            },
+            minimumInputLength: 1,
+        });
+        $('#id_tamanho').select2({
+            ajax: {
+                url: "{% url 'tamanho_pesquisar' %}",
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        term: params.term,
+                    };
+                },
+                processResults: function (data) {
+                    return {
+                        results: data.results
+                    };
+                },
+                cache: true
+            },
+            minimumInputLength: 1,
+        });
+        $('#id_tipo_produto').select2({
+            ajax: {
+                url: "{% url 'tipos_pesquisar' %}",
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        term: params.term,
+                    };
+                },
+                processResults: function (data) {
+                    return {
+                        results: data.results
+                    };
+                },
+                cache: true
+            },
+            minimumInputLength: 1,
+        });
+    });
+</script>

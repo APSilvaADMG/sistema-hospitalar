@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="Orienta��es de jejum laboratorial">
+  <rect width="800" height="450" fill="#263238"/>
+  <rect x="30" y="30" width="740" height="390" rx="16" fill="#37474f" stroke="#007d6f" stroke-width="4"/>
+  <text x="60" y="100" fill="#80cbc4" font-family="Segoe UI, Arial, sans-serif" font-size="38" font-weight="700">LABORAT�RIO</text>
+  <text x="60" y="155" fill="#ffffff" font-family="Segoe UI, Arial, sans-serif" font-size="26">Jejum de 8 a 12 horas para exames bioqu�micos</text>
+  <text x="60" y="210" fill="#b0bec5" font-family="Segoe UI, Arial, sans-serif" font-size="22">� �gua liberada � Medicamentos conforme orienta��o m�dica</text>
+  <text x="60" y="260" fill="#b0bec5" font-family="Segoe UI, Arial, sans-serif" font-size="22">� Retire senha no totem ou recep��o do lab</text>
+  <text x="60" y="360" fill="#4dd0e1" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="600">Coleta: 6h30 �s 11h (dias �teis)</text>
+</svg>

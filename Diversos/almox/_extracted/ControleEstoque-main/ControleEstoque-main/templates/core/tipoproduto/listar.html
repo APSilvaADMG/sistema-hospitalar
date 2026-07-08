@@ -1,0 +1,39 @@
+{% extends "base/index.html" %}
+{% load static bootstrap %}
+{% block conteudo %} 
+
+    <div class="text-center mb-4">
+        <h2 class="fw-bold"><i class="bi bi-ui-checks-grid text-primary"></i> Listagem de Tipos de Produto</h2>
+        <p class="lead">Gerencie os tipos de produto como saia, vestido, camiseta, etc. Mantenha o catálogo organizado e facilite a classificação dos seus itens.</p>
+    </div>
+
+    <div class="container mt-5">
+        <a href="{% url 'tipo_produto_criar' %}" class="btn btn-success mb-5">Cadastrar Tipo de Produto</a>
+        <h2>Tipos de Produtos</h2>
+        {% if tiposdeprodutos %}
+            <table class="table table-hover text-center mt-3">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tipo in tiposdeprodutos %}
+                    <tr>
+                        <td>{{ tipo.id }}</td>
+                        <td>{{ tipo.nome|default:"-" }}</td>
+                        <td>{{ tipo.descricao|safe|default:"-" }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="alert alert-info" role="alert">
+                Sem tipo de produto cadastrado.
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock conteudo %}

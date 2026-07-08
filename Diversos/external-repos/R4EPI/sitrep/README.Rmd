@@ -1,0 +1,26 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# Sitrep <img src="man/figures/logo.png" align="right" width="200" />
+
+<!-- badges: start -->
+[![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html#maturing)
+[![CRAN status](https://www.r-pkg.org/badges/version/sitrep)](https://CRAN.R-project.org/package=sitrep)
+[![R-CMD-check](https://github.com/R4EPI/sitrep/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/R4EPI/sitrep/actions/workflows/R-CMD-check.yaml)
+[![Codecov test coverage](https://codecov.io/gh/R4EPI/sitrep/graph/badge.svg)](https://app.codecov.io/gh/R4EPI/sitrep)
+<!-- badges: end -->
+
+```{r introduction-hunk, child="man/rmdhunks/introduction.Rmd"}
+```
