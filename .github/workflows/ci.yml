@@ -76,6 +76,7 @@ jobs:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_URLS: http://0.0.0.0:8080
       ConnectionStrings__DefaultConnection: Host=localhost;Port=5432;Database=sistema_hospitalar;Username=postgres;Password=postgres
+      Hospital__EnableDemoSeeds: "false"
       PLAYWRIGHT_API_URL: http://127.0.0.1:8080
       CI: true
     steps:
@@ -96,22 +97,29 @@ jobs:
       - name: Build API
         run: dotnet build -c Release --nologo src/SistemaHospitalar.Api/SistemaHospitalar.Api.csproj
 
+      - name: Apply database migrations
+        run: |
+          dotnet tool install --global dotnet-ef
+          echo "$HOME/.dotnet/tools" >> "$GITHUB_PATH"
+          dotnet ef database update --project src/SistemaHospitalar.Infrastructure --startup-project src/SistemaHospitalar.Api/SistemaHospitalar.Api.csproj -c Release --no-build
+
       - name: Start API
         run: |
-          dotnet run --no-build -c Release --project src/SistemaHospitalar.Api/SistemaHospitalar.Api.csproj &
+          dotnet run --no-build -c Release --project src/SistemaHospitalar.Api/SistemaHospitalar.Api.csproj > api.log 2>&1 &
           echo "API_PID=$!" >> "$GITHUB_ENV"
 
       - name: Wait for API health
         run: |
-          for i in $(seq 1 72); do
+          for i in $(seq 1 180); do
             if curl -sf http://127.0.0.1:8080/health > /dev/null; then
               echo "API ready after attempt $i"
               exit 0
             fi
-            echo "Waiting for API... ($i/72)"
+            echo "Waiting for API... ($i/180)"
             sleep 5
           done
           echo "API failed to become healthy in time"
+          tail -n 200 api.log || true
           exit 1
 
       - name: Install web dependencies
