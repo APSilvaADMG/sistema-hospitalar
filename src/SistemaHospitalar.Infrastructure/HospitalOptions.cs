@@ -17,6 +17,11 @@ public class HospitalOptions
     public bool EnableDemoSeeds { get; set; } = true;
 
     /// <summary>
+    /// Bootstrap mínimo (migração + usuário admin) para pipelines CI/E2E.
+    /// </summary>
+    public bool CiMinimalBootstrap { get; set; }
+
+    /// <summary>
     /// Resolve o flag: valor explícito em config/env tem prioridade;
     /// caso contrário, true fora de Production e false em Production.
     /// </summary>
@@ -34,4 +39,7 @@ public class HospitalOptions
 
         return !string.Equals(environment, "Production", StringComparison.OrdinalIgnoreCase);
     }
+
+    public static bool ResolveCiMinimalBootstrap(IConfiguration configuration)
+        => configuration.GetValue<bool>($"{SectionName}:CiMinimalBootstrap");
 }

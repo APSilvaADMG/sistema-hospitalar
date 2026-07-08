@@ -20,6 +20,12 @@ public static class DatabaseInitializer
         var configuration = scope.ServiceProvider.GetRequiredService<IConfiguration>();
         var enableDemoSeeds = HospitalOptions.ResolveEnableDemoSeeds(configuration);
 
+        if (HospitalOptions.ResolveCiMinimalBootstrap(configuration))
+        {
+            await ApplyCiMinimalBootstrapAsync(dbContext, cancellationToken);
+            return;
+        }
+
         await dbContext.Database.MigrateAsync(cancellationToken);
         await EnsureAdminProfessionalLinkAsync(dbContext, cancellationToken);
         await HospitalizationSnippetSeed.EnsureAsync(dbContext, cancellationToken);
@@ -271,6 +277,42 @@ public static class DatabaseInitializer
         await RunDemoSeedSafelyAsync("OperationalDemo", dbContext, () => OperationalDemoSeed.EnsureAsync(dbContext, logger, cancellationToken), logger);
         await RunDemoSeedSafelyAsync("WaitingRoomDemo", dbContext, () => WaitingRoomDemoSeed.EnsureAsync(dbContext, logger, cancellationToken), logger);
         await RunDemoSeedSafelyAsync("DemoDataConsistencyRepair", dbContext, () => DemoDataConsistencyRepair.EnsureAsync(dbContext, logger, cancellationToken), logger);
+    }
+
+    private static async Task ApplyCiMinimalBootstrapAsync(
+        AppDbContext dbContext,
+        CancellationToken cancellationToken)
+    {
+        await dbContext.Database.MigrateAsync(cancellationToken);
+        await RolePermissionSeed.EnsureAsync(dbContext, cancellationToken);
+
+        if (!await dbContext.Specialties.AnyAsync(cancellationToken))
+        {
+            var clinicaGeral = new Specialty { Name = "Clínica Geral", CboCode = "225125" };
+            dbContext.Specialties.Add(clinicaGeral);
+            var ana = new Professional
+            {
+                FullName = "Dra. Ana Paula Silva",
+                Crm = "123456-SP",
+                Specialty = clinicaGeral,
+                Email = "ana.silva@hospital.local",
+            };
+            dbContext.Professionals.Add(ana);
+            dbContext.HealthInsurances.AddRange(
+                new HealthInsurance { Name = "Particular", LogoUrl = "/insurers/particular.svg" },
+                new HealthInsurance { Name = "SUS", LogoUrl = "/insurers/sus.svg" });
+            await dbContext.SaveChangesAsync(cancellationToken);
+            SeedUsers(dbContext, ana.Id);
+            await dbContext.SaveChangesAsync(cancellationToken);
+        }
+        else if (!await dbContext.Users.AnyAsync(cancellationToken))
+        {
+            var professional = await dbContext.Professionals.FirstAsync(cancellationToken);
+            SeedUsers(dbContext, professional.Id);
+            await dbContext.SaveChangesAsync(cancellationToken);
+        }
+
+        await EnsureAdminProfessionalLinkAsync(dbContext, cancellationToken);
     }
 
     private static async Task RunDemoSeedSafelyAsync(string seedName, AppDbContext dbContext, Func<Task> seed, ILogger logger)
