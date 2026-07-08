@@ -798,6 +798,7 @@ export const api = {
     return request<OperationalDashboardDto>(`/dashboard/operational${query ? `?${query}` : ''}`);
   },
   getCommandCenterDashboard: () => request<CommandCenterDashboardDto>('/command-center/dashboard'),
+  getCommandCenterQueue: () => request<OperationsQueueSnapshotDto>('/command-center/queue'),
   getBusinessRules: (implementedOnly?: boolean) => {
     const qs = implementedOnly ? '?implementedOnly=true' : '';
     return request<BusinessRuleDto[]>(`/business-rules${qs}`);
@@ -5810,6 +5811,7 @@ export type CommandCenterDashboardDto = {
     available: number;
     cleaning: number;
     maintenance: number;
+    reserved: number;
     occupancyRate: number;
   };
   warehouse: {
@@ -5833,7 +5835,35 @@ export type CommandCenterDashboardDto = {
     occupied: number;
     available: number;
     cleaning: number;
+    maintenance: number;
+    reserved: number;
   }[];
+  operations: {
+    pendingCleaning: number;
+    pendingTransport: number;
+    activeAmbulanceDispatches: number;
+  };
+  emergencyQueue: {
+    id: string;
+    patientName: string;
+    chiefComplaint: string;
+    urgency: string;
+    arrivedAt: string;
+    waitMinutes: number;
+  }[];
+  recentTvCalls: {
+    ticketNumber: string;
+    patientName?: string | null;
+    destination: string;
+    calledAt: string;
+  }[];
+  recentEvents: HospitalEventLogDto[];
+  generatedAt: string;
+};
+
+export type OperationsQueueSnapshotDto = {
+  emergency: CommandCenterDashboardDto['emergencyQueue'];
+  recentTvCalls: CommandCenterDashboardDto['recentTvCalls'];
   generatedAt: string;
 };
 

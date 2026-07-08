@@ -13,6 +13,7 @@ public class HospitalizationService(
     AppDbContext dbContext,
     IHotelariaHospitalarService hotelariaHospitalarService,
     IHospitalEventEngine eventEngine,
+    IOperationsRealtimeNotifier realtime,
     ClinicalStatusAuditLogger clinicalStatusAuditLogger) : IHospitalizationService
 {
     public async Task<IReadOnlyList<WardDto>> GetWardsAsync(
@@ -362,6 +363,7 @@ public class HospitalizationService(
             triageLog?.SuggestedCid10?.Trim() ?? diagnosis,
             cancellationToken);
 
+        await NotifyBedsChangedAsync(cancellationToken);
         return (await GetByIdAsync(hospitalization.Id, cancellationToken))!;
     }
 
@@ -457,6 +459,7 @@ public class HospitalizationService(
             hospitalization.Diagnosis,
             cancellationToken);
 
+        await NotifyBedsChangedAsync(cancellationToken);
         return await GetByIdAsync(id, cancellationToken);
     }
 
@@ -643,6 +646,7 @@ public class HospitalizationService(
             hospitalization.Diagnosis,
             cancellationToken);
 
+        await NotifyBedsChangedAsync(cancellationToken);
         return (await GetByIdAsync(hospitalization.Id, cancellationToken))!;
     }
 
@@ -1196,6 +1200,7 @@ public class HospitalizationService(
             cancellationToken);
 
         await dbContext.SaveChangesAsync(cancellationToken);
+        await NotifyBedsChangedAsync(cancellationToken);
         return (await GetBedEventDtoByIdAsync(bedEvent.Id, cancellationToken))!;
     }
 
@@ -1226,6 +1231,7 @@ public class HospitalizationService(
             cancellationToken);
 
         await dbContext.SaveChangesAsync(cancellationToken);
+        await NotifyBedsChangedAsync(cancellationToken);
         return (await GetBedEventDtoByIdAsync(bedEvent.Id, cancellationToken))!;
     }
 
@@ -1262,6 +1268,7 @@ public class HospitalizationService(
             cancellationToken);
 
         await dbContext.SaveChangesAsync(cancellationToken);
+        await NotifyBedsChangedAsync(cancellationToken);
         return (await GetBedEventDtoByIdAsync(bedEvent.Id, cancellationToken))!;
     }
 
@@ -1811,6 +1818,18 @@ public class HospitalizationService(
         dbContext.BedEvents.Add(bedEvent);
         await dbContext.SaveChangesAsync(cancellationToken);
         return bedEvent;
+    }
+
+    private async Task NotifyBedsChangedAsync(CancellationToken cancellationToken)
+    {
+        try
+        {
+            await realtime.NotifyBedsChangedAsync(cancellationToken);
+        }
+        catch
+        {
+            // Não bloqueia fluxo clínico se o hub em tempo real estiver indisponível.
+        }
     }
 
     private async Task<BedEventDto?> GetBedEventDtoByIdAsync(Guid id, CancellationToken cancellationToken) =>

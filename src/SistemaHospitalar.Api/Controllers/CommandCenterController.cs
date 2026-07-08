@@ -15,4 +15,9 @@ public class CommandCenterController(ICommandCenterService commandCenterService)
     [HttpGet("dashboard")]
     public async Task<IActionResult> GetDashboard(CancellationToken cancellationToken)
         => Ok(await commandCenterService.GetDashboardAsync(cancellationToken));
+
+    [RequireAnyPermission(PermissionCodes.ReportsRead, PermissionCodes.HospitalizationManage, PermissionCodes.PatientsRead)]
+    [HttpGet("queue")]
+    public async Task<IActionResult> GetQueue(CancellationToken cancellationToken)
+        => Ok(await commandCenterService.GetQueueSnapshotAsync(cancellationToken));
 }

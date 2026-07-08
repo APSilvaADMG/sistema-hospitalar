@@ -76,6 +76,77 @@ public class PatientTimelineService(
                 hosp.AdmittedAt,
                 hosp.Professional?.FullName,
                 $"/internacao/leitos?patientId={patientId}"));
+
+            if (hosp.DischargedAt.HasValue)
+            {
+                events.Add(new PatientTimelineEventDto(
+                    "discharge",
+                    "Alta hospitalar",
+                    $"{ward} · Leito {bed}",
+                    hosp.DischargedAt.Value,
+                    hosp.Professional?.FullName,
+                    $"/internacao/leitos?patientId={patientId}"));
+            }
+        }
+
+        var hospitalizationIds = hospitalizations.Select(h => h.Id).ToList();
+        if (hospitalizationIds.Count > 0)
+        {
+            var transfers = await db.BedTransfers.AsNoTracking()
+                .Include(t => t.FromBed).ThenInclude(b => b.Ward)
+                .Include(t => t.ToBed).ThenInclude(b => b.Ward)
+                .Include(t => t.Professional)
+                .Where(t => hospitalizationIds.Contains(t.HospitalizationId) && t.IsActive)
+                .OrderByDescending(t => t.TransferredAt)
+                .Take(10)
+                .ToListAsync(cancellationToken);
+
+            foreach (var transfer in transfers)
+            {
+                events.Add(new PatientTimelineEventDto(
+                    "bed_transfer",
+                    "Transferência de leito",
+                    $"{transfer.FromBed.Ward.Name} {transfer.FromBed.BedNumber} → {transfer.ToBed.Ward.Name} {transfer.ToBed.BedNumber}",
+                    transfer.TransferredAt,
+                    transfer.Professional?.FullName,
+                    $"/internacao/leitos?patientId={patientId}"));
+            }
+
+            var eventLogs = await db.HospitalEventLogs.AsNoTracking()
+                .Where(e => e.IsActive
+                    && e.RelatedEntityId != null
+                    && hospitalizationIds.Contains(e.RelatedEntityId.Value))
+                .OrderByDescending(e => e.CreatedAt)
+                .Take(10)
+                .ToListAsync(cancellationToken);
+
+            foreach (var log in eventLogs)
+            {
+                events.Add(new PatientTimelineEventDto(
+                    "system_event",
+                    log.EventType,
+                    log.Status.ToString(),
+                    log.ProcessedAt ?? log.CreatedAt,
+                    null,
+                    "/dashboard/command-center"));
+            }
+        }
+
+        var emergencyVisits = await db.EmergencyVisits.AsNoTracking()
+            .Where(v => v.PatientId == patientId && v.IsActive)
+            .OrderByDescending(v => v.ArrivedAt)
+            .Take(10)
+            .ToListAsync(cancellationToken);
+
+        foreach (var visit in emergencyVisits)
+        {
+            events.Add(new PatientTimelineEventDto(
+                "emergency",
+                visit.Status == EmergencyVisitStatus.Waiting ? "Pronto-socorro — aguardando" : "Pronto-socorro",
+                $"{visit.Urgency}: {visit.ChiefComplaint}",
+                visit.ArrivedAt,
+                null,
+                "/emergencia"));
         }
 
         var entries = await db.MedicalRecordEntries.AsNoTracking()

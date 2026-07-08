@@ -1,3 +1,6 @@
+using SistemaHospitalar.Application.DTOs.Events;
+using SistemaHospitalar.Domain.Enums;
+
 namespace SistemaHospitalar.Application.DTOs.CommandCenter;
 
 public record CommandCenterDashboardDto(
@@ -9,6 +12,10 @@ public record CommandCenterDashboardDto(
     int OpenPendencies,
     int CriticalClinicalAlerts,
     IReadOnlyList<CommandCenterWardDto> Wards,
+    CommandCenterOperationsDto Operations,
+    IReadOnlyList<CommandCenterEmergencyQueueItemDto> EmergencyQueue,
+    IReadOnlyList<CommandCenterTvCallDto> RecentTvCalls,
+    IReadOnlyList<HospitalEventLogDto> RecentEvents,
     DateTime GeneratedAt);
 
 public record CommandCenterEmergencyDto(
@@ -24,6 +31,7 @@ public record CommandCenterBedSummaryDto(
     int Available,
     int Cleaning,
     int Maintenance,
+    int Reserved,
     decimal OccupancyRate);
 
 public record CommandCenterWarehouseDto(
@@ -43,4 +51,30 @@ public record CommandCenterWardDto(
     int Total,
     int Occupied,
     int Available,
-    int Cleaning);
+    int Cleaning,
+    int Maintenance,
+    int Reserved);
+
+public record CommandCenterOperationsDto(
+    int PendingCleaning,
+    int PendingTransport,
+    int ActiveAmbulanceDispatches);
+
+public record CommandCenterEmergencyQueueItemDto(
+    Guid Id,
+    string PatientName,
+    string ChiefComplaint,
+    TriageUrgency Urgency,
+    DateTime ArrivedAt,
+    double WaitMinutes);
+
+public record CommandCenterTvCallDto(
+    string TicketNumber,
+    string? PatientName,
+    string Destination,
+    DateTime CalledAt);
+
+public record OperationsQueueSnapshotDto(
+    IReadOnlyList<CommandCenterEmergencyQueueItemDto> Emergency,
+    IReadOnlyList<CommandCenterTvCallDto> RecentTvCalls,
+    DateTime GeneratedAt);
