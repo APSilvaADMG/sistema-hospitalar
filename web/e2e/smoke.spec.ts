@@ -13,9 +13,12 @@ test.describe('Smoke — fluxos críticos', () => {
 
     test('login redireciona para o painel', async ({ page }) => {
       await page.goto('/login');
-      await expect(page.locator('#email')).toBeVisible();
-      await page.locator('#email').fill('admin@hospital.local');
-      await page.locator('#password').fill('Admin123!');
+      const email = page.locator('input#feegow-email, input#email');
+      const password = page.locator('input#feegow-password, input#password');
+
+      await expect(email.first()).toBeVisible();
+      await email.first().fill('admin@hospital.local');
+      await password.first().fill('Admin123!');
       await page.getByRole('button', { name: 'Entrar' }).click();
       await expect(page).not.toHaveURL(/\/login(?:\?|$)/, { timeout: 30_000 });
     });
